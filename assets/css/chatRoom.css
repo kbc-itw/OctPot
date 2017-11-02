@@ -1,0 +1,42 @@
+/*ページ全体
+------------------------------*/
+body{
+  color: white;
+}
+
+/*メニューバー
+------------------------------*/
+header ul{
+  color: black;
+  letter-spacing: -0.5em;
+  padding: 0;
+  margin: 0;
+}
+
+header li{
+  width: 70px;
+  text-align: center;
+  letter-spacing: normal;
+  display: inline-block;
+  padding: 10px;
+  background-color: lightgray;
+}
+
+header li{
+  border-left: 1px solid black;
+}
+
+/*マップウィンドウ
+------------------------------*/
+
+
+/*チャットウィンドウ
+------------------------------*/
+
+
+/*ステータスウィンドウ
+------------------------------*/
+
+
+/*ダイスウィンドウ
+------------------------------*/
