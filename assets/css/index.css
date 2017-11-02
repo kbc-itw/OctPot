@@ -1,3 +1,11 @@
 body {
   text-align: center;
 }
+
+body a{
+  display: inline-block;
+  padding: 15px 0;
+  margin: 5px 0;
+  background-color: gray;
+  width: 250px;
+}
