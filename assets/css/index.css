@@ -2,10 +2,47 @@ body {
   text-align: center;
 }
 
-body a{
+h1{
+  margin-top: 50px;
+  color: white;
+}
+
+.menu{
+  margin-top: 70px;
+}
+
+ a{
   display: inline-block;
-  padding: 15px 0;
-  margin: 5px 0;
-  background-color: gray;
   width: 250px;
+  height: 54px;
+  margin: 5px 0;
+  background-color: white;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  line-height: 54px;
+  outline: none;
+}
+
+a:hover{
+  background-color: gray;
+  color: white;
+}
+
+a::before,
+a::after {
+  position: absolute;
+  z-index: -1;
+  display: block;
+  content: '';
+}
+
+a,
+a::before,
+a::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all .3s;
+  transition: all .3s;
 }
