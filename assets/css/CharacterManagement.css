@@ -1,0 +1,17 @@
+table.border {
+  border:solid 2px;
+  border-radius: 10px;
+  height: 500px;
+  width: 250px;
+}
+
+table.border td.id{
+  background-color:gray;
+  color:white;
+  border-radius: 10px;
+  padding: 3px 57px;
+}
+
+input{
+  font-size: 20px;
+}
