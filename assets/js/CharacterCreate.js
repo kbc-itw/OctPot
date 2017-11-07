@@ -28,24 +28,54 @@ function Diceroll(select){
       return dice;
     }else {
       console.log("error");
+      return null;
     }
 }
 
+//入力されたアクションからダイスの種類を決める
 function Select(action) {
   if(action=="str" || action=="con" || action=="pow" ||   action=="dex" ||
-   action=="app" || action=="edu") {
-     let dice = Diceroll("3D6");
+   action=="app" || action=="edu" || action=="income-and-propety") {
+     let result = Diceroll("3D6");
      if(action == "edu") {
-       dice += 3;
+       result += 3;
      }
-     return dice;
+     return result;
   }
   if(action=="siz" || action=="int") {
-    let dice = Diceroll("2D6");
-    dice += 3;
-    return dice;
+    let result = Diceroll("2D6");
+    result += 3;
+    return result;
   }
 }
+
+//ダイスロールの結果からステータスの値を求める。
+function Status(status, diceresult, diceresult2) {
+  if(status=="san" || status=="luck") {
+    let result = diceresult * 5;
+    return result;
+  }else if(status=="mp"){
+    let result = diceresult;
+    return result;
+  }else if(status=="idea") {
+    let result = diceresult * 5;
+    return result;
+  }else if(status=="HobbySkill") {
+    let result = diceresult * 10;
+    return result;
+  }else if(status=="knowledge") {
+    let result = diceresult * 5;
+    return result;
+  }else if(status=="VocationalSkill") {
+    let result = diceresult * 20;
+    return result;
+  }else if(status=="health") {
+    let diceresult3 = diceresult + diceresult2;
+    let result = diceresult3/2;
+    return result;
+  }
+}
+
 
 //9,システムは情報をjson形式で管理用フォルダに保存する。
 
