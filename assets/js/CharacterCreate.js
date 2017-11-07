@@ -15,24 +15,36 @@ function judge(acter){
 function Diceroll(select){
     let dice = 0;
     if(select == "3D6") {
-      for(int i:3) {
+      for(int i =0; i<2 i++) {
         let diceroll = Math.floor(Math.random() * 7);
         dice += diceroll;
       }
     return dice;
-    }
-
-    if(select == "2D6") {
-      for(int:2) {
+  }else if(select == "2D6") {
+      for(int i = 0; i<1 i++) {
         let diceroll = Math.floor(Math.random() * 7);
         dice += diceroll;
       }
       return dice;
+    }else {
+      console.log("error");
     }
 }
 
-function Select() {
-
+function Select(action) {
+  if(action=="str" || action=="con" || action=="pow" ||   action=="dex" ||
+   action=="app" || action=="edu") {
+     let dice = Diceroll("3D6");
+     if(action == "edu") {
+       dice += 3;
+     }
+     return dice;
+  }
+  if(action=="siz" || action=="int") {
+    let dice = Diceroll("2D6");
+    dice += 3;
+    return dice;
+  }
 }
 
 //9,システムは情報をjson形式で管理用フォルダに保存する。
@@ -55,4 +67,4 @@ function Save(content, filename) {
     }
 }
 let file = document.getElementById('file');
-file.addEventListener('click',Save;
+file.addEventListener('click',Save)
