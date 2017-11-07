@@ -10,36 +10,49 @@ function judge(acter){
 
   }
 }
-
+//1～6の乱数作成。それを3回繰り返したのを合計して返す。(3d6)
 //6,システムはダイスロールの値からをステータスを決める。
-function Diceroll(){
-  let diceroll = Math.floor(Math.random() * 11);
-  return diceroll;
+function Diceroll(select){
+    let dice = 0;
+    if(select == "3D6") {
+      for(int i:3) {
+        let diceroll = Math.floor(Math.random() * 7);
+        dice += diceroll;
+      }
+    return dice;
+    }
+
+    if(select == "2D6") {
+      for(int:2) {
+        let diceroll = Math.floor(Math.random() * 7);
+        dice += diceroll;
+      }
+      return dice;
+    }
+}
+
+function Select() {
+
 }
 
 //9,システムは情報をjson形式で管理用フォルダに保存する。
 
 //jsonに変換
-function Save(data) {
+function Change(data) {
   let target = data.target;
   let file = target.files;
   let jsondata = JSON.stringify(file);
-  console.log(file);
 }
 
 //ファイルのダウンロード（保存）
-function handleDownload(content, filename) {
-    var blob = new Blob([ content ], { "type" : "text/plain" });
+function Save(content, filename) {
+    let blob = new Blob([ content ], { "type" : "text/plain" });
 
     if (window.navigator.msSaveBlob) {
         window.navigator.msSaveBlob(blob, filename);
-
-        // msSaveOrOpenBlobの場合はファイルを保存せずに開ける
-        window.navigator.msSaveOrOpenBlob(blob, filename);
     } else {
         document.getElementById("download").href = window.URL.createObjectURL(blob);
     }
 }
-
 let file = document.getElementById('file');
-file.addEventListener('change',Save);
+file.addEventListener('click',Save;
