@@ -16,13 +16,13 @@ function Diceroll(select){
     let dice = 0;
     if(select == "3D6") {
       for(int i =0; i<2 i++) {
-        let diceroll = Math.floor(Math.random() * 7);
+        let diceroll = Math.floor(Math.random() * 6 + 1);
         dice += diceroll;
       }
     return dice;
   }else if(select == "2D6") {
       for(int i = 0; i<1 i++) {
-        let diceroll = Math.floor(Math.random() * 7);
+        let diceroll = Math.floor(Math.random() * 6 + 1);
         dice += diceroll;
       }
       return dice;
@@ -34,46 +34,55 @@ function Diceroll(select){
 
 //入力されたアクションからダイスの種類を決める
 function Select(action) {
-  if(action=="str" || action=="con" || action=="pow" ||   action=="dex" ||
-   action=="app" || action=="edu" || action=="income-and-propety") {
-     let result = Diceroll("3D6");
-     if(action == "edu") {
-       result += 3;
-     }
-     return result;
+  let result = 0;
+  switch(action) {
+    case "edu":
+      result += 3;
+    case "str":
+    case "con":
+    case "pow":
+    case "dex":
+    case "app":
+    case "income-and-propety":
+      result += diceroll("3D6");
+      break;
+    case "siz":
+    case "int":
+      result += 3;
+      result += diceroll("2D6");
+      break;
+    default:
+      console.log("error");
   }
-  if(action=="siz" || action=="int") {
-    let result = Diceroll("2D6");
-    result += 3;
-    return result;
-  }
+  return result;
 }
 
 //ダイスロールの結果からステータスの値を求める。
 function Status(status, diceresult, diceresult2) {
-  if(status=="san" || status=="luck") {
-    let result = diceresult * 5;
-    return result;
-  }else if(status=="mp"){
-    let result = diceresult;
-    return result;
-  }else if(status=="idea") {
-    let result = diceresult * 5;
-    return result;
-  }else if(status=="HobbySkill") {
-    let result = diceresult * 10;
-    return result;
-  }else if(status=="knowledge") {
-    let result = diceresult * 5;
-    return result;
-  }else if(status=="VocationalSkill") {
-    let result = diceresult * 20;
-    return result;
-  }else if(status=="health") {
-    let diceresult3 = diceresult + diceresult2;
-    let result = diceresult3/2;
-    return result;
+  let result = 0;
+  switch(status) {
+    case: "san":
+    case: "luck":
+    case: "idea":
+    case: "knowledge"
+      result += diceresult * 5;
+      break;
+    case: "mp":
+      result += diceresult;
+      break;
+    case: "HobbySkill"
+      result += diceroll * 10;
+      break;
+    case: "VocationalSkill"
+      result += diceroll * 20;
+      break;
+    case: "health"
+      result += (diceresult + diceresult2)/2:
+      break;
+    default:
+      console.log("error");
   }
+  return result;
 }
 
 
