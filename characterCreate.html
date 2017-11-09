@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>キャラクター作成ページ</title>
+    <link rel="stylesheet" href="./assets/css/characterManagement.css" type="text/css">
+  </head>
+
+  <body>
+    <div class="charElem">
+      <h1>役割設定</h1>
+      <p>
+        <input type="radio" name="charElem" value="pc" id="pc">
+        <label for="pc">PC</label>
+      </p>
+      <p>
+        <input type="radio" name="charElem" value="npc" id="npc">
+        <label for="npc">NPC</label>
+      </p>
+    </div>
+
+    <div class="charRace">
+      <h1>種族設定</h1>
+      <select>
+        <option value="">選択してください</option>
+        <option value="1">人間</option>
+      </select>
+    </div>
+
+    <div class="charStatus">
+      <h1>ステータス設定</h1>
+      <h2>基礎ステータス</h2>
+      <ul>
+        <li>
+          str <input type="text" value="3D6" name="str" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+        <li>
+          con <input type="text" value="3D6" name="con" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+        <li>
+          pow <input type="text" value="3D6" name="pow" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+        <li>
+          dex <input type="text" value="3D6" name="dex" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+        <li>
+          app <input type="text" value="3D6" name="app" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+        <li>
+          siz <input type="text" value="2D6+6" name="siz" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+        <li>
+          int <input type="text" value="2D6+6" name="int" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+        <li>
+          edu <input type="text" value="3D6+3" name="edu" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+        <li>
+          年収・財産 <input type="text" value="3D6" name="income-and-property" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+      </ul>
+
+      <h2>変動ステータス</h2>
+      <ul>
+        <li>
+          SAN <input type="text" name="SAN" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+        <li>
+          幸運 <input type="text" name="luck" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+        <li>
+          アイデア <input type="text" name="idea" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+        <li>
+          知識 <input type="text" name="knowledge" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+        <li>
+          体力 <input type="text" name="health" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+        <li>
+          MP <input type="text" name="mp" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+        <li>
+          職業技能 <input type="text" name="VacationalSkill" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+        <li>
+          趣味技能 <input type="text" name="HobbySkill" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+        <li>
+          ダメージボーナス <input type="text" name="DamegeBonus" readonly/>
+          <button><img src="dice" alt="#"></button>
+        </li>
+      </ul>
+
+      <h2>振りなおし回数</h2>
+      <ul>
+        <li>
+          str <input type="text" value="0" name="s-count" readonly/>
+        </li>
+        <li>
+          con <input type="text" value="0" name="c-count" readonly/>
+        </li>
+        <li>
+          pow <input type="text" value="0" name="p-count" readonly/>
+        </li>
+        <li>
+          dex <input type="text" value="0" name="d-count" readonly/>
+        </li>
+        <li>
+          app <input type="text" value="0" name="a-count" readonly/>
+        </li>
+        <li>
+          siz <input type="text" value="0" name="s-count" readonly/>
+        </li>
+        <li>
+          int <input type="text" value="0" name="i-count" readonly/>
+        </li>
+        <li>
+          edu <input type="text" value="0" name="e-count" readonly/>
+        </li>
+        <li>
+          年収・財産 <input type="text" value="0" name="inc-count" readonly/>
+        </li>
+      </ul>
+    </div>
+
+  </body>
+</html>
