@@ -12,29 +12,32 @@ function judge(acter){
 }
 //1～6の乱数作成。それを3回繰り返したのを合計して返す。(3d6)
 //6,システムはダイスロールの値からをステータスを決める。
-function Diceroll(select){
-    let dice = 0;
-    if(select == "3D6") {
-      for(int i =0; i<2 i++) {
+function diceroll(select){
+    let dice = [3];
+    if (select == "3D6") {
+      for(let i =0; i<2; i++) {
         let diceroll = Math.floor(Math.random() * 6 + 1);
-        dice += diceroll;
+        dice[3] += diceroll;
+        dice[i] +=diceroll;
       }
     return dice;
-  }else if(select == "2D6") {
-      for(int i = 0; i<1 i++) {
+  } else if (select == "2D6") {
+      for(let i = 0; i<1; i++) {
         let diceroll = Math.floor(Math.random() * 6 + 1);
-        dice += diceroll;
+        dice[2] += diceroll;
+        dice[i] +=diceroll;
       }
       return dice;
-    }else {
+    } else {
       console.log("error");
       return null;
     }
 }
 
 //入力されたアクションからダイスの種類を決める
-function Select(action) {
+function select(action) {
   let result = 0;
+  let dice;
   switch(action) {
     case "edu":
       result += 3;
@@ -44,40 +47,41 @@ function Select(action) {
     case "dex":
     case "app":
     case "income-and-propety":
-      result += diceroll("3D6");
+      dice = Diceroll("3D6");
+      result += dice[3];
       break;
     case "siz":
     case "int":
+      dice = Diceroll("2D6");
       result += 3;
-      result += diceroll("2D6");
+      result +=dice[2];
       break;
     default:
       console.log("error");
   }
-  return result;
+  return dice,  result;
 }
 
 //ダイスロールの結果からステータスの値を求める。
-function Status(status, diceresult, diceresult2) {
+function status(status, diceresult, diceresult2) {
   let result = 0;
   switch(status) {
-    case: "san":
-    case: "luck":
-    case: "idea":
-    case: "knowledge"
+    case "luck":
+    case "idea":
+    case "knowledge":
       result += diceresult * 5;
       break;
-    case: "mp":
+    case "mp":
       result += diceresult;
       break;
-    case: "HobbySkill"
+    case "HobbySkill":
       result += diceroll * 10;
       break;
-    case: "VocationalSkill"
+    case "VocationalSkill":
       result += diceroll * 20;
       break;
-    case: "health"
-      result += (diceresult + diceresult2)/2:
+    case "health":
+      result += (diceresult + diceresult2)/2;
       break;
     default:
       console.log("error");
@@ -89,14 +93,14 @@ function Status(status, diceresult, diceresult2) {
 //9,システムは情報をjson形式で管理用フォルダに保存する。
 
 //jsonに変換
-function Change(data) {
+function change(data) {
   let target = data.target;
   let file = target.files;
   let jsondata = JSON.stringify(file);
 }
 
 //ファイルのダウンロード（保存）
-function Save(content, filename) {
+function save(content, filename) {
     let blob = new Blob([ content ], { "type" : "text/plain" });
 
     if (window.navigator.msSaveBlob) {
@@ -105,5 +109,12 @@ function Save(content, filename) {
         document.getElementById("download").href = window.URL.createObjectURL(blob);
     }
 }
+
+
+
+let action = document.getElementById('action');
+action.addEvebtListener(act);
+//(3,6,4)=13
+
 let file = document.getElementById('file');
 file.addEventListener('click',Save)
