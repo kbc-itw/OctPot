@@ -4,10 +4,12 @@
 
 //3,アクターは作成するキャラクターPCかNPCかを選択する。
 function judge(acter){
-  if(acter=="PC") {
+  if (acter=="PC") {
 
-  }else　if(acter=="NPC"){
+  } else　if (acter=="NPC"){
 
+  } else {
+    errorlog(acter);
   }
 }
 //1～6の乱数作成。それを3回繰り返したのを合計して返す。(3d6)
@@ -29,7 +31,7 @@ function diceroll(select){
       }
       return dice;
     } else {
-      console.log("error");
+      errorlog(select);
       return null;
     }
 }
@@ -57,7 +59,7 @@ function select(action) {
       result +=dice[2];
       break;
     default:
-      console.log("error");
+      errorlog(action);
   }
   return dice,  result;
 }
@@ -84,7 +86,7 @@ function status(status, diceresult, diceresult2) {
       result += (diceresult + diceresult2)/2;
       break;
     default:
-      console.log("error");
+      errorlog(status);
   }
   return result;
 }
@@ -94,9 +96,9 @@ function status(status, diceresult, diceresult2) {
 
 //jsonに変換
 function change(data) {
-  let target = data.target;
-  let file = target.files;
-  let jsondata = JSON.stringify(file);
+  //let target = data.target;
+  //let file = target.files;
+  let jsondata = JSON.stringify(data);
 }
 
 //ファイルのダウンロード（保存）
@@ -110,11 +112,19 @@ function save(content, filename) {
     }
 }
 
-
+function errorlog(e) {
+  e.onerror = function(msg, url, line, col, error) {
+      switch (e) {
+          case null:
+          case undefined:
+            console.log(msg + ":" + line);
+            console.log("引数が見つかりません。");
+      }
+  }
+}
 
 let action = document.getElementById('action');
 action.addEvebtListener(act);
-//(3,6,4)=13
 
 let file = document.getElementById('file');
 file.addEventListener('click',Save)
