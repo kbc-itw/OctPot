@@ -7,7 +7,7 @@
   </head>
 
   <body>
-    <div class="charElem">
+    <section class="charElem">
       <h1>役割設定</h1>
       <p>
         <input type="radio" name="charElem" value="pc" id="pc">
@@ -17,17 +17,17 @@
         <input type="radio" name="charElem" value="npc" id="npc">
         <label for="npc">NPC</label>
       </p>
-    </div>
+    </section>
 
-    <div class="charRace">
+    <section class="charRace">
       <h1>種族設定</h1>
       <select>
         <option value="">選択してください</option>
         <option value="1">人間</option>
       </select>
-    </div>
+    </section>
 
-    <div class="charStatus">
+    <section class="charStatus">
       <h1>ステータス設定</h1>
       <h2>基礎ステータス</h2>
       <ul>
@@ -68,7 +68,9 @@
           <button><img src="dice" alt="#"></button>
         </li>
       </ul>
+    </section>
 
+    <section class="fluctuationStatus">
       <h2>変動ステータス</h2>
       <ul>
         <li>
@@ -108,7 +110,9 @@
           <button><img src="dice" alt="#"></button>
         </li>
       </ul>
+    </section>
 
+    <section class="reDice">
       <h2>振りなおし回数</h2>
       <ul>
         <li>
@@ -139,7 +143,15 @@
           年収・財産 <input type="text" value="0" name="inc-count" readonly/>
         </li>
       </ul>
-    </div>
+    </section>
+
+    <section class="plofile">
+      <h2>プロフィール</h2>
+      <ul>
+        <li><input type="text" value="経歴" name="Career" /></li>
+        <li><input type="text" value="遭遇したもの" name="Encounter" /></li>
+      </ul>
+    </section>
 
   </body>
 </html>
