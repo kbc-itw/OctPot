@@ -1,0 +1,56 @@
+/* 全体
+------------------------------*/
+.parent{
+  background: white;
+  border: solid 1px black;
+  margin: 0 20px 20px 20px;
+}
+
+.parent h1{
+  background: lightgray;
+  color: black;
+  margin: 0;
+}
+
+.child{
+  border: solid 1px black;
+  margin: 2%;
+}
+
+.child h2{
+  border-left: solid 5px blue;
+  background: skyblue;
+  color: white;
+  margin: 0;
+}
+
+.left-area,
+.right-area{
+  width: 45%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.left-area{
+  margin: 2%;
+}
+
+.right-area{
+  margin: 2% 0;
+}
+
+
+/* float解除 */
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+
+/* プロフィール */
+.plof .child input{
+  overflow: scroll;
+  width: 98%;
+  margin: 1%;
+}
