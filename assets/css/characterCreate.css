@@ -24,8 +24,17 @@
   margin: 0;
 }
 
-.child input{
-  width: 80px;
+.child ul{
+  list-style: none;
+}
+
+.child p,
+.child ul{
+  margin: 0;
+}
+
+.child ul{
+  padding: 0;
 }
 
 .left-area,
@@ -35,11 +44,25 @@
   vertical-align: top;
 }
 
-.left-area{
+.tri-l,
+.tri-c,
+.tri-r{
+  width: 30%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.left-area,
+.tri-l{
   margin: 2%;
 }
 
-.right-area{
+.tri-c{
+  margin: 2% 2% 2% 0;
+}
+
+.right-area,
+.tri-r{
   margin: 2% 0;
 }
 
@@ -51,6 +74,36 @@
   display: block;
 }
 
+/* 基礎ステータス */
+.base li p,
+.base li input,
+.base li .button{
+  display: inline-block;
+}
+
+.base li input{
+  width: 50px;
+}
+
+/* 変動ステータス */
+.fluctuation li p,
+.fluctuation li input{
+  display: inline-block;
+}
+
+.fluctuation li input{
+  width: 80px;
+}
+
+/* 振りなおし回数 */
+.redice li p,
+.redice input{
+  display: inline-block;
+}
+
+.redice input{
+  width: 50px;
+}
 
 /* プロフィール */
 .plof .child textarea{
