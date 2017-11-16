@@ -81,6 +81,11 @@
   display: inline-block;
 }
 
+.base li p{
+  width: 100px;
+  text-align: center;
+}
+
 .base li input{
   width: 50px;
 }
@@ -91,6 +96,11 @@
   display: inline-block;
 }
 
+.fluctuation li p {
+  width: 140px;
+  text-align: center;
+}
+
 .fluctuation li input{
   width: 80px;
 }
@@ -99,6 +109,11 @@
 .redice li p,
 .redice input{
   display: inline-block;
+}
+
+.redice li p{
+  width: 100px;
+  text-align: center;
 }
 
 .redice input{
