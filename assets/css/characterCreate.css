@@ -24,6 +24,10 @@
   margin: 0;
 }
 
+.child input{
+  width: 80px;
+}
+
 .left-area,
 .right-area{
   width: 45%;
@@ -49,8 +53,9 @@
 
 
 /* プロフィール */
-.plof .child input{
+.plof .child textarea{
   overflow: scroll;
   width: 98%;
+  height: 100px;
   margin: 1%;
 }
