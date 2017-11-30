@@ -1,0 +1,22 @@
+{
+  "name": "octpot",
+  "version": "1.0.0",
+  "description": "サーバー関係の知識が全く無い人でも容易にTRPGのチャットルームを作成することができるものを目指します。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kbc-itw/OctPot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kbc-itw/OctPot/issues"
+  },
+  "homepage": "https://github.com/kbc-itw/OctPot#readme",
+  "dependencies": {
+    "angular": "^1.6.6"
+  }
+}
