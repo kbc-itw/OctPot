@@ -4,8 +4,68 @@
 
 // 3,アクターは作成するキャラクターPCかNPCかを選択する。
 class CharacterCreate {
-  private Character;
-  constructor() {}
+  private str: HTMLElement = document.getElementById('str');
+  private con: HTMLElement = document.getElementById('con');
+  private pow: HTMLElement = document.getElementById('pow');
+  private dex: HTMLElement = document.getElementById('dex');
+  private app: HTMLElement = document.getElementById('app');
+  private siz: HTMLElement = document.getElementById('siz');
+  private int: HTMLElement = document.getElementById('int');
+  private edu: HTMLElement = document.getElementById('edu');
+  private SAN: HTMLElement = document.getElementById('SAN');
+  private luck: HTMLElement = document.getElementById('luck');
+  private idea: HTMLElement = document.getElementById('idea');
+  private knowledge: HTMLElement = document.getElementById('knowledge');
+  private health: HTMLElement = document.getElementById('health');
+  private mp: HTMLElement = document.getElementById('mp');
+  private VocationalSkill: HTMLElement = document.getElementById('VocationalSkill');
+  private HobbySkill: HTMLElement = document.getElementById('HobbySkill');
+  private DamegeBonus: HTMLElement = document.getElementById('DamegeBonus');
+  constructor() {
+    this.str.addEventListener('click', () => {
+      let result = this.select('str');
+      this.str.innerText = String(result[1]);
+    }, false);
+    this.con.addEventListener('click', () => {
+      let result = this.select('con');
+      let siz = parseInt(this.siz.innerText);
+      this.con.innerText = String(result[1]);
+      this.health.innerText = String(this.status('health', result[1], siz));
+    }, false);
+    this.pow.addEventListener('click', () => {
+      let result = this.select('pow');
+      this.pow.innerText = String(result[1]);
+      this.SAN.innerText = String(this.status('SAN', result[1]));
+      this.luck.innerText = String(this.status('luck', result[1]));
+      this.mp.innerText = String(result[1]);
+    }, false);
+    this.dex.addEventListener('click', () => {
+      let result = this.select('dex');
+      this.dex.innerText = String(result[1]);
+    }, false);
+    this.app.addEventListener('click', () => {
+      let result = this.select('app');
+      this.app.innerText = String(result[1]);
+    }, false);
+    this.siz.addEventListener('click', () => {
+      let result = this.select('siz');
+      let con = parseInt(this.con.innerText);
+      this.siz.innerText = String(result[1]);
+      this.health.innerText = String(this.status('health', result[1], con));
+    }, false);
+    this.int.addEventListener('click', () => {
+      let result = this.select('int');
+      this.int.innerText = String(result[1]);
+      this.idea.innerText = String(this.status('idea', result[1]));
+      this.HobbySkill.innerText = String(this.status('HobbySkill', result[1]));
+    }, false);
+    this.edu.addEventListener('click', () => {
+      let result = this.select('edu');
+      this.edu.innerText = String(result[1]);
+      this.knowledge.innerText = String(this.status('knowledge', result[1]));
+      this.VocationalSkill.innerText = String(this.status('VocationalSkill', result[1]));
+    }, false);
+  }
 
   judge(acter): any {
     if (acter === 'PC') {
@@ -42,8 +102,8 @@ class CharacterCreate {
     }
   }
 
-// 入力されたアクションからダイスの種類を決める
-  select(action): any {
+// 入力されたアクションからダイスの種類を決め,ダイスを振る
+  private select(action): any {
     let result = 0;
     let dice: number[];
     switch (action) {
@@ -67,13 +127,14 @@ class CharacterCreate {
       default:
         this.errorlog(action);
     }
-    return dice , result;
+    return [dice, result];
   }
 
 // ダイスロールの結果からステータスの値を求める。
-  status(status, diceresult, diceresult2) {
+  status(status, diceresult, diceresult2  = null) {
     let result = 0;
     switch (status) {
+      case 'SAN':
       case 'luck':
       case 'idea':
       case 'knowledge':
@@ -83,10 +144,10 @@ class CharacterCreate {
         result += diceresult;
         break;
       case 'HobbySkill':
-        result += diceroll * 10;
+     //   result += diceroll * 10;
         break;
       case 'VocationalSkill':
-        result += diceroll * 20;
+     //   result += diceroll * 20;
         break;
       case 'health':
         result += (diceresult + diceresult2) / 2;
@@ -105,7 +166,7 @@ class CharacterCreate {
   // let target = data.target;
   // let file = target.files;
   let jsondata = JSON.stringify(data);
-}
+  }
 
 // ファイルのダウンロード（保存）
   save(content, filename) {
@@ -113,10 +174,9 @@ class CharacterCreate {
     if (window.navigator.msSaveBlob) {
       window.navigator.msSaveBlob(blob, filename);
     } else {
-      document.getElementById('download').href = window.URL.createObjectURL(blob);
+      // document.getElementById('download').href = window.URL.createObjectURL(blob);
     }
   }
-
   errorlog(e) {
     e.onerror = (msg, url, line, col, error) => {
       switch (e) {
@@ -129,11 +189,13 @@ class CharacterCreate {
   }
 }
 
-window.onload = (e) => {
+ window.onload = (e) => {
+  let characre: CharacterCreate = new CharacterCreate();
+/*
   let action = document.getElementById('action');
   action.addEventListener('click', function () {});
 
   let file = document.getElementById('file');
   file.addEventListener('click', this.save());
-
-}
+  */
+ }
