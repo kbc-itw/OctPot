@@ -1,0 +1,109 @@
+/* 全体
+------------------------------*/
+.parent{
+  background: white;
+  border: solid 1px black;
+  margin: 0 20px 20px 20px;
+  h1{
+    background: lightgray;
+    color: black;
+    margin: 0;
+  }
+  .child{
+    border: solid 1px black;
+    margin: 2%;
+    h2{
+      border-left: solid 5px blue;
+      background: skyblue;
+      color: white;
+      margin: 0;
+    }
+    p{
+      margin: 0;
+    }
+    ul{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  .left-area,
+  .right-area{
+    width: 45%;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .tri-l,
+  .tri-c,
+  .tri-r{
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .left-area,
+  .tri-l{
+    margin: 2%;
+  }
+  .tri-c{
+    margin: 2% 2% 2% 0;
+  }
+  .right-area,
+  .tri-r{
+    margin: 2% 0;
+  }
+  /* 基礎ステータス */
+  .base li{
+    p,
+    input,
+    .button{
+      display: inline-block;
+    }
+    p{
+      width: 100px;
+      text-align: center;
+    }
+    input{
+      width: 50px;
+    }
+  }
+  /* 変動ステータス */
+  .fluctuation li{
+    p,
+    input{
+      display: inline-block;
+    }
+    p {
+      width: 140px;
+      text-align: center;
+    }
+    input{
+      width: 80px;
+    }
+  }
+  /* 振りなおし回数 */
+  .redice li{
+    input{
+      width: 50px;
+    }
+    p,input{
+      display: inline-block;
+    }
+    p{
+      width: 100px;
+      text-align: center;
+    }
+  }
+  /* プロフィール */
+  .child textarea{
+    overflow: scroll;
+    width: 98%;
+    height: 100px;
+    margin: 1%;
+  }
+}
+/* float解除 */
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
+}

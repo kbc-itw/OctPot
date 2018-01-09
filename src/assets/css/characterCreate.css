@@ -1,129 +1,85 @@
+@charset "UTF-8";
 /* 全体
 ------------------------------*/
-.parent{
+.parent {
   background: white;
   border: solid 1px black;
   margin: 0 20px 20px 20px;
-}
-
-.parent h1{
-  background: lightgray;
-  color: black;
-  margin: 0;
-}
-
-.child{
-  border: solid 1px black;
-  margin: 2%;
-}
-
-.child h2{
-  border-left: solid 5px blue;
-  background: skyblue;
-  color: white;
-  margin: 0;
-}
-
-.child ul{
-  list-style: none;
-}
-
-.child p,
-.child ul{
-  margin: 0;
-}
-
-.child ul{
-  padding: 0;
-}
-
-.left-area,
-.right-area{
-  width: 45%;
-  display: inline-block;
-  vertical-align: top;
-}
-
-.tri-l,
-.tri-c,
-.tri-r{
-  width: 30%;
-  display: inline-block;
-  vertical-align: top;
-}
-
-.left-area,
-.tri-l{
-  margin: 2%;
-}
-
-.tri-c{
-  margin: 2% 2% 2% 0;
-}
-
-.right-area,
-.tri-r{
-  margin: 2% 0;
-}
-
+  /* 基礎ステータス */
+  /* 変動ステータス */
+  /* 振りなおし回数 */
+  /* プロフィール */ }
+  .parent h1 {
+    background: lightgray;
+    color: black;
+    margin: 0; }
+  .parent .child {
+    border: solid 1px black;
+    margin: 2%; }
+    .parent .child h2 {
+      border-left: solid 5px blue;
+      background: skyblue;
+      color: white;
+      margin: 0; }
+    .parent .child p {
+      margin: 0; }
+    .parent .child ul {
+      list-style: none;
+      margin: 0;
+      padding: 0; }
+  .parent .left-area,
+  .parent .right-area {
+    width: 45%;
+    display: inline-block;
+    vertical-align: top; }
+  .parent .tri-l,
+  .parent .tri-c,
+  .parent .tri-r {
+    width: 30%;
+    display: inline-block;
+    vertical-align: top; }
+  .parent .left-area,
+  .parent .tri-l {
+    margin: 2%; }
+  .parent .tri-c {
+    margin: 2% 2% 2% 0; }
+  .parent .right-area,
+  .parent .tri-r {
+    margin: 2% 0; }
+  .parent .base li p,
+  .parent .base li input,
+  .parent .base li .button {
+    display: inline-block; }
+  .parent .base li p {
+    width: 100px;
+    text-align: center; }
+  .parent .base li input {
+    width: 50px; }
+  .parent .fluctuation li p,
+  .parent .fluctuation li input {
+    display: inline-block; }
+  .parent .fluctuation li p {
+    width: 140px;
+    text-align: center; }
+  .parent .fluctuation li input {
+    width: 80px; }
+  .parent .redice li input {
+    width: 50px; }
+  .parent .redice li p, .parent .redice li input {
+    display: inline-block; }
+  .parent .redice li p {
+    width: 100px;
+    text-align: center; }
+  .parent .child textarea {
+    overflow: scroll;
+    width: 98%;
+    height: 100px;
+    margin: 1%; }
 
 /* float解除 */
 .clearfix:after {
   content: "";
   clear: both;
-  display: block;
-}
+  display: block; }
 
-/* 基礎ステータス */
-.base li p,
-.base li input,
-.base li .button{
-  display: inline-block;
-}
-
-.base li p{
-  width: 100px;
-  text-align: center;
-}
-
-.base li input{
-  width: 50px;
-}
-
-/* 変動ステータス */
-.fluctuation li p,
-.fluctuation li input{
-  display: inline-block;
-}
-
-.fluctuation li p {
-  width: 140px;
-  text-align: center;
-}
-
-.fluctuation li input{
-  width: 80px;
-}
-
-/* 振りなおし回数 */
-.redice li p,
-.redice input{
-  display: inline-block;
-}
-
-.redice li p{
-  width: 100px;
-  text-align: center;
-}
-
-.redice input{
-  width: 50px;
-}
-
-/* プロフィール */
-.plof .child textarea{
-  overflow: scroll;
-  width: 98%;
-  height: 100px;
-  margin: 1%;
-}
+/*# sourceMappingURL=characterCreate.css.map */

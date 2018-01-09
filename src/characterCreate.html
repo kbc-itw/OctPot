@@ -35,122 +35,145 @@
       <h1>ステータス設定</h1>
       <section class="child tri-l base">
         <h2>基礎ステータス</h2>
-        <ul>
-          <li>
-            <p>str</p><input type="text" value="3D6" name="str" readonly/>
-            <button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button>
-          </li>
-          <li>
-            <p>con</p><input type="text" value="3D6" name="con" readonly/>
-            <button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button>
-          </li>
-          <li>
-            <p>pow</p><input type="text" value="3D6" name="pow" readonly/>
-            <button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button>
-          </li>
-          <li>
-            <p>dex</p><input type="text" value="3D6" name="dex" readonly/>
-            <button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button>
-          </li>
-          <li>
-            <p>app</p><input type="text" value="3D6" name="app" readonly/>
-            <button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button>
-          </li>
-          <li>
-            <p>siz</p><input type="text" value="2D6+6" name="siz" readonly/>
-            <button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button>
-          </li>
-          <li>
-            <p>int</p><input type="text" value="2D6+6" name="int" readonly/>
-            <button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button>
-          </li>
-          <li>
-            <p>edu</p><input type="text" value="3D6+3" name="edu" readonly/>
-            <button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button>
-          </li>
-          <li>
-            <p>年収・財産</p><input type="text" value="3D6" name="income-and-property" readonly/>
-            <button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button>
-          </li>
-        </ul>
+        <table>
+          <tbody>
+            <tr>
+              <th><span>str</span></th>
+              <td><input type="text" value="3D6" name="str" readonly/></td>
+              <td><button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button></td>
+            </tr>
+            <tr>
+              <th><span>con</span></th>
+              <td><input type="text" value="3D6" name="con" readonly/></td>
+              <td><button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button></td>
+            </tr>
+            <tr>
+              <th><span>pow</span></th>
+              <td><input type="text" value="3D6" name="pow" readonly/></td>
+              <td><button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button></td>
+            </tr>
+            <tr>
+              <th><span>dex</span></th>
+              <td><input type="text" value="3D6" name="dex" readonly/></td>
+              <td><button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button></td>
+            </tr>
+            <tr>
+              <th><span>app</span></th>
+              <td><input type="text" value="3D6" name="app" readonly/></td>
+              <td><button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button></td>
+            </tr>
+            <tr>
+              <th><span>siz</span></th>
+              <td><input type="text" value="2D6+6" name="siz" readonly/></td>
+              <td><button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button></td>
+            </tr>
+            <tr>
+              <th><span>int</span></th>
+              <td><input type="text" value="2D6+6" name="int" readonly/></td>
+              <td><button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button></td>
+            </tr>
+            <tr>
+              <th><span>edu</span></th>
+              <td><input type="text" value="3D6+3" name="edu" readonly/></td>
+              <td><button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button></td>
+            </tr>
+            <tr>
+              <th><span>年収・財産</span></th>
+              <td><input type="text" value="3D6" name="income-and-property" readonly/></td>
+              <td><button><img src="assets/img/diceIcon.jpeg" width="10" height="10"></button></td>
+            </tr>
+          </tbody>
+        </table>
       </section>
 
       <section class="child tri-c fluctuation">
         <h2>変動ステータス</h2>
-        <ul>
-          <li>
-            <p>SAN</p>
-            <input type="text" value="pow*5" name="SAN" readonly/>
-          </li>
-          <li>
-            <p>幸運</p>
-            <input type="text" value="pow*5" name="luck" readonly/>
-          </li>
-          <li>
-            <p>アイデア</p>
-            <input type="text" value="int*5" name="idea" readonly/>
-          </li>
-          <li>
-            <p>知識</p>
-            <input type="text" value="edu*5" name="knowledge" readonly/>
-          </li>
-          <li>
-            <p>体力</p>
-            <input type="text" value="(con+size)/2" name="health" readonly/>
-          </li>
-          <li>
-            <p>MP</p>
-            <input type="text" value="pow" name="mp" readonly/>
-          </li>
-          <li>
-            <p>職業技能</p>
-            <input type="text"  value="edu*20" name="VacationalSkill" readonly/>
-          </li>
-          <li>
-            <p>趣味技能</p>
-            <input type="text" value="int*10" name="HobbySkill" readonly/>
-          </li>
-          <li>
-            <p>ダメージボーナス</p>
-            <input type="text" name="DamegeBonus" readonly/>
-          </li>
-        </ul>
+        <table>
+          <tbody>
+            <tr>
+              <th><span>SAN</span></th>
+              <td><input type="text" value="pow*5" name="SAN" readonly/></td>
+            </tr>
+            <tr>
+              <th><span>幸運</span></th>
+              <td><input type="text" value="pow*5" name="luck" readonly/></td>
+            </tr>
+            <tr>
+              <th><span>アイデア</span></th>
+              <td><input type="text" value="int*5" name="idea" readonly/></td>
+            </tr>
+            <tr>
+              <th><span>知識</span></th>
+              <td><input type="text" value="edu*5" name="knowledge" readonly/></td>
+            </tr>
+            <tr>
+              <th><span>体力</span></th>
+              <td><input type="text" value="(con+size)/2" name="health" readonly/></td>
+            </tr>
+            <tr>
+              <th><span>MP</span></th>
+              <td><input type="text" value="pow" name="mp" readonly/></td>
+            </tr>
+            <tr>
+              <th><span>職業技能</span></th>
+              <td><input type="text" value="edu*20" name="VacationalSkill" readonly/></td>
+            </tr>
+            <tr>
+              <th><span>趣味技能</span></th>
+              <td><input type="text" value="int*10" name="HobbySkill" readonly/></td>
+            </tr>
+            <tr>
+              <th><span>ダメージボーナス</span></th>
+              <td><input type="text" name="DamegeBonus" readonly/></td>
+            </tr>
+          </tbody>
+        </table>
       </section>
 
       <section class="child tri-r redice">
         <h2>振りなおし回数</h2>
-        <ul>
-          <li>
-            <p>str</p><input type="text" value="0" name="s-count" readonly/>
-          </li>
-          <li>
-            <p>con</p><input type="text" value="0" name="c-count" readonly/>
-          </li>
-          <li>
-            <p>pow</p><input type="text" value="0" name="p-count" readonly/>
-          </li>
-          <li>
-            <p>dex</p><input type="text" value="0" name="d-count" readonly/>
-          </li>
-          <li>
-            <p>app</p><input type="text" value="0" name="a-count" readonly/>
-          </li>
-          <li>
-            <p>siz</p><input type="text" value="0" name="s-count" readonly/>
-          </li>
-          <li>
-            <p>int</p><input type="text" value="0" name="i-count" readonly/>
-          </li>
-          <li>
-            <p>edu</p><input type="text" value="0" name="e-count" readonly/>
-          </li>
-          <li>
-            <p>年収・財産</p><input type="text" value="0" name="inc-count" readonly/>
-          </li>
-        </ul>
+        <table>
+          <tbody>
+            <tr>
+              <th><span>str</span></th>
+              <td><input type="text" value="3D6" name="s-count" readonly/></td>
+            </tr>
+            <tr>
+              <th><span>con</span></th>
+              <td><input type="text" value="3D6" name="c-count" readonly/></td>
+            </tr>
+            <tr>
+              <th><span>pow</span></th>
+              <td><input type="text" value="3D6" name="p-count" readonly/></td>
+            </tr>
+            <tr>
+              <th><span>dex</span></th>
+              <td><input type="text" value="3D6" name="d-count" readonly/></td>
+            </tr>
+            <tr>
+              <th><span>app</span></th>
+              <td><input type="text" value="3D6" name="a-count" readonly/></td>
+            </tr>
+            <tr>
+              <th><span>siz</span></th>
+              <td><input type="text" value="2D6+6" name="s-count" readonly/></td>
+            </tr>
+            <tr>
+              <th><span>int</span></th>
+              <td><input type="text" value="2D6+6" name="i-count" readonly/></td>
+            </tr>
+            <tr>
+              <th><span>edu</span></th>
+              <td><input type="text" value="3D6+3" name="e-count" readonly/></td>
+            </tr>
+            <tr>
+              <th><span>年収・財産</span></th>
+              <td><input type="text" value="3D6" name="inc-count" readonly/></td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </section>
-
 
     <section class="parent plof">
       <h1>プロフィール</h1>
