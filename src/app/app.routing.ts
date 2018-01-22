@@ -1,13 +1,13 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AppComponent } from './app.component';
-import { CharacterCreateComponent } from './characterCreate.component';
-import { CharacterManagementComponent } from './CharacterManagement.component';
-import { ChatRoomComponent } from './chatRoom.component';
+import { TopPageComponent } from './top-page/top-page.component';
+import { CharacterCreateComponent } from './character-create/character-create.component';
+import { CharacterManagementComponent } from './character-management/character-management.component';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
 
 const myRoutes = [
-  { path: '', component: AppComponent },
+  { path: '', component: TopPageComponent },
   { path: 'create', component: CharacterCreateComponent },
   { path: 'managemant', component: CharacterManagementComponent },
   { path: 'chat', component: ChatRoomComponent }
