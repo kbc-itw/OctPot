@@ -1,0 +1,72 @@
+/* 全体
+------------------------------*/
+.wrap{
+  width: auto;
+  .sub{
+    width: 270px;
+    float: left;
+  }
+  .main{
+    width: 600px;
+    float:right;
+    background: blue;
+  }
+}
+
+/*　キャラクターリスト
+------------------------------*/
+.charList {
+  background-color: lightgray;
+  border:solid 2px;
+  border-radius: 10px;
+  height: 500px;
+  width: 250px;
+  margin: 0 auto;
+  padding: 0;
+  h1{
+    margin: 0;
+    font-size: 20px;
+    background-color:gray;
+    color:white;
+    border-radius: 9px;
+    text-align: center;
+    text-decoration: none;
+  }
+  ul{
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    letter-spacing: -0.5em;
+    li{
+      display: inline-block;
+      letter-spacing: normal;
+    }
+  }
+  input{
+    font-size: 15px;
+  }
+  .tab{
+    margin-top: 20px;
+    input{
+      width: 100px;
+    }
+  }
+  .edit li{
+    margin: 20px 10px 0 10px;
+  }
+  .chars{
+    background: white;
+    overflow: scroll;
+    height: 350px;
+    width: 200px;
+    margin: 0 auto;
+    li{
+      display: block;
+      border-bottom: 1px black solid;
+      &:hover{
+        color: white;
+        background: skyblue;
+      }
+    }
+  }
+}
