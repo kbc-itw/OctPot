@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>キャラクター作成ページ</title>
     <link rel="shortcut icon" href="../../assets/img/octpot.ico">
-    <!--<link rel="stylesheet" href="character-create.component.css" type="text/css">-->
   </head>
 
   <body>
@@ -28,6 +27,25 @@
           <option value="">選択してください</option>
           <option value="1">人間</option>
         </select>
+      </section>
+
+      <section class="child left-area">
+        <h2>キャラクター情報</h2>
+        <p>
+          キャラクタ－名：<input type="text" id="chara-name">
+        </p>
+        <p>
+          性別：
+          <input type="radio" name="gender" value="man" id="man">
+          <label for="man">男</label>
+          <input type="radio" name="gender" value="woman" id="woman">
+          <label for="woman">女</label>
+        </p>
+      </section>
+
+      <section class="child right-area">
+        <h2>職業情報</h2>
+        職業：<input type="text" id="job">
       </section>
     </section>
 
