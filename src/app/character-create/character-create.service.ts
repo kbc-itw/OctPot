@@ -1,9 +1,12 @@
 // キャラクターを作成する処理
 // 作成画面をhymlで
 // 基本フロー3,6,9の処理
+import { Injectable } from '@angular/core';
 
 // 3,アクターは作成するキャラクターPCかNPCかを選択する。
-class CharacterCreate {
+@Injectable()
+export class CharacterCreateService {
+  /*
   private str: HTMLElement = document.getElementById('str');
   private con: HTMLElement = document.getElementById('con');
   private pow: HTMLElement = document.getElementById('pow');
@@ -21,7 +24,9 @@ class CharacterCreate {
   private VocationalSkill: HTMLElement = document.getElementById('VocationalSkill');
   private HobbySkill: HTMLElement = document.getElementById('HobbySkill');
   private DamegeBonus: HTMLElement = document.getElementById('DamegeBonus');
+  */
   constructor() {
+    /*
     this.str.addEventListener('click', () => {
       let result = this.select('str');
       this.str.innerText = String(result[1]);
@@ -65,6 +70,7 @@ class CharacterCreate {
       this.knowledge.innerText = String(this.status('knowledge', result[1]));
       this.VocationalSkill.innerText = String(this.status('VocationalSkill', result[1]));
     }, false);
+    */
   }
 
   judge(acter): any {
@@ -81,19 +87,21 @@ class CharacterCreate {
 
   private diceroll(select): number[] {
     let dice: number[] = [3];
+    dice[3] = 0;
     if (select === '3D6') {
       let diceroll: number;
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 3; i++) {
         diceroll = Math.floor(Math.random() * 6 + 1);
         dice[3] += diceroll;
-        dice[i] += diceroll;
+        dice[i] = diceroll;
       }
       return dice;
    } else if (select === '2D6') {
-      for (let i = 0; i < 1; i++) {
+      dice[2] = 0;
+      for (let i = 0; i < 2; i++) {
         let diceroll = Math.floor(Math.random() * 6 + 1);
         dice[2] += diceroll;
-        dice[i] += diceroll;
+        dice[i] = diceroll;
       }
       return dice;
     } else {
@@ -103,9 +111,12 @@ class CharacterCreate {
   }
 
 // 入力されたアクションからダイスの種類を決め,ダイスを振る
-  private select(action): any {
+  select(action): any {
     let result = 0;
-    let dice: number[];
+    let dice: number[] = [3];
+    for (let i = 0; i < 4; i++) {
+      dice[i] = 0;
+    }
     switch (action) {
       case 'edu':
         result += 3;
@@ -114,7 +125,7 @@ class CharacterCreate {
       case 'pow':
       case 'dex':
       case 'app':
-      case 'income-and-propety':
+      case 'income':
         dice = this.diceroll('3D6');
         result += dice[3];
         break;
@@ -127,6 +138,9 @@ class CharacterCreate {
       default:
         this.errorlog(action);
     }
+    console.log(result);
+    console.log(dice);
+    console.log(dice[1]);
     return [dice, result];
   }
 
@@ -144,10 +158,10 @@ class CharacterCreate {
         result += diceresult;
         break;
       case 'HobbySkill':
-     //   result += diceroll * 10;
+        result += diceresult * 10;
         break;
       case 'VocationalSkill':
-     //   result += diceroll * 20;
+        result += diceresult * 20;
         break;
       case 'health':
         result += (diceresult + diceresult2) / 2;
@@ -155,7 +169,7 @@ class CharacterCreate {
       default:
         this.errorlog(status);
     }
-    return result;
+    return String(result);
   }
 
 
@@ -187,10 +201,15 @@ class CharacterCreate {
       }
     };
   }
+
+  test() {
+    console.log('引数が見つかりません。');
+  }
+
 }
 
- window.onload = (e) => {
-  let characre: CharacterCreate = new CharacterCreate();
+// window.onload = (e) => {
+//  let characre: CharacterCreate = new CharacterCreate();
 /*
   let action = document.getElementById('action');
   action.addEventListener('click', function () {});
@@ -198,4 +217,4 @@ class CharacterCreate {
   let file = document.getElementById('file');
   file.addEventListener('click', this.save());
   */
- }
+// }

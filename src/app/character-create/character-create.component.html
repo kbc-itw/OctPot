@@ -57,48 +57,48 @@
           <tbody>
             <tr>
               <th><span>str</span></th>
-              <td><input type="text" value="3D6" name="str" readonly/></td>
-              <td><button><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
+              <td><input type="text" value={{str}} name="str" readonly/></td>
+              <td><button (click)="test('str')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
             </tr>
             <tr>
               <th><span>con</span></th>
-              <td><input type="text" value="3D6" name="con" readonly/></td>
-              <td><button><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
+              <td><input type="text" value={{con}} name="con" readonly/></td>
+              <td><button (click)="test('con')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
             </tr>
             <tr>
               <th><span>pow</span></th>
-              <td><input type="text" value="3D6" name="pow" readonly/></td>
-              <td><button><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
+              <td><input type="text" value={{pow}} name="pow" readonly/></td>
+              <td><button (click)="test('pow')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
             </tr>
             <tr>
               <th><span>dex</span></th>
-              <td><input type="text" value="3D6" name="dex" readonly/></td>
-              <td><button><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
+              <td><input type="text" value={{dex}} name="dex" readonly/></td>
+              <td><button (click)="test('dex')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
             </tr>
             <tr>
               <th><span>app</span></th>
-              <td><input type="text" value="3D6" name="app" readonly/></td>
-              <td><button><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
+              <td><input type="text" value={{app}} name="app" readonly/></td>
+              <td><button (click)="test('app')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
             </tr>
             <tr>
               <th><span>siz</span></th>
-              <td><input type="text" value="2D6+6" name="siz" readonly/></td>
-              <td><button><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
+              <td><input type="text" value={{siz}} name="siz" readonly/></td>
+              <td><button (click)="test('siz')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
             </tr>
             <tr>
               <th><span>int</span></th>
-              <td><input type="text" value="2D6+6" name="int" readonly/></td>
-              <td><button><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
+              <td><input type="text" value={{int}} name="int" readonly/></td>
+              <td><button (click)="test('int')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
             </tr>
             <tr>
               <th><span>edu</span></th>
-              <td><input type="text" value="3D6+3" name="edu" readonly/></td>
-              <td><button><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
+              <td><input type="text" value={{edu}} name="edu" readonly/></td>
+              <td><button (click)="test('edu')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
             </tr>
             <tr>
               <th><span>年収・財産</span></th>
-              <td><input type="text" value="3D6" name="income-and-property" readonly/></td>
-              <td><button><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
+              <td><input type="text" value={{income}} name="income-and-property" readonly/></td>
+              <td><button (click)="test('income')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
             </tr>
           </tbody>
         </table>
@@ -110,39 +110,39 @@
           <tbody>
             <tr>
               <th><span>SAN</span></th>
-              <td><input type="text" value="pow*5" name="SAN" readonly/></td>
+              <td><input type="text" value={{SAN}} name="SAN" readonly/></td>
             </tr>
             <tr>
               <th><span>幸運</span></th>
-              <td><input type="text" value="pow*5" name="luck" readonly/></td>
+              <td><input type="text" value={{luck}} name="luck" readonly/></td>
             </tr>
             <tr>
               <th><span>アイデア</span></th>
-              <td><input type="text" value="int*5" name="idea" readonly/></td>
+              <td><input type="text" value={{idea}} name="idea" readonly/></td>
             </tr>
             <tr>
               <th><span>知識</span></th>
-              <td><input type="text" value="edu*5" name="knowledge" readonly/></td>
+              <td><input type="text" value={{knowledge}} name="knowledge" readonly/></td>
             </tr>
             <tr>
               <th><span>体力</span></th>
-              <td><input type="text" value="(con+size)/2" name="health" readonly/></td>
+              <td><input type="text" value={{health}} name="health" readonly/></td>
             </tr>
             <tr>
               <th><span>MP</span></th>
-              <td><input type="text" value="pow" name="mp" readonly/></td>
+              <td><input type="text" value={{mp}} name="mp" readonly/></td>
             </tr>
             <tr>
               <th><span>職業技能</span></th>
-              <td><input type="text" value="edu*20" name="VacationalSkill" readonly/></td>
+              <td><input type="text" value={{VocationalSkill}} name="VocationalSkill" readonly/></td>
             </tr>
             <tr>
               <th><span>趣味技能</span></th>
-              <td><input type="text" value="int*10" name="HobbySkill" readonly/></td>
+              <td><input type="text" value={{HobbySkill}} name="HobbySkill" readonly/></td>
             </tr>
             <tr>
               <th><span>ダメージボーナス</span></th>
-              <td><input type="text" name="DamegeBonus" readonly/></td>
+              <td><input type="text" value={{DamegeBonus}} name="DamegeBonus" readonly/></td>
             </tr>
           </tbody>
         </table>
