@@ -9,7 +9,7 @@ import { ChatRoomComponent } from './chat-room/chat-room.component';
 const myRoutes = [
   { path: '', component: TopPageComponent },
   { path: 'create', component: CharacterCreateComponent },
-  { path: 'managemant', component: CharacterManagementComponent },
+  { path: 'management', component: CharacterManagementComponent },
   { path: 'chat', component: ChatRoomComponent }
   // { path: '**', component: ErrorComponent} 予想外のパスにつないだ時のコンポーネント
 ];

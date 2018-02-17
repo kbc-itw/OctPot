@@ -210,17 +210,17 @@ export class CharacterCreateService {
       'career': '',
       'encount': ''
     }
-  let jsondata = JSON.stringify(data);
+  return JSON.stringify(json);
   }
 
 // ファイルのダウンロード（保存）
-  save(content, filename, id) {
+  save(content, id, filename) {
     let blob = new Blob([ content ], { 'type' : 'text/plain' });
-    if (window.navigator.msSaveBlob) {
-      window.navigator.msSaveBlob(blob, filename);
-    } else {
-       id.document.getElementById('download').href = window.URL.createObjectURL(blob);
-    }
+    let downLoadLink = document.createElement('a');
+    downLoadLink.download = filename;
+    downLoadLink.href = URL.createObjectURL(blob);
+    downLoadLink.dataset.downloadurl = ['text/plain', downLoadLink.download, downLoadLink.href].join(':');
+    downLoadLink.click();
   }
   errorlog(e) {
     e.onerror = (msg, url, line, col, error) => {

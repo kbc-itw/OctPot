@@ -35,6 +35,8 @@ export class CharacterCreateComponent implements OnInit {
   private intstock;
   private edustock;
   private incomestock;
+  private filename = 'octpot.txt';
+  private href;
   constructor(private characre: CharacterCreateService) {}
 
   ngOnInit() {
@@ -94,9 +96,8 @@ export class CharacterCreateComponent implements OnInit {
     console.log('OK');
   }
 
-  download(data, name) {
-    let json = this.characre.change(data);
-    this.characre.save(json, name, '');
+  download() {
+    let json = this.characre.change('test');
+    this.characre.save('testdayo', document.getElementById('download'), this.filename);
   }
-
 }
