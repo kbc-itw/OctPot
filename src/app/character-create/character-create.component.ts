@@ -94,4 +94,9 @@ export class CharacterCreateComponent implements OnInit {
     console.log('OK');
   }
 
+  download(data, name) {
+    let json = this.characre.change(data);
+    this.characre.save(json, name, '');
+  }
+
 }

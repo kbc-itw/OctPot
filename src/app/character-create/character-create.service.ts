@@ -176,19 +176,50 @@ export class CharacterCreateService {
 // 9,システムは情報をjson形式で管理用フォルダに保存する。
 
 // jsonに変換
-  change(data) {
-  // let target = data.target;
-  // let file = target.files;
+  change(data, status = null, fstatus = null) {
+    let json = {
+      '役割': data[0],
+      '種族': data[1],
+      'キャラクター情報': data[2],
+      'name': data[3],
+      'gender': data[4],
+      'job': data[5],
+      'status': {
+        'str': data[6],
+        'con': data[7],
+        'pow': data[8],
+        'dex': data[9],
+        'app': data[10],
+        'siz': data[11],
+        'int': data[12],
+        'edu': data[13],
+        'income': data[14]
+      },
+      'fstate': {
+        'SAN': data[15],
+        'luck': '',
+        'idea': '',
+        'knowledge': '',
+        'health': '',
+        'mp': '',
+        'VocationalSkill': '',
+        'HobbySkill': '',
+        'DamegeBonus': ''
+      },
+      'profile': '',
+      'career': '',
+      'encount': ''
+    }
   let jsondata = JSON.stringify(data);
   }
 
 // ファイルのダウンロード（保存）
-  save(content, filename) {
+  save(content, filename, id) {
     let blob = new Blob([ content ], { 'type' : 'text/plain' });
     if (window.navigator.msSaveBlob) {
       window.navigator.msSaveBlob(blob, filename);
     } else {
-      // document.getElementById('download').href = window.URL.createObjectURL(blob);
+       id.document.getElementById('download').href = window.URL.createObjectURL(blob);
     }
   }
   errorlog(e) {
