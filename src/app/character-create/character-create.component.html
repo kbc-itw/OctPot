@@ -12,18 +12,18 @@
       <section class="child left-area">
         <h2>役割設定</h2>
         <p>
-          <input type="radio" name="charElem" value="pc" id="pc">
+          <input type="radio" name="charElem" value="pc" id="pc" (click)="radiochange($event)">
           <label for="pc">PC</label>
         </p>
         <p>
-          <input type="radio" name="charElem" value="npc" id="npc">
+          <input type="radio" name="charElem" value="npc" id="npc" (click)="radiochange($event)">
           <label for="npc">NPC</label>
         </p>
       </section>
 
       <section class="child right-area">
         <h2>種族設定</h2>
-        <select>
+        <select (change)="racechange($event)">
           <option value="">選択してください</option>
           <option value="1">人間</option>
         </select>
@@ -32,20 +32,20 @@
       <section class="child left-area">
         <h2>キャラクター情報</h2>
         <p>
-          キャラクタ－名：<input type="text" id="chara-name">
+          キャラクタ－名：<input type="text" id="chara-name" (change)="textinput($event)">
         </p>
         <p>
           性別：
-          <input type="radio" name="gender" value="man" id="man">
+          <input type="radio" name="gender" value="man" id="man" (click)="radiochange($event)">
           <label for="man">男</label>
-          <input type="radio" name="gender" value="woman" id="woman">
+          <input type="radio" name="gender" value="woman" id="woman" (click)="radiochange($event)">
           <label for="woman">女</label>
         </p>
       </section>
 
       <section class="child right-area">
         <h2>職業情報</h2>
-        職業：<input type="text" id="job">
+        職業：<input type="text" id="job" (change)="textinput($event)">
       </section>
     </section>
 
@@ -198,11 +198,11 @@
       <!-- 行数はとりあえず100 -->
       <section class="child">
         <h2>経歴</h2>
-        <textarea rows="100" name="Career">経歴</textarea>
+        <textarea rows="100" name="Career" (change)="textinput($event)">経歴</textarea>
       </section>
       <section class="child">
         <h2>遭遇したもの</h2>
-        <textarea rows="100" name="Encounter">遭遇したもの</textarea>
+        <textarea rows="100" name="Encounter" (change)="textinput($event)">遭遇したもの</textarea>
       </section>
     </section>
     <button id="download" type="button" (click)="download()">ダウンロード</button>

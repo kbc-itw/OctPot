@@ -176,41 +176,45 @@ export class CharacterCreateService {
 // 9,システムは情報をjson形式で管理用フォルダに保存する。
 
 // jsonに変換
-  change(data, status = null, fstatus = null) {
+  change(basic, status, fstatus, profile) {
     let json = {
-      '役割': data[0],
-      '種族': data[1],
-      'キャラクター情報': data[2],
-      'name': data[3],
-      'gender': data[4],
-      'job': data[5],
+      'basic': {
+        'role': basic[0],
+        'race': basic[1],
+        'character': {
+          'name': basic[2],
+          'gender': basic[3]
+        },
+        'job': basic[4]
+      },
       'status': {
-        'str': data[6],
-        'con': data[7],
-        'pow': data[8],
-        'dex': data[9],
-        'app': data[10],
-        'siz': data[11],
-        'int': data[12],
-        'edu': data[13],
-        'income': data[14]
+        'str': status[0],
+        'con': status[1],
+        'pow': status[2],
+        'dex': status[3],
+        'app': status[4],
+        'siz': status[5],
+        'int': status[6],
+        'edu': status[7],
+        'income': status[8]
       },
       'fstate': {
-        'SAN': data[15],
-        'luck': '',
-        'idea': '',
-        'knowledge': '',
-        'health': '',
-        'mp': '',
-        'VocationalSkill': '',
-        'HobbySkill': '',
-        'DamegeBonus': ''
+        'SAN': fstatus[0],
+        'luck': fstatus[1],
+        'idea': fstatus[2],
+        'knowledge': fstatus[3],
+        'health': fstatus[4],
+        'mp': fstatus[5],
+        'VocationalSkill': fstatus[6],
+        'HobbySkill': fstatus[7],
+        'DamegeBonus': fstatus[8]
       },
-      'profile': '',
-      'career': '',
-      'encount': ''
+      'profile': {
+        'career': profile[0],
+        'encount': profile[1]
+      }
     }
-  return JSON.stringify(json);
+  return JSON.stringify(json, null, ' ');
   }
 
 // ファイルのダウンロード（保存）

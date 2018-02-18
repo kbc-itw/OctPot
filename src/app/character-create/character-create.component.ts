@@ -8,6 +8,12 @@ import { CharacterCreateService } from './character-create.service';
   styleUrls: ['./character-create.component.css']
 })
 export class CharacterCreateComponent implements OnInit {
+  private roll = '';
+  private race = '';
+  private name = '';
+  private gender = '';
+  private job = '';
+
   private str = '3D6';
   private con = '3D6';
   private pow = '3D6';
@@ -17,6 +23,7 @@ export class CharacterCreateComponent implements OnInit {
   private int = '2D6+6';
   private edu = '3D6+3';
   private income = '3D6';
+
   private SAN = 'pow*5';
   private luck = 'pow*5';
   private idea = 'int*5';
@@ -26,6 +33,10 @@ export class CharacterCreateComponent implements OnInit {
   private VocationalSkill = 'edu*20';
   private HobbySkill = 'int*10';
   private DamegeBonus = '';
+
+  private Career = '';
+  private Encounter = '';
+
   private strstock;
   private constock;
   private powstock;
@@ -35,12 +46,14 @@ export class CharacterCreateComponent implements OnInit {
   private intstock;
   private edustock;
   private incomestock;
+
   private filename = 'octpot.txt';
-  private href;
+
   constructor(private characre: CharacterCreateService) {}
 
   ngOnInit() {
   }
+
   test(type) {
     switch (type) {
       case 'str':
@@ -96,8 +109,46 @@ export class CharacterCreateComponent implements OnInit {
     console.log('OK');
   }
 
+  radiochange(e) {
+    console.log(e.target);
+    if (e.target.name === 'charElem') {
+      this.roll = e.target.value;
+      console.log(e.target.value);
+    }else if (e.target.name === 'gender') {
+      this.gender = e.target.value;
+      console.log(e.target.value);
+    }
+  }
+
+  racechange(e) {
+    this.race = e.target.value;
+    console.log(e.target.value);
+  }
+
+  textinput(e) {
+    console.log(e.target);
+    if (e.target.id === 'chara-name') {
+      this.name = e.target.value;
+      console.log(e.target.value);
+    }else if (e.target.id === 'job') {
+      this.job = e.target.value;
+      console.log(e.target.value);
+    }else if (e.target.name === 'Career') {
+      this.Career = e.target.value;
+      console.log(e.target.value);
+    }else if (e.target.name === 'Encounter') {
+      this.Encounter = e.target.value;
+      console.log(e.target.value);
+    }
+  }
+
   download() {
-    let json = this.characre.change('test');
-    this.characre.save('testdayo', document.getElementById('download'), this.filename);
+    let basic = [ this.roll, this.race, this.name, this.gender, this.job ];
+    let status = [ this.str, this.con, this.pow, this.dex, this.app, this.siz, this.int, this.edu, this.income ];
+    let fstatus = [ this.SAN, this.luck, this.idea, this.knowledge, this.health, this.mp,
+      this.VocationalSkill, this.HobbySkill, this.DamegeBonus ];
+    let profile = [this.Career, this.Encounter];
+    let json = this.characre.change(basic, status, fstatus, profile);
+    this.characre.save(json, document.getElementById('download'), this.filename);
   }
 }
