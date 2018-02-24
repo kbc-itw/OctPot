@@ -28,7 +28,7 @@
   <script type="text/javascript">
     com.demo.HelloWorld.sayHello();
   </script>
-    <div class="wrap">
+    <div class="wrap clearfix">
       <div class="sub">
         <section class="charList">
           <h1>キャラクター一覧</h1>
@@ -45,16 +45,16 @@
           </ul>
 
           <ul class="edit">
-            <li><input type="button" value="追加" (click)="test($event)"></li>
+            <li><a routerLink="/create"><input type="button" value="追加" (click)="test($event)"></a>></li>
             <li><input type="button" value="編集"></li>
             <li><input type="button" value="削除"></li>
-            <li><a routerLink="/create"><input type="button" value="作成"></a></li>
           </ul>
         </section>
       </div>
 
       <div class="main">
         <section class="details">
+          <h1>詳細</h1>
         </section>
       </div>
     </div>
