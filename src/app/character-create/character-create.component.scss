@@ -51,48 +51,20 @@
   .tri-r{
     margin: 2% 0;
   }
-  /* 基礎ステータス */
-  .base li{
-    p,
-    input,
-    .button{
-      display: inline-block;
+  /* テーブル */
+  table{
+    th{
+      width: 30%;
+      padding-left: 3px;
     }
-    p{
-      width: 100px;
-      text-align: center;
-    }
-    input{
-      width: 50px;
+    td{
+      width: 50%;
+      input{
+        width: 100%;
+      }
     }
   }
-  /* 変動ステータス */
-  .fluctuation li{
-    p,
-    input{
-      display: inline-block;
-    }
-    p {
-      width: 140px;
-      text-align: center;
-    }
-    input{
-      width: 80px;
-    }
-  }
-  /* 振りなおし回数 */
-  .redice li{
-    input{
-      width: 50px;
-    }
-    p,input{
-      display: inline-block;
-    }
-    p{
-      width: 100px;
-      text-align: center;
-    }
-  }
+
   /* プロフィール */
   .child textarea{
     overflow: scroll;

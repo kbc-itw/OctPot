@@ -5,9 +5,7 @@
   background: white;
   border: solid 1px black;
   margin: 0 20px 20px 20px;
-  /* 基礎ステータス */
-  /* 変動ステータス */
-  /* 振りなおし回数 */
+  /* テーブル */
   /* プロフィール */ }
   .parent h1 {
     background: lightgray;
@@ -46,30 +44,13 @@
   .parent .right-area,
   .parent .tri-r {
     margin: 2% 0; }
-  .parent .base li p,
-  .parent .base li input,
-  .parent .base li .button {
-    display: inline-block; }
-  .parent .base li p {
-    width: 100px;
-    text-align: center; }
-  .parent .base li input {
-    width: 50px; }
-  .parent .fluctuation li p,
-  .parent .fluctuation li input {
-    display: inline-block; }
-  .parent .fluctuation li p {
-    width: 140px;
-    text-align: center; }
-  .parent .fluctuation li input {
-    width: 80px; }
-  .parent .redice li input {
-    width: 50px; }
-  .parent .redice li p, .parent .redice li input {
-    display: inline-block; }
-  .parent .redice li p {
-    width: 100px;
-    text-align: center; }
+  .parent table th {
+    width: 30%;
+    padding-left: 3px; }
+  .parent table td {
+    width: 50%; }
+    .parent table td input {
+      width: 100%; }
   .parent .child textarea {
     overflow: scroll;
     width: 98%;
