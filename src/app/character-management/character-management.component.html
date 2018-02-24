@@ -8,6 +8,26 @@
   </head>
 
   <body>
+  <script src="https://www.javapoly.com/javapoly.js"></script>
+
+  <!-- Write your Java code -->
+  <script type="text/java">
+    package com.demo;
+    import com.javapoly.dom.Window;
+
+    public class HelloWorld
+    {
+      public static void sayHello()
+      {
+        Window.alert("Hello World, from Java!");
+      }
+    }
+  </script>
+
+  <!-- Invoke your Java code from Javascript -->
+  <script type="text/javascript">
+    com.demo.HelloWorld.sayHello();
+  </script>
     <div class="wrap">
       <div class="sub">
         <section class="charList">
@@ -25,7 +45,7 @@
           </ul>
 
           <ul class="edit">
-            <li><input type="button" value="追加"></li>
+            <li><input type="button" value="追加" (click)="test($event)"></li>
             <li><input type="button" value="編集"></li>
             <li><input type="button" value="削除"></li>
             <li><a routerLink="/create"><input type="button" value="作成"></a></li>

@@ -12,7 +12,7 @@ import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { TopPageComponent } from './top-page/top-page.component';
 
 import { CharacterCreateService } from './character-create/character-create.service';
-
+import { CharacterManagementService } from './character-management/character-management.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { CharacterCreateService } from './character-create/character-create.serv
   imports: [
     BrowserModule, FormsModule, HttpClientModule, MY_ROUTES
   ],
-  providers: [ CharacterCreateService ],
+  providers: [ CharacterCreateService, CharacterManagementService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

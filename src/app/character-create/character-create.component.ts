@@ -47,7 +47,7 @@ export class CharacterCreateComponent implements OnInit {
   private edustock;
   private incomestock;
 
-  private filename = 'octpot.txt';
+  private filename = 'octpot.js';
 
   constructor(private characre: CharacterCreateService) {}
 

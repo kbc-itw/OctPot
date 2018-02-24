@@ -219,7 +219,7 @@ export class CharacterCreateService {
 
 // ファイルのダウンロード（保存）
   save(content, id, filename) {
-    let blob = new Blob([ content ], { 'type' : 'text/plain' });
+    let blob = new Blob([ content ], { 'type' : 'application/json' });
     let downLoadLink = document.createElement('a');
     downLoadLink.download = filename;
     downLoadLink.href = URL.createObjectURL(blob);
