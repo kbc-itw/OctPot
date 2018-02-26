@@ -8,7 +8,7 @@
     float: left; }
   .wrap .main {
     width: 600px;
-    float: right;
+    float: left;
     background: blue; }
 
 /*　キャラクターリスト
@@ -26,7 +26,7 @@
     font-size: 20px;
     background-color: gray;
     color: white;
-    border-radius: 9px;
+    border-radius: 9px 9px 0 0;
     text-align: center;
     text-decoration: none; }
   .charList ul {
