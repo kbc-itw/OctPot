@@ -2,6 +2,7 @@
 
 # compiled output
 /dist
+/ngdist
 /tmp
 /out-tsc
 
