@@ -38,7 +38,7 @@ var ng = express();
 
 
 
-ng.use('/', express.static('ngdist'));
+ng.use('/', express.static(__dirname + '/ngdist'));
 
 var ng_server = http.createServer(ng);
 ng_server.listen(ngPORT);

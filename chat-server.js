@@ -28,7 +28,7 @@ var ngPORT = 8888;
 var socketPORT = 3000;
 var ex = express();
 var ng = express();
-ng.use('/', express.static('ngdist'));
+ng.use('/', express.static(__dirname + '/ngdist'));
 var ng_server = http.createServer(ng);
 ng_server.listen(ngPORT);
 ex.use('/', express.static('client'));
