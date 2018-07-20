@@ -10,18 +10,22 @@ import { CharacterCreateComponent } from './character-create/character-create.co
 import { CharacterManagementComponent } from './character-management/character-management.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { TopPageComponent } from './top-page/top-page.component';
+import { ChatRoomCreateComponent } from './chat-room-create/chat-room-create.component';
 
 import { CharacterCreateService } from './character-create/character-create.service';
 import { CharacterManagementService } from './character-management/character-management.service';
+import { ChatRoomService } from './chat-room/chat-room-service';
+import { ChatRoomCreateService } from './chat-room-create/chat-room-create.service';
+
 
 @NgModule({
   declarations: [
-    AppComponent, CharacterCreateComponent, CharacterManagementComponent, ChatRoomComponent, TopPageComponent
+    AppComponent, CharacterCreateComponent, CharacterManagementComponent, ChatRoomComponent, TopPageComponent, ChatRoomCreateComponent
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule, MY_ROUTES
   ],
-  providers: [ CharacterCreateService, CharacterManagementService ],
+  providers: [ CharacterCreateService, CharacterManagementService, ChatRoomService, ChatRoomCreateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

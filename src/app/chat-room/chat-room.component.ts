@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import {ChatRoomService} from './chat-room-service';
 
 @Component({
   selector: 'app-chat-room',
-  templateUrl: './chat-room.component.html',
-  styleUrls: ['./chat-room.component.css']
+  templateUrl: './test.html'
 })
 export class ChatRoomComponent implements OnInit {
-
-  constructor() { }
-
+  constructor(private chatroom: ChatRoomService) { }
   ngOnInit() {
+    console.log('kkkk');
   }
-
 }
