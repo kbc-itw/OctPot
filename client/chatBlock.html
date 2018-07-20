@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <title>chatRoom</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="ResetAndClear.css" />
+    <link rel="stylesheet" type="text/css" href="chatBlock.css" />
+    <!-- 使うサーバーのURLに変更しておく -->
+    <!-- <script src="http://localhost:3002/socket.io/socket.io.js"></script> -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+    function _assert(desc, v) {
+      if (v) {
+        return;
+      }
+      else {
+        let caller = _assert.caller || 'Top level';
+        console.error('ASSERT in %s, %s is :', caller, desc, v);
+      }
+    }
+    </script>
+  </head>
+  <body>
+  <script type="text/javascript" src="cliant.js"></script>
+    <header>
+      <div class="container">へっだー</div>
+    </header>
+    <main id="chatRoom" class="container">
+      <div id="chatBlock">
+        <input id="chat1" type="radio" name="tabBtn" checked />
+        <input id="chat2" type="radio" name="tabBtn" />
+        <div class="tabWrap clearfix">
+          <div class="tabArea">
+            <label id="chat1Label" class="chatLabel" for="chat1">チャット１</label>
+            <label id="chat2Label" class="chatLabel" for="chat2">チャット２</label>
+          </div>
+          <div class="plusAndMinus">
+            <button class="tabPlus" type="button">+</button>
+            <button class="tabMinus" type="button">-</button>
+          </div>
+        </div>
+        <div class="chatWrap">
+          <div class="panelArea">
+            <div id="chat1Content" class="chatContent">
+              <div class="inner" id="msglist">
+                <!-- ここにチャットログが増える -->
+              </div>
+            </div>
+            <div id="chat2Content" class="chatContent">
+              <div class="inner">
+                <p class="message">
+                  <span class="name">[わい]:</span>
+                  <span class="text">うまあじ</span>
+                  <span class="time">(18/06/14 09:50)</span>
+                </p>
+                <p class="message">
+                  <span class="name">[やきう]:</span>
+                  <span class="text">うまあじ派はかしこいな</span>
+                  <span class="time">(18/06/14 09:50)</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <form class="formInline" _lpchecked="1" method="post" onsubmit="return false;">
+            <select name="colors" id="messageColor">
+              <option value="red">赤</option>
+              <option value="blue">青</option>
+              <option value="green">緑</option>
+              <option value="gray">灰</option>
+              <option value="lime">ライム</option>
+            </select>
+            <!-- デフォルトの発言者のリストが気に入らなかったので消えてもらった -->
+            <!-- <select name="charNames">
+              <option value="char1">やきう</option>
+              <option value="char2">わい</option>
+              <option value="cahr3">GM</option>
+              <input type="text" id="msgname">
+            </select> -->
+            <input name="charNames" type="text" id="msgname" style="width: 30%;" placeholder="名無し">
+            <input type="text" class="form-control" id="msgForm">
+            <button type="submit" class="btn btn-primary" id="sendButton"  onclick="sendMessage();">送信</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

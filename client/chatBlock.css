@@ -1,0 +1,132 @@
+.container{
+  width: 960px;
+  margin: 0 auto;
+}
+#chatRoom{}
+#chatBlock{
+  width: 47%;
+}
+  #chatBlock input[name="tabBtn"]{
+    display:none;
+  }
+  #chatBlock .tabWrap{
+    width: 100%;
+    height: 27px
+  }
+    #chatBlock .tabWrap .tabArea{
+      width: 80%;
+      height: 100%;
+      float: left;
+      letter-spacing: -0.5em;
+    }
+      #chatBlock .tabWrap .tabArea .chatLabel{
+        width: calc(100% / 4);
+        height: 100%;
+        display: inline-block;
+        letter-spacing: normal;
+        padding: 6px 4px;
+        box-sizing: border-box;
+        background: #ccc;
+        border-bottom: 3px solid #999;
+        border-radius: 10px 10px 0 0;
+      }
+        #chatBlock .tabWrap .tabArea .chatLabel:hover{
+          opacity: 0.7;
+          transition-duration: 0.3s;
+        }
+    #chatBlock .tabWrap .plusAndMinus{
+      width: 20%;
+      height: 100%;
+      float: right;
+      letter-spacing: -0.5em;
+    }
+      #chatBlock .tabWrap .plusAndMinus button{
+        letter-spacing: normal;
+        width: calc(100% / 2);
+        height: 100%;
+      }
+  #chatBlock .chatWrap{
+    background: #fff;
+    padding: 5px 10px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+  }
+    #chatBlock .chatWrap .panelArea{
+      margin-bottom: 5px;
+    }
+      #chatBlock .chatWrap .panelArea .chatContent{
+        display: none;
+        width: 100%;
+        box-sizing: border-box;
+      }
+        #chatBlock .chatWrap .panelArea .chatContent .inner{
+          background: #fff;
+          padding: 5px;
+          border: 1px solid #000;
+          height: 150px;
+          box-sizing: border-box;
+          overflow-y: scroll;
+        }
+          #chatBlock .chatWrap .panelArea .chatContent .inner .message{
+            font-size: 12px;
+            box-sizing: border-box;
+            padding: 4px 2px;
+            border-bottom: 1px solid #ccc;
+          }
+          #chatBlock .chatWrap .panelArea .chatContent .inner .red{
+            color: red;
+          }
+          #chatBlock .chatWrap .panelArea .chatContent .inner .blue{
+            color: blue;
+          }
+          #chatBlock .chatWrap .panelArea .chatContent .inner .green{
+            color: green;
+          }
+          #chatBlock .chatWrap .panelArea .chatContent .inner .gray{
+            color: gray;
+          }
+          #chatBlock .chatWrap .panelArea .chatContent .inner .lime{
+            color: lime;
+          }
+    #chatBlock .chatWrap .formInline{
+      box-sizing: border-box;
+      letter-spacing: -0.5em;
+    }
+      #chatBlock .chatWrap .formInline *{
+        letter-spacing: normal;
+        vertical-align: middle;
+        padding: 5px;
+        box-sizing: border-box;
+      }
+      #chatBlock .chatWrap .formInline select{
+        margin-right: 5px;
+      }
+      #chatBlock .chatWrap .formInline select[name="colors"]{
+        width: calc(20% - 5px);
+      }
+      #chatBlock .chatWrap .formInline select[name="charNames"]{
+        width: calc(30% - 5px);
+      }
+      #chatBlock .chatWrap .formInline input[type="text"]{
+        width: 40%;
+        margin-right: 0;
+      }
+      #chatBlock .chatWrap .formInline button{
+        width: 10%;
+        padding: 3px 0;
+      }
+
+
+/* タブ切り替え時
+-----------------------------------*/
+/*タブ切り替え*/
+#chat1:checked ~ .tabWrap .tabArea #chat1Label,
+#chat2:checked ~ .tabWrap .tabArea #chat2Label{
+  background: #999;
+  color: #fff;
+}
+/*パネル切り替え*/
+#chat1:checked ~ .chatWrap .panelArea #chat1Content,
+#chat2:checked ~ .chatWrap .panelArea #chat2Content{
+  display: block;
+}
