@@ -6,8 +6,8 @@ import {ChatRoomService} from './chat-room-service';
   templateUrl: './test.html'
 })
 export class ChatRoomComponent implements OnInit {
-  constructor(private chatroom: ChatRoomService) { }
+  constructor(private chat: ChatRoomService) { }
   ngOnInit() {
-    console.log('kkkk');
+    console.log('chat-room-component');
   }
 }

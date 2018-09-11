@@ -54,8 +54,14 @@ var io = socket.listen(server);
 
 // This callback function is called every time a socket
 // tries to connect to the server
-io.on('connection', function(socket) {
+io.on('connect', function(socket) {
+  console.log('serverSide', 'connect');
+  socket.on('SDP', function(e) {
+    console.log('serverSide', 'SDP');
+    io.emit('SDP', e);
+  });
   // ---- multi room ----
+  /*
   socket.on('enter', function(roomname) {
     socket.join(roomname);
     console.log('id=' + socket.id + ' enter room=' + roomname);
@@ -142,5 +148,5 @@ io.on('connection', function(socket) {
       socket.leave(roomname);
     }
   });
-
+*/
 });
