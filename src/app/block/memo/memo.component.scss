@@ -1,0 +1,15 @@
+textarea{
+  overflow:scroll;
+  height:100px;
+  resize:vertical;
+}
+
+.memo-block{
+}
+
+.memos{
+  overflow-y:scroll;
+  height:300px;
+  position:absolute;
+  border: solid 1px #000000;
+}
