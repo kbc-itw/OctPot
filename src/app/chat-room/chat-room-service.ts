@@ -7,7 +7,7 @@ export class ChatRoomService {
   // 参照されて困らないものだったらいいのでは？
   public static peer;
   public static io;
-  private channel;
+  public static channel;
   //  private chat = document.getElementById('chat');
   //  private test = this.peer.createDataChannel('my channel');
 
@@ -15,7 +15,7 @@ export class ChatRoomService {
   // そのあとにconnectを呼び出す。
   constructor() {
     ChatRoomService.peer = new RTCPeerConnection({});
-    ChatRoomService.io = io('http://localhost:3000');
+    ChatRoomService.io = io.connect('http://150.95.205.204:80'); // TestServer
     console.log('constructor', 'from', 'service');
     this.connect();
     // SDPofferが送られてきたときの処理
@@ -30,9 +30,21 @@ export class ChatRoomService {
       // ここでoffer側がremoteに自身をsetしないようにする
       if (e.sdp.sdp === ChatRoomService.peer.localDescription.sdp) {
         console.log(e);
-
+        // test
+        var test = new RTCPeerConnection({});
+        /*
+        test.createOffer(function(offer) {
+          test.setLocalDescription(new RTCSessionDescription(offer), function() {
+            console.log('clientSide', 'offer');
+            ChatRoomService.io.emit('SDP', {sdp: offer});
+          });
+        }, function(error) {
+          console.log(error);
+        });
+        */
         var description = new RTCSessionDescription(e.sdp);
         ChatRoomService.peer.setRemoteDescription(description, function () {
+          console.log('peerDescription');
           console.log(description.type);
           if (description.type === 'offer') {
             console.log('sdp type is offer');
@@ -40,6 +52,9 @@ export class ChatRoomService {
           }
         });
       }
+    });
+    ChatRoomService.io.on('test', function(e) {
+      console.log(e);
     });
   }
   // ioサーバに接続を試みる。
@@ -62,6 +77,28 @@ function offer() {
   });
   return;
 }
+
+function answer() {
+  console.log('clientSide', 'answer');
+  ChatRoomService.peer.createAnswer(function(answer) {
+    ChatRoomService.peer.setLocalDescription(new RTCSessionDescription(answer), function() {
+      console.log('clientSide', 'answer');
+      io.emit('SDP', {sdp: answer});
+    });
+
+    // DataChannelの接続を監視
+    ChatRoomService.peer.ondatachannel = function(e) {
+      // e.channelにtestが格納されているのでそれを使う
+      console.log('ondDataChannel');
+      ChatRoomService.channel = e.channel;
+    };
+
+  }, function(error) {
+    console.log(error);
+  });
+  return;
+}
+
   /*
   io.on('connect', function(socket) {
     console.log('clientSide', 'connect');
