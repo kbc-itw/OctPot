@@ -29,14 +29,14 @@ const http = require('http');
 const socket = require('socket.io');
 const express = require('express');
 
+// ポート競合で落ちないためのテスト用関数
+process.on('uncaughtException', function(err) {
+  console.log(err);
+});
+
 // 設定ファイルからポートを読み込んでポートを変化させる
 const ngPORT = 8888;
-var ex = express();
 var ng = express();
-
-
-
 ng.use('/', express.static(__dirname + '/ngdist'));
-
 var ng_server = http.createServer(ng);
 ng_server.listen(ngPORT);

@@ -23,9 +23,11 @@ app.on('ready', function () {
 var http = require('http');
 var socket = require('socket.io');
 var express = require('express');
+process.on('uncaughtException', function (err) {
+    console.log(err);
+});
 // 設定ファイルからポートを読み込んでポートを変化させる
 var ngPORT = 8888;
-var ex = express();
 var ng = express();
 ng.use('/', express.static(__dirname + '/ngdist'));
 var ng_server = http.createServer(ng);
