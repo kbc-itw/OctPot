@@ -10,4 +10,8 @@ export class ChatRoomComponent implements OnInit {
   ngOnInit() {
     console.log('chat-room-component');
   }
+  connect() {
+    // 現状ioのイベントconnectが発火されない。おそらくconstructorで先につないでるから？
+    this.chat.connect();
+  }
 }

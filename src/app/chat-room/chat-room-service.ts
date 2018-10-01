@@ -1,104 +1,135 @@
 import { Injectable } from '@angular/core';
-import * as io from 'socket.io-client';
+import * as client from 'socket.io-client';
 @Injectable()
-
 export class ChatRoomService {
-  // staticにするべきか？ メリット：クラス外からの参照が可　デメリット：参照されすぎ
-  // 参照されて困らないものだったらいいのでは？
-  public static peer;
-  public static io;
-  public static channel;
-  //  private chat = document.getElementById('chat');
-  //  private test = this.peer.createDataChannel('my channel');
-
-  // init時にpeerを作成し、ioに接続先を設定する。
-  // そのあとにconnectを呼び出す。
+  private peer;
+  private io;
+  private a;
   constructor() {
-    ChatRoomService.peer = new RTCPeerConnection({});
-    ChatRoomService.io = io.connect('http://150.95.205.204:80'); // TestServer
     console.log('constructor', 'from', 'service');
-    this.connect();
+  }
+  /*
+ポートが競合するので同じPCからテストすると結果がうまくいかない
+具体的には競合によるerrorを無視して実行しているので同じアプリが起動し、同じインスタンスやプロパティを持つことで2者間通信の再現性が損なわれる。
+   */
+  sdp() {
+   // ChatRoomService.channel = ChatRoomService.peer.ondatachannel('test');
+    console.log('from here socket function');
     // SDPofferが送られてきたときの処理
-    ChatRoomService.io.on('SDP', function(e) {
+    let peer = this.peer;
+    let io = this.io;
+    let a = this.a;
+    io.on('SDP', function(e) {
       console.log('clientSide', 'SDP');
-      console.log(e.sdp.type);
-      console.log(ChatRoomService.peer.localDescription.sdp);
       if (!e.sdp.sdp) {
         console.log('sdp.sdp is not property');
         return;
       }
-      // ここでoffer側がremoteに自身をsetしないようにする
-      if (e.sdp.sdp === ChatRoomService.peer.localDescription.sdp) {
-        console.log(e);
-        // test
-        var test = new RTCPeerConnection({});
-        /*
-        test.createOffer(function(offer) {
-          test.setLocalDescription(new RTCSessionDescription(offer), function() {
-            console.log('clientSide', 'offer');
-            ChatRoomService.io.emit('SDP', {sdp: offer});
-          });
-        }, function(error) {
-          console.log(error);
-        });
-        */
+      if (e.sdp.sdp !== peer.localDescription.sdp) {
+        console.log('check the sdp');
         var description = new RTCSessionDescription(e.sdp);
-        ChatRoomService.peer.setRemoteDescription(description, function () {
+        console.log(description);
+        peer.setRemoteDescription(description, function () {
           console.log('peerDescription');
           console.log(description.type);
           if (description.type === 'offer') {
             console.log('sdp type is offer');
-            // answer();
+             // this.answer();
           }
         });
       }
     });
-    ChatRoomService.io.on('test', function(e) {
+    /*
+    io.on('candidate', function(e){
+      console.log('iocandi');
       console.log(e);
+      if (peer.localDescription.sdp !== e.sdp) {
+        var candidate = new RTCIceCandidate(e.candidate);
+        peer.addIceCandidate(candidate);
+      }
     });
+    */
   }
-  // ioサーバに接続を試みる。
   connect() {
-    ChatRoomService.io.on('connect', function (socket) {
+    this.peer = new RTCPeerConnection({iceServers: [{ urls: 'stun:stun.l.google.com:19302'}]});
+    this.a = new RTCPeerConnection({iceServers: [{ urls: 'stun:stun.l.google.com:19302'}]});
+    this.io = client.connect('http://150.95.205.204:80');
+    console.log('connect service');
+   // let peer = this.peer;
+    let io = this.io;
+    let sdp = this.sdp();
+    let offer = this.offer();
+    io.on('connect', function (socket) {
       console.log('clientSide', 'connect');
-      offer();
+      /*
+      peer.addEventListener('icecandidate', function (e) {
+        console.log('peercandi');
+        if (!e.candidate) {
+          return;
+        }
+        var candidate = e.candidate;
+        io.emit('candidate', {candidate: candidate, sdp: peer.localDescription.sdp});
+      });
+      */
+      sdp;
+      offer;
     });
   }
-}
-function offer() {
-  var peer = ChatRoomService.peer;
-  peer.createOffer(function(offer) {
-    peer.setLocalDescription(new RTCSessionDescription(offer), function() {
-      console.log('clientSide', 'offer');
-      ChatRoomService.io.emit('SDP', {sdp: offer});
+  offer() {
+    console.log('this from offer');
+    let peer = this.peer;
+    let a = this.a;
+    let io = this.io;
+    // this.channel = this.peer.createDataChannel('test');
+    peer.createOffer(function(offer) {
+      peer.setLocalDescription(new RTCSessionDescription(offer), function() {
+        console.log('clientSide', 'offer');
+        io.emit('SDP', {sdp: offer});
+      });
+    }, function(error) {
+      console.log(error);
     });
-  }, function(error) {
-    console.log(error);
-  });
-  return;
-}
-
-function answer() {
-  console.log('clientSide', 'answer');
-  ChatRoomService.peer.createAnswer(function(answer) {
-    ChatRoomService.peer.setLocalDescription(new RTCSessionDescription(answer), function() {
-      console.log('clientSide', 'answer');
-      io.emit('SDP', {sdp: answer});
+    /*
+    a.createOffer(function(offer) {
+      a.setLocalDescription(new RTCPeerConnection(offer), function() {
+        console.log('this.a offer');
+        io.emit('SDP', {sdp: offer});
+      });
+    }, function (error) {
+      console.log(error);
     });
+    */
+    return;
+  }
+  answer() {
+    console.log('clientSide', 'answer');
+    this.peer.createAnswer(function(answer) {
+      this.peer.setLocalDescription(new RTCSessionDescription(answer), function() {
+        console.log('clientSide', 'answer');
+        client.emit('SDP', {sdp: answer});
+      });
 
-    // DataChannelの接続を監視
-    ChatRoomService.peer.ondatachannel = function(e) {
-      // e.channelにtestが格納されているのでそれを使う
-      console.log('ondDataChannel');
-      ChatRoomService.channel = e.channel;
-    };
+      // DataChannelの接続を監視
+      this.peer.ondatachannel = function(e) {
+        // e.channelにtestが格納されているのでそれを使う
+        console.log('ondDataChannel');
+        this.channel = e.channel;
+      };
 
-  }, function(error) {
-    console.log(error);
-  });
-  return;
+    }, function(error) {
+      console.log(error);
+    });
+    return;
+  }
 }
-
+/*
+ChatRoomService.channel.onopen = function() {
+  console.log('DataChannelOpen');
+};
+ChatRoomService.channel.onmessage = function (event) {
+  console.log('データチャネルメッセージ取得:', event.data);
+};
+*/
   /*
   io.on('connect', function(socket) {
     console.log('clientSide', 'connect');
