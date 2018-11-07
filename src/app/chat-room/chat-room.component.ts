@@ -11,7 +11,13 @@ export class ChatRoomComponent implements OnInit {
     console.log('chat-room-component');
   }
   connect() {
-    // 現状ioのイベントconnectが発火されない。おそらくconstructorで先につないでるから？
+    console.profile('connectFunction');
     this.chat.connect();
+    console.profileEnd();
+  }
+  offer() {
+    console.profile('offerFunction');
+    this.chat.offer();
+    console.profileEnd();
   }
 }
