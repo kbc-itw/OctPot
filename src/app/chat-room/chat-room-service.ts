@@ -10,12 +10,45 @@ export class ChatRoomService {
     console.log('constructor', 'from', 'service');
     this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
     this.io = client.connect('http://150.95.205.204:80');
-    console.log(this.io);
     console.profile('ondatachannel');
-    this.peer.ondatachannel = this.dc;
+    let io = this.io;
+    let peer = this.peer;
+    let channel = this.channel;
+    peer.ondatachannel = function (e) {
+      console.groupCollapsed('dcFunction');
+      // e.channelにtestが格納されているのでそれを使う
+      console.log('ondDataChannel');
+      console.log(e);
+      channel = e.channel;
+      console.log(channel);
+      channel.onopen = function () {
+        console.log('DataChannelOpen');
+      };
+      channel.onmessage = function (event) {
+        console.log('データチャネルメッセージ取得:', event.data);
+      };
+      channel.onclose = function () {
+        console.log('DataChannelClose');
+      };
+      channel.onerror = function (err) {
+        console.log(err);
+      };
+      channel.send('aaa');
+      console.groupEnd();
+    };
     console.profileEnd();
-    console.profile('onicecadicate');
-    this.peer.onicecandidate = this.cd;
+    console.profile('onicecadidate');
+    peer.onicecandidate = function(e) {
+      console.groupCollapsed('onicecadidate');
+      console.log('peercandi');
+      console.log(io);
+      if (!e.candidate) {
+        return;
+      }
+      var candidate = e.candidate;
+      io.emit('candidate', {candidate: candidate, sdp: peer.localDescription.sdp});
+      console.groupEnd();
+    };
     console.profileEnd();
     console.groupEnd();
   }
@@ -24,8 +57,6 @@ export class ChatRoomService {
   // datachannellが開かれる条件が限られる
   // 条件はどちらかがconnect状態時に合計2回SDPofferをクリックすること
   // ondatachannelの位置の問題？ <- 確定じゃないが違うんじゃないか？
-  // もしかしたらdatachannelをお互いに登録した後でsdpで接続しなければならないのかもしれない。
-  // answer側を2回行なわけなければいけないか、両方２回行わなければいけない。
   // もしくはicecandidateの問題？
 
   // peer通信を行うための処理
@@ -52,14 +83,15 @@ export class ChatRoomService {
     console.groupEnd();
   }
   cd(e) {
-    console.groupCollapsed('onicecadicate');
+    let io = this.io;
+    console.groupCollapsed('onicecadidate');
     console.log('peercandi');
-    console.log(this.io);
+    console.log(io);
     if (!e.candidate) {
       return;
     }
     var candidate = e.candidate;
-    this.io.emit('candidate', {candidate: candidate, sdp: this.peer.localDescription.sdp});
+    io.emit('candidate', {candidate: candidate, sdp: this.peer.localDescription.sdp});
     console.groupEnd();
   }
 
