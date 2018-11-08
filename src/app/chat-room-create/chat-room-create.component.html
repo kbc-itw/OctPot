@@ -6,8 +6,13 @@
 </head>
 <body>
 <p>ルーム作成</p><br>
-<input type="text" id="password">
-<input type="submit" value="作成" (click)="listen($event)"><br>
+<form (submit)="create()">
+  <p>ルーム名</p><br>
+  <input type="text" (input)="room=$event.target.value"><br>
+  <p>パスワード</p><br>
+  <input type="password" (input)="pass=$event.target.value"><br>
+  <input type="submit" id="b_pass" value="作成"><br>
+</form>
 <a routerLink="">トップへ戻る</a><br>
 </body>
 </html>
