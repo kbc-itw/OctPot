@@ -1,15 +1,17 @@
 textarea{
   overflow:scroll;
+  overflow-x:hidden;
   height:100px;
+  width: 150px;
   resize:vertical;
-}
-
-.memo-block{
 }
 
 .memos{
   overflow-y:scroll;
   height:300px;
+  width:175px;
   position:absolute;
-  border: solid 1px #000000;
+  border: solid 2px #000000;
+
 }
+
