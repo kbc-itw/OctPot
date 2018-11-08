@@ -40,13 +40,12 @@ export class ChatRoomService {
     console.profile('onicecadidate');
     peer.onicecandidate = function(e) {
       console.groupCollapsed('onicecadidate');
-      console.log('peercandi');
-      console.log(io);
-      if (!e.candidate) {
+      if (e.candidate) {
+        io.emit('candidate', {candidate: e.candidate, sdp: peer.localDescription.sdp});
+      }else {
+        console.log('candi  err');
         return;
       }
-      var candidate = e.candidate;
-      io.emit('candidate', {candidate: candidate, sdp: peer.localDescription.sdp});
       console.groupEnd();
     };
     console.profileEnd();
@@ -54,12 +53,10 @@ export class ChatRoomService {
   }
   // ポートが競合するので同じPCからテストすると結果がうまくいかない
   // connectおしてio.on('SDP')じゃなくて起動時から待機させるべきだろ <- これはホスト側(ルーム作成側)の処理だな
-  // datachannellが開かれる条件が限られる
-  // 条件はどちらかがconnect状態時に合計2回SDPofferをクリックすること
-  // ondatachannelの位置の問題？ <- 確定じゃないが違うんじゃないか？
-  // もしくはicecandidateの問題？
+  //
 
   // peer通信を行うための処理
+  /*
   dc(e) {
     console.groupCollapsed('dcFunction');
     // e.channelにtestが格納されているのでそれを使う
@@ -94,6 +91,7 @@ export class ChatRoomService {
     io.emit('candidate', {candidate: candidate, sdp: this.peer.localDescription.sdp});
     console.groupEnd();
   }
+  */
 
   // SDPofferが送られてきたときの処理
   sdp() {
@@ -129,11 +127,13 @@ export class ChatRoomService {
     });
     // candidateを受け取る処理
     io.on('candidate', function (e) {
-      console.groupCollapsed('ioのcandicate');
-      console.log(e);
+      console.groupCollapsed('ioのcandidate');
       if (peer.localDescription.sdp !== e.sdp) {
-        var candidate = new RTCIceCandidate(e.candidate);
-        peer.addIceCandidate(candidate);
+        console.log('candis ok');
+        if (e.candidate) {
+          var candidate = new RTCIceCandidate(e.candidate);
+          peer.addIceCandidate(candidate);
+        }
       }
       console.groupEnd();
     });
