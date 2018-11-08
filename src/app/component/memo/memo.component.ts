@@ -15,15 +15,17 @@ export class MemoComponent implements OnInit {
 
   // @ts-ignore
   @ViewChild('memos') memor: ElementRef;
+  private num = 2;
   private latest = '';
+
 
   add() {
 
     let memoclass = document.getElementsByClassName('memo') as HTMLCollectionOf<HTMLElement>;
-    let num = memoclass.length + 1;
+    this.num += 1;
     let textarea = this.renderer.createElement('textarea');
     this.renderer.addClass(textarea, 'memo');
-    textarea.id = 'memo' + num ;
+    textarea.id = 'memo' + this.num ;
     this.renderer.appendChild(this.memor.nativeElement, textarea);
   }
 
