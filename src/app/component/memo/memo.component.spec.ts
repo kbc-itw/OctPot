@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MemoComponent } from './memo.component';
+import { MemoComponent } from '../../Service/memo.component';
 
 describe('MemoComponent', () => {
   let component: MemoComponent;

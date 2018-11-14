@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CharacterCreateService } from './character-create.service';
+import { CharacterCreateService } from '../../Service/character-create.service';
 // import { HttpService } from '../app-http.service';
 
 @Component({

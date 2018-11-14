@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CharacterManagementService } from './character-management.service';
+import { CharacterManagementService } from '../../Service/character-management.service';
 
 @Component({
   selector: 'app-character-management',

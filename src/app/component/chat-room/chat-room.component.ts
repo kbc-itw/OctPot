@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ChatRoomService} from './chat-room-service';
+import {ChatRoomService} from '../../Service/chat-room-service';
 
 @Component({
   selector: 'app-chat-room',

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TopPageComponent } from './top-page.component';
+import { TopPageComponent } from '../../Service/top-page.component';
 
 describe('TopPageComponent', () => {
   let component: TopPageComponent;

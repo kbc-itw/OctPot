@@ -6,16 +6,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { MY_ROUTES } from './app.routing';
 
 import { AppComponent } from './app.component';
-import { CharacterCreateComponent } from './character-create/character-create.component';
-import { CharacterManagementComponent } from './character-management/character-management.component';
-import { ChatRoomComponent } from './chat-room/chat-room.component';
-import { TopPageComponent } from './top-page/top-page.component';
-import { ChatRoomCreateComponent } from './chat-room-create/chat-room-create.component';
+import { CharacterCreateComponent } from './component/character-create/character-create.component';
+import { CharacterManagementComponent } from './component/character-management/character-management.component';
+import { ChatRoomComponent } from './component/chat-room/chat-room.component';
+import { TopPageComponent } from './Service/top-page.component';
+import { ChatRoomCreateComponent } from './component/chat-room-create/chat-room-create.component';
 
-import { CharacterCreateService } from './character-create/character-create.service';
-import { CharacterManagementService } from './character-management/character-management.service';
-import { ChatRoomService } from './chat-room/chat-room-service';
-import { ChatRoomCreateService } from './chat-room-create/chat-room-create.service';
+import { CharacterCreateService } from './Service/character-create.service';
+import { CharacterManagementService } from './Service/character-management.service';
+import { ChatRoomService } from './Service/chat-room-service';
+import { ChatRoomCreateService } from './Service/chat-room-create.service';
 
 
 

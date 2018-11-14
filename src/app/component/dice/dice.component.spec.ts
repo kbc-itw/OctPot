@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DiceComponent } from './dice.component';
+import { DiceComponent } from '../../Service/dice.component';
 
 describe('DiceComponent', () => {
   let component: DiceComponent;
