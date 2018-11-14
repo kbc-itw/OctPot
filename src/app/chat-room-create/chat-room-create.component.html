@@ -5,14 +5,18 @@
   <title>ルーム作成</title>
 </head>
 <body>
-<p>ルーム作成</p><br>
-<form (submit)="create()">
-  <p>ルーム名</p><br>
-  <input type="text" (input)="room=$event.target.value"><br>
-  <p>パスワード</p><br>
-  <input type="password" (input)="pass=$event.target.value"><br>
-  <input type="submit" id="b_pass" value="作成"><br>
-</form>
-<a routerLink="">トップへ戻る</a><br>
+<div *ngIf="!bool; else success">
+  <p>ルーム作成</p><br>
+  <form (submit)="create()">
+    <input type="text" placeholder="ルーム名" (input)="room=$event.target.value"><br>
+    <input type="password" placeholder="パスワード" (input)="pass=$event.target.value"><br>
+    <input type="submit" value="作成"><br>
+  </form>
+  <a routerLink="">トップへ戻る</a><br>
+</div>
+<ng-template #success>
+  <input id="text" type="text"><button onclick=""></button><br>
+  <div id="chat"></div><br>
+</ng-template>
 </body>
 </html>

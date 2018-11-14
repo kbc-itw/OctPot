@@ -17,7 +17,6 @@ import { CharacterManagementService } from './character-management/character-man
 import { ChatRoomService } from './chat-room/chat-room-service';
 import { ChatRoomCreateService } from './chat-room-create/chat-room-create.service';
 
-import { Test } from './chat-room/test';
 
 
 @NgModule({
@@ -27,7 +26,7 @@ import { Test } from './chat-room/test';
   imports: [
     BrowserModule, FormsModule, HttpClientModule, MY_ROUTES
   ],
-  providers: [ CharacterCreateService, CharacterManagementService, ChatRoomService, ChatRoomCreateService, Test],
+  providers: [ CharacterCreateService, CharacterManagementService, ChatRoomService, ChatRoomCreateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
