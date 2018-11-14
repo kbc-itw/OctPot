@@ -5,6 +5,7 @@ export class ChatRoomCreateService {
   // ホスト側が使うルーム作成クラス
   // ルームを作成、peerを作成、channelを作成
   // こっちでio.onでスタンバっといて入室者側のconnectが来たらoffer投げるようにするか
+  // passはあとでいいか
   private peer;
   private io;
   private channel;
@@ -13,7 +14,7 @@ export class ChatRoomCreateService {
     console.groupCollapsed('createFunction(service)');
     console.log('constructor', 'from', 'service');
     this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
-    this.io = client.connect('http://150.95.205.204:80/' + room);
+    this.io = client.connect('http://150.95.205.204:80/');
     // ここでemitしてpass送るか
     console.profile('ondatachannel');
     let io = this.io;
@@ -55,21 +56,32 @@ export class ChatRoomCreateService {
     };
     console.profileEnd();
     console.profile('connectFunction');
-    this.connect();
+    this.connect(room, pass);
     console.profileEnd();
     console.groupEnd();
   }
   // peer通信を始める準備
-  connect() {
+  connect(room, pass) {
     console.groupCollapsed('connectFunction');
     console.log('connect service');
     console.profile('sdpFunction');
     this.sdp();
     console.profileEnd();
-    this.io.on('connect', function (socket) {
+    let io = this.io;
+    io.on('connect', function (socket) {
+      io.emit('create', {room: room, pass: pass});
       console.groupCollapsed('ioのconnect');
       console.log('clientSide', 'connect');
       console.groupEnd();
+    });
+    io.on('create', function(e) {
+      console.log(e);
+    });
+    io.on('join', function(e) {
+      console.log(e);
+    });
+    io.on('messa', function(e) {
+      console.log(e);
     });
     console.groupEnd();
   }
