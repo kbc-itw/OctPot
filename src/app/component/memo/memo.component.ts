@@ -2,8 +2,8 @@ import {Component, OnInit, ElementRef, ViewChild, Renderer2} from '@angular/core
 
 @Component({
   selector: 'app-memo',
-  templateUrl: '../component/memo/memo.component.html',
-  styleUrls: ['../component/memo/memo.component.scss']
+  templateUrl: './memo.component.html',
+  styleUrls: ['./memo.component.scss']
 })
 
 

@@ -9,8 +9,10 @@ import { AppComponent } from './app.component';
 import { CharacterCreateComponent } from './component/character-create/character-create.component';
 import { CharacterManagementComponent } from './component/character-management/character-management.component';
 import { ChatRoomComponent } from './component/chat-room/chat-room.component';
-import { TopPageComponent } from './Service/top-page.component';
+import { TopPageComponent } from './component/top-page/top-page.component';
 import { ChatRoomCreateComponent } from './component/chat-room-create/chat-room-create.component';
+import { DiceComponent } from './component/dice/dice.component';
+import { MemoComponent } from './component/memo/memo.component';
 
 import { CharacterCreateService } from './Service/character-create.service';
 import { CharacterManagementService } from './Service/character-management.service';
@@ -21,7 +23,8 @@ import { ChatRoomCreateService } from './Service/chat-room-create.service';
 
 @NgModule({
   declarations: [
-    AppComponent, CharacterCreateComponent, CharacterManagementComponent, ChatRoomComponent, TopPageComponent, ChatRoomCreateComponent
+    AppComponent, CharacterCreateComponent, CharacterManagementComponent, ChatRoomComponent, TopPageComponent, ChatRoomCreateComponent,
+    DiceComponent, MemoComponent
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule, MY_ROUTES
