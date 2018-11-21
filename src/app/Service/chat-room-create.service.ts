@@ -80,7 +80,7 @@ export class ChatRoomCreateService {
     io.on('join', function(e) {
       console.log(e);
     });
-    io.on('messa', function(e) {
+    io.on('hello', function(e) {
       console.log(e);
     });
     console.groupEnd();

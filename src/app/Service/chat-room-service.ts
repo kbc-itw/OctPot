@@ -9,7 +9,7 @@ export class ChatRoomService {
     console.groupCollapsed('constructor');
     console.log('constructor', 'from', 'service');
     this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
-    this.io = client.connect('http://150.95.205.204:80');
+    this.io = client.connect('http://150.95.205.204:80/', null, 'test');
     console.profile('ondatachannel');
     let io = this.io;
     let peer = this.peer;
@@ -49,6 +49,20 @@ export class ChatRoomService {
       console.groupEnd();
     };
     console.profileEnd();
+    this.io.headbeatTimeout = 5000;
+    this.io.on('connect', function (socket) {
+      console.groupCollapsed('ioのconnect');
+      console.log('clientSide', 'connect');
+      console.groupEnd();
+      io.emit('test');
+    });
+    this.io.on('test', function (e) {
+      console.log(e);
+    });
+    this.io.on('connect_timeout', (timeout) => {
+      console.log('timeout');
+      console.log(timeout);
+    });
     console.groupEnd();
   }
   // ポートが競合するので同じPCからテストすると結果がうまくいかない
@@ -146,11 +160,7 @@ export class ChatRoomService {
     console.profile('sdpFunction');
     this.sdp();
     console.profileEnd();
-    this.io.on('connect', function (socket) {
-      console.groupCollapsed('ioのconnect');
-      console.log('clientSide', 'connect');
-      console.groupEnd();
-    });
+
     console.groupEnd();
   }
   // sdpを送る処理
