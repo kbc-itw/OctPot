@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as client from 'socket.io-client';
+import {ObjectOrientedRenderer3} from '@angular/core/src/render3/interfaces/renderer';
 @Injectable()
 export class ChatRoomService {
   private peer;
@@ -9,7 +10,8 @@ export class ChatRoomService {
     console.groupCollapsed('constructor');
     console.log('constructor', 'from', 'service');
     this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
-    this.io = client.connect('http://150.95.205.204:80/', null, 'test');
+    // this.io = client.connect('http://150.95.205.204:80/', null, 'test');
+    this.io = client.connect('http://150.95.205.204:80/');
     console.profile('ondatachannel');
     let io = this.io;
     let peer = this.peer;
@@ -54,7 +56,12 @@ export class ChatRoomService {
       console.groupCollapsed('ioのconnect');
       console.log('clientSide', 'connect');
       console.groupEnd();
-      io.emit('test');
+      io.emit('rooms');
+    });
+    this.io.on('rooms', function (e) {
+      e.room.forEach(function (value) {
+        console.log(value);
+      });
     });
     this.io.on('test', function (e) {
       console.log(e);
