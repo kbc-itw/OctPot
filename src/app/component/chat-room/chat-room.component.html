@@ -1,59 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <link rel="shortcut icon" href="../assets/octpot.ico">
-  <!--<link rel="stylesheet" type="text/css" href="chatRoom.css">-->
-  <title>チャットルーム</title>
-</head>
-<body background="../assets/background.jpg">
-  <header>
-    <!-- メニューバー -->
-    <!-- JQueryでドロップダウンメニューにする -->
-    <ul>
-      <li>ファイル</li>
-      <li>表示</li>
-      <li>設定</li>
-      <li>マップ</li>
-      <li>コマ</li>
-      <li><a href="#">トップ</a></li>
-    </ul>
-    <!-- /メニューバ－ -->
-  </header>
+<div class="menu">
+  <ul>
+    <li><a routerLink="">ファイル</a></li>
+    <li><a routerLink="">表示</a></li>
+    <li><a routerLink="">コマ</a></li>
+    <li><a routerLink="">マップ</a></li>
+    <li><a routerLink="">トップ</a></li>
+    <li><a routerLink="">設定</a></li>
+    <li><a routerLink="">退室</a></li>
+  </ul>
+</div>
 
-  <main class="clearfix">
-    <!-- 左側 -->
-    <div class="left-area">
-      <!-- マップウィンドウ -->
-      <section class="map">
-        <h1>マップ</h1>
-        <img src="WebPlatForm/session/map/画像名" alt="マップ画像">
-      </section>
-      <!-- /マップウィンドウ -->
-
-      <!-- チャットウィンドウ -->
-      <section class="chat">
-        <h1>チャット</h1>
-      </section>
-      <!-- /チャットウィンドウ -->
-    </div>
-    <!-- /左側 -->
-
-
-    <!-- 右側 -->
-    <div class="right-area">
-      <!-- ステータスウィンドウ -->
-      <section class="status">
-        <h1>キャラクターステータス</h1>
-      </section>
-      <!-- /ステータスウィンドウ -->
-
-      <!-- ダイスウィンドウ -->
-      <section class="dice">
-        <h1>ダイス</h1>
-      </section>
-      <!-- /ダイスウィンドウ -->
-    </div>
-    <!-- /右側 -->
-  </main>
-</body>
-</html>
+<div class="room">
+  <div class="mainBlock">
+    <div class="map"></div>
+    <div class="chat"></div>
+  </div>
+  <div class="sideBlock">
+    <div class="status"></div>
+    <div class="memo"></div>
+  </div>
+</div>
