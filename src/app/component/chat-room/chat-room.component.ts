@@ -6,9 +6,25 @@ import {ChatRoomService} from '../../Service/chat-room-service';
   templateUrl: './test.html'
 })
 export class ChatRoomComponent implements OnInit {
-  constructor(private chat: ChatRoomService) { }
+  private rooms;
+  constructor(private chat: ChatRoomService) {
+    this.chat.io.on('rooms', (e) => {
+      console.log('ルーム名');
+      console.log(e);
+      this.rooms = e.room;
+      /*
+      e.room.forEach(function (value) {
+        console.log(value);
+      });
+      */
+      this.showRoom();
+    });
+  }
   ngOnInit() {
     console.log('chat-room-component');
+  }
+  showRoom() {
+    console.log(this.rooms);
   }
   connect() {
     console.profile('connectFunction');

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import * as client from 'socket.io-client';
-import {ObjectOrientedRenderer3} from '@angular/core/src/render3/interfaces/renderer';
 @Injectable()
 export class ChatRoomService {
   private peer;
-  private io;
+  public io;
   private channel;
   constructor() {
     console.groupCollapsed('constructor');
@@ -58,14 +57,17 @@ export class ChatRoomService {
       console.groupEnd();
       io.emit('rooms');
     });
+    this.io.on('test', function (e) {
+      console.log(e);
+    });
+    /*
     this.io.on('rooms', function (e) {
+      console.log('ルーム名');
       e.room.forEach(function (value) {
         console.log(value);
       });
     });
-    this.io.on('test', function (e) {
-      console.log(e);
-    });
+    */
     this.io.on('connect_timeout', (timeout) => {
       console.log('timeout');
       console.log(timeout);
@@ -114,6 +116,9 @@ export class ChatRoomService {
   }
   */
 
+  getRooms() {
+    return this.io;
+  }
   // SDPofferが送られてきたときの処理
   sdp() {
     console.groupCollapsed('sdpFunction');

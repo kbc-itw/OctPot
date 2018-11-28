@@ -75,13 +75,13 @@ export class ChatRoomCreateService {
       console.groupEnd();
     });
     io.on('create', function(e) {
-      console.log(e);
+      console.log('create', e);
     });
     io.on('join', function(e) {
-      console.log(e);
+      console.log('join', e);
     });
     io.on('hello', function(e) {
-      console.log(e);
+      console.log('hello', e);
     });
     console.groupEnd();
   }
