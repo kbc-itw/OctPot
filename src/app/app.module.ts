@@ -18,6 +18,7 @@ import { CharacterCreateService } from './Service/character-create.service';
 import { CharacterManagementService } from './Service/character-management.service';
 import { ChatRoomService } from './Service/chat-room-service';
 import { ChatRoomCreateService } from './Service/chat-room-create.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -27,7 +28,7 @@ import { ChatRoomCreateService } from './Service/chat-room-create.service';
     DiceComponent, MemoComponent
   ],
   imports: [
-    BrowserModule, FormsModule, HttpClientModule, MY_ROUTES
+    BrowserModule, FormsModule, HttpClientModule, MY_ROUTES, BrowserAnimationsModule
   ],
   providers: [ CharacterCreateService, CharacterManagementService, ChatRoomService, ChatRoomCreateService],
   bootstrap: [AppComponent]
