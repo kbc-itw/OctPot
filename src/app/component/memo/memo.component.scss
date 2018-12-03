@@ -1,17 +1,15 @@
-textarea{
-  overflow:scroll;
-  overflow-x:hidden;
-  height:100px;
+textarea {
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 100px;
   width: 150px;
-  resize:vertical;
+  resize: vertical;
 }
 
-.memos{
-  overflow-y:scroll;
-  height:300px;
-  width:175px;
-  position:absolute;
+.memos {
+  overflow-y: scroll;
+  height: 300px;
+  width: 175px;
+  position: absolute;
   border: solid 2px #000000;
-
 }
-
