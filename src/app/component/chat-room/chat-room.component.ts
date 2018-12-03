@@ -7,17 +7,19 @@ import {ChatRoomService} from '../../Service/chat-room-service';
 })
 export class ChatRoomComponent implements OnInit {
   private rooms;
+  private message_list: any= [];
+  private room_in: boolean = false;
   constructor(private chat: ChatRoomService) {
-    this.chat.io.on('rooms', (e) => {
+    this.chat.getio().on('rooms', (e) => {
       console.log('ルーム名');
       console.log(e);
       this.rooms = e.room;
-      /*
-      e.room.forEach(function (value) {
-        console.log(value);
-      });
-      */
       this.showRoom();
+    });
+    this.chat.getio().on('hello', (e) => {
+      console.log('hello ', e);
+      this.room_in = true;
+      this.message_list.push(e);
     });
   }
   ngOnInit() {
@@ -30,6 +32,10 @@ export class ChatRoomComponent implements OnInit {
     console.profile('connectFunction');
     this.chat.connect();
     console.profileEnd();
+  }
+  enter(e) {
+    console.log('enter: ', e);
+    this.chat.enter(e);
   }
   offer() {
     console.profile('offerFunction');

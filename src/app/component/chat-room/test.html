@@ -5,12 +5,19 @@
   <title>PeerTest</title>
 </head>
 <body>
-<button id="connect" (click)="connect()">SDP_Offer</button><br>
-<button id="offer" (click)="offer()">OFFER</button><br>
-<input id="text" type="text"><button id="message" onclick="message()">送信</button><br>
-<div id="chat"></div>
-<div id="room" *ngFor = "let room of rooms">
-  <div>{{room}}</div>
+<div *ngIf="!room_in; else room">
+  <button id="connect" (click)="connect()">SDP_Offer</button><br>
+  <button id="offer" (click)="offer()">OFFER</button><br>
+  <input id="text" type="text"><button id="message" >送信</button><br>
+  <div id="chat"></div>
+  <div id="rooms" *ngFor = "let room of rooms">
+    <button id="room" (click)="enter(room)">{{room}}</button>
+  </div>
 </div>
+<ng-template #room>
+  <div id="message_list" *ngFor = "let message of message_list">
+    <div>{{message}}</div>
+  </div>
+</ng-template>
 </body>
 </html>

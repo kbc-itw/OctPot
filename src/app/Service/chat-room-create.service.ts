@@ -17,37 +17,53 @@ export class ChatRoomCreateService {
     this.io = client.connect('http://150.95.205.204:80/');
     // ここでemitしてpass送るか
     console.profile('ondatachannel');
-    let io = this.io;
-    let peer = this.peer;
-    let channel = this.channel;
-    peer.ondatachannel = function (e) {
+    this.channel = this.peer.createDataChannel('my channel');
+    this.peer.ondatachannel = (e) => {
       console.groupCollapsed('dcFunction');
       // e.channelにtestが格納されているのでそれを使う
       console.log('ondDataChannel');
       console.log(e);
-      channel = e.channel;
-      console.log(channel);
-      channel.onopen = function () {
+      console.log(this.channel);
+      this.channel.onopen = function () {
         console.log('DataChannelOpen');
       };
-      channel.onmessage = function (event) {
+      this.channel.onmessage = function (event) {
         console.log('データチャネルメッセージ取得:', event.data);
       };
-      channel.onclose = function () {
+      this.channel.onclose = function () {
         console.log('DataChannelClose');
       };
-      channel.onerror = function (err) {
+      this.channel.onerror = function (err) {
         console.log(err);
       };
-      channel.send('aaa');
+      this.channel.send('aaa');
       console.groupEnd();
     };
     console.profileEnd();
+
+    if (this.channel === undefined) {
+      this.channel = this.peer.createDataChannel('my channel');
+    }else {
+      console.log(this.peer.localDescription.sdp);
+    }
+    this.channel.onopen = function () {
+      console.log('DataChannelOpen');
+    };
+    this.channel.onmessage = function (event) {
+      console.log('データチャネルメッセージ取得:', event.data);
+    };
+    this.channel.onclose = function () {
+      console.log('DataChannelClose');
+    };
+    this.channel.onerror = function (err) {
+      console.log(err);
+    };
+
     console.profile('onicecadidate');
-    peer.onicecandidate = function(e) {
+    this.peer.onicecandidate = (e) => {
       console.groupCollapsed('onicecadidate');
       if (e.candidate) {
-        io.emit('candidate', {candidate: e.candidate, sdp: peer.localDescription.sdp});
+        this.io.emit('candidate', {candidate: e.candidate, sdp: this.peer.localDescription.sdp});
       }else {
         console.log('candi  err');
         return;
@@ -67,21 +83,22 @@ export class ChatRoomCreateService {
     console.profile('sdpFunction');
     this.sdp();
     console.profileEnd();
-    let io = this.io;
-    io.on('connect', function (socket) {
-      io.emit('create', {room: room, pass: pass});
+    this.io.on('connect', (socket) => {
+      this.io.emit('create', {room: room, pass: pass});
       console.groupCollapsed('ioのconnect');
       console.log('clientSide', 'connect');
       console.groupEnd();
     });
-    io.on('create', function(e) {
+    this.io.on('create', (e) => {
       console.log('create', e);
     });
-    io.on('join', function(e) {
-      console.log('join', e);
-    });
-    io.on('hello', function(e) {
+    this.io.on('hello', (e) => {
       console.log('hello', e);
+    });
+    this.io.on('enter', (e) => {
+      console.log('enter');
+      console.log('client: ', e, 'が申請してきました。');
+      this.offer(e);
     });
     console.groupEnd();
   }
@@ -89,28 +106,25 @@ export class ChatRoomCreateService {
   sdp() {
     console.groupCollapsed('sdpFunction');
     console.log('from here socket function');
-    let peer = this.peer;
-    let io = this.io;
    // let answer = this.answer;
-    io.on('SDP', function (e) {
+    this.io.on('SDP', (e) => {
       console.groupCollapsed('ioのSDP');
       console.log('clientSide', 'SDP');
       if (!e.sdp.sdp) {
         console.log('sdp.sdp is not property');
         return;
       }
-      if (e.sdp.sdp !== peer.localDescription.sdp) {
+      if (e.sdp.sdp !== this.peer.localDescription.sdp) {
         console.log('check the sdp');
         var description = new RTCSessionDescription(e.sdp);
         console.log(description);
-        peer.setRemoteDescription(description, function () {
+        this.peer.setRemoteDescription(description, () => {
           console.log('peerDescription');
           console.log('desctype= ', description.type);
           if (description.type === 'offer') {
             console.log('sdp type is offer');
-            console.log(peer);
+            console.log(this.peer);
             console.profile('answerFunction');
-       //     answer(peer, io);
             console.profileEnd();
           }
         });
@@ -118,13 +132,13 @@ export class ChatRoomCreateService {
       console.groupEnd();
     });
     // candidateを受け取る処理
-    io.on('candidate', function (e) {
+    this.io.on('candidate', (e) => {
       console.groupCollapsed('ioのcandidate');
-      if (peer.localDescription.sdp !== e.sdp) {
+      if (this.peer.localDescription.sdp !== e.sdp) {
         console.log('candis ok');
         if (e.candidate) {
           var candidate = new RTCIceCandidate(e.candidate);
-          peer.addIceCandidate(candidate);
+          this.peer.addIceCandidate(candidate);
         }
       }
       console.groupEnd();
@@ -132,32 +146,14 @@ export class ChatRoomCreateService {
     console.groupEnd();
   }
   // sdpを送る処理
-  offer() {
+  offer(client) {
     console.groupCollapsed('offerFunction');
     console.log('this from offer');
-    let peer = this.peer;
-    let io = this.io;
-    if (this.channel === undefined) {
-      this.channel = this.peer.createDataChannel('my channel');
-    }else {
-      console.log(peer.localDescription.sdp);
-    }
-    this.channel.onopen = function () {
-      console.log('DataChannelOpen');
-    };
-    this.channel.onmessage = function (event) {
-      console.log('データチャネルメッセージ取得:', event.data);
-    };
-    this.channel.onclose = function () {
-      console.log('DataChannelClose');
-    };
-    this.channel.onerror = function (err) {
-      console.log(err);
-    };
-    peer.createOffer(function (offer) {
-      peer.setLocalDescription(new RTCSessionDescription(offer), function () {
-        console.log('clientSide', 'offer');
-        io.emit('SDP', {sdp: offer});
+    this.peer.createOffer( (offer) => {
+      this.peer.setLocalDescription(new RTCSessionDescription(offer), () => {
+        console.log('HostSide', 'offer');
+        console.log(client);
+        this.io.emit('offer', {sdp: offer}, {client: client});
       });
     }, function (error) {
       console.log(error);
