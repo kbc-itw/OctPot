@@ -1,4 +1,6 @@
 import {Component, OnInit, ElementRef, ViewChild, Renderer2} from '@angular/core';
+import {MemoService} from '../../Service/memo.service';
+
 
 @Component({
   selector: 'app-memo',
@@ -11,7 +13,9 @@ export class MemoComponent implements OnInit {
 
   constructor(
     private renderer: Renderer2,
-  ) { }
+    private service: MemoService
+  ){}
+
 
   // @ts-ignore
   @ViewChild('memos') memor: ElementRef;
@@ -27,6 +31,7 @@ export class MemoComponent implements OnInit {
     this.renderer.addClass(textarea, 'memo');
     textarea.id = 'memo' + this.num ;
     this.renderer.appendChild(this.memor.nativeElement, textarea);
+    this.service.add();
   }
 
   del() {
@@ -56,5 +61,6 @@ export class MemoComponent implements OnInit {
   ngOnInit() {
     console.log('OnInit');
   }
+
 
 }
