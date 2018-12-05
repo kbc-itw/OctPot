@@ -1,0 +1,12 @@
+.tabGroup {
+}
+
+.tabGroup .tabs {
+  letter-spacing: -0.5em;
+}
+
+.tabGroup .tabs li {
+  letter-spacing: normal;
+  display: inline-block;
+  background: #F5F5F5;
+}
