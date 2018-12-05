@@ -213,7 +213,7 @@ export class CharacterCreateService {
         'career': profile[0],
         'encount': profile[1]
       }
-    }
+    };
   return JSON.stringify(json, null, ' ');
   }
 
@@ -221,10 +221,11 @@ export class CharacterCreateService {
   save(content, id, filename) {
     let blob = new Blob([ content ], { 'type' : 'application/json' });
     let downLoadLink = document.createElement('a');
-    downLoadLink.download = filename;
-    downLoadLink.href = URL.createObjectURL(blob);
-    downLoadLink.dataset.downloadurl = ['text/plain', downLoadLink.download, downLoadLink.href].join(':');
+    downLoadLink.download = filename;  // ダウンロードするときのファイル名
+    downLoadLink.href = URL.createObjectURL(blob);  // ファイルの一時的な保存場所(自動生成)
+    downLoadLink.dataset.downloadurl = ['application/json'/*text/plain*/, downLoadLink.download, downLoadLink.href].join(':');
     downLoadLink.click();
+
   }
   errorlog(e) {
     e.onerror = (msg, url, line, col, error) => {
