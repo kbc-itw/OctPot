@@ -8,5 +8,17 @@
 .tabGroup .tabs li {
   letter-spacing: normal;
   display: inline-block;
-  background: #F5F5F5;
+  background: #FFFFFF;
+  border-bottom: 3px solid #999999;
+  padding: 3px 15px;
+}
+
+.tabGroup .tabs li.current {
+  border-bottom: 3px solid #1976D2;
+}
+
+.tabGroup .tabContent {
+}
+
+.tabGroup .tabContent .currentTab {
 }
