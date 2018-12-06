@@ -12,9 +12,9 @@ import {MemoService} from '../../Service/memo.service';
 export class MemoComponent implements OnInit {
 
   constructor(
-    private renderer: Renderer2,
-    private service: MemoService
-  ){}
+    private renderer: Renderer2
+  ) {
+  }
 
 
   // @ts-ignore
@@ -29,16 +29,16 @@ export class MemoComponent implements OnInit {
     this.num += 1;
     let textarea = this.renderer.createElement('textarea');
     this.renderer.addClass(textarea, 'memo');
-    textarea.id = 'memo' + this.num ;
+    textarea.id = 'memo' + this.num;
     this.renderer.appendChild(this.memor.nativeElement, textarea);
-    this.service.add();
+    //this.service.add();
   }
 
   del() {
     let del = document.getElementById(this.latest);
 
     console.log('delete');
-    if (this.latest === '' ) {
+    if (this.latest === '') {
       window.alert('削除したいメモを選択してください。');
     } else if (window.confirm('以下のメモを削除します。\n ')) {
       del.remove();
@@ -52,7 +52,7 @@ export class MemoComponent implements OnInit {
   sel() {
     let current = document.activeElement;
 
-    if ( current.className === 'memo') {
+    if (current.className === 'memo') {
       this.latest = current.id;
     }
     console.log(this.latest);
