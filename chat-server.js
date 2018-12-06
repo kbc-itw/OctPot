@@ -12,7 +12,7 @@ app.on('ready', function () {
     // http://localhost:63342/OctPot/ngdist/
     // __dirname + /ngdist
     // ブラウザ(Chromium)の起動, 初期画面のロード
-    mainWindow = new BrowserWindow({ width: 800, height: 600 });
+    mainWindow = new BrowserWindow({ width: 960, height: 559 });
     mainWindow.loadURL('http://localhost:8888');
     mainWindow.webContents.openDevTools();
     mainWindow.on('closed', function () {
@@ -23,6 +23,7 @@ app.on('ready', function () {
 var http = require('http');
 var socket = require('socket.io');
 var express = require('express');
+// ポート競合で落ちないためのテスト用関数
 process.on('uncaughtException', function (err) {
     console.log(err);
 });
