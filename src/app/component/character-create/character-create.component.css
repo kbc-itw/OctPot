@@ -220,6 +220,42 @@ section {
             float: right;
           }
 
+/* 能力値
+------------------------------*/
+.ability {}
+  .ability table {
+    width: 280px;
+    height: 265px;
+  }
+  .ability .left {
+    width: 610px;
+  }
+    .ability .left .left {
+      width: 300px;
+    }
+      .ability .left .left table {}
+        .ability .left .left table tr {
+          width: 100%;
+        }
+          .ability .left .left table tr th,
+          .ability .left .left table tr td {
+            width: calc(100% / 3);
+          }
+    .ability .left .right {
+      width: 300px;
+    }
+      .ability .left .right table {}
+        .ability .left .right table tr {
+          width: 100%;
+        }
+          .ability .left .right table tr th,
+          .ability .left .right table tr td {
+            width: calc(100% / 2);
+          }
+  .ability .right {
+    width: 300px;
+  }
+
 /* 保存・キャンセル
 ------------------------------*/
 .submits {
