@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import * as client from 'socket.io-client';
+import {BehaviorSubject} from 'rxjs';
 @Injectable()
 export class ChatRoomCreateService {
   // ホスト側が使うルーム作成クラス
@@ -9,57 +10,56 @@ export class ChatRoomCreateService {
   private peer;
   private io;
   private channel;
+  private  id;
+  public data = new BehaviorSubject<string>('test');
   constructor() {}
   create(room, pass) {
     console.groupCollapsed('createFunction(service)');
     console.log('constructor', 'from', 'service');
     this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
     this.io = client.connect('http://150.95.205.204:80/');
-    // ここでemitしてpass送るか
     console.profile('ondatachannel');
+    this.dc();
+    console.profileEnd();
+
+    console.profile('onicecadidate');
+    this.cd();
+    console.profileEnd();
+
+    console.profile('connectFunction');
+    this.connect(room, pass);
+    console.profileEnd();
+
+    console.groupEnd();
+  }
+
+  dc() {
     this.channel = this.peer.createDataChannel('my channel');
     this.peer.ondatachannel = (e) => {
       console.groupCollapsed('dcFunction');
       // e.channelにtestが格納されているのでそれを使う
       console.log('ondDataChannel');
-      console.log(e);
+      // console.log(e.candidate.candidate.split(' ')[4]); // address
       console.log(this.channel);
-      this.channel.onopen = function () {
-        console.log('DataChannelOpen');
-      };
-      this.channel.onmessage = function (event) {
-        console.log('データチャネルメッセージ取得:', event.data);
-      };
-      this.channel.onclose = function () {
-        console.log('DataChannelClose');
-      };
-      this.channel.onerror = function (err) {
-        console.log(err);
-      };
-      this.channel.send('aaa');
       console.groupEnd();
     };
-    console.profileEnd();
-
-    if (this.channel === undefined) {
-      this.channel = this.peer.createDataChannel('my channel');
-    }else {
-      console.log(this.peer.localDescription.sdp);
-    }
-    this.channel.onopen = function () {
+    this.channel.onopen = () => {
       console.log('DataChannelOpen');
     };
-    this.channel.onmessage = function (event) {
+    this.channel.onmessage = (event) => {
       console.log('データチャネルメッセージ取得:', event.data);
+      console.log(event);
+      this.data.next(event.data);
     };
-    this.channel.onclose = function () {
+    this.channel.onclose = () => {
       console.log('DataChannelClose');
     };
-    this.channel.onerror = function (err) {
+    this.channel.onerror = (err) => {
       console.log(err);
     };
+  }
 
-    console.profile('onicecadidate');
+  cd() {
     this.peer.onicecandidate = (e) => {
       console.groupCollapsed('onicecadidate');
       if (e.candidate) {
@@ -70,11 +70,6 @@ export class ChatRoomCreateService {
       }
       console.groupEnd();
     };
-    console.profileEnd();
-    console.profile('connectFunction');
-    this.connect(room, pass);
-    console.profileEnd();
-    console.groupEnd();
   }
   // peer通信を始める準備
   connect(room, pass) {
@@ -85,6 +80,7 @@ export class ChatRoomCreateService {
     console.profileEnd();
     this.io.on('connect', (socket) => {
       this.io.emit('create', {room: room, pass: pass});
+      this.io.emit('id');
       console.groupCollapsed('ioのconnect');
       console.log('clientSide', 'connect');
       console.groupEnd();
@@ -100,13 +96,19 @@ export class ChatRoomCreateService {
       console.log('client: ', e, 'が申請してきました。');
       this.offer(e);
     });
+    this.io.on('id', (e) => {
+      console.groupCollapsed('ioのid');
+      console.log(e);
+      this.id = e;
+      console.groupEnd();
+    });
     console.groupEnd();
   }
   // SDPofferが送られてきたときの処理
   sdp() {
     console.groupCollapsed('sdpFunction');
     console.log('from here socket function');
-   // let answer = this.answer;
+    // let answer = this.answer;
     this.io.on('SDP', (e) => {
       console.groupCollapsed('ioのSDP');
       console.log('clientSide', 'SDP');
@@ -160,5 +162,10 @@ export class ChatRoomCreateService {
     });
     console.groupEnd();
     return;
+  }
+  message(e) {
+    var value: string = this.id + ': ' + e;
+    this.channel.send(value);
+    this.data.next(value);
   }
 }

@@ -8,6 +8,11 @@
   <a routerLink="">トップへ戻る</a><br>
 </div>
 <ng-template #success>
-  <input id="text" type="text"><button onclick=""></button><br>
-  <div id="chat"></div><br>
+  <form (submit)="message()">
+    <input type="text" placeholder="テキスト" (input)="comment=$event.target.value">
+    <input type="submit" value="送信"><br>
+  </form>
+  <div id="message_list" *ngFor = "let message of message_list">
+    <div>{{message}}</div>
+  </div>
 </ng-template>
