@@ -242,6 +242,11 @@ export class CharacterCreateService {
     console.log('引数が見つかりません。');
   }
 
+  // 入力画面が完成次第changeにとってかわる予定
+  convert_character_json() {
+    console.log('未完成');
+  }
+
 }
 
 // window.onload = (e) => {
@@ -254,3 +259,107 @@ export class CharacterCreateService {
   file.addEventListener('click', this.save());
   */
 // }
+
+
+
+// Characterのデータをjsonに変換しやすくするinterfaceたち
+export interface Character {
+  Setting: Setting;
+  Status:  Status;
+  Skill:   Skill;
+  items:   Items;
+  profile: Profile;
+}
+
+export interface Setting {
+  type:      string;
+  race:      string;
+  character: CharacterClass;
+  job:       string;
+  images:    any[];
+}
+
+export interface CharacterClass {
+  name:       string;
+  gender:     string;
+  height:     string;
+  weight:     string;
+  birthplace: string;
+  hairColor:  string;
+  eyeColor:   string;
+}
+
+export interface Skill {
+  conbat:      Behavior[];
+  search:      Behavior[];
+  behavior:    Behavior[];
+  negotiation: Behavior[];
+  knowledge:   Behavior[];
+}
+
+export interface Behavior {
+  skillName:     string;
+  initialValue?: number;
+  jobPoint:      number;
+  hobbyPoint:    number;
+  growthPoint:   number;
+  otherPoint:    number;
+}
+
+export interface Status {
+  baseStatus:        BaseStatus;
+  fluctuationStatus: FluctuationStatus;
+  reDice:            BaseStatus;
+}
+
+export interface BaseStatus {
+  str:                   number;
+  con:                   number;
+  pow:                   number;
+  dex:                   number;
+  siz:                   number;
+  app:                   number;
+  int:                   number;
+  edu:                   number;
+  income_and_property:    number;
+}
+
+export interface FluctuationStatus {
+  san:             number;
+  luck:            number;
+  idea:            number;
+  knowledge:       number;
+  health:          number;
+  mp:              number;
+  VocationalSkill: number;
+  HobbySkill:      number;
+  DamegeBonus:     string;
+}
+
+export interface Items {
+  weapon: Weapon[];
+  item:   Item[];
+}
+
+export interface Item {
+  itemName: string;
+  number:   string;
+  other:    string;
+}
+
+export interface Weapon {
+  weaponName:   string;
+  successRate:  number;
+  damage:       string;
+  range:        string;
+  attackCount:  number;
+  loadingCount: number;
+  endurance:    number;
+  other:        string;
+}
+
+export interface Profile {
+  Career:    string;
+  Encounter: string;
+  otherMemo: string;
+}
