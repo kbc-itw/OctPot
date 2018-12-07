@@ -32,21 +32,21 @@ export class Chara {
 }
 
 export class Setting {
-    type:      string;
-    race:      string;
+    type:      string;  // PCかNPCか
+    race:      string;  // 種族
     character: Character;
-    job:       string;
+    job:       string;  // 職業
     images:    any[];
 }
 
 export class Character {
-    name:       string;
-    gender:     string;
-    height:     string;
-    weight:     string;
-    birthplace: string;
-    hairColor:  string;
-    eyeColor:   string;
+    name:       string;  // 名前
+    gender:     string;  // 性別
+    height:     string;  // 身長
+    weight:     string;  // 体重
+    birthplace: string;  // 出身地
+    hairColor:  string;  // 髪の色
+    eyeColor:   string;  // 瞳の色
 }
 
 export class Skill {
@@ -58,12 +58,12 @@ export class Skill {
 }
 
 export class Behavior {
-    skillName:     string;
-    initialValue?: number;
-    jobPoint:      number;
-    hobbyPoint:    number;
-    growthPoint:   number;
-    otherPoint:    number;
+    skillName:     string;  // 技能名
+    initialValue?: number;  //  その技能の初期値
+    jobPoint:      number;  //  割り振った職業ポイント
+    hobbyPoint:    number;  //  割り振った趣味ポイント
+    growthPoint:   number;  //  実際に上昇した値
+    otherPoint:    number;  //  その他の値
 }
 
 export class Status {
@@ -73,27 +73,27 @@ export class Status {
 }
 
 export class BaseStatus {
-    str:                   number;
-    con:                   number;
-    pow:                   number;
-    dex:                   number;
-    siz:                   number;
-    app:                   number;
-    int:                   number;
-    edu:                   number;
-    income_and_property: number;
+    str:                   number;  // 筋力
+    con:                   number;  // 体力
+    pow:                   number;  // 精神力
+    dex:                   number;  // 俊敏性
+    siz:                   number;  // 体格
+    app:                   number;  // 外見
+    int:                   number;  // 知性
+    edu:                   number;  // 教育
+    income_and_property: number;  // 財産
 }
 
 export class FluctuationStatus {
-    san:             number;
-    luck:            number;
-    idea:            number;
-    knowledge:       number;
-    health:          number;
-    mp:              number;
-    VocationalSkill: number;
-    HobbySkill:      number;
-    DamegeBonus:     string;
+    san:             number;  // SAN値
+    luck:            number;  // 幸運
+    idea:            number;  // アイデア
+    knowledge:       number;  // 知識
+    health:          number;  // 耐久力
+    mp:              number;  // MP
+    VocationalSkill: number;  // 職業技能ポイント
+    HobbySkill:      number;  // 趣味技能ポイント
+    DamegeBonus:     string;  // ダメージボーナス
 }
 
 export class Items {
@@ -102,26 +102,26 @@ export class Items {
 }
 
 export class Item {
-    itemName: string;
-    number:   string;
-    other:    string;
+    itemName: string;  // アイテム名
+    number:   string;  // 個数
+    other:    string;  // その他
 }
 
 export class Weapon {
-    weaponName:   string;
-    successRate:  number;
-    damage:       string;
-    range:        string;
-    attackCount:  number;
-    loadingCount: number;
-    endurance:    number;
-    other:        string;
+    weaponName:   string;  // 武器の名
+    successRate:  number;  // 成功確率
+    damage:       string;  // ダメージ
+    range:        string;  // 射程
+    attackCount:  number;  // 攻撃回数
+    loadingCount: number;  // 装弾数
+    endurance:    number;  // 耐久値
+    other:        string;  // その他
 }
 
 export class Profile {
-    Career:    string;
-    Encounter: string;
-    otherMemo: string;
+    Career:    string;  // 経歴
+    Encounter: string;  // 遭遇したもの
+    otherMemo: string;  // その他メモ
 }
 
 // Converts JSON strings to/from your types
