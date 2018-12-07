@@ -10,8 +10,8 @@
 <ng-template #success>
   <form (submit)="message()">
     <input type="text" placeholder="テキスト" (input)="comment=$event.target.value">
-    <input type="submit" value="送信"><br>
-  </form>
+    <input type="submit" value="送信">
+  </form><br>
   <div id="message_list" *ngFor = "let message of message_list">
     <div>{{message}}</div>
   </div>

@@ -11,7 +11,7 @@ export class ChatRoomCreateService {
   private io;
   private channel;
   private  id;
-  public data = new BehaviorSubject<string>('test');
+  public data = new BehaviorSubject<string>('');
   constructor() {}
   create(room, pass) {
     console.groupCollapsed('createFunction(service)');
