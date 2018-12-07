@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import * as client from 'socket.io-client';
+import {BehaviorSubject} from 'rxjs';
 @Injectable()
 export class ChatRoomService {
   private peer;
   private io;
   private channel;
+  private id;
+  public data = new BehaviorSubject<string>('');
   constructor() {
     console.groupCollapsed('constructor');
     console.log('constructor', 'from', 'service');
     this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
     this.io = client.connect('http://150.95.205.204:80/');
-
     console.profile('sdpFunction');
     this.sdp();
     console.profileEnd();
@@ -24,7 +26,14 @@ export class ChatRoomService {
       console.groupCollapsed('ioのconnect');
       console.log('clientSide', 'connect');
       console.groupEnd();
+      this.io.emit('id');
       this.io.emit('rooms');
+    });
+    this.io.on('id', (e) => {
+      console.groupCollapsed('ioのid');
+      console.log(e);
+      this.id = e;
+      console.groupEnd();
     });
     this.io.on('connect_timeout', (timeout) => {
       console.log('timeout');
@@ -44,11 +53,15 @@ export class ChatRoomService {
       console.log(e);
       this.channel = e.channel;
       console.log(this.channel);
-      this.channel.onopen = function () {
+      this.channel.onopen = () => {
         console.log('DataChannelOpen');
+        var value: string = this.id + 'が入室しました。';
+        this.channel.send(value);
       };
-      this.channel.onmessage = function (event) {
+      this.channel.onmessage = (event) => {
         console.log('データチャネルメッセージ取得:', event.data);
+        console.log(event.data);
+        this.data.next(event.data);
       };
       this.channel.onclose = function () {
         console.log('DataChannelClose');
@@ -56,7 +69,6 @@ export class ChatRoomService {
       this.channel.onerror = function (err) {
         console.log(err);
       };
-      this.channel.send('aaa');
       console.groupEnd();
     };
   }
@@ -181,5 +193,11 @@ export class ChatRoomService {
     });
     console.groupEnd();
     return;
+  }
+  message(e) {
+    var value = this.id + ': ' + e;
+    console.log(value);
+    this.channel.send(value);
+    this.data.next(value);
   }
 }

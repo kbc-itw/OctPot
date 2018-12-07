@@ -20,17 +20,45 @@ import {ChatRoomService} from './Service/chat-room-service';
 import {ChatRoomCreateService} from './Service/chat-room-create.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCardModule, MatTabsModule} from '@angular/material';
+import {SwitchTabService} from './Service/switch-tab.service';
+import {TabsManagerService} from './Service/tabs-manager.service';
+import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent, CharacterCreateComponent, CharacterManagementComponent, ChatRoomComponent, TopPageComponent, ChatRoomCreateComponent,
-    DiceComponent, MemoComponent
+    AppComponent,
+    CharacterCreateComponent,
+    CharacterManagementComponent,
+    ChatRoomComponent,
+    TopPageComponent,
+    ChatRoomCreateComponent,
+    DiceComponent,
+    MemoComponent,
+    MemoTabsComponent
+  ],
+  entryComponents: [
+    MemoComponent,
+    DiceComponent
   ],
   imports: [
-    BrowserModule, FormsModule, HttpClientModule, MY_ROUTES, BrowserAnimationsModule, MatButtonModule, MatTabsModule, MatCardModule
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    MY_ROUTES,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatTabsModule,
+    MatCardModule
   ],
-  providers: [CharacterCreateService, CharacterManagementService, ChatRoomService, ChatRoomCreateService],
+  providers: [
+    CharacterCreateService,
+    CharacterManagementService,
+    ChatRoomService,
+    ChatRoomCreateService,
+    SwitchTabService,
+    TabsManagerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

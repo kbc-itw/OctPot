@@ -9,6 +9,7 @@ export class ChatRoomComponent implements OnInit {
   private rooms;
   private message_list: any= [];
   private room_in: boolean = false;
+  private comment;
   constructor(private chat: ChatRoomService) {
     this.chat.getio().on('rooms', (e) => {
       console.log('ルーム名');
@@ -24,6 +25,9 @@ export class ChatRoomComponent implements OnInit {
   }
   ngOnInit() {
     console.log('chat-room-component');
+    this.chat.data.subscribe(message => {
+      this.message_list.push(message);
+    });
   }
   showRoom() {
     console.log(this.rooms);
@@ -41,5 +45,9 @@ export class ChatRoomComponent implements OnInit {
     console.profile('offerFunction');
     this.chat.offer();
     console.profileEnd();
+  }
+  message() {
+    this.chat.message(this.comment);
+    this.comment = undefined;
   }
 }
