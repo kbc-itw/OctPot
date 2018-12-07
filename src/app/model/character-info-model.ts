@@ -135,3 +135,20 @@ export namespace Convert {
     }
 }
 
+
+// クラスの関係早見表
+//
+// Chara ---- Setting ---- Character
+//        |
+//        |-- Status  ---- BaseStatus *2
+//        |            |
+//        |            |-- FluctuationStatus
+//        |
+//        |-- Skil   ----- Behavior * 5
+//        |
+//        |-- Items   ---- Weapon * n
+//        |            |
+//        |            |-- Item * n
+//        |
+//        |-- Profile
+//
