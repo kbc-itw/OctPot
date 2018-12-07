@@ -1,12 +1,29 @@
-// characterJSONを作るのに便利になるinterfaceたち
+// characterJSONを作るのに便利になるclassたち
 
 // 呼び出し方
 //
-//   import { Convert, Chara } from "./character-info-model";  // fromには、このファイルの場所を指定する
+// import { Convert, Chara, Setting, Character, Skill,
+//       Behavior, Status, BaseStatus, FluctuationStatus,
+//       Items, Item, Weapon, Profile } from "./character-info-model";  // fromには、このファイルの場所を指定する
 //
-//   const chara = Convert.toChara(json);  // 謎
+// // const chara = Convert.toChara(json);  // 謎
+//
+// // 各クラスのnewするテンプレート
+// let chara = new Chara();
+// let setting = new Setting();
+// let character = new Character();
+// let skill = new Skill();
+// let behavior = new Behavior();  // スキルの数だけ存在する
+// let status = new Status();
+// let baseStatus = new BaseStatus();
+// let fluctuationStatus = new FluctuationStatus();
+// let items = new Items();
+// let item = new Item();  // 持ってるアイテムの数だけ存在する
+// let weapon = new Weapon();  // 持ってる武器の数だけ存在する
+// let profile = new Profile();
+//
 
-export interface Chara {
+export class Chara {
     Setting: Setting;
     Status:  Status;
     Skill:   Skill;
@@ -14,7 +31,7 @@ export interface Chara {
     profile: Profile;
 }
 
-export interface Setting {
+export class Setting {
     type:      string;
     race:      string;
     character: Character;
@@ -22,7 +39,7 @@ export interface Setting {
     images:    any[];
 }
 
-export interface Character {
+export class Character {
     name:       string;
     gender:     string;
     height:     string;
@@ -32,7 +49,7 @@ export interface Character {
     eyeColor:   string;
 }
 
-export interface Skill {
+export class Skill {
     conbat:      Behavior[];
     search:      Behavior[];
     behavior:    Behavior[];
@@ -40,7 +57,7 @@ export interface Skill {
     knowledge:   Behavior[];
 }
 
-export interface Behavior {
+export class Behavior {
     skillName:     string;
     initialValue?: number;
     jobPoint:      number;
@@ -49,13 +66,13 @@ export interface Behavior {
     otherPoint:    number;
 }
 
-export interface Status {
+export class Status {
     baseStatus:     BaseStatus;
     fluctuationStatus: FluctuationStatus;
     reDice:            BaseStatus;
 }
 
-export interface BaseStatus {
+export class BaseStatus {
     str:                   number;
     con:                   number;
     pow:                   number;
@@ -67,7 +84,7 @@ export interface BaseStatus {
     income_and_property: number;
 }
 
-export interface FluctuationStatus {
+export class FluctuationStatus {
     san:             number;
     luck:            number;
     idea:            number;
@@ -79,18 +96,18 @@ export interface FluctuationStatus {
     DamegeBonus:     string;
 }
 
-export interface Items {
+export class Items {
     weapon: Weapon[];
     item:   Item[];
 }
 
-export interface Item {
+export class Item {
     itemName: string;
     number:   string;
     other:    string;
 }
 
-export interface Weapon {
+export class Weapon {
     weaponName:   string;
     successRate:  number;
     damage:       string;
@@ -101,7 +118,7 @@ export interface Weapon {
     other:        string;
 }
 
-export interface Profile {
+export class Profile {
     Career:    string;
     Encounter: string;
     otherMemo: string;
