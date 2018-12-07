@@ -7,7 +7,7 @@ export class ChatRoomService {
   private io;
   private channel;
   private id;
-  public data = new BehaviorSubject<string>('test');
+  public data = new BehaviorSubject<string>('');
   constructor() {
     console.groupCollapsed('constructor');
     console.log('constructor', 'from', 'service');
@@ -195,7 +195,9 @@ export class ChatRoomService {
     return;
   }
   message(e) {
-    this.channel.send(this.id, ': ' + e);
-    this.data.next(this.id + ': ' + e);
+    var value = this.id + ': ' + e;
+    console.log(value);
+    this.channel.send(value);
+    this.data.next(value);
   }
 }

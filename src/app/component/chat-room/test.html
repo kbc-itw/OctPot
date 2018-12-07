@@ -6,21 +6,16 @@
 </head>
 <body>
 <div *ngIf="!room_in; else room">
-  <!--
-  <form (submit)="message()">
-    <input type="text" placeholder="テキスト" (input)="comment=$event.target.value">
-    <input type="submit" value="作成"><br>
-  </form>
-  <div id="message_list" *ngFor = "let message of message_list">
-    <div>{{message}}</div>
-  </div>
-  -->
   <div id="chat"></div>
   <div id="rooms" *ngFor = "let room of rooms">
     <button id="room" (click)="enter(room)">{{room}}</button>
   </div>
 </div>
 <ng-template #room>
+  <form (submit)="message()">
+    <input type="text" placeholder="テキスト" (input)="comment=$event.target.value">
+    <input type="submit" value="送信">
+  </form><br>
   <div id="message_list" *ngFor = "let message of message_list">
     <div>{{message}}</div>
   </div>
