@@ -2,14 +2,48 @@ textarea {
   overflow: scroll;
   overflow-x: hidden;
   height: 100px;
-  width: 150px;
+  width: 165px;
   resize: vertical;
+}
+
+input {
+  font-size: 12px;
 }
 
 .memos {
   overflow-y: scroll;
   height: 300px;
-  width: 175px;
+  width: 190px;
   position: absolute;
-  border: solid 2px #000000;
+  border: solid 2px #999999;
+}
+
+.raised-primary {
+  display: inline-block;
+  background-color: #1976d2;
+  color: #fff;
+  text-decoration: none;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .3s;
+  border: none;
+  box-sizing: border-box;
+  height: 25px;
+  width: 75px;
+}
+
+.raised-warn {
+  display: inline-block;
+  background-color: #f44336;
+  color: #fff;
+  text-decoration: none;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .3s;
+  border: none;
+  box-sizing: border-box;
+  height: 25px;
+  width: 75px;
 }

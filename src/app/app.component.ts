@@ -21,8 +21,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.memoTabs.push(new TabModel('メモ', MemoComponent, true));
-    this.memoTabs.push(new TabModel('ダイス1', DiceComponent, false));
-    this.memoTabs.push(new TabModel('ダイス2', DiceComponent, false));
+    this.memoTabs.push(new TabModel('ダイス', DiceComponent, false));
     this.memoTabService.tabs = this.memoTabs;
     this.tabsManagerService.addTabService('memoTabService', this.memoTabService);
   }
