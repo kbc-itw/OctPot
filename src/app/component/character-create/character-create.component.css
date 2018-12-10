@@ -1,6 +1,9 @@
 @charset "UTF-8";
 /* 全体
 ------------------------------*/
+.character-create {
+  font-size: 12px;
+}
 h1, h2, h3 {
   display: block;
   width: 100%;
@@ -224,14 +227,36 @@ section {
 ------------------------------*/
 .ability {}
   .ability table {
-    width: 280px;
-    height: 265px;
+    width: 100%;
+    height: 200px;
   }
+    .ability table tr {
+      letter-spacing: 0.5em;
+      height: calc(100% / 9);
+    }
+      .ability table tr th,
+      .ability table tr td {
+        letter-spacing: normal;
+        width: calc(100% / 2);
+        border: 1px solid #666;
+        text-align: center;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+        .ability table tr td p {
+          width: 100%;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          text-align: center;
+        }
   .ability .left {
     width: 610px;
   }
     .ability .left .left {
       width: 300px;
+      border: 1px solid #999;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
     }
       .ability .left .left table {}
         .ability .left .left table tr {
@@ -241,8 +266,51 @@ section {
           .ability .left .left table tr td {
             width: calc(100% / 3);
           }
+            .ability .left .left table tr td button {
+              margin: 0 auto;
+              padding: 2px 5px;
+              width: 70px;
+              height: 85%;
+              -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+              text-align: center;
+              display: block;
+              border: none;
+              background: #999;
+              color: #fff;
+              border: 2px solid #999;
+              border-radius: 7px;
+            }
+              .ability .left .left table tr td button:hover {
+                background: #fff;
+                color: #999;
+                transition-duration: 0.3s;
+              }
+            .ability .left .left table tr td.role {
+              border: none;
+            }
+      .ability .left .left .allRole {
+        float: right;
+        margin: 5px 0 0;
+        padding: 2px 5px;
+        border: 2px solid #4fc3f7;
+        border-radius: 7px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        text-align: center;
+        background: #4fc3f7;
+        color: #fff;
+      }
+        .ability .left .left .allRole:hover {
+          background: #fff;
+          color: #4fc3f7;
+          transition-duration: 0.3s;
+        }
     .ability .left .right {
       width: 300px;
+      border: 1px solid #999;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
     }
       .ability .left .right table {}
         .ability .left .right table tr {
@@ -254,6 +322,9 @@ section {
           }
   .ability .right {
     width: 300px;
+    border: 1px solid #999;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
   }
 
 /* 保存・キャンセル
