@@ -12,12 +12,16 @@ export class ChatRoomCreateService {
   private channel;
   private  id;
   public data = new BehaviorSubject<string>('');
-  constructor() {}
-  create(room, pass) {
+  constructor() {
+    this.io = client.connect('http://150.95.205.204:80/');
+    this.io.on('connect', (socket) => {
+      console.log('connect');
+    });
+  }
+  create(pass) {
     console.groupCollapsed('createFunction(service)');
     console.log('constructor', 'from', 'service');
     this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
-    this.io = client.connect('http://150.95.205.204:80/');
     console.profile('ondatachannel');
     this.dc();
     console.profileEnd();
@@ -27,7 +31,7 @@ export class ChatRoomCreateService {
     console.profileEnd();
 
     console.profile('connectFunction');
-    this.connect(room, pass);
+    this.connect(pass);
     console.profileEnd();
 
     console.groupEnd();
@@ -71,20 +75,23 @@ export class ChatRoomCreateService {
       console.groupEnd();
     };
   }
+  getio() {
+    return this.io;
+  }
   // peer通信を始める準備
-  connect(room, pass) {
+  connect(pass) {
     console.groupCollapsed('connectFunction');
     console.log('connect service');
     console.profile('sdpFunction');
     this.sdp();
     console.profileEnd();
-    this.io.on('connect', (socket) => {
-      this.io.emit('create', {room: room, pass: pass});
-      this.io.emit('id');
-      console.groupCollapsed('ioのconnect');
-      console.log('clientSide', 'connect');
-      console.groupEnd();
-    });
+
+    this.io.emit('create', {pass: pass});
+    this.io.emit('id');
+    console.groupCollapsed('ioのconnect');
+    console.log('clientSide', 'connect');
+    console.groupEnd();
+
     this.io.on('create', (e) => {
       console.log('create', e);
     });
