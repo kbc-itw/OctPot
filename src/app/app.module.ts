@@ -23,7 +23,7 @@ import {MatButtonModule, MatCardModule, MatTabsModule} from '@angular/material';
 import {SwitchTabService} from './Service/switch-tab.service';
 import {TabsManagerService} from './Service/tabs-manager.service';
 import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
-
+import { MemoService} from "./Service/memo.service";
 
 @NgModule({
   declarations: [
