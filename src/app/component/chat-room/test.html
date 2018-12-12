@@ -6,10 +6,11 @@
 </head>
 <body>
 <div *ngIf="!room_in; else room">
-  <div id="chat"></div>
-  <div id="rooms" *ngFor = "let room of rooms">
-    <button id="room" (click)="enter(room)">{{room}}</button>
-  </div>
+  <form (submit)="enter()">
+    <input type="text" placeholder="IPアドレスを入力してください。" (input)="ip=$event.target.value"><br>
+    <input type="password" placeholder="パスワードを入力してください。"(input)="pass=$event.target.value">
+    <input type="submit" value="送信">
+  </form><br>
 </div>
 <ng-template #room>
   <form (submit)="message()">

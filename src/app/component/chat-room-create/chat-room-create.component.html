@@ -1,7 +1,8 @@
 <div *ngIf="!bool; else success">
   <p>ルーム作成</p><br>
   <form (submit)="create()">
-    <input type="text" placeholder="ルーム名" (input)="room=$event.target.value"><br>
+    <div>ホストのIPアドレス</div><br>
+    <div>{{ ip }}</div><br>
     <input type="password" placeholder="パスワード" (input)="pass=$event.target.value"><br>
     <input type="submit" value="作成"><br>
   </form>

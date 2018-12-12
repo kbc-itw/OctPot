@@ -6,15 +6,19 @@ import {ChatRoomCreateService} from '../../Service/chat-room-create.service';
   templateUrl: './chat-room-create.component.html'
 })
 export class ChatRoomCreateComponent implements OnInit {
-  room;
   pass;
   comment;
+  ip;
   bool: boolean = false;
-  private message_list: any= [];
+  message_list: any= [];
   constructor(private chatroom: ChatRoomCreateService ) {
   }
 
   ngOnInit() {
+    this.chatroom.getio().on('IP', (e) => {
+      console.log('IPdayo', e);
+      this.ip = e;
+    });
     this.chatroom.data.subscribe(message => {
       this.message_list.push(message);
     });
@@ -22,15 +26,11 @@ export class ChatRoomCreateComponent implements OnInit {
 
   create() {
     console.groupCollapsed('createFunction(component)');
-    console.log(this.room);
     console.log(this.pass);
-    if (this.room !== undefined && this.room !== null) {
-      this.bool = true;
-    }else {
-    }
+    this.bool = true;
     if (this.bool) {
       console.profile('createFunction(service)');
-      this.chatroom.create(this.room, this.pass);
+      this.chatroom.create(this.pass);
       console.profileEnd();
     }
     console.groupEnd();
