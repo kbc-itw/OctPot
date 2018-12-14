@@ -394,12 +394,88 @@ section {
                       padding: 5px;
                       -webkit-box-sizing: border-box;
                       box-sizing: border-box;
+                      text-align: center;
                     }
   .skill .right {
     width: 340px;
   }
-    .skill .right .top {}
-    .skill .right .bottom {}
+    .skill .right .top {
+      margin-bottom: 10px;
+      border: 1px solid #999;
+    }
+      .skill .right .top ul {}
+        .skill .right .top ul li {}
+          .skill .right .top ul li:first-child {
+            margin-bottom: 20px;
+          }
+          .skill .right .top ul li label {
+            float: left;
+          }
+          .skill .right .top ul li input {
+            width: 210px;
+            padding: 5px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            float: right;
+          }
+    .skill .right .bottom {
+      border: 1px solid #999;
+    }
+      .skill .right .bottom textarea {
+        width: 100%;
+      }
+
+/* 所持品
+------------------------------*/
+.item {}
+  .item table {
+    width: 100%;
+  }
+    .item table tr {}
+      .item table tr th,
+      .item table tr td {
+        text-align: center;
+        border: 1px solid #666;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      .item table tr th {
+        background: #ccc;
+        padding: 5px;
+      }
+    .item table input {
+      padding: 5px;
+      width: 100%;
+      border: none;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      text-align: center;
+    }
+  .item .top {
+    border: 1px solid #999;
+    margin-bottom: 10px;
+  }
+    .item .top table tr td {
+      width: 80px;
+    }
+      .item .top table tr td:first-child {
+        width: 135px;
+      }
+      .item .top table tr td:last-child {
+        width: auto;
+      }
+  .item .bottom {
+    border: 1px solid #999;
+  }
+    .item .bottom table tr td {
+      width: 85px;
+    }
+      .item .bottom table tr td:first-child {
+        width: 300px;
+      }
+      .item .bottom table tr td:last-child {
+        width: auto;
+      }
 
 /* 保存・キャンセル
 ------------------------------*/
