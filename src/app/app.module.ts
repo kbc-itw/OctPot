@@ -23,6 +23,7 @@ import {MatButtonModule, MatCardModule, MatTabsModule} from '@angular/material';
 import {SwitchTabService} from './Service/switch-tab.service';
 import {TabsManagerService} from './Service/tabs-manager.service';
 import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
+import { CharacterjsonToHtmlComponent } from './component/characterjson-to-html/characterjson-to-html.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
     ChatRoomCreateComponent,
     DiceComponent,
     MemoComponent,
-    MemoTabsComponent
+    MemoTabsComponent,
+    CharacterjsonToHtmlComponent
   ],
   entryComponents: [
     MemoComponent,
