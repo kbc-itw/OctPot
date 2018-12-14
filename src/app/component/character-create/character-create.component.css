@@ -222,6 +222,12 @@ section {
             vertical-align: top;
             float: right;
           }
+            .base .right .bottom dl dd textarea {
+              padding: 5px;
+              width: 300px;
+              -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+            }
 
 /* 能力値
 ------------------------------*/
@@ -422,7 +428,10 @@ section {
       border: 1px solid #999;
     }
       .skill .right .bottom textarea {
+        padding: 5px;
         width: 100%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
       }
 
 /* 所持品
@@ -476,6 +485,26 @@ section {
       .item .bottom table tr td:last-child {
         width: auto;
       }
+
+/* プロフィール
+------------------------------*/
+.profile {}
+  .profile textarea {
+    padding: 5px;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .profile .top {
+    margin-bottom: 10px;
+  }
+  .profile .bottom {}
+    .profile .bottom .left {
+      width: 540px;
+    }
+    .profile .bottom .right {
+      width: 365px;
+    }
 
 /* 保存・キャンセル
 ------------------------------*/
