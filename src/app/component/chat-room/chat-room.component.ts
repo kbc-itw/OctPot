@@ -16,7 +16,7 @@ export class ChatRoomComponent implements OnInit {
     this.chat.getio().on('hello', (e) => {
       console.log('hello ', e);
       this.room_in = true;
-      this.message_list.push(e);
+      // this.message_list.push(e);
     });
   }
   ngOnInit() {

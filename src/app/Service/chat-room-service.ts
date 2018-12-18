@@ -197,6 +197,6 @@ export class ChatRoomService {
     var value = this.id + ': ' + e;
     console.log(value);
     this.channel.send(value);
-    this.data.next(value);
+    // this.data.next(value);
   }
 }
