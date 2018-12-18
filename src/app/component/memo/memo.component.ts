@@ -1,9 +1,10 @@
-import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer2, ViewChild , Input, Output} from '@angular/core';
 import { MemoService } from '../../Service/memo.service';
 
 import {User} from '../../model/User';
 import {Memo} from '../../model/Memo';
 import {Action} from '../../model/Action';
+
 
 @Component({
   selector: 'app-memo',
@@ -20,22 +21,19 @@ export class MemoComponent implements OnInit {
   memo: { user: User; value: string; action: Action };
   action: Action;
 
+  @ViewChild('memos') memor: ElementRef;
+  private num = 0;
+  private latest = '';
+
   constructor(
     private renderer: Renderer2,
-    private service: MemoService
+    private service: MemoService,
   ) {
   }
 
-
-  // @ts-ignore
-  @ViewChild('memos') memor: ElementRef;
-  private num = 2;
-  private latest = '';
-
-
   add() {
+    console.log('add');
 
-    let memoclass = document.getElementsByClassName('memo') as HTMLCollectionOf<HTMLElement>;
     this.num += 1;
     let textarea = this.renderer.createElement('textarea');
     this.renderer.addClass(textarea, 'memo');
@@ -44,8 +42,10 @@ export class MemoComponent implements OnInit {
 
     this.action = Action.ADD;
     this.memo = { user: this.user, value: 'aho' ,action: this.action };
+    localStorage.setItem('memo'+this.num, '');
 
-    this.service.send(this.memo);
+
+    // this.service.send(this.memo);
   }
 
   del() {
@@ -69,7 +69,17 @@ export class MemoComponent implements OnInit {
     if (current.className === 'memo') {
       this.latest = current.id;
     }
-    console.log(this.latest);
+  }
+
+  save(){
+    let n = 1;
+    let memo;
+    console.log('save');
+    while(n <= this.num ){
+      memo = document.getElementById('memo' + n);
+      localStorage.setItem(memo.id,memo.value);
+      n++;
+    }
   }
 
   ngOnInit() {
@@ -78,7 +88,22 @@ export class MemoComponent implements OnInit {
       id: 1,
       name: `test`
     };
+
+
+    this.init();
   }
 
+  init() {
+    let n = localStorage.length;
+    while(this.num < n) {
+      let memoclass = document.getElementsByClassName('memo') as HTMLCollectionOf<HTMLElement>;
+      this.num += 1;
+      let textarea = this.renderer.createElement('textarea');
+      this.renderer.addClass(textarea, 'memo');
+      textarea.id = 'memo' + this.num;
+      textarea.value= localStorage.getItem('memo'+this.num);
+      this.renderer.appendChild(this.memor.nativeElement, textarea);
 
-}
+    }
+  }
+ }

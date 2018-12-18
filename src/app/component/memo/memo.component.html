@@ -3,8 +3,8 @@
     <input class="raised-primary" type="button" (click)="add()" value="追加"/>
     <input class="raised-warn" type="button" (click)="del()" value="削除"/>
     <div id="memos" class="memos" #memos (click)="sel()">
-      <textarea #mome id="memo1" class="memo"></textarea>
-      <textarea #memo id="memo2" class="memo"></textarea>
     </div>
+    <input type="button" (click)="save()" value="保存"/>
+
   </form>
 </div>
