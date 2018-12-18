@@ -1,14 +1,41 @@
-.container {
+.tabs {
+  display: flex;
 }
 
 .characterList {
   border: solid 1px #999;
   overflow-y: scroll;
   box-sizing: border-box;
-  height: 200px;
-  width: 136px;
+  height: 346px;
+  width: 197px;
+  margin: 0px 3.5px;
 }
 
 .characterList li {
   border: solid 1px #999999;
+  height: 34px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.bottoms {
+  display: flex;
+}
+
+button {
+  background-color: #1976d2;
+  color: #fff;
+  text-decoration: none;
+  margin: 8px 3.5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .3s;
+  border: none;
+  box-sizing: border-box;
+  height: 27px;
+  width: 61px;
+}
+
+.raised-warn {
+  background-color: #f44336;
 }
