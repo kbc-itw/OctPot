@@ -24,6 +24,7 @@
         height: 34px;
         text-align: center;
         cursor: pointer;
+        font-size: 12px;
       }
     .Left .innerContainer .bottoms {
       display: flex;
@@ -42,6 +43,8 @@
         height: 27px;
         width: 61px;
         display: block;
+        font-size: 12px;
+        padding-top: 5px;
       }
       .Left .innerContainer .bottoms .raised-warn {
         background-color: #f44336;
