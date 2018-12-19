@@ -14,8 +14,10 @@ export class ChatRoomCreateService {
   private channel;
   private member = [];
   private  id;
-  public data = new BehaviorSubject<string>('');
+  public data = new BehaviorSubject<string>(null);
   constructor() {
+  }
+  io_connect() {
     this.io = client.connect('http://150.95.205.204:80/');
     this.io.on('connect', (socket) => {
       console.log('connect');
@@ -81,13 +83,9 @@ export class ChatRoomCreateService {
       console.log('データチャネルメッセージ取得:', event.data);
       console.log(event);
       this.data.next(event.data);
-      var count = 0;
       this.member.forEach((e) => {
-        if (true) { // 送ってきたclient以外のclientに送信
-          console.log(event);
-          e.channel.send(event.data);
-        }
-        count ++;
+        console.log(event);
+        e.channel.send(event.data);
       });
     };
     this.member[this.member.length - 1].channel.onclose = () => {
@@ -230,5 +228,22 @@ export class ChatRoomCreateService {
       console.log(e);
     }
     this.data.next(value);
+  }
+  leave() {
+    this.io.close();
+    var value = this.id + 'が退出しました。';
+    try {
+      this.member.forEach((e) => {
+        console.log('--------------------------------------------------------------------', e);
+        // e.channel.send(value); // closeのほうが早いのでこれ意味ないかも
+        e.channel.close();
+      });
+      // this.member[this.member.length - 1].channel.send(value);
+    } catch (e) {
+      console.log('leave: ');
+      console.log(e);
+    }
+    this.member = [];
+    this.data.next(null);
   }
 }

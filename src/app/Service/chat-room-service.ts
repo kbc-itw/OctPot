@@ -9,7 +9,7 @@ export class ChatRoomService {
   private io;
   private channel;
   private id;
-  public data = new BehaviorSubject<string>('');
+  public data = new BehaviorSubject<string>(null);
   constructor() {
     console.groupCollapsed('constructor');
     console.log('constructor', 'from', 'service');
@@ -62,8 +62,14 @@ export class ChatRoomService {
         console.log(event.data);
         this.data.next(event.data);
       };
-      this.channel.onclose = function () {
+      this.channel.onclose = () => {
         console.log('DataChannelClose');
+        var value: string = 'hostとの接続が切れました。';
+        this.data.next(value);
+        this.io.close();
+        this.channel.close();
+        this.channel = undefined;
+        console.log('channeldayo:  ', this.channel);
       };
       this.channel.onerror = function (err) {
         console.log(err);
@@ -196,7 +202,12 @@ export class ChatRoomService {
   message(e) {
     var value = this.id + ': ' + e;
     console.log(value);
-    this.channel.send(value);
+    if (this.channel !== undefined) {// もしhostとの接続が切れていなかったら
+      this.channel.send(value);
+    }
     // this.data.next(value);
+  }
+  leave() {
+    this.channel.close();
   }
 }
