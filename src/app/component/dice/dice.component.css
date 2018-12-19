@@ -1,0 +1,9 @@
+.raised-roll {
+  display: inline-block;
+  background-color: #999999;
+  color: #fff;
+  border: none;
+  box-sizing: border-box;
+  height: 22px;
+  width: 28px;
+}
