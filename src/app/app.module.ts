@@ -25,7 +25,6 @@ import {TabsManagerService} from './Service/tabs-manager.service';
 import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
 import { CharacterjsonToHtmlComponent } from './component/characterjson-to-html/characterjson-to-html.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

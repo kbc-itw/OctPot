@@ -11,7 +11,7 @@ import { CharacterjsonToHtmlComponent } from './component/characterjson-to-html/
 
 const myRoutes = [
   {path: '', component: TopPageComponent},
-  {path: 'create', component: CharacterCreateComponent},
+  {path: 'character-create', component: CharacterCreateComponent},
   {path: 'management', component: CharacterManagementComponent},
   {path: 'chat-room', component: ChatRoomComponent},
   {path: 'create-chat-room', component: ChatRoomCreateComponent},

@@ -10,7 +10,8 @@ export class DiceComponent implements OnInit {
   // @ts-ignore
   constructor(
     private renderer: Renderer2,
-  ) {  }
+  ) {
+  }
 
   // @ts-ignore
   @ViewChild('dice') memor: ElementRef;
@@ -32,11 +33,11 @@ export class DiceComponent implements OnInit {
       let rep = dice;
       let brep = false;
 
-      for (let i = 1 ; i < num ; i++ ) {
+      for (let i = 1; i < num; i++) {
         dice = Math.floor(Math.random() * max + 1);
         sum += dice;
         fm += ' + ' + dice;
-        if (rep !== dice ) {
+        if (rep !== dice) {
           brep = true;
         }
 
@@ -45,7 +46,7 @@ export class DiceComponent implements OnInit {
       if (!brep) {
         srep = ' ぞろ目！';
       }
-    console.log(fm + ' = ' + sum);
+      console.log(fm + ' = ' + sum);
 
       let p = this.renderer.createElement('p');
       p.innerHTML = fm + ' = ' + sum + srep;

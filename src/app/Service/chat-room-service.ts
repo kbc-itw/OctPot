@@ -3,6 +3,8 @@ import * as client from 'socket.io-client';
 import {BehaviorSubject} from 'rxjs';
 @Injectable()
 export class ChatRoomService {
+  // hostのIPとパスワードを入力してルームに入室
+  // もし、複数のIPが存在していた場合、IPの横にホスト名を表示するか。
   private peer;
   private io;
   private channel;
@@ -41,9 +43,6 @@ export class ChatRoomService {
     });
     console.groupEnd();
   }
-  // ポートが競合するので同じPCからテストすると結果がうまくいかない
-  // connectおしてio.on('SDP')じゃなくて起動時から待機させるべきだろ <- これはホスト側(ルーム作成側)の処理だな
-  //
 
   dc() {
     this.peer.ondatachannel =  (e) => {
@@ -198,6 +197,6 @@ export class ChatRoomService {
     var value = this.id + ': ' + e;
     console.log(value);
     this.channel.send(value);
-    this.data.next(value);
+    // this.data.next(value);
   }
 }
