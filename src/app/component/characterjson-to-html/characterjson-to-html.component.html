@@ -1,6 +1,8 @@
 <input id="upfile" name="upfile" type="file" #fl
   accept="*.json" (change)="getJson(fl.files)" />
-<p>{{jsonman}}</p>
+<p>------------------------</p>
+<pre>{{fullJson | json}}</pre>
+<p>------------------------</p>
 
 <p>項目</p>
 <div>
