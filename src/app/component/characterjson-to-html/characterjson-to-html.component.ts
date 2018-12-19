@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CharacterjsonToHtmlComponent implements OnInit {
 
-  private jsonman;
+  private fullJson;
 
   private type = 'SUZUKI';
   private race = 'ばいく';
@@ -19,22 +19,23 @@ export class CharacterjsonToHtmlComponent implements OnInit {
   }
 
   getJson(list: any) {
+
     if (list <= 0) { return; } // 何も指定されていなければ何もしない
 
-    var str: any;
-    console.log(list);
-    this.jsonman = list[0];
-    console.log(this.jsonman);
-
+    let fileobj = list[0];  // 指定されるファイルは1つのみなので[0]
     let reader = new FileReader();
 
-    // reader.resultの値をstrに入れたいけどできないでござる
-    reader.onload = function() {
+    reader.onload = function() {  // readAsTextでファイルの読み込みが終わったら呼び出される
       console.log(reader.result);
-      let res = reader.result;
-      str = res.toString;
+      CharacterjsonToHtmlComponent.prototype.pushJson(reader.result);  // ファイルの内容を各値に入れていく
     };
-    reader.readAsText(this.jsonman);
-    console.log(str);
+    reader.readAsText(fileobj);  // ファイルの内容をtextで読む (reader.onloadのreader.resultがstringになるへ)
   }
+
+  // FileReaderで読み込んだJSONを引数にして各要素に値を入れていく
+  pushJson (str) {
+    let jsonobj = JSON.parse(str); // stringのままなのでJSON(object)に変換
+    this.fullJson = jsonobj;
+  }
+
 }

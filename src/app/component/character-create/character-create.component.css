@@ -350,7 +350,10 @@ section {
             font-size: 16px;
             background: #ffd740;
           }
-          .skill .left .skillWrap dl dd {}
+          .skill .left .skillWrap dl dd {
+            width: calc(100% - 20px);
+            margin: 10px;
+          }
             .skill .left .skillWrap dl dd table {
               width: 100%;
             }
@@ -402,6 +405,39 @@ section {
                       box-sizing: border-box;
                       text-align: center;
                     }
+            .skill .left .skillWrap dl dd ul {
+              letter-spacing: -0.5em;
+            }
+              .skill .left .skillWrap dl dd ul li {
+                letter-spacing: normal;
+                display: inline-block;
+              }
+                .skill .left .skillWrap dl dd ul li button {
+                  width: 75px;
+                  height: 25px;
+                  padding: 0 5px;
+                  border-radius: 7px;
+                  border: none;
+                  background: #1976d2;
+                  border: 2px solid #1976d2;
+                  color: #fff;
+                  -webkit-box-sizing: border-box;
+                  box-sizing: border-box;
+                }
+                  .skill .left .skillWrap dl dd ul li button.del {
+                    background: #f44336;
+                    border-color: #f44336;
+                  }
+                  .skill .left .skillWrap dl dd ul li button:hover {
+                    background: #fff;
+                    color: #1976d2;
+                    transition-duration: 0.3s;
+                  }
+                  .skill .left .skillWrap dl dd ul li button.del:hover {
+                    background: #fff;
+                    color: #f44336;
+                    transition-duration: 0.3s;
+                  }
   .skill .right {
     width: 340px;
   }
