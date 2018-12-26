@@ -226,29 +226,36 @@
             <td>
               <!-- conbatループ開始 -->
               <table>
-                <tr>
-                  <th>skillName</th>
-                  <td>{{conbatSkillName}}</td>
-                </tr>
-                <tr>
-                  <th>initialValue</th>
-                  <td>{{conbatInitialValue}}</td>
-                </tr>
-                <tr>
-                  <th>jobPoint</th>
-                  <td>{{conbatJobPoint}}</td>
-                </tr>
-                <tr>
-                  <th>hobbyPoint</th>
-                  <td>{{conbatHobbyPoint}}</td>
-                </tr>
-                <tr>
-                  <th>growthPoint</th>
-                  <td>{{conbatGrowthPoint}}</td>
-                </tr>
-                <tr>
-                  <th>otherPoint</th>
-                  <td>{{conbatOtherPoint}}</td>
+                <tr *ngFor="let combat of combats">
+                  <th>{{combat.skillName}}</th>
+                  <td>
+                    <table>
+                      <tr>
+                          <th>skillName</th>
+                          <td>{{combat.skillName}}</td>
+                        </tr>
+                        <tr>
+                          <th>initialValue</th>
+                          <td>{{combat.initialValue}}</td>
+                        </tr>
+                        <tr>
+                          <th>jobPoint</th>
+                          <td>{{combat.jobPoint}}</td>
+                        </tr>
+                        <tr>
+                          <th>hobbyPoint</th>
+                          <td>{{combat.hobbyPoint}}</td>
+                        </tr>
+                        <tr>
+                          <th>growthPoint</th>
+                          <td>{{combat.growthPoint}}</td>
+                        </tr>
+                        <tr>
+                          <th>otherPoint</th>
+                          <td>{{combat.otherPoint}}</td>
+                        </tr>
+                    </table>
+                  </td>
                 </tr>
               </table>
               <!-- combatループ終了 -->

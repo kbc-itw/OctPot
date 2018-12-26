@@ -13,6 +13,8 @@ export class CharacterjsonToHtmlComponent implements OnInit {
 
   private fullJson;
 
+  private combats;
+
   // Setting
   private type;
   private race;
@@ -193,6 +195,7 @@ export class CharacterjsonToHtmlComponent implements OnInit {
     this.diceIncome_and_property = chara.Status.reDice.income_and_property;
     // Skill
     // Skill.combat
+    this.combats = chara.Skill.conbat;
 
   }
 
