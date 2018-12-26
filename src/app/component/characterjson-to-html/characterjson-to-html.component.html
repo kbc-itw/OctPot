@@ -266,30 +266,37 @@
             <td>
               <!-- searchループ開始 -->
               <table>
-                  <tr>
-                    <th>skillName</th>
-                    <td>{{searchSkillName}}</td>
-                  </tr>
-                  <tr>
-                    <th>initialValue</th>
-                    <td>{{searchInitialValue}}</td>
-                  </tr>
-                  <tr>
-                    <th>jobPoint</th>
-                    <td>{{searchJobPoint}}</td>
-                  </tr>
-                  <tr>
-                    <th>hobbyPoint</th>
-                    <td>{{searchHobbyPoint}}</td>
-                  </tr>
-                  <tr>
-                    <th>growthPoint</th>
-                    <td>{{searchGrowthPoint}}</td>
-                  </tr>
-                  <tr>
-                    <th>otherPoint</th>
-                    <td>{{searchOtherPoint}}</td>
-                  </tr>
+                <tr *ngFor="let search of searchs">
+                  <th>{{search.skillName}}</th>
+                  <td>
+                    <table>
+                      <tr>
+                        <th>skillName</th>
+                        <td>{{search.skillName}}</td>
+                      </tr>
+                      <tr>
+                        <th>initialValue</th>
+                        <td>{{search.initialValue}}</td>
+                      </tr>
+                      <tr>
+                        <th>jobPoint</th>
+                        <td>{{search.jobPoint}}</td>
+                      </tr>
+                      <tr>
+                        <th>hobbyPoint</th>
+                        <td>{{search.hobbyPoint}}</td>
+                      </tr>
+                      <tr>
+                        <th>growthPoint</th>
+                        <td>{{search.growthPoint}}</td>
+                      </tr>
+                      <tr>
+                        <th>otherPoint</th>
+                        <td>{{search.otherPoint}}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
               </table>
               <!-- searchループ終了 -->
             </td>
@@ -299,30 +306,37 @@
             <td>
               <!-- behaviorループ開始 -->
               <table>
-                  <tr>
-                    <th>skillName</th>
-                    <td>{{behaviorSkillName}}</td>
-                  </tr>
-                  <tr>
-                    <th>initialValue</th>
-                    <td>{{behaviorInitialValue}}</td>
-                  </tr>
-                  <tr>
-                    <th>jobPoint</th>
-                    <td>{{bihaviorJobPoint}}</td>
-                  </tr>
-                  <tr>
-                    <th>hobbyPoint</th>
-                    <td>{{bihaviorHobbyPoint}}</td>
-                  </tr>
-                  <tr>
-                    <th>growthPoint</th>
-                    <td>{{bihaviorGrowthPoint}}</td>
-                  </tr>
-                  <tr>
-                    <th>otherPoint</th>
-                    <td>{{bihaviorOtherPoint}}</td>
-                  </tr>
+                <tr *ngFor="let behavior of behaviors">
+                  <th>{{behavior.skillName}}</th>
+                  <td>
+                    <table>
+                      <tr>
+                        <th>skillName</th>
+                        <td>{{behavior.skillName}}</td>
+                      </tr>
+                      <tr>
+                        <th>initialValue</th>
+                        <td>{{behavior.initialValue}}</td>
+                      </tr>
+                      <tr>
+                        <th>jobPoint</th>
+                        <td>{{behavior.jobPoint}}</td>
+                      </tr>
+                      <tr>
+                        <th>hobbyPoint</th>
+                        <td>{{behavior.hobbyPoint}}</td>
+                      </tr>
+                      <tr>
+                        <th>growthPoint</th>
+                        <td>{{behavior.growthPoint}}</td>
+                      </tr>
+                      <tr>
+                        <th>otherPoint</th>
+                        <td>{{behavior.otherPoint}}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
               </table>
               <!-- behaviorループ終了 -->
             </td>
@@ -332,29 +346,36 @@
             <td>
               <!-- negotiationループ開始 -->
               <table>
-                <tr>
-                  <th>skillName</th>
-                  <td>{{negotiationSkillName}}</td>
-                </tr>
-                <tr>
-                  <th>initialValue</th>
-                  <td>{{negotiationInitialValue}}</td>
-                </tr>
-                <tr>
-                  <th>jobPoint</th>
-                  <td>{{negotiationJobPoint}}</td>
-                </tr>
-                <tr>
-                  <th>hobbyPoint</th>
-                  <td>{{negotiationHobbyPoint}}</td>
-                </tr>
-                <tr>
-                  <th>growthPoint</th>
-                  <td>{{negotiationGrowthPoint}}</td>
-                </tr>
-                <tr>
-                  <th>otherPoint</th>
-                  <td>{{negotiationOtherPoint}}</td>
+                <tr *ngFor="let negotiation of negotiations">
+                  <th>{{negotiation.skillName}}</th>
+                  <td>
+                    <table>                
+                      <tr>
+                        <th>skillName</th>
+                        <td>{{negotiation.skillName}}</td>
+                      </tr>
+                      <tr>
+                        <th>initialValue</th>
+                        <td>{{negotiation.initialValue}}</td>
+                      </tr>
+                      <tr>
+                        <th>jobPoint</th>
+                        <td>{{negotiation.jobPoint}}</td>
+                      </tr>
+                      <tr>
+                        <th>hobbyPoint</th>
+                        <td>{{negotiation.hobbyPoint}}</td>
+                      </tr>
+                      <tr>
+                        <th>growthPoint</th>
+                        <td>{{negotiation.growthPoint}}</td>
+                      </tr>
+                      <tr>
+                        <th>otherPoint</th>
+                        <td>{{negotiation.otherPoint}}</td>
+                      </tr>
+                    </table>
+                  </td>
                 </tr>
               </table>
               <!-- negotiationループ終了 -->
@@ -366,29 +387,36 @@
               <td>
                 <!-- knowledgeループ開始 -->
                 <table>
-                  <tr>
-                    <th>skillName</th>
-                    <td>{{knowlwdgeSkillName}}</td>
-                  </tr>
-                  <tr>
-                    <th>initialValue</th>
-                    <td>{{knowlwdgeInitialValue}}</td>
-                  </tr>
-                  <tr>
-                    <th>jobPoint</th>
-                    <td>{{knowlwdgeJobPoint}}</td>
-                  </tr>
-                  <tr>
-                    <th>hobbyPoint</th>
-                    <td>{{knowlwdgeHobbyPoint}}</td>
-                  </tr>
-                  <tr>
-                    <th>growthPoint</th>
-                    <td>{{knowlwdgeGrowthPoint}}</td>
-                  </tr>
-                  <tr>
-                    <th>otherPoint</th>
-                    <td>{{knowlwdgeOtherPoint}}</td>
+                  <tr *ngFor="let knowledge of knowledges">
+                    <th>{{knowledge.skillName}}</th>
+                    <td>
+                      <table>    
+                        <tr>
+                          <th>skillName</th>
+                          <td>{{knowledge.skillName}}</td>
+                        </tr>
+                        <tr>
+                          <th>initialValue</th>
+                          <td>{{knowledge.initialValue}}</td>
+                        </tr>
+                        <tr>
+                          <th>jobPoint</th>
+                          <td>{{knowledge.jobPoint}}</td>
+                        </tr>
+                        <tr>
+                          <th>hobbyPoint</th>
+                          <td>{{knowledge.hobbyPoint}}</td>
+                        </tr>
+                        <tr>
+                          <th>growthPoint</th>
+                          <td>{{knowledge.growthPoint}}</td>
+                        </tr>
+                        <tr>
+                          <th>otherPoint</th>
+                          <td>{{knowledge.otherPoint}}</td>
+                        </tr>
+                      </table>
+                    </td>
                   </tr>
                 </table>
                 <!-- knowledgeループ終了 -->
@@ -409,37 +437,44 @@
             <td>
               <!-- weponループ開始 -->
               <table>
-                <tr>
-                  <th>weponName</th>
-                  <td>{{weponName}}</td>
-                </tr>
-                <tr>
-                  <th>successRate</th>
-                  <td>{{successRate}}</td>
-                </tr>
-                <tr>
-                  <th>damage</th>
-                  <td>{{damage}}</td>
-                </tr>
-                <tr>
-                  <th>range</th>
-                  <td>{{range}}</td>
-                </tr>
-                <tr>
-                  <th>attackCount</th>
-                  <td>{{attackCount}}</td>
-                </tr>
-                <tr>
-                  <th>loadingCount</th>
-                  <td>{{loadingCount}}</td>
-                </tr>
-                <tr>
-                  <th>endurance</th>
-                  <td>{{endurance}}</td>
-                </tr>
-                <tr>
-                  <th>other</th>
-                  <td>{{weponOther}}</td>
+                <tr *ngFor="let wepon of wepons">
+                  <th>{{wepon.weponName}}</th>
+                  <td>
+                    <table>
+                      <tr>
+                        <th>weponName</th>
+                        <td>{{wepon.weponName}}</td>
+                      </tr>
+                      <tr>
+                        <th>successRate</th>
+                        <td>{{wepon.successRate}}</td>
+                      </tr>
+                      <tr>
+                        <th>damage</th>
+                        <td>{{wepon.damage}}</td>
+                      </tr>
+                      <tr>
+                        <th>range</th>
+                        <td>{{wepon.range}}</td>
+                      </tr>
+                      <tr>
+                        <th>attackCount</th>
+                        <td>{{wepon.attackCount}}</td>
+                      </tr>
+                      <tr>
+                        <th>loadingCount</th>
+                        <td>{{wepon.loadingCount}}</td>
+                      </tr>
+                      <tr>
+                        <th>endurance</th>
+                        <td>{{wepon.endurance}}</td>
+                      </tr>
+                      <tr>
+                        <th>other</th>
+                        <td>{{wepon.other}}</td>
+                      </tr>
+                    </table>
+                  </td>
                 </tr>
               </table>
               <!-- weponループ終了 -->
@@ -450,17 +485,24 @@
             <td>
               <!-- itemループ開始 -->
               <table>
-                <tr>
-                  <th>itemName</th>
-                  <td>{{itemName}}</td>
-                </tr>
-                <tr>
-                  <th>number</th>
-                  <td>{{number}}</td>
-                </tr>
-                <tr>
-                  <th>itemOther</th>
-                  <td>{{itemOther}}</td>
+                <tr *ngFor="let item of items">
+                  <th>{{item.itemName}}</th>
+                  <td>
+                    <table>
+                      <tr>
+                        <th>itemName</th>
+                        <td>{{item.itemName}}</td>
+                      </tr>
+                      <tr>
+                        <th>number</th>
+                        <td>{{item.number}}</td>
+                      </tr>
+                      <tr>
+                        <th>itemOther</th>
+                        <td>{{item.other}}</td>
+                      </tr>
+                    </table>
+                  </td>
                 </tr>
               </table>
               <!-- itemループ終了 -->

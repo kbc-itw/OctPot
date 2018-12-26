@@ -59,7 +59,7 @@ export class Skill {
 
 export class Behavior {
     skillName:     string;  // 技能名
-    initialValue?: number;  //  その技能の初期値
+    initialValue: number;  //  その技能の初期値
     jobPoint:      number;  //  割り振った職業ポイント
     hobbyPoint:    number;  //  割り振った趣味ポイント
     growthPoint:   number;  //  実際に上昇した値

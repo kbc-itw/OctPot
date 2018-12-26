@@ -14,6 +14,12 @@ export class CharacterjsonToHtmlComponent implements OnInit {
   private fullJson;
 
   private combats;
+  private searchs;
+  private behaviors;
+  private negotiations;
+  private knowledges;
+  private wepons;
+  private items;
 
   // Setting
   private type;
@@ -161,10 +167,6 @@ export class CharacterjsonToHtmlComponent implements OnInit {
     this.eyeColor = chara.Setting.character.eyeColor;
     // Status
     // Status.basestatus
-    console.log(chara.Status);
-    console.log(chara.Status.baseStatus);
-    console.log(chara.Status.baseStatus.str);
-
     this.str = chara.Status.baseStatus.str;
     this.con = chara.Status.baseStatus.con;
     this.pow = chara.Status.baseStatus.pow;
@@ -196,6 +198,20 @@ export class CharacterjsonToHtmlComponent implements OnInit {
     // Skill
     // Skill.combat
     this.combats = chara.Skill.conbat;
+    // Skill.search
+    this.searchs = chara.Skill.search;
+    // Skill.behaviors
+    this.behaviors = chara.Skill.behavior;
+    // Skill.negotiations
+    this.negotiations = chara.Skill.negotiation;
+    // Skill.knowledges
+    console.log(chara.Skill.knowledge);
+    this.knowledges = chara.Skill.knowledge;
+    // Items.wepons
+    this.wepons = chara.items.weapon;
+    // Items.items
+    this.items = chara.items.item;
+
 
   }
 
