@@ -1,7 +1,14 @@
 .Left {
   float: left;
+  box-sizing: border-box;
+  height: 486px;
+  box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
 }
-  .Left h1 {}
+  .Left h1 {
+    text-align: center;
+    border: solid 1px #81C784;
+    background: #81C784;
+  }
   .Left .innerContainer {}
     .Left .innerContainer {}
       .Left .innerContainer .tabs {
@@ -15,7 +22,7 @@
       border: solid 1px #999;
       overflow-y: scroll;
       box-sizing: border-box;
-      height: 346px;
+      height: 392px;
       width: 197px;
       margin: 0px 3.5px;
     }
@@ -53,4 +60,48 @@
 
 .Right {
   float: right;
+  box-sizing: border-box;
+  width: 710px;
+  height: 486px;
+  box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
+  margin-right: 34px;
 }
+ .Right h1{
+   text-align: center;
+   border: solid 1px #81C784;
+   background: #81C784;
+ }
+   .Right .innerContainer{}
+     .Right .innerContainer .photo{
+       box-sizing: border-box;
+       width: 200px;
+       height: 200px;
+       border: solid 1px;
+       margin: 10px;
+     }
+       .Right .innerContainer .photoListBase{
+         box-sizing: border-box;
+         width: 200px;
+         margin: 0px 10px;
+         border: solid 1px #999;
+       }
+       .Right .innerContainer .photoListBase h2{
+         text-align: center;
+         border: solid 1px #519657;
+         background: #519657;
+       }
+       .Right .innerContainer .photoListBase .photoList{
+         border: solid 1px #999;
+         overflow-y: scroll;
+         box-sizing: border-box;
+         height: 123px;
+         width: 200px;
+         margin: 21.5px -1px;
+       }
+       .Right .innerContainer .photoListBase .photoList li{
+         border: solid 1px #999;
+         text-align: center;
+         width: 179px;
+         cursor: pointer;
+         font-size: 12px;
+       }
