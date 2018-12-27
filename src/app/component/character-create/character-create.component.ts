@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterCreateService } from '../../Service/character-create.service';
+import { FormsModule } from '@angular/forms';
+import { Convert, Chara, Setting, Character, Skill,
+      Behavior, Status, BaseStatus, FluctuationStatus,
+      Items, Item, Weapon, Profile } from '../../model/character-info-model';  // fromには、このファイルの場所を指定する
+
 // import { HttpService } from '../app-http.service';
 
 @Component({
@@ -48,6 +53,114 @@ export class CharacterCreateComponent implements OnInit {
   private incomestock;
 
   private filename = 'octpot.js';
+
+
+  private combats;
+  private searchs;
+  private behaviors;
+  private negotiations;
+  private knowledges;
+  private wepons;
+  private items;
+
+  // Setting
+  private stype;
+  private srace;
+  private sjob;
+  private simages;
+  // Setting.character
+  private cname;
+  private cgender;
+  private cheight;
+  private cweight;
+  private cbirthplace;
+  private chairColor;
+  private ceyeColor;
+  // Status
+  // Status.basestatus
+  private bstr;
+  private bcon;
+  private bpow;
+  private bdex;
+  private bsiz;
+  private bapp;
+  private bint;
+  private bedu;
+  private bincome_and_property;
+  // Status.flutuationStatus
+  private fsan;
+  private fluck;
+  private fidea;
+  private fknowledge;
+  private fhealth;
+  private fmp;
+  private fVocationalSkill;
+  private fHobbySkill;
+  private fDamegeBonus;
+  // Status.reDice
+  private diceStr;
+  private diceCon;
+  private diceDex;
+  private diceApp;
+  private diceSiz;
+  private diceInt;
+  private diceEdu;
+  private diceIncome_and_property;
+  // Skill
+  // Skill.combat
+  private combatSkillName;
+  private combatInitialValue;
+  private combatJobPoint;
+  private combatHobbyPoint;
+  private combatGrowthPoint;
+  private combatOtherPoint;
+  // Skill.search
+  private searchSkillName;
+  private searchInitialValue;
+  private searchJobPoint;
+  private searchHobbyPoint;
+  private searchGrowthPoint;
+  private searchOtherPoint;
+  // Skill.behavior
+  private behaviorSkillName;
+  private behaviorInitialValue;
+  private behaviorJobPoint;
+  private behaviorHobbyPoint;
+  private behaviorGrowthPoint;
+  private behaviorOtherPoint;
+  // Skill.negotiation
+  private negotiationSkillName;
+  private negotiationInitialValue;
+  private negotiationJobPoint;
+  private negotiationHobbyPoint;
+  private negotiationGrowthPoint;
+  private negatiationOtherPoint;
+  // Skill.knowledge
+  private knowledgeSkillName;
+  private knowledgeInitialValue;
+  private knowledgeJobPoint;
+  private knowledgeHobbyPoint;
+  private knowledgeGrowthPoint;
+  private knowledgeOtherPoint;
+  // items
+  // items.wepom
+  private weponName;
+  private successRate;
+  private damage;
+  private range;
+  private attackCount;
+  private loadingCount;
+  private endurance;
+  private weponOther;
+  // items.item
+  private itemName;
+  private number;
+  private itemOther;
+  // profile
+  private pCareer;
+  private pEncounter;
+  private pOtherMemo;
+
 
   constructor(private characre: CharacterCreateService) {}
 
@@ -149,6 +262,9 @@ export class CharacterCreateComponent implements OnInit {
       this.VocationalSkill, this.HobbySkill, this.DamegeBonus ];
     let profile = [this.Career, this.Encounter];
     let json = this.characre.change(basic, status, fstatus, profile);
-    this.characre.save(json, document.getElementById('download'), this.filename);
+    // this.characre.save(json, document.getElementById('download'), this.filename)
+    console.log(this.cgender);
+    console.log(this.cname);
+    console.log(this.sjob);
   }
 }
