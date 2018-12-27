@@ -8,6 +8,9 @@
     text-align: center;
     border: solid 1px #81C784;
     background: #81C784;
+    box-sizing: border-box;
+    height: 38px;
+    padding-top: 6px;
   }
   .Left .innerContainer {}
     .Left .innerContainer {}
@@ -17,12 +20,17 @@
         .Left .innerContainer .tabs li {
           letter-spacing: normal;
           display: inline-block;
+          font-size: 16px;
         }
+      .Left .innerContainer .characterTabs {
+        max-width: 176px;
+        max-height: 31px;
+      }
     .Left .innerContainer .characterList {
       border: solid 1px #999;
       overflow-y: scroll;
       box-sizing: border-box;
-      height: 392px;
+      height: 385px;
       width: 197px;
       margin: 0px 3.5px;
     }
@@ -70,6 +78,9 @@
    text-align: center;
    border: solid 1px #81C784;
    background: #81C784;
+   box-sizing: border-box;
+   height: 38px;
+   padding-top: 6px;
  }
    .Right .innerContainer{}
      .Right .innerContainer .photos {
@@ -77,13 +88,39 @@
      }
      .Right .innerContainer .characterStatus {
        float: right;
+       border: solid 1px #999;
+       box-sizing: border-box;
+       width: 448px;
+       height: 431px;
+       margin: 10px 21px;
      }
+       .Right .innerContainer .characterStatus h2 {
+         text-align: center;
+         border: solid 1px #519657;
+         background: #519657;
+         color: #fff;
+         box-sizing: border-box;
+         height: 34px;
+         padding-top: 4px;
+       }
+         .Right .innerContainer .characterStatus .tabs{
+           letter-spacing: -0.5em;
+         }
+           .Right .innerContainer .characterStatus .tabs li {
+             letter-spacing: normal;
+             display: inline-block;
+             font-size: 16px;
+           }
      .Right .innerContainer .photo{
        box-sizing: border-box;
        width: 200px;
        height: 200px;
        border: solid 1px;
        margin: 10px;
+     }
+     .Right .innerContainer .photo img {
+       width: 100%;
+       height: auto;
      }
        .Right .innerContainer .photoListBase{
          box-sizing: border-box;
@@ -95,12 +132,16 @@
          text-align: center;
          border: solid 1px #519657;
          background: #519657;
+         color: #fff;
+         box-sizing: border-box;
+         height: 34px;
+         padding-top: 4px;
        }
        .Right .innerContainer .photoListBase .photoList{
          border: solid 1px #999;
          overflow-y: scroll;
          box-sizing: border-box;
-         height: 123px;
+         height: 142px;
          width: 200px;
          margin: 21.5px -1px;
        }
