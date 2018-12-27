@@ -40,7 +40,6 @@ export class ChatRoomCreateComponent implements OnInit {
   message() {
     console.log(this.comment);
     this.chatroom.message(this.comment);
-    this.comment = undefined;
   }
 
   leave() {

@@ -9,12 +9,16 @@ export class ChatRoomService {
   private io;
   private channel;
   private id;
-  public data = new BehaviorSubject<string>(null);
-  constructor() {
+  public data;
+  private bool;
+  constructor() {}
+  preparation() {
     console.groupCollapsed('constructor');
     console.log('constructor', 'from', 'service');
     this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
     this.io = client.connect('http://150.95.205.204:80/');
+    this.data = new BehaviorSubject<string>(null);
+    this.bool = true;
     console.profile('sdpFunction');
     this.sdp();
     console.profileEnd();
@@ -64,12 +68,15 @@ export class ChatRoomService {
       };
       this.channel.onclose = () => {
         console.log('DataChannelClose');
-        var value: string = 'hostとの接続が切れました。';
-        this.data.next(value);
-        this.io.close();
-        this.channel.close();
-        this.channel = undefined;
-        console.log('channeldayo:  ', this.channel);
+        if (this.bool) {
+          var value: string = 'hostとの接続が切れました。';
+          this.data.next(value);
+          this.io.close();
+          this.channel.close();
+          this.channel = undefined;
+          this.peer = undefined;
+          console.log('channeldayo:  ', this.channel);
+        }
       };
       this.channel.onerror = function (err) {
         console.log(err);
@@ -208,6 +215,15 @@ export class ChatRoomService {
     // this.data.next(value);
   }
   leave() {
-    this.channel.close();
+    this.bool = false;
+    try {
+      this.io.close();
+      this.channel.close();
+      this.channel = undefined;
+      this.peer = undefined;
+    } catch (e) {
+      console.log(e);
+    }
+    this.data.next(null);
   }
 }

@@ -14,6 +14,7 @@ export class ChatRoomCreateService {
   private channel;
   private member = [];
   private  id;
+  private count;
   public data = new BehaviorSubject<string>(null);
   constructor() {
   }
@@ -29,6 +30,7 @@ export class ChatRoomCreateService {
     this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
     this.channel = this.peer.createDataChannel('my channel');
     this.member.push({peer: this.peer, channel: this.channel});
+    this.count = 0;
     console.profile('ondatachannel');
     this.dc();
     console.profileEnd();
@@ -57,19 +59,11 @@ export class ChatRoomCreateService {
       console.log(this.member[this.member.length - 1].channel);
       console.groupEnd();
     };
-    this.member[this.member.length - 1].peer.ondatachannel = (e) => {
-      console.groupCollapsed('dcFunction');
-      // e.channelにtestが格納されているのでそれを使う
-      console.log('ondDataChannel');
-      // console.log(e.candidate.candidate.split(' ')[4]); // address
-      console.log(this.member[this.member.length - 1].channel);
-      console.groupEnd();
-    };
     this.member[this.member.length - 1].channel.onopen = () => {
       console.log('DataChannelOpen');
       this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
       this.channel = this.peer.createDataChannel('my channel');
-      this.member.push({peer: this.peer, channel: this.channel});
+      this.member.push({peer: this.peer, channel: this.channel}); // ここでonmessageより先にpushしてるからerrorがでるのかな？
       console.log(this.member);
       try {
         this.dc();
@@ -85,7 +79,12 @@ export class ChatRoomCreateService {
       this.data.next(event.data);
       this.member.forEach((e) => {
         console.log(event);
-        e.channel.send(event.data);
+        console.log('e: ', e);
+        console.log('e.peer: ', e.peer);
+        console.log('e.channel: ', e.channel);
+        if (e.channel.readyState === 'open') {
+          e.channel.send(event.data);
+        }
       });
     };
     this.member[this.member.length - 1].channel.onclose = () => {

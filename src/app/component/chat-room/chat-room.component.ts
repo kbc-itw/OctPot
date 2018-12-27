@@ -7,20 +7,22 @@ import {ChatRoomService} from '../../Service/chat-room-service';
 })
 export class ChatRoomComponent implements OnInit {
   rooms;
-  message_list: any= [];
-  room_in: boolean = false;
+  message_list: any;
+  room_in: boolean;
   comment;
   ip;
   pass;
-  constructor(private chat: ChatRoomService) {
+  constructor(private chat: ChatRoomService) {}
+  ngOnInit() {
+    console.log('chat-room-component');
+    this.message_list = [];
+    this.room_in = false;
+    this.chat.preparation();
     this.chat.getio().on('hello', (e) => {
-      console.log('hello ', e);
+      console.log('hello ------------------------------------------------------------------------------------------', e);
       this.room_in = true;
       // this.message_list.push(e);
     });
-  }
-  ngOnInit() {
-    console.log('chat-room-component');
     this.chat.data.subscribe(message => {
       this.message_list.push(message);
     });
@@ -41,6 +43,11 @@ export class ChatRoomComponent implements OnInit {
   }
   message() {
     this.chat.message(this.comment);
-    this.comment = undefined;
+  }
+  leave() {
+    this.chat.leave();
+    this.comment = null;
+    this.ip = null;
+    this.pass = null;
   }
 }
