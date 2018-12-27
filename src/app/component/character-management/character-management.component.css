@@ -72,6 +72,12 @@
    background: #81C784;
  }
    .Right .innerContainer{}
+     .Right .innerContainer .photos {
+       float: left;
+     }
+     .Right .innerContainer .characterStatus {
+       float: right;
+     }
      .Right .innerContainer .photo{
        box-sizing: border-box;
        width: 200px;
