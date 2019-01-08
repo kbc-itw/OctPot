@@ -979,25 +979,10 @@
               <th>個数</th>
               <th>説明</th>
             </tr>
-            <tr>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-            </tr>
-            <tr>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-            </tr>
-            <tr>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-            </tr>
-            <tr>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
+            <tr *ngFor="let item of itemslist; let i = index">
+              <td><input type="text" value="{{item.name}}" [(ngModel)]="itemslist[i].name"></td>
+              <td><input type="text" value="{{item.times}}" [(ngModel)]="itemslist[i].times"></td>
+              <td><input type="text" value="{{item.description}}" [(ngModel)]="itemslist[i].description"></td>
             </tr>
           </table>
         </div>

@@ -161,8 +161,55 @@ export class CharacterCreateComponent implements OnInit {
   private pEncounter;
   private pOtherMemo;
 
+  private itemslist = new Array();  // 所持品(item)の配列
 
-  constructor(private characre: CharacterCreateService) {}
+
+  constructor(private characre: CharacterCreateService) {
+
+  }
+
+  // 戦闘技能枠の作成
+  generateCombatskillFrame() {
+
+  }
+
+  // 探索技能枠の作成
+  generateSearchskillFrame() {
+
+  }
+
+  // 行動技能の作成
+  generateBehaviorskillFrame() {
+
+  }
+
+  // 交渉技能の作成
+  generateNegotiationskillFrame() {
+
+  }
+
+  // 知識技能の作成
+  generateKnowledgeskillFrame() {
+
+  }
+
+  // 所持品(wepon)枠の作成
+  generateWeponFrame() {
+
+  }
+
+  // 所持品(item)の枠作成
+  generateItemFrame() {
+    for (let i = 0; i < 5; i++ ) {
+      let item = {
+        name: '',
+        times: '',
+        descripton: ''
+      } ;
+      this.itemslist.push(item);
+    }
+    console.log(this.itemslist);
+  }
 
   ngOnInit() {
   }
@@ -266,5 +313,6 @@ export class CharacterCreateComponent implements OnInit {
     console.log(this.cgender);
     console.log(this.cname);
     console.log(this.sjob);
+    console.log(this.itemslist);
   }
 }
