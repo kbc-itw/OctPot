@@ -1,3 +1,16 @@
+/* タブ用のコード */
+/deep/.mat-tab-label {
+  height: 30px !important;
+  opacity: .6 !important;
+  min-width: 98.5px !important;
+  text-align: center !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+  position: relative !important;
+}
+/* ここまで */
 .Left {
   float: left;
   box-sizing: border-box;
@@ -14,6 +27,13 @@
   }
   .Left .innerContainer {}
     .Left .innerContainer {}
+      .Left .innerContainer .matTabs {
+        box-sizing: border-box;
+        max-width: 197px;
+      }
+      .Left .innerContainer .matTabs mat-tab {
+        font-size: 14px;
+      }
       .Left .innerContainer .tabs {
         letter-spacing: -0.5em;
       }
@@ -30,7 +50,7 @@
       border: solid 1px #999;
       overflow-y: scroll;
       box-sizing: border-box;
-      height: 385px;
+      height: 356px;
       width: 197px;
       margin: 0px 3.5px;
     }
