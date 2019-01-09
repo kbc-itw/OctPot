@@ -2,7 +2,7 @@
 /deep/.mat-tab-label {
   height: 30px !important;
   opacity: .6 !important;
-  min-width: 98.5px !important;
+  min-width: 102.5px !important;
   text-align: center !important;
   display: inline-flex !important;
   justify-content: center !important;
@@ -27,34 +27,15 @@
   }
   .Left .innerContainer {}
     .Left .innerContainer {}
-      .Left .innerContainer .matTabs {
-        box-sizing: border-box;
-        max-width: 197px;
-      }
-      .Left .innerContainer .matTabs mat-tab {
-        font-size: 14px;
-      }
-      .Left .innerContainer .tabs {
-        letter-spacing: -0.5em;
-      }
-        .Left .innerContainer .tabs li {
-          letter-spacing: normal;
-          display: inline-block;
-          font-size: 16px;
-        }
-      .Left .innerContainer .characterTabs {
-        max-width: 176px;
-        max-height: 31px;
-      }
-    .Left .innerContainer .characterList {
+    .Left .innerContainer .matTabs .characterList {
       border: solid 1px #999;
       overflow-y: scroll;
       box-sizing: border-box;
-      height: 356px;
+      height: 367px;
       width: 197px;
-      margin: 0px 3.5px;
+      margin: 4px 3.5px;
     }
-      .Left .innerContainer .characterList li {
+      .Left .innerContainer .matTabs .characterList li {
         border: solid 1px #999;
         height: 34px;
         text-align: center;
@@ -85,7 +66,6 @@
         background-color: #f44336;
       }
 
-
 .Right {
   float: right;
   box-sizing: border-box;
@@ -103,14 +83,11 @@
    padding-top: 6px;
  }
    .Right .innerContainer{}
-     .Right .innerContainer .photos {
-       float: left;
-     }
      .Right .innerContainer .characterStatus {
        float: right;
        border: solid 1px #999;
        box-sizing: border-box;
-       width: 448px;
+       width: 668px;
        height: 431px;
        margin: 10px 21px;
      }
@@ -131,44 +108,3 @@
              display: inline-block;
              font-size: 16px;
            }
-     .Right .innerContainer .photo{
-       box-sizing: border-box;
-       width: 200px;
-       height: 200px;
-       border: solid 1px;
-       margin: 10px;
-     }
-     .Right .innerContainer .photo img {
-       width: 100%;
-       height: auto;
-     }
-       .Right .innerContainer .photoListBase{
-         box-sizing: border-box;
-         width: 200px;
-         margin: 0px 10px;
-         border: solid 1px #999;
-       }
-       .Right .innerContainer .photoListBase h2{
-         text-align: center;
-         border: solid 1px #519657;
-         background: #519657;
-         color: #fff;
-         box-sizing: border-box;
-         height: 34px;
-         padding-top: 4px;
-       }
-       .Right .innerContainer .photoListBase .photoList{
-         border: solid 1px #999;
-         overflow-y: scroll;
-         box-sizing: border-box;
-         height: 142px;
-         width: 200px;
-         margin: 21.5px -1px;
-       }
-       .Right .innerContainer .photoListBase .photoList li{
-         border: solid 1px #999;
-         text-align: center;
-         width: 179px;
-         cursor: pointer;
-         font-size: 12px;
-       }
