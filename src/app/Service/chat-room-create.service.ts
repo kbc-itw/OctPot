@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import * as client from 'socket.io-client';
 import {BehaviorSubject} from 'rxjs';
+import * as moment from 'moment';
 @Injectable()
 export class ChatRoomCreateService {
   // ホスト側が使うルーム作成クラス
@@ -16,6 +17,7 @@ export class ChatRoomCreateService {
   private  id;
   private count;
   public data = new BehaviorSubject<string>(null);
+  private date: string;
   constructor() {
   }
   io_connect() {
@@ -76,14 +78,16 @@ export class ChatRoomCreateService {
     this.member[this.member.length - 1].channel.onmessage = (event) => {
       console.log('データチャネルメッセージ取得:', event.data);
       console.log(event);
-      this.data.next(event.data);
+      this.date = moment().format('YY/MM/DD HH:mm');
+      var val = event.data + '(' + this.date + ')';
+      this.data.next(val);
       this.member.forEach((e) => {
         console.log(event);
         console.log('e: ', e);
         console.log('e.peer: ', e.peer);
         console.log('e.channel: ', e.channel);
         if (e.channel.readyState === 'open') {
-          e.channel.send(event.data);
+          e.channel.send(val);
         }
       });
     };
@@ -215,7 +219,8 @@ export class ChatRoomCreateService {
     return;
   }
   message(e) {
-    var value: string = this.id + ': ' + e;
+    this.date = moment().format('YY/MM/DD HH:mm');
+    var value: string = this.id + ': ' + e + '(' + this.date + ')';
     try {
       this.member.forEach((e) => {
         console.log('--------------------------------------------------------------------', e);
