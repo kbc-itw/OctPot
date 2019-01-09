@@ -32,6 +32,8 @@ export class ChatRoomCreateService {
     this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
     this.channel = this.peer.createDataChannel('my channel');
     this.member.push({peer: this.peer, channel: this.channel});
+    this.date = moment().format('YY/MM/DD HH:mm');
+    this.data.next('ルームを作成しました。' + '(' + this.date + ')');
     this.count = 0;
     console.profile('ondatachannel');
     this.dc();
@@ -239,7 +241,7 @@ export class ChatRoomCreateService {
     try {
       this.member.forEach((e) => {
         console.log('--------------------------------------------------------------------', e);
-        // e.channel.send(value); // closeのほうが早いのでこれ意味ないかも
+        e.channel.send(value); // closeのほうが早いのでこれ意味ないかも
         e.channel.close();
       });
       // this.member[this.member.length - 1].channel.send(value);

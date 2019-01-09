@@ -215,6 +215,8 @@ export class ChatRoomService {
     // this.data.next(value);
   }
   leave() {
+    var value = this.id + 'が退出しました。';
+    this.channel.send(value);
     this.bool = false;
     try {
       this.io.close();
