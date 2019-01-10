@@ -14,8 +14,8 @@
   <a (click)="leave()" routerLink="">トップへ戻る</a><br>
 </div>
 <ng-template #room>
-  <form (submit)="message()">
-    <input type="text" placeholder="テキスト" (input)="comment=$event.target.value">
+  <form (submit)="message()" (submit)="$event.target.text.value=null">
+    <input name='text' type="text" placeholder="テキスト" (input)="comment=$event.target.value">
     <input type="submit" value="送信">
   </form><br>
   <a (click)="leave()" routerLink="">退出する</a>

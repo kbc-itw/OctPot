@@ -42,7 +42,10 @@ export class ChatRoomComponent implements OnInit {
     console.profileEnd();
   }
   message() {
-    this.chat.message(this.comment);
+    if (this.comment !== null && this.comment !== undefined && this.comment !== '') {
+      this.chat.message(this.comment);
+    }
+    this.comment = null;
   }
   leave() {
     this.chat.leave();
