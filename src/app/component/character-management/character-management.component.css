@@ -18,11 +18,28 @@
 }
 
 /* ここまで */
+.container{
+  box-sizing: border-box;
+  width: 960px;
+  height: 500px;
+  background: #eee;
+}
+
+/*
+.leftSidebar{
+  display: none;
+  height: 100%;
+  width: 100px;
+}
+*/
+
 .Left {
   float: left;
   box-sizing: border-box;
   height: 486px;
   box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
+  background: #fff;
+  margin-left: 26px;
 }
   .Left h1 {
     text-align: center;
@@ -81,7 +98,8 @@
   width: 710px;
   height: 486px;
   box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
-  margin-right: 34px;
+  margin-right: 8px;
+  background: #fff;
 }
   .Right h1{
     text-align: center;

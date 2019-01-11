@@ -19,11 +19,11 @@ import {CharacterManagementService} from './Service/character-management.service
 import {ChatRoomService} from './Service/chat-room-service';
 import {ChatRoomCreateService} from './Service/chat-room-create.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCardModule, MatTabsModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatSidenavModule, MatTabsModule} from '@angular/material';
 import {SwitchTabService} from './Service/switch-tab.service';
 import {TabsManagerService} from './Service/tabs-manager.service';
 import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
-import { CharacterjsonToHtmlComponent } from './component/characterjson-to-html/characterjson-to-html.component';
+import {CharacterjsonToHtmlComponent} from './component/characterjson-to-html/characterjson-to-html.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,8 @@ import { CharacterjsonToHtmlComponent } from './component/characterjson-to-html/
     BrowserAnimationsModule,
     MatButtonModule,
     MatTabsModule,
-    MatCardModule
+    MatCardModule,
+    MatSidenavModule
   ],
   providers: [
     CharacterCreateService,

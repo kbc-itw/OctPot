@@ -1,4 +1,13 @@
 <div class="container clearfix">
+  <div class="leftSidebar" id="sidebar">
+    <button onclick="side_close()"> < </button>
+    <a href="#" class="bar-item">Link 1</a>
+    <a href="#" class="bar-item">Link 2</a>
+    <a href="#" class="bar-item">Link 3</a>
+  </div>
+  <div class="leftSidebar-content">
+    <button onclick="side_open()"> > </button>
+  </div>
   <div class="Left">
     <h1>キャラクター一覧</h1>
     <div class="innerContainer">
@@ -12,7 +21,7 @@
             <li>キャラクター5</li>
           </ul>
         </mat-tab>
-        <mat-tab label="NPC"> Content NPC </mat-tab>
+        <mat-tab label="NPC"> Content NPC</mat-tab>
       </mat-tab-group>
       <ul class="bottoms">
         <li>
@@ -33,13 +42,14 @@
       <div class="characterStatus">
         <h2>ステータス</h2>
         <mat-tab-group>
-          <mat-tab label="能力値"> Content 1 </mat-tab>
-          <mat-tab label="プロフィール"> Content 2 </mat-tab>
-          <mat-tab label="技能"> Content 3 </mat-tab>
-          <mat-tab label="所持品"> Content 2 </mat-tab>
-          <mat-tab label="経歴"> Content 3 </mat-tab>
+          <mat-tab label="能力値"> Content 1</mat-tab>
+          <mat-tab label="プロフィール"> Content 2</mat-tab>
+          <mat-tab label="技能"> Content 3</mat-tab>
+          <mat-tab label="所持品"> Content 2</mat-tab>
+          <mat-tab label="経歴"> Content 3</mat-tab>
         </mat-tab-group>
       </div>
     </div>
   </div>
 </div>
+<!--<script type="text/javascript" src="character-management-sidebar.js"></script>-->
