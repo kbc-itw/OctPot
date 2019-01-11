@@ -3,7 +3,7 @@ import { CharacterCreateService } from '../../Service/character-create.service';
 import { FormsModule } from '@angular/forms';
 import { Convert, Chara, Setting, Character, Skill,
       Behavior, Status, BaseStatus, FluctuationStatus,
-      Items, Item, Weapon, Profile } from '../../model/character-info-model';  // fromには、このファイルの場所を指定する
+      Items, Item, Weapon, Profile } from '../../model/character-info-model';
 
 // import { HttpService } from '../app-http.service';
 
@@ -161,41 +161,553 @@ export class CharacterCreateComponent implements OnInit {
   private pEncounter;
   private pOtherMemo;
 
-  private itemslist = new Array();  // 所持品(item)の配列
+  private combatList;  // 戦闘技能の配列
+  private searchList; // 探索技能の配列
+  private behaviorList: Behavior[]; // 行動技能の配列
+  private negotiationList; // 交渉技能の配列
+  private knowledgeList; // 知識技能の配列
+  private weponList = []; // 所持品(武具)の配列
+  private itemslist = [];  // 所持品(item)の配列
 
+  // スキルポイント合計
+  private combatPointAll = 0;
+  private searchPointAll = 0;
+  private behaviorPointAll = 0;
+  private negotiationPointAll = 0;
+  private knowledgePointAll = 0;
 
   constructor(private characre: CharacterCreateService) {
-
+    this.generateCombatskillFrame();
+    this.generateSearchskillFrame();
+    this.generateBehaviorskillFrame();
+    this.generateNegotiationskillFrame();
+    this.generateKnowledgeskillFrame();
+    this.generateWeponFrame();
+    this.generateItemFrame();
   }
 
   // 戦闘技能枠の作成
   generateCombatskillFrame() {
+    this.combatList = [
+      {
+        'skillName': '回避',
+        'initialValue': 0,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': 'キック',
+        'initialValue': 25,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '組付き',
+        'initialValue': 25,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': 'こぶし（パンチ）',
+        'initialValue': 50,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '頭突き',
+        'initialValue': 10,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '投擲',
+        'initialValue': 25,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': 'マーシャルアーツ',
+        'initialValue': 1,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '拳銃',
+        'initialValue': 20,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': 'サブマシンガン',
+        'initialValue': 15,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': 'ショットガン',
+        'initialValue': 30,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': 'マシンガン',
+        'initialValue': 15,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': 'ライフル',
+        'initialValue': 25,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      }
+    ];
 
   }
 
   // 探索技能枠の作成
   generateSearchskillFrame() {
+    this.searchList = [
+      {
+        'skillName': '応急手当',
+        'initialValue': 30,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '鍵開け',
+        'initialValue': 1,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '隠す',
+        'initialValue': 15,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '隠れる',
+        'initialValue': 10,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '聞き耳',
+        'initialValue': 25,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '忍び歩き',
+        'initialValue': 10,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '写真術',
+        'initialValue': 10,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '精神分析',
+        'initialValue': 1,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '追跡',
+        'initialValue': 10,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '登攀',
+        'initialValue': 40,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '図書館',
+        'initialValue': 25,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '目星',
+        'initialValue': 25,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      }
+    ];
 
   }
 
   // 行動技能の作成
   generateBehaviorskillFrame() {
+    this.behaviorList = [
+        {
+          'skillName': '運転（）',
+          'initialValue': 20,
+          'jobPoint': 0,
+          'hobbyPoint': 0,
+          'growthPoint': 0,
+          'otherPoint': 0
+        },
+        {
+          'skillName': '機械修理',
+          'initialValue': 20,
+          'jobPoint': 0,
+          'hobbyPoint': 0,
+          'growthPoint': 0,
+          'otherPoint': 0
+        },
+        {
+          'skillName': '重機械操作',
+          'initialValue': 1,
+          'jobPoint': 0,
+          'hobbyPoint': 0,
+          'growthPoint': 0,
+          'otherPoint': 0
+        },
+        {
+          'skillName': '乗馬',
+          'initialValue': 1,
+          'jobPoint': 0,
+          'hobbyPoint': 0,
+          'growthPoint': 0,
+          'otherPoint': 0
+        },
+        {
+          'skillName': '水泳',
+          'initialValue': 25,
+          'jobPoint': 0,
+          'hobbyPoint': 0,
+          'growthPoint': 0,
+          'otherPoint': 0
+        },
+        {
+          'skillName': '製作（）',
+          'initialValue': 5,
+          'jobPoint': 0,
+          'hobbyPoint': 0,
+          'growthPoint': 0,
+          'otherPoint': 0
+        },
+        {
+          'skillName': '操縦',
+          'initialValue': 1,
+          'jobPoint': 0,
+          'hobbyPoint': 0,
+          'growthPoint': 0,
+          'otherPoint': 0
+        },
+        {
+          'skillName': '跳躍',
+          'initialValue': 25,
+          'jobPoint': 0,
+          'hobbyPoint': 0,
+          'growthPoint': 0,
+          'otherPoint': 0
+        },
+        {
+          'skillName': '電気修理',
+          'initialValue': 10,
+          'jobPoint': 0,
+          'hobbyPoint': 0,
+          'growthPoint': 0,
+          'otherPoint': 0
+        },
+        {
+          'skillName': 'ナビゲート',
+          'initialValue': 10,
+          'jobPoint': 0,
+          'hobbyPoint': 0,
+          'growthPoint': 0,
+          'otherPoint': 0
+        },
+        {
+          'skillName': '変装',
+          'initialValue': 1,
+          'jobPoint': 0,
+          'hobbyPoint': 0,
+          'growthPoint': 0,
+          'otherPoint': 0
+        }
+      ];
 
   }
 
   // 交渉技能の作成
   generateNegotiationskillFrame() {
+    this.negotiationList = [
+      {
+        'skillName': '言いくるめ',
+        'initialValue': 5,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '信用',
+        'initialValue': 15,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '説得',
+        'initialValue': 15,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '値切り',
+        'initialValue': 5,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '母国語（）',
+        'initialValue': 20,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      }
+    ];
 
   }
 
   // 知識技能の作成
   generateKnowledgeskillFrame() {
+    this.knowledgeList = [
+      {
+        'skillName': '医学',
+        'initialValue': 5,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': 'オカルト',
+        'jobPoint': 5,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '化学',
+        'initialValue': 1,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': 'クトゥルフ神話',
+        'initialValue': 0,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '芸術（）',
+        'initialValue': 5,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '経理',
+        'initialValue': 10,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '考古学',
+        'initialValue': 1,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': 'コンピューター',
+        'initialValue': 1,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '心理学',
+        'initialValue': 5,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '人類学',
+        'initialValue': 1,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '生物学',
+        'initialValue': 1,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '地質学',
+        'initialValue': 1,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '電子工学',
+        'initialValue': 1,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '天文学',
+        'initialValue': 1,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '博物学',
+        'initialValue': 10,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '物理学',
+        'initialValue': 1,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '法律',
+        'initialValue': 5,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '薬学',
+        'initialValue': 1,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      },
+      {
+        'skillName': '歴史',
+        'initialValue': 20,
+        'jobPoint': 0,
+        'hobbyPoint': 0,
+        'growthPoint': 0,
+        'otherPoint': 0
+      }
+    ];
 
   }
 
   // 所持品(wepon)枠の作成
   generateWeponFrame() {
-
+    for (let i = 0; i < 5; i++) {
+      let wepon = {
+        name: '',
+        successRate: 0,
+        damage: '',
+        range: '',
+        attackCount: 0,
+        loadingCount: 0,
+        endurance: 0,
+        other: ''
+      } ;
+      this.weponList[i] = wepon;
+    }
+    console.log(this.weponList);
   }
 
   // 所持品(item)の枠作成
@@ -206,7 +718,7 @@ export class CharacterCreateComponent implements OnInit {
         times: '',
         descripton: ''
       } ;
-      this.itemslist.push(item);
+      this.itemslist[i] = item;
     }
     console.log(this.itemslist);
   }
@@ -314,5 +826,37 @@ export class CharacterCreateComponent implements OnInit {
     console.log(this.cname);
     console.log(this.sjob);
     console.log(this.itemslist);
+    console.log(this.weponList);
+
+    let newchara = new Chara();
+    let newsetting = new Setting();
+    newsetting.type = this.stype;
+    newsetting.race = this.srace;
+    newsetting.job = this.sjob;
+
+    let newcharacter = new Character();
+    newcharacter.name = this.cname;
+    newcharacter.gender = this.cgender;
+    newcharacter.height = this.cheight;
+    newcharacter.weight = this.cweight;
+    newcharacter.birthplace = this.cbirthplace;
+    newcharacter.hairColor = this.chairColor;
+    newcharacter.eyeColor = this.ceyeColor;
+
+    newsetting.character = newcharacter;
+
+    let newskill = new Skill();
+    this.behaviorList.forEach(function(beh) {
+      newskill.behavior.push(beh);
+    });
+    let newbehavior = new Behavior();  // スキルの数だけ存在する
+    let newstatus = new Status();
+    let newbaseStatus = new BaseStatus();
+    let newfluctuationStatus = new FluctuationStatus();
+    let newitems = new Items();
+    let newitem = new Item();  // 持ってるアイテムの数だけ存在する
+    let newweapon = new Weapon();  // 持ってる武器の数だけ存在する
+    let newprofile = new Profile();
+
   }
 }

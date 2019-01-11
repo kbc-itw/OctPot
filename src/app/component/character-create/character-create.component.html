@@ -270,16 +270,16 @@
                   <th>その他</th>
                   <th>合計</th>
                 </tr>
-                <tr class="line">
-                  <th><p>回避</p></th>
-                  <td><p>0</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>0</p></td>
+                <tr class="line" *ngFor="let combat of combatList; let i = index">
+                  <th><p>{{combat.skillName}}</p></th>
+                  <td><p>{{combat.initialValue}}</p></td>
+                  <td><input type="number" value="{{combat.jobPoint}}" [(ngModel)]="combatList[i].jobPoint" ></td>
+                  <td><input type="number" value="{{combat.hobbyPoint}}" [(ngModel)]="combatList[i].hobbyPoint"></td>
+                  <td><input type="number" value="{{combat.growthPoint}}" [(ngModel)]="combatList[i].growthPoint"></td>
+                  <td><input type="number" value="{{combat.otherPoint}}" [(ngModel)]="combatList[i].otherPoint"></td>
+                  <td><p>{{combat.jobPoint + combat.hobbyPoint + combat.growthPoint + combat.otherPoint}}</p></td>
                 </tr>
-                <tr class="line">
+                <!-- <tr class="line">
                   <th><p>キック</p></th>
                   <td><p>25</p></td>
                   <td><input type="number" value="0"></td>
@@ -377,7 +377,7 @@
                   <td><input type="number" value="0"></td>
                   <td><input type="number" value="0"></td>
                   <td><p>25</p></td>
-                </tr>
+                </tr> -->
               </table>
               <ul>
                 <li><button>追加</button></li>
@@ -398,113 +398,14 @@
                   <th>その他</th>
                   <th>合計</th>
                 </tr>
-                <tr class="line">
-                  <th><p>応急手当</p></th>
-                  <td><p>30</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>30</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>鍵開け</p></th>
-                  <td><p>1</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>1</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>隠す</p></th>
-                  <td><p>15</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>15</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>隠れる</p></th>
-                  <td><p>10</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>10</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>聞き耳</p></th>
-                  <td><p>25</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>25</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>忍び歩き</p></th>
-                  <td><p>10</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>10</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>写真術</p></th>
-                  <td><p>10</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>10</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>精神分析</p></th>
-                  <td><p>1</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>1</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>追跡</p></th>
-                  <td><p>10</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>10</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>登攀</p></th>
-                  <td><p>40</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>40</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>図書館</p></th>
-                  <td><p>25</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>25</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>目星</p></th>
-                  <td><p>25</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>25</p></td>
+                <tr class="line" *ngFor="let search of searchList; let i = index">
+                  <th><p>{{search.skillName}}</p></th>
+                  <td><p>{{search.initialValue}}</p></td>
+                  <td><input type="number" value="{{search.jobPoint}}" [(ngModel)]="searchList[i].jobPoint" ></td>
+                  <td><input type="number" value="{{search.hobbyPoint}}" [(ngModel)]="searchList[i].hobbyPoint"></td>
+                  <td><input type="number" value="{{search.growthPoint}}" [(ngModel)]="searchList[i].growthPoint"></td>
+                  <td><input type="number" value="{{search.otherPoint}}" [(ngModel)]="searchList[i].otherPoint"></td>
+                  <td><p>{{search.jobPoint + search.hobbyPoint + search.growthPoint + search.otherPoint}}</p></td>
                 </tr>
               </table>
               <ul>
@@ -526,104 +427,14 @@
                   <th>その他</th>
                   <th>合計</th>
                 </tr>
-                <tr class="line">
-                  <th><p>運転（）</p></th>
-                  <td><p>20</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>20</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>機械修理</p></th>
-                  <td><p>20</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>20</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>重機械操作</p></th>
-                  <td><p>1</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>1</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>乗馬</p></th>
-                  <td><p>1</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>1</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>水泳</p></th>
-                  <td><p>25</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>25</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>制作（）</p></th>
-                  <td><p>5</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>5</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>操縦</p></th>
-                  <td><p>1</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>1</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>跳躍</p></th>
-                  <td><p>25</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>25</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>電気修理</p></th>
-                  <td><p>10</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>10</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>ナビゲート</p></th>
-                  <td><p>10</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>10</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>変装</p></th>
-                  <td><p>1</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>1</p></td>
+                <tr class="line" *ngFor="let behavior of behaviorList; let i = index">
+                  <th><p>{{behavior.skillName}}</p></th>
+                  <td><p>{{behavior.initialValue}}</p></td>
+                  <td><input type="number" value="{{behavior.jobPoint}}" [(ngModel)]="behaviorList[i].jobPoint" ></td>
+                  <td><input type="number" value="{{behavior.hobbyPoint}}" [(ngModel)]="behaviorList[i].hobbyPoint"></td>
+                  <td><input type="number" value="{{behavior.growthPoint}}" [(ngModel)]="behaviorList[i].growthPoint"></td>
+                  <td><input type="number" value="{{behavior.otherPoint}}" [(ngModel)]="behaviorList[i].otherPoint"></td>
+                  <td><p>{{behavior.jobPoint + behavior.hobbyPoint + behavior.growthPoint + behavior.otherPoint}}</p></td>
                 </tr>
               </table>
               <ul>
@@ -645,50 +456,14 @@
                   <th>その他</th>
                   <th>合計</th>
                 </tr>
-                <tr class="line">
-                  <th><p>言いくるめ</p></th>
-                  <td><p>5</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>5</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>信用</p></th>
-                  <td><p>15</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>15</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>説得</p></th>
-                  <td><p>15</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>15</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>値切り</p></th>
-                  <td><p>5</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>15</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>母国語（）</p></th>
-                  <td><p>20</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>20</p></td>
+                <tr class="line" *ngFor="let negotiation of negotiationList; let i = index">
+                  <th><p>{{negotiation.skillName}}</p></th>
+                  <td><p>{{negotiation.initialValue}}</p></td>
+                  <td><input type="number" value="{{negotiation.jobPoint}}" [(ngModel)]="negotiationList[i].jobPoint" ></td>
+                  <td><input type="number" value="{{negotiation.hobbyPoint}}" [(ngModel)]="negotiationList[i].hobbyPoint"></td>
+                  <td><input type="number" value="{{negotiation.growthPoint}}" [(ngModel)]="negotiationList[i].growthPoint"></td>
+                  <td><input type="number" value="{{negotiation.otherPoint}}" [(ngModel)]="negotiationList[i].otherPoint"></td>
+                  <td><p>{{negotiation.jobPoint + negotiation.hobbyPoint + negotiation.growthPoint + negotiation.otherPoint}}</p></td>
                 </tr>
               </table>
               <ul>
@@ -710,176 +485,14 @@
                   <th>その他</th>
                   <th>合計</th>
                 </tr>
-                <tr class="line">
-                  <th><p>医学</p></th>
-                  <td><p>5</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>5</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>オカルト</p></th>
-                  <td><p>5</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>5</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>化学</p></th>
-                  <td><p>1</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>1</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>クトゥルフ神話</p></th>
-                  <td><p>0</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>0</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>芸術</p></th>
-                  <td><p>5</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>5</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>経理</p></th>
-                  <td><p>10</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>10</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>考古学</p></th>
-                  <td><p>1</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>1</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>コンピュータ</p></th>
-                  <td><p>1</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>1</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>心理学</p></th>
-                  <td><p>5</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>5</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>人類学</p></th>
-                  <td><p>1</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>1</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>生物学</p></th>
-                  <td><p>1</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>1</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>地質学</p></th>
-                  <td><p>1</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>1</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>電子工学</p></th>
-                  <td><p>1</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>1</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>天文学</p></th>
-                  <td><p>1</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>1</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>博物学</p></th>
-                  <td><p>10</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>10</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>植物学</p></th>
-                  <td><p>1</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>1</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>法律</p></th>
-                  <td><p>5</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>5</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>薬学</p></th>
-                  <td><p>1</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>1</p></td>
-                </tr>
-                <tr class="line">
-                  <th><p>歴史</p></th>
-                  <td><p>20</p></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><input type="number" value="0"></td>
-                  <td><p>20</p></td>
+                <tr class="line" *ngFor="let knowledge of knowledgeList; let i = index">
+                  <th><p>{{knowledge.skillName}}</p></th>
+                  <td><p>{{knowledge.initialValue}}</p></td>
+                  <td><input type="number" value="{{knowledge.jobPoint}}" [(ngModel)]="knowledgeList[i].jobPoint" ></td>
+                  <td><input type="number" value="{{knowledge.hobbyPoint}}" [(ngModel)]="knowledgeList[i].hobbyPoint"></td>
+                  <td><input type="number" value="{{knowledge.growthPoint}}" [(ngModel)]="knowledgeList[i].growthPoint"></td>
+                  <td><input type="number" value="{{knowledge.otherPoint}}" [(ngModel)]="knowledgeList[i].otherPoint"></td>
+                  <td><p>{{knowledge.jobPoint + knowledge.hobbyPoint + knowledge.growthPoint + knowledge.otherPoint}}</p></td>
                 </tr>
               </table>
               <ul>
@@ -927,45 +540,15 @@
               <th>耐久力</th>
               <th>その他</th>
             </tr>
-            <tr>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-            </tr>
-            <tr>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-            </tr>
-            <tr>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-            </tr>
-            <tr>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
+            <tr *ngFor="let wepon of weponList; let i = index">
+              <td><input type="text" value="{{wepon.name}}" [(ngModel)]="weponList[i].name"></td>
+              <td><input type="text" value="{{wepon.successRate}}" [(ngModel)]="weponList[i].successRate"></td>
+              <td><input type="text" value="{{wepon.damage}}" [(ngModel)]="weponList[i].damage"></td>
+              <td><input type="text" value="{{wepon.range}}" [(ngModel)]="weponList[i].range"></td>
+              <td><input type="text" value="{{wepon.attackCount}}" [(ngModel)]="weponList[i].attackCount"></td>
+              <td><input type="text" value="{{wepon.loadingCount}}" [(ngModel)]="weponList[i].loadingCount"></td>
+              <td><input type="text" value="{{wepon.endurance}}" [(ngModel)]="weponList[i].endurance"></td>
+              <td><input type="text" value="{{wepon.other}}" [(ngModel)]="weponList[i].other"></td>
             </tr>
           </table>
         </div>
