@@ -10,6 +10,13 @@
   white-space: nowrap !important;
   position: relative !important;
 }
+/deep/.Left .mat-tab-label{
+  width: calc(100% / 2) !important;
+}
+/deep/.Right .innerContainer .characterStatus .mat-tab-label{
+  width: calc(100% / 5) !important;
+}
+
 /* ここまで */
 .Left {
   float: left;
@@ -36,11 +43,13 @@
       margin: 4px 3.5px;
     }
       .Left .innerContainer .matTabs .characterList li {
+        padding: 7px 0;
         border: solid 1px #999;
-        height: 34px;
         text-align: center;
         cursor: pointer;
         font-size: 12px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
       }
     .Left .innerContainer .bottoms {
       display: flex;
@@ -74,37 +83,29 @@
   box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
   margin-right: 34px;
 }
- .Right h1{
-   text-align: center;
-   border: solid 1px #81C784;
-   background: #81C784;
-   box-sizing: border-box;
-   height: 38px;
-   padding-top: 6px;
- }
-   .Right .innerContainer{}
-     .Right .innerContainer .characterStatus {
-       float: right;
-       border: solid 1px #999;
-       box-sizing: border-box;
-       width: 668px;
-       height: 431px;
-       margin: 10px 21px;
-     }
-       .Right .innerContainer .characterStatus h2 {
-         text-align: center;
-         border: solid 1px #519657;
-         background: #519657;
-         color: #fff;
-         box-sizing: border-box;
-         height: 34px;
-         padding-top: 4px;
-       }
-         .Right .innerContainer .characterStatus .tabs{
-           letter-spacing: -0.5em;
-         }
-           .Right .innerContainer .characterStatus .tabs li {
-             letter-spacing: normal;
-             display: inline-block;
-             font-size: 16px;
-           }
+  .Right h1{
+    text-align: center;
+    border: solid 1px #81C784;
+    background: #81C784;
+    box-sizing: border-box;
+    height: 38px;
+    padding-top: 6px;
+  }
+    .Right .innerContainer{}
+      .Right .innerContainer .characterStatus {
+        float: right;
+        border: solid 1px #999;
+        box-sizing: border-box;
+        width: 668px;
+        height: 431px;
+        margin: 10px 21px;
+      }
+        .Right .innerContainer .characterStatus h2 {
+          text-align: center;
+          border: solid 1px #519657;
+          background: #519657;
+          color: #fff;
+          box-sizing: border-box;
+          height: 34px;
+          padding-top: 4px;
+        }
