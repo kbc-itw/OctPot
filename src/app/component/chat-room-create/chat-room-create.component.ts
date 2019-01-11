@@ -7,6 +7,7 @@ import {ChatRoomCreateService} from '../../Service/chat-room-create.service';
 })
 export class ChatRoomCreateComponent implements OnInit {
   pass;
+  name;
   comment;
   ip;
   bool: boolean = false;
@@ -31,7 +32,13 @@ export class ChatRoomCreateComponent implements OnInit {
     this.bool = true;
     if (this.bool) {
       console.profile('createFunction(service)');
-      this.chatroom.create(this.pass);
+      if (this.name === '' || this.name === null || this.name === undefined) {
+        this.name = '名無しさん';
+      }
+      if (this.pass === '' || this.pass === null || this.pass === undefined) {
+        this.pass = '';
+      }
+      this.chatroom.create(this.pass, this.name);
       console.profileEnd();
     }
     console.groupEnd();
@@ -48,6 +55,7 @@ export class ChatRoomCreateComponent implements OnInit {
   leave() {
     this.chatroom.leave();
     this.pass = null;
+    this.name = null;
     this.comment = null;
     this.ip = null;
     this.bool = false;

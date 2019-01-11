@@ -9,6 +9,7 @@ export class ChatRoomService {
   private io;
   private channel;
   private id;
+  private name;
   public data;
   private bool;
   constructor() {}
@@ -58,7 +59,7 @@ export class ChatRoomService {
       console.log(this.channel);
       this.channel.onopen = () => {
         console.log('DataChannelOpen');
-        var value: string = this.id + 'が入室しました。';
+        var value: string = this.name + 'が入室しました。';
         this.channel.send(value);
       };
       this.channel.onmessage = (event) => {
@@ -102,9 +103,10 @@ export class ChatRoomService {
     return this.io;
   }
 
-  enter(e) {
+  enter(ip, pass, name) {
     // ここでホスト側に入室申請する。
-    this.io.emit('enter', e);
+    this.io.emit('enter', ip, pass);
+    this.name = name;
   }
   // SDPofferが送られてきたときの処理
   sdp() {
@@ -207,7 +209,7 @@ export class ChatRoomService {
     return;
   }
   message(e) {
-    var value = this.id + ': ' + e;
+    var value = this.name + ': ' + e;
     console.log(value);
     if (this.channel !== undefined) {// もしhostとの接続が切れていなかったら
       this.channel.send(value);
@@ -215,7 +217,7 @@ export class ChatRoomService {
     // this.data.next(value);
   }
   leave() {
-    var value = this.id + 'が退出しました。';
+    var value = this.name + 'が退出しました。';
     this.channel.send(value);
     this.bool = false;
     try {

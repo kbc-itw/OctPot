@@ -8,7 +8,8 @@
 <div *ngIf="!room_in; else room">
   <form (submit)="enter()">
     <input type="text" placeholder="IPアドレスを入力してください。" (input)="ip=$event.target.value"><br>
-    <input type="password" placeholder="パスワードを入力してください。"(input)="pass=$event.target.value">
+    <input type="password" placeholder="パスワードを入力してください。"(input)="pass=$event.target.value"><br>
+    <input type="text" placeholder="あなたの名前" (input)="name=$event.target.value">
     <input type="submit" value="送信">
   </form><br>
   <a (click)="leave()" routerLink="">トップへ戻る</a><br>

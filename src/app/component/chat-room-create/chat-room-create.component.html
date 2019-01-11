@@ -4,6 +4,7 @@
     <div>ホストのIPアドレス</div><br>
     <div>{{ ip }}</div><br>
     <input type="password" placeholder="パスワード" (input)="pass=$event.target.value"><br>
+    <input type="text" placeholder="あなたの名前" (input)="name=$event.target.value"><br>
     <input type="submit" value="作成"><br>
   </form>
   <a (click)="leave()" routerLink="">トップへ戻る</a><br>

@@ -15,6 +15,7 @@ export class ChatRoomCreateService {
   private channel;
   private member = [];
   private  id;
+  private name;
   private count;
   public data = new BehaviorSubject<string>(null);
   private date: string;
@@ -26,13 +27,14 @@ export class ChatRoomCreateService {
       console.log('connect');
     });
   }
-  create(pass) {
+  create(pass, name) {
     console.groupCollapsed('createFunction(service)');
     console.log('constructor', 'from', 'service');
     this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
     this.channel = this.peer.createDataChannel('my channel');
     this.member.push({peer: this.peer, channel: this.channel});
     this.date = moment().format('YY/MM/DD HH:mm');
+    this.name = name;
     this.data.next('ルームを作成しました。' + '(' + this.date + ')');
     this.count = 0;
     console.profile('ondatachannel');
@@ -222,7 +224,7 @@ export class ChatRoomCreateService {
   }
   message(e) {
     this.date = moment().format('YY/MM/DD HH:mm');
-    var value: string = this.id + ': ' + e + '(' + this.date + ')';
+    var value: string = this.name + ': ' + e + '(' + this.date + ')';
     try {
       this.member.forEach((e) => {
         console.log('--------------------------------------------------------------------', e);
@@ -237,7 +239,7 @@ export class ChatRoomCreateService {
   }
   leave() {
     this.io.close();
-    var value = this.id + 'が退出しました。';
+    var value = this.name + 'が退出しました。';
     try {
       this.member.forEach((e) => {
         console.log('--------------------------------------------------------------------', e);

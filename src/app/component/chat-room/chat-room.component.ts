@@ -12,6 +12,7 @@ export class ChatRoomComponent implements OnInit {
   comment;
   ip;
   pass;
+  name;
   constructor(private chat: ChatRoomService) {}
   ngOnInit() {
     console.log('chat-room-component');
@@ -22,6 +23,9 @@ export class ChatRoomComponent implements OnInit {
       console.log('hello ------------------------------------------------------------------------------------------', e);
       this.room_in = true;
       // this.message_list.push(e);
+    });
+    this.chat.getio().on('key_default', () => {
+      console.log('パスワードが違います。');
     });
     this.chat.data.subscribe(message => {
       this.message_list.push(message);
@@ -34,7 +38,13 @@ export class ChatRoomComponent implements OnInit {
   }
   enter() {
     console.log('enter: ', this.ip);
-    this.chat.enter(this.ip);
+    if (this.name === '' || this.name === null || this.name === undefined) {
+      this.name = '名無しさん';
+    }
+    if (this.pass === '' || this.pass === null || this.pass === undefined) {
+      this.pass = '';
+    }
+    this.chat.enter(this.ip, this.pass, this.name);
   }
   offer() {
     console.profile('offerFunction');
@@ -52,5 +62,6 @@ export class ChatRoomComponent implements OnInit {
     this.comment = null;
     this.ip = null;
     this.pass = null;
+    this.name = null;
   }
 }
