@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterCreateService } from '../../Service/character-create.service';
-import { FormsModule } from '@angular/forms';
 import { Convert, Chara, Setting, Character, Skill,
       Behavior, Status, BaseStatus, FluctuationStatus,
       Items, Item, Weapon, Profile } from '../../model/character-info-model';
-
-// import { HttpService } from '../app-http.service';
 
 @Component({
   selector: 'app-character-create',
@@ -52,7 +49,7 @@ export class CharacterCreateComponent implements OnInit {
   private edustock;
   private incomestock;
 
-  private filename = 'octpot.js';
+  private filename = 'octpot.json';
 
 
   private combats;
@@ -107,55 +104,6 @@ export class CharacterCreateComponent implements OnInit {
   private diceEdu;
   private diceIncome_and_property;
   // Skill
-  // Skill.combat
-  private combatSkillName;
-  private combatInitialValue;
-  private combatJobPoint;
-  private combatHobbyPoint;
-  private combatGrowthPoint;
-  private combatOtherPoint;
-  // Skill.search
-  private searchSkillName;
-  private searchInitialValue;
-  private searchJobPoint;
-  private searchHobbyPoint;
-  private searchGrowthPoint;
-  private searchOtherPoint;
-  // Skill.behavior
-  private behaviorSkillName;
-  private behaviorInitialValue;
-  private behaviorJobPoint;
-  private behaviorHobbyPoint;
-  private behaviorGrowthPoint;
-  private behaviorOtherPoint;
-  // Skill.negotiation
-  private negotiationSkillName;
-  private negotiationInitialValue;
-  private negotiationJobPoint;
-  private negotiationHobbyPoint;
-  private negotiationGrowthPoint;
-  private negatiationOtherPoint;
-  // Skill.knowledge
-  private knowledgeSkillName;
-  private knowledgeInitialValue;
-  private knowledgeJobPoint;
-  private knowledgeHobbyPoint;
-  private knowledgeGrowthPoint;
-  private knowledgeOtherPoint;
-  // items
-  // items.wepom
-  private weponName;
-  private successRate;
-  private damage;
-  private range;
-  private attackCount;
-  private loadingCount;
-  private endurance;
-  private weponOther;
-  // items.item
-  private itemName;
-  private number;
-  private itemOther;
   // profile
   private pCareer;
   private pEncounter;
@@ -716,7 +664,7 @@ export class CharacterCreateComponent implements OnInit {
       let item = {
         name: '',
         times: '',
-        descripton: ''
+        description: ''
       } ;
       this.itemslist[i] = item;
     }
@@ -822,12 +770,8 @@ export class CharacterCreateComponent implements OnInit {
     let profile = [this.Career, this.Encounter];
     let json = this.characre.change(basic, status, fstatus, profile);
     // this.characre.save(json, document.getElementById('download'), this.filename)
-    console.log(this.cgender);
-    console.log(this.cname);
-    console.log(this.sjob);
-    console.log(this.itemslist);
-    console.log(this.weponList);
 
+    // Charaクラスを完成させる
     let newchara = new Chara();
 
     let newcharacter = new Character();
@@ -930,7 +874,7 @@ export class CharacterCreateComponent implements OnInit {
 
     let newitems = new Items();
     this.weponList.forEach(function(item) {
-      if ( !item.name ) {
+      if ( item.name ) {
         let newwepon = new Weapon();
         newwepon.weaponName = item.name;
         newwepon.successRate = item.successRate;
@@ -944,32 +888,24 @@ export class CharacterCreateComponent implements OnInit {
       }
     });
     this.itemslist.forEach(function(item) {
-      if ( !item.name ) {
+      if ( item.name ) {
         let newitem = new Item();
         newitem.itemName = item.name;
         newitem.number = item.times;
-        newitem.other = item.descripton;
+        newitem.other = item.description;
         newitems.item.push(newitem);
       }
-
     });
-
     newchara.items = newitems;  // charaに入れる
-
     let newprofile = new Profile();
     newprofile.Career = this.pCareer;
     newprofile.Encounter = this.pEncounter;
     newprofile.otherMemo = this.pOtherMemo;
-
     newchara.profile = newprofile;  // charaに入れる
 
-    console.log(newchara);
+    let characterJson = Convert.charaToJson(newchara);  // CharaクラスをJSONに変換する
 
-    let characterJson = Convert.charaToJson(newchara);
-
-    console.log(characterJson);
-
-    this.characre.save(characterJson, document.getElementById('download'), this.filename)
+    this.characre.save(characterJson, document.getElementById('download'), this.filename);  // JSON文字列を保存させる
 
   }
 }
