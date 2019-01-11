@@ -150,7 +150,6 @@ export class CharacterjsonToHtmlComponent implements OnInit {
   pushHTML ( str ) {
     let chara: Chara = Convert.toChara(str);
     console.log(chara);
-    console.log(typeof(chara));
 
     // Setting
     this.type = chara.Setting.type;
@@ -187,14 +186,14 @@ export class CharacterjsonToHtmlComponent implements OnInit {
     this.HobbySkill = chara.Status.fluctuationStatus.HobbySkill;
     this.DamegeBonus = chara.Status.fluctuationStatus.DamegeBonus;
     // Status.reDice
-    this.diceStr = chara.Status.reDice.str;
-    this.diceCon = chara.Status.reDice.con;
-    this.diceDex = chara.Status.reDice.dex;
-    this.diceApp = chara.Status.reDice.app;
-    this.diceSiz = chara.Status.reDice.siz;
-    this.diceInt = chara.Status.reDice.int;
-    this.diceEdu = chara.Status.reDice.edu;
-    this.diceIncome_and_property = chara.Status.reDice.income_and_property;
+    // this.diceStr = chara.Status.reDice.str;
+    // this.diceCon = chara.Status.reDice.con;
+    // this.diceDex = chara.Status.reDice.dex;
+    // this.diceApp = chara.Status.reDice.app;
+    // this.diceSiz = chara.Status.reDice.siz;
+    // this.diceInt = chara.Status.reDice.int;
+    // this.diceEdu = chara.Status.reDice.edu;
+    // this.diceIncome_and_property = chara.Status.reDice.income_and_property;
     // Skill
     // Skill.combat
     this.combats = chara.Skill.conbat;
@@ -212,6 +211,9 @@ export class CharacterjsonToHtmlComponent implements OnInit {
     // Items.items
     this.items = chara.items.item;
 
+    this.Career = chara.profile.Career;
+    this.Encounter = chara.profile.Encounter;
+    this.OtherMemo = chara.profile.otherMemo;
 
   }
 
