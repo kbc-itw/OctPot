@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import * as client from 'socket.io-client';
 import {BehaviorSubject} from 'rxjs';
-import * as moment from 'moment';
 @Injectable()
 export class ChatRoomCreateService {
   // ホスト側が使うルーム作成クラス
@@ -18,7 +17,6 @@ export class ChatRoomCreateService {
   private name;
   private count;
   public data = new BehaviorSubject<string>(null);
-  private date: string;
   constructor() {
   }
   io_connect() {
@@ -33,9 +31,8 @@ export class ChatRoomCreateService {
     this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
     this.channel = this.peer.createDataChannel('my channel');
     this.member.push({peer: this.peer, channel: this.channel});
-    this.date = moment().format('YY/MM/DD HH:mm');
     this.name = name;
-    this.data.next('ルームを作成しました。' + '(' + this.date + ')');
+    this.data.next('ルームを作成しました。' );
     this.count = 0;
     console.profile('ondatachannel');
     this.dc();
@@ -82,8 +79,7 @@ export class ChatRoomCreateService {
     this.member[this.member.length - 1].channel.onmessage = (event) => {
       console.log('データチャネルメッセージ取得:', event.data);
       console.log(event);
-      this.date = moment().format('YY/MM/DD HH:mm');
-      var val = event.data + '(' + this.date + ')';
+      var val = event.data;
       this.data.next(val);
       this.member.forEach((e) => {
         console.log(event);
@@ -223,8 +219,7 @@ export class ChatRoomCreateService {
     return;
   }
   message(e) {
-    this.date = moment().format('YY/MM/DD HH:mm');
-    var value: string = this.name + ': ' + e + '(' + this.date + ')';
+    var value: string = this.name + ': ' + e;
     try {
       this.member.forEach((e) => {
         console.log('--------------------------------------------------------------------', e);

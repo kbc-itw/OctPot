@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ChatRoomCreateService} from '../../Service/chat-room-create.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-chat-room-create',
@@ -22,7 +23,10 @@ export class ChatRoomCreateComponent implements OnInit {
       this.ip = e;
     });
     this.chatroom.data.subscribe(message => {
-      this.message_list.push(message);
+      var date = '(' + moment().format('YY/MM/DD HH:mm') + ')';
+      if (message !== null && message !== undefined && message !== '') {
+        this.message_list.push({message: message, date: date});
+      }
     });
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ChatRoomService} from '../../Service/chat-room-service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-chat-room',
@@ -28,7 +29,10 @@ export class ChatRoomComponent implements OnInit {
       console.log('パスワードが違います。');
     });
     this.chat.data.subscribe(message => {
-      this.message_list.push(message);
+      var date = '(' + moment().format('YY/MM/DD HH:mm') + ')';
+      if (message !== null && message !== undefined && message !== '') {
+        this.message_list.push({message: message, date: date});
+      }
     });
   }
   connect() {
