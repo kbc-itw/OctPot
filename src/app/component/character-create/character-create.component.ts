@@ -95,14 +95,14 @@ export class CharacterCreateComponent implements OnInit {
   private fHobbySkill;
   private fDamegeBonus;
   // Status.reDice
-  private diceStr;
-  private diceCon;
-  private diceDex;
-  private diceApp;
-  private diceSiz;
-  private diceInt;
-  private diceEdu;
-  private diceIncome_and_property;
+  private diceStr = 3;
+  private diceCon = 3;
+  private diceDex = 3;
+  private diceApp = 3;
+  private diceSiz = 3;
+  private diceInt = 3;
+  private diceEdu = 3;
+  private diceIncome_and_property = 3;
   // Skill
   // profile
   private pCareer;
@@ -132,6 +132,144 @@ export class CharacterCreateComponent implements OnInit {
     this.generateKnowledgeskillFrame();
     this.generateWeponFrame();
     this.generateItemFrame();
+  }
+
+
+  throwDice(dicename) {
+    let throwing = function(times, num, plus) {  // さいころ処理 times:回数 num:ダイスの面数 plus:あとで足す分
+      let result = 0;  // ダイス合計
+      function getRandomIntInclusive(max) {
+        let min = Math.ceil(1);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      for (let i = 0; i < times; i++ ) {
+        let res = getRandomIntInclusive(num);
+        result += res;
+      }
+      result += dicePlus;
+      return result;
+    };
+
+    let diceNum = 0;  // x面ダイス
+    let diceTimes = 0;  // x回振る
+    let dicePlus = 0;  // xプラス
+
+    switch (dicename) {
+      case 'str' :
+        diceNum = 6;
+        diceTimes = 3;
+        break;
+
+      case 'con' :
+        diceNum = 6;
+        diceTimes = 3;
+        break;
+
+      case 'pow' :
+        diceNum = 6;
+        diceTimes = 3;
+        break;
+
+      case 'dex' :
+        diceNum = 6;
+        diceTimes = 3;
+        break;
+
+      case 'app' :
+        diceNum = 6;
+        diceTimes = 3;
+        break;
+
+      case 'siz' :
+        diceNum = 6;
+        diceTimes = 2;
+        dicePlus = 6;
+        break;
+
+      case 'int' :
+        diceNum = 6;
+        diceTimes = 2;
+        dicePlus = 6;
+        break;
+
+      case 'edu' :
+        diceNum = 6;
+        diceTimes = 3;
+        dicePlus = 3;
+        break;
+
+      case 'income' :
+        diceNum = 6;
+        diceTimes = 3;
+        break;
+
+      case 'allDice' :
+        this.throwDice('str');
+        this.throwDice('con');
+        this.throwDice('pow');
+        this.throwDice('dex');
+        this.throwDice('app');
+        this.throwDice('siz');
+        this.throwDice('int');
+        this.throwDice('edu');
+        this.throwDice('income');
+        break;
+    }
+
+    // ダイスを振って各項目に入れる
+    if (!(dicename === 'allDice')) {
+      let result = throwing(diceTimes, diceNum, dicePlus);
+      switch (dicename) {
+        case 'str' :
+          this.bstr = result;
+          break;
+
+        case 'con' :
+          this.bcon = result;
+          if (this.siz) {
+            this.fhealth = (this.bsiz + result) / 2;
+          }
+          break;
+
+        case 'pow' :
+          this.bpow = result;
+          this.fsan = result * 5;
+          this.fluck = result * 5;
+          break;
+
+        case 'dex' :
+          this.bdex = result;
+          break;
+
+        case 'app' :
+          this.bapp = result;
+          break;
+
+        case 'siz' :
+          this.bsiz = result;
+          if (this.bcon) {
+            this.fhealth = Math.round((this.bcon + result) / 2);
+          }
+          break;
+
+        case 'int' :
+          this.bint = result;
+          this.fidea = result * 5;
+          this.fHobbySkill = result * 10;
+          break;
+
+        case 'edu' :
+          this.bedu = result;
+          this.fknowledge = result * 5;
+          this.fVocationalSkill = result * 20;
+          break;
+
+        case 'income' :
+          this.bincome_and_property = result;
+          break;
+      }
+    }
   }
 
   // 戦闘技能枠の作成
