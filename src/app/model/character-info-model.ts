@@ -32,38 +32,38 @@ export class Chara {
 }
 
 export class Setting {
-    type:      string;  // PCかNPCか
-    race:      string;  // 種族
+    type:      string = '';  // PCかNPCか
+    race:      string = '';  // 種族
     character: Character;
-    job:       string;  // 職業
-    images:    any[];
+    job:       string = '';  // 職業
+    images:    any[] = [];
 }
 
 export class Character {
-    name:       string;  // 名前
-    gender:     string;  // 性別
-    height:     string;  // 身長
-    weight:     string;  // 体重
-    birthplace: string;  // 出身地
-    hairColor:  string;  // 髪の色
-    eyeColor:   string;  // 瞳の色
+    name:       string = '';  // 名前
+    gender:     string = '';  // 性別
+    height:     string = '';  // 身長
+    weight:     string = '';  // 体重
+    birthplace: string = '';  // 出身地
+    hairColor:  string = '';  // 髪の色
+    eyeColor:   string ='';  // 瞳の色
 }
 
 export class Skill {
-    conbat:      Behavior[];
-    search:      Behavior[];
-    behavior:    Behavior[];
-    negotiation: Behavior[];
-    knowledge:   Behavior[];
+    conbat:      Behavior[] = [];
+    search:      Behavior[] = [];
+    behavior:    Behavior[] = [];
+    negotiation: Behavior[] = [];
+    knowledge:   Behavior[] = [];
 }
 
 export class Behavior {
-    skillName:     string;  // 技能名
-    initialValue: number;  //  その技能の初期値
-    jobPoint:      number;  //  割り振った職業ポイント
-    hobbyPoint:    number;  //  割り振った趣味ポイント
-    growthPoint:   number;  //  実際に上昇した値
-    otherPoint:    number;  //  その他の値
+    skillName:     string = '';  // 技能名
+    initialValue: number = 0;  //  その技能の初期値
+    jobPoint:      number = 0;  //  割り振った職業ポイント
+    hobbyPoint:    number = 0;  //  割り振った趣味ポイント
+    growthPoint:   number = 0;  //  実際に上昇した値
+    otherPoint:    number = 0;  //  その他の値
 }
 
 export class Status {
@@ -73,64 +73,64 @@ export class Status {
 }
 
 export class BaseStatus {
-    str:                   number;  // 筋力
-    con:                   number;  // 体力
-    pow:                   number;  // 精神力
-    dex:                   number;  // 俊敏性
-    siz:                   number;  // 体格
-    app:                   number;  // 外見
-    int:                   number;  // 知性
-    edu:                   number;  // 教育
-    income_and_property: number;  // 財産
+    str:                   number = 0;  // 筋力
+    con:                   number = 0;  // 体力
+    pow:                   number = 0;  // 精神力
+    dex:                   number = 0;  // 俊敏性
+    siz:                   number = 0;  // 体格
+    app:                   number = 0;  // 外見
+    int:                   number = 0;  // 知性
+    edu:                   number = 0;  // 教育
+    income_and_property: number = 0;  // 財産
 }
 
 export class FluctuationStatus {
-    san:             number;  // SAN値
-    luck:            number;  // 幸運
-    idea:            number;  // アイデア
-    knowledge:       number;  // 知識
-    health:          number;  // 耐久力
-    mp:              number;  // MP
-    VocationalSkill: number;  // 職業技能ポイント
-    HobbySkill:      number;  // 趣味技能ポイント
-    DamegeBonus:     string;  // ダメージボーナス
+    san:             number = 0;  // SAN値
+    luck:            number = 0;  // 幸運
+    idea:            number = 0;  // アイデア
+    knowledge:       number = 0;  // 知識
+    health:          number = 0;  // 耐久力
+    mp:              number = 0;  // MP
+    VocationalSkill: number = 0;  // 職業技能ポイント
+    HobbySkill:      number = 0;  // 趣味技能ポイント
+    DamegeBonus:     string = '';  // ダメージボーナス
 }
 
 export class Items {
-    weapon: Weapon[];
-    item:   Item[];
+    weapon: Weapon[] = [];
+    item:   Item[] = [];
 }
 
 export class Item {
-    itemName: string;  // アイテム名
-    number:   string;  // 個数
-    other:    string;  // その他
+    itemName: string = '';  // アイテム名
+    number:   string = '';  // 個数
+    other:    string = '';  // その他
 }
 
 export class Weapon {
-    weaponName:   string;  // 武器の名
-    successRate:  number;  // 成功確率
-    damage:       string;  // ダメージ
-    range:        string;  // 射程
-    attackCount:  number;  // 攻撃回数
-    loadingCount: number;  // 装弾数
-    endurance:    number;  // 耐久値
-    other:        string;  // その他
+    weaponName:   string = '';  // 武器の名
+    successRate:  number = 0;  // 成功確率
+    damage:       string = '';  // ダメージ
+    range:        string = '';  // 射程
+    attackCount:  number = 0;  // 攻撃回数
+    loadingCount: number = 0;  // 装弾数
+    endurance:    number = 0;  // 耐久値
+    other:        string = '';  // その他
 }
 
 export class Profile {
-    Career:    string;  // 経歴
-    Encounter: string;  // 遭遇したもの
-    otherMemo: string;  // その他メモ
+    Career:    string = '';  // 経歴
+    Encounter: string = '';  // 遭遇したもの
+    otherMemo: string = '';  // その他メモ
 }
 
 // Converts JSON strings to/from your types
 export namespace Convert {
-    export function toChara(json: string): Chara {
+    export function toChara(json: string): Chara {  // JSONをCharaに
         return JSON.parse(json);
     }
 
-    export function charaToJson(value: Chara): string {
+    export function charaToJson(value: Chara): string {  // Charaをstringに
         return JSON.stringify(value);
     }
 }

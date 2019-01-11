@@ -163,7 +163,7 @@ export class CharacterCreateComponent implements OnInit {
 
   private combatList;  // 戦闘技能の配列
   private searchList; // 探索技能の配列
-  private behaviorList: Behavior[]; // 行動技能の配列
+  private behaviorList; // 行動技能の配列
   private negotiationList; // 交渉技能の配列
   private knowledgeList; // 知識技能の配列
   private weponList = []; // 所持品(武具)の配列
@@ -829,10 +829,6 @@ export class CharacterCreateComponent implements OnInit {
     console.log(this.weponList);
 
     let newchara = new Chara();
-    let newsetting = new Setting();
-    newsetting.type = this.stype;
-    newsetting.race = this.srace;
-    newsetting.job = this.sjob;
 
     let newcharacter = new Character();
     newcharacter.name = this.cname;
@@ -843,20 +839,137 @@ export class CharacterCreateComponent implements OnInit {
     newcharacter.hairColor = this.chairColor;
     newcharacter.eyeColor = this.ceyeColor;
 
+    let newsetting = new Setting();
+    newsetting.type = this.stype;
+    newsetting.race = this.srace;
+    newsetting.job = this.sjob;
     newsetting.character = newcharacter;
 
+    newchara.Setting = newsetting;  // charaに入れる
+
     let newskill = new Skill();
-    this.behaviorList.forEach(function(beh) {
-      newskill.behavior.push(beh);
+    this.combatList.forEach(function(skill) {
+      let newbehavior = new Behavior();
+      newbehavior.skillName = skill['skillName'];
+      newbehavior.initialValue = skill['initialValue'];
+      newbehavior.jobPoint = skill['jobPoint'];
+      newbehavior.hobbyPoint = skill['hobbyPoint'];
+      newbehavior.growthPoint = skill['growthPoint'];
+      newbehavior.otherPoint = skill['otherPoint'];
+      newskill.conbat.push(newbehavior);
     });
-    let newbehavior = new Behavior();  // スキルの数だけ存在する
+    this.searchList.forEach(function(skill) {
+      let newbehavior = new Behavior();
+      newbehavior.skillName = skill['skillName'];
+      newbehavior.initialValue = skill['initialValue'];
+      newbehavior.jobPoint = skill['jobPoint'];
+      newbehavior.hobbyPoint = skill['hobbyPoint'];
+      newbehavior.growthPoint = skill['growthPoint'];
+      newbehavior.otherPoint = skill['otherPoint'];
+      newskill.search.push(newbehavior);
+    });
+    this.behaviorList.forEach(function(skill) {
+      let newbehavior = new Behavior();
+      newbehavior.skillName = skill['skillName'];
+      newbehavior.initialValue = skill['initialValue'];
+      newbehavior.jobPoint = skill['jobPoint'];
+      newbehavior.hobbyPoint = skill['hobbyPoint'];
+      newbehavior.growthPoint = skill['growthPoint'];
+      newbehavior.otherPoint = skill['otherPoint'];
+      newskill.behavior.push(newbehavior);
+    });
+    this.negotiationList.forEach(function(skill) {
+      let newbehavior = new Behavior();
+      newbehavior.skillName = skill['skillName'];
+      newbehavior.initialValue = skill['initialValue'];
+      newbehavior.jobPoint = skill['jobPoint'];
+      newbehavior.hobbyPoint = skill['hobbyPoint'];
+      newbehavior.growthPoint = skill['growthPoint'];
+      newbehavior.otherPoint = skill['otherPoint'];
+      newskill.negotiation.push(newbehavior);
+    });
+    this.knowledgeList.forEach(function(skill) {
+      let newbehavior = new Behavior();
+      newbehavior.skillName = skill['skillName'];
+      newbehavior.initialValue = skill['initialValue'];
+      newbehavior.jobPoint = skill['jobPoint'];
+      newbehavior.hobbyPoint = skill['hobbyPoint'];
+      newbehavior.growthPoint = skill['growthPoint'];
+      newbehavior.otherPoint = skill['otherPoint'];
+      newskill.knowledge.push(newbehavior);
+    });
+
+    newchara.Skill = newskill;  // charaに入れる
+
     let newstatus = new Status();
     let newbaseStatus = new BaseStatus();
+    newbaseStatus.str = this.bstr;
+    newbaseStatus.con = this.bcon;
+    newbaseStatus.pow = this.bpow;
+    newbaseStatus.dex = this.bdex;
+    newbaseStatus.siz = this.bsiz;
+    newbaseStatus.app = this.bapp;
+    newbaseStatus.int = this.bint;
+    newbaseStatus.edu = this.bedu;
+    newbaseStatus.income_and_property = this.bincome_and_property;
+    newstatus.baseStatus = newbaseStatus;
+
     let newfluctuationStatus = new FluctuationStatus();
+    newfluctuationStatus.san = this.fsan;
+    newfluctuationStatus.luck = this.fluck;
+    newfluctuationStatus.idea = this.fidea;
+    newfluctuationStatus.knowledge = this.fknowledge;
+    newfluctuationStatus.health = this.fhealth;
+    newfluctuationStatus.mp = this.fmp;
+    newfluctuationStatus.VocationalSkill = this.fVocationalSkill;
+    newfluctuationStatus.HobbySkill = this.fHobbySkill;
+    newfluctuationStatus.DamegeBonus = this.fDamegeBonus;
+    newstatus.fluctuationStatus = newfluctuationStatus;
+
+    newchara.Status = newstatus;  // charaに入れる
+
     let newitems = new Items();
-    let newitem = new Item();  // 持ってるアイテムの数だけ存在する
-    let newweapon = new Weapon();  // 持ってる武器の数だけ存在する
+    this.weponList.forEach(function(item) {
+      if ( !item.name ) {
+        let newwepon = new Weapon();
+        newwepon.weaponName = item.name;
+        newwepon.successRate = item.successRate;
+        newwepon.damage = item.damage;
+        newwepon.range = item.range;
+        newwepon.attackCount = item.attackCount;
+        newwepon.loadingCount = item.loadingCount;
+        newwepon.endurance = item.endurance;
+        newwepon.other = item.other;
+        newitems.weapon.push(newwepon);
+      }
+    });
+    this.itemslist.forEach(function(item) {
+      if ( !item.name ) {
+        let newitem = new Item();
+        newitem.itemName = item.name;
+        newitem.number = item.times;
+        newitem.other = item.descripton;
+        newitems.item.push(newitem);
+      }
+
+    });
+
+    newchara.items = newitems;  // charaに入れる
+
     let newprofile = new Profile();
+    newprofile.Career = this.pCareer;
+    newprofile.Encounter = this.pEncounter;
+    newprofile.otherMemo = this.pOtherMemo;
+
+    newchara.profile = newprofile;  // charaに入れる
+
+    console.log(newchara);
+
+    let characterJson = Convert.charaToJson(newchara);
+
+    console.log(characterJson);
+
+    this.characre.save(characterJson, document.getElementById('download'), this.filename)
 
   }
 }
