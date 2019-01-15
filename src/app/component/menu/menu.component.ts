@@ -1,18 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../Service/menu-service';
+import { ChatRoomCreateComponent } from '../chat-room-create/chat-room-create.component';
 
 @Component({
-  selector: 'app-top-room',
+  selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  menu;
-  constructor(private top: MenuService) { }
+  val;
+  constructor(private menu: MenuService, private chatroom: ChatRoomCreateComponent) { }
   ngOnInit() {
-    console.log('top-room-component');
+    console.log('memo-component');
   }
   click(word) {
-    this.top.click(word);
+    this.menu.click(word);
+  }
+  leave() {
+    this.chatroom.leave();
   }
 }
