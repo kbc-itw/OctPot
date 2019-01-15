@@ -16,7 +16,7 @@ export class ChatRoomCreateService {
   private member = [];
   private  id;
   private name;
-  private count;
+  private pass;
   public data = new BehaviorSubject<string>(null);
   private date: string;
   constructor() {
@@ -35,8 +35,8 @@ export class ChatRoomCreateService {
     this.member.push({peer: this.peer, channel: this.channel});
     this.date = moment().format('YY/MM/DD HH:mm');
     this.name = name;
+    this.pass = pass;
     this.data.next('ルームを作成しました。' + '(' + this.date + ')');
-    this.count = 0;
     console.profile('ondatachannel');
     this.dc();
     console.profileEnd();
@@ -127,8 +127,20 @@ export class ChatRoomCreateService {
     };
     */
   }
-  getio() {
+  get_io() {
     return this.io;
+  }
+  get_member() {
+    return this.member;
+  }
+  get_id() {
+    return this.id;
+  }
+  get_name() {
+    return this.name;
+  }
+  get_pass() {
+    return this.pass;
   }
   // peer通信を始める準備
   connect(pass) {

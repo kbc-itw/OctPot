@@ -1,4 +1,18 @@
 <section id="menu">
+  <ul>
+    <li (mouseenter)="val='file'" (mouseleave)="val=null"><button>ファイル</button></li>
+    <li (mouseenter)="val='view'" (mouseleave)="val=null"><button>表示</button></li>
+    <li (mouseenter)="val='koma'" (mouseleave)="val=null"><button>コマ</button></li>
+    <li (mouseenter)="val='map'" (mouseleave)="val=null"><button>マップ</button></li>
+    <li (mouseenter)="val='config'" (mouseleave)="val=null"><button>設定</button>
+      <ul *ngIf="val === 'config'">
+        <li (click)="c_pass=true; val='null'"><button>パスワード変更</button></li>
+        <li><button>種族設定</button></li>
+        <li><button>職業設定</button></li>
+      </ul>
+    </li>
+    <li (click)="leave()" routerLink="" style="float: right;"><button>退室</button></li>
+  </ul>
   <div class="container clearfix">
     <!--
     入室したらメニューを表示させたい。
@@ -6,22 +20,12 @@
     できなければ、そのプロパティを別にするか。
     若しくは処理をこっちに持ってくるか、ここの処理をあっちに持っていくか。
     -->
-    <div>
-      <ul>
-        <li (click)="val='file'">ファイル</li>
-        <li (click)="val='view'">表示</li>
-        <li (click)="val='koma'">コマ</li>
-        <li (click)="val='map'">マップ</li>
-        <li (click)="val='config'">設定
-          <ul *ngIf="val === 'config'">
-            <li>パスワード変更</li>
-            <li>種族設定</li>
-            <li>職業設定</li>
-          </ul>
-        </li>
-        <li (click)="leave()" routerLink="">退室</li>
-      </ul><br>
+    <div *ngIf="c_pass === true">
+      <!--もしc_passがtrueだったら、パスワード変更のポップアップを出す。-->
+      <form (submit)="change_pass()" (submit)="$event.target.pass.value=null">
+        <input name="pass" type="text" placeholder="パスワード" (input)="pass=$event.target.value">
+        <input type="submit" value="送信">
+      </form><br>
     </div>
-    <app-chat-room-create></app-chat-room-create>
   </div>
 </section>

@@ -17,7 +17,7 @@ export class ChatRoomCreateComponent implements OnInit {
 
   ngOnInit() {
     this.chatroom.io_connect();
-    this.chatroom.getio().on('IP', (e) => {
+    this.chatroom.get_io().on('IP', (e) => {
       console.log('IPdayo', e);
       this.ip = e;
     });
@@ -52,6 +52,14 @@ export class ChatRoomCreateComponent implements OnInit {
     this.comment = null;
   }
 
+  get_params() {
+    console.log('get_params');
+    var params = [];
+    params.push({io: this.chatroom.get_io(), member: this.chatroom.get_member(),
+      pass: this.chatroom.get_pass(), name: this.chatroom.get_name()});
+    console.log(params);
+    return params;
+  }
   leave() {
     this.chatroom.leave();
     this.pass = null;
