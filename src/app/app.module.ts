@@ -10,7 +10,7 @@ import {CharacterCreateComponent} from './component/character-create/character-c
 import {CharacterManagementComponent} from './component/character-management/character-management.component';
 import {ChatRoomComponent} from './component/chat-room/chat-room.component';
 import {TopPageComponent} from './component/top-page/top-page.component';
-import {TopRoomComponent} from './component/top-room/top-room.component';
+import {MenuComponent} from './component/menu/menu.component';
 import {ChatRoomCreateComponent} from './component/chat-room-create/chat-room-create.component';
 import {DiceComponent} from './component/dice/dice.component';
 import {MemoComponent} from './component/memo/memo.component';
@@ -23,7 +23,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCardModule, MatTabsModule} from '@angular/material';
 import {SwitchTabService} from './Service/switch-tab.service';
 import {TabsManagerService} from './Service/tabs-manager.service';
-import {TopRoomService} from './Service/top-room-service';
+import {MenuService} from './Service/menu-service';
 import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
 
 @NgModule({
@@ -33,7 +33,7 @@ import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
     CharacterManagementComponent,
     ChatRoomComponent,
     TopPageComponent,
-    TopRoomComponent,
+    MenuComponent,
     ChatRoomCreateComponent,
     DiceComponent,
     MemoComponent,
@@ -60,7 +60,7 @@ import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
     ChatRoomCreateService,
     SwitchTabService,
     TabsManagerService,
-    TopRoomService
+    MenuService
   ],
   bootstrap: [AppComponent]
 })

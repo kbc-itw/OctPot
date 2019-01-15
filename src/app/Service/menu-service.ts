@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class TopRoomService {
+export class MenuService {
   constructor () {}
   click(word) {
     switch (word) {
