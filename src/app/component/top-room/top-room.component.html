@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<section id="top-room">
+  <div class="container clearfix">
+    <div *ngIf="">
+      <ul>
+        <li (click)="menu='file'">ファイル</li>
+        <li (click)="menu='view'">表示</li>
+        <li (click)="menu='koma'">コマ</li>
+        <li (click)="menu='map'">マップ</li>
+        <li (click)="menu='config'">設定
+          <ul *ngIf="menu === 'config'">
+            <li>パスワード変更</li>
+            <li>種族設定</li>
+            <li>職業設定</li>
+          </ul>
+        </li>
+        <li (click)="menu='exit'">退室</li>
+      </ul><br>
+    </div>
+    <app-chat-room-create></app-chat-room-create>
+  </div>
+</section>
