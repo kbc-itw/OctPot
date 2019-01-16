@@ -97,6 +97,7 @@ export class CharacterCreateComponent implements OnInit {
   // Status.reDice
   private diceStr = 3;
   private diceCon = 3;
+  private dicePow = 3;
   private diceDex = 3;
   private diceApp = 3;
   private diceSiz = 3;
@@ -227,7 +228,7 @@ export class CharacterCreateComponent implements OnInit {
 
         case 'con' :
           this.bcon = result;
-          if (this.siz) {
+          if (this.bsiz) {
             this.fhealth = (this.bsiz + result) / 2;
           }
           break;
@@ -236,6 +237,7 @@ export class CharacterCreateComponent implements OnInit {
           this.bpow = result;
           this.fsan = result * 5;
           this.fluck = result * 5;
+          this.fmp = result;
           break;
 
         case 'dex' :
@@ -633,7 +635,8 @@ export class CharacterCreateComponent implements OnInit {
       },
       {
         'skillName': 'オカルト',
-        'jobPoint': 5,
+        'initialValue': 5,
+        'jobPoint': 0,
         'hobbyPoint': 0,
         'growthPoint': 0,
         'otherPoint': 0
