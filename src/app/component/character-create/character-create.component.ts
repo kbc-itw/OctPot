@@ -274,6 +274,7 @@ export class CharacterCreateComponent implements OnInit {
 
         case 'dex' :
           this.bdex = result;
+          this.combatList[0].initialValue = result * 2;
           break;
 
         case 'app' :
