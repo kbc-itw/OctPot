@@ -1,21 +1,26 @@
-<div *ngIf="!bool; else success">
+<div class="roomForm" *ngIf="!bool; else success">
   <p>ルーム作成</p><br>
   <form (submit)="create()">
-    <div>ホストのIPアドレス</div><br>
-    <div>{{ ip }}</div><br>
-    <input type="password" placeholder="パスワード" (input)="pass=$event.target.value"><br>
-    <input type="text" placeholder="あなたの名前" (input)="name=$event.target.value"><br>
-    <input type="submit" value="作成"><br>
+    <ul class="column">
+      <li><label for="text">ホストのIPアドレス：</label><input type="text" value={{ip}} readonly></li>
+      <li><label for="password">パスワード：</label><input type="password" (input)="pass=$event.target.value"></li>
+      <li><label for="text">あなたの名前：</label><input type="text" (input)="name=$event.target.value"></li>
+    </ul>
+    <ul class="submits clearfix">
+      <li><button class="submit" type="submit">作成</button></li>
+      <li><a (click)="leave()" routerLink=""><button class="leave">トップへ戻る</button></a></li>
+    </ul>
   </form>
-  <a (click)="leave()" routerLink="">トップへ戻る</a><br>
 </div>
 <ng-template #success>
-  <app-menu></app-menu>
-  <form (submit)="message()" (submit)="$event.target.text.value=null">
-    <input name="text" type="text" placeholder="テキスト" (input)="comment=$event.target.value">
-    <input type="submit" value="送信">
-  </form><br>
-  <div id="message_list" *ngFor = "let message of message_list">
-    <span class="">{{message.message}}</span><span>{{message.date}}</span>
+  <a (click)="leave()" routerLink="">退出する</a>
+  <div class="chatBlock">
+    <ul class="log">
+      <li id="message_list" *ngFor="let message of message_list"><span>{{message.message}}</span><span class="date">{{message.date}}</span></li>
+    </ul>
+    <form (submit)="message()" (submit)="$event.target.text.value=null">
+      <input name='text' type="text" placeholder="テキスト" (input)="comment=$event.target.value">
+      <input type="submit" value="送信">
+    </form>
   </div>
 </ng-template>

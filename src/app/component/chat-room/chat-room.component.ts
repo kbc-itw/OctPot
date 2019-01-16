@@ -4,7 +4,9 @@ import * as moment from 'moment';
 
 @Component({
   selector: 'app-chat-room',
-  templateUrl: './test.html'
+  templateUrl: './chat-room.component.html',
+  styleUrls: ['./chat-room.component.css']
+
 })
 export class ChatRoomComponent implements OnInit {
   rooms;
