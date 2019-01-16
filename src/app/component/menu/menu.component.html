@@ -7,8 +7,6 @@
     <li (mouseenter)="val='config'" (mouseleave)="val=null"><button>設定</button>
       <ul *ngIf="val === 'config'">
         <li (click)="c_pass=true; val='null'"><button>パスワード変更</button></li>
-        <li><button>種族設定</button></li>
-        <li><button>職業設定</button></li>
       </ul>
     </li>
     <li (click)="leave()" routerLink="" style="float: right;"><button>退室</button></li>
