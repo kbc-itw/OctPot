@@ -277,7 +277,7 @@
                   <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{combat.hobbyPoint}}" [(ngModel)]="combatList[i].hobbyPoint"></td>
                   <td><input type="number" min="0" value="{{combat.growthPoint}}" [(ngModel)]="combatList[i].growthPoint"></td>
                   <td><input type="number" min="0" value="{{combat.otherPoint}}" [(ngModel)]="combatList[i].otherPoint"></td>
-                  <td><p>{{combat.jobPoint + combat.hobbyPoint + combat.growthPoint + combat.otherPoint}}</p></td>
+                  <td><p>{{combat.initialValue + combat.jobPoint + combat.hobbyPoint + combat.growthPoint + combat.otherPoint}}</p></td>
                 </tr>
               </table>
               <ul>
@@ -306,7 +306,7 @@
                   <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{search.hobbyPoint}}" [(ngModel)]="searchList[i].hobbyPoint"></td>
                   <td><input type="number" min="0" value="{{search.growthPoint}}" [(ngModel)]="searchList[i].growthPoint"></td>
                   <td><input type="number" min="0" value="{{search.otherPoint}}" [(ngModel)]="searchList[i].otherPoint"></td>
-                  <td><p>{{search.jobPoint + search.hobbyPoint + search.growthPoint + search.otherPoint}}</p></td>
+                  <td><p>{{search.initialValue + search.jobPoint + search.hobbyPoint + search.growthPoint + search.otherPoint}}</p></td>
                 </tr>
               </table>
               <ul>
