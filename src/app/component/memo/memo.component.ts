@@ -73,6 +73,8 @@ export class MemoComponent implements OnInit {
     }
   }
 
+  offer(){}
+
   ngOnInit() {
     console.log('OnInit');
 
