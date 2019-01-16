@@ -10,11 +10,11 @@
   <a (click)="leave()" routerLink="">トップへ戻る</a><br>
 </div>
 <ng-template #success>
+  <app-menu></app-menu>
   <form (submit)="message()" (submit)="$event.target.text.value=null">
     <input name="text" type="text" placeholder="テキスト" (input)="comment=$event.target.value">
     <input type="submit" value="送信">
   </form><br>
-  <a (click)="leave()" routerLink="">退出する</a>
   <div id="message_list" *ngFor = "let message of message_list">
     <span class="">{{message.message}}</span><span>{{message.date}}</span>
   </div>

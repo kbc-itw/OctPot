@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import * as client from 'socket.io-client';
 import {BehaviorSubject} from 'rxjs';
+import * as moment from 'moment';
 @Injectable()
 export class ChatRoomCreateService {
   // ホスト側が使うルーム作成クラス
@@ -15,8 +16,9 @@ export class ChatRoomCreateService {
   private member = [];
   private  id;
   private name;
-  private count;
+  private pass;
   public data = new BehaviorSubject<string>(null);
+  private date: string;
   constructor() {
   }
   io_connect() {
@@ -31,9 +33,10 @@ export class ChatRoomCreateService {
     this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
     this.channel = this.peer.createDataChannel('my channel');
     this.member.push({peer: this.peer, channel: this.channel});
+    this.date = moment().format('YY/MM/DD HH:mm');
     this.name = name;
-    this.data.next('ルームを作成しました。' );
-    this.count = 0;
+    this.pass = pass;
+    this.data.next('ルームを作成しました。' + '(' + this.date + ')');
     console.profile('ondatachannel');
     this.dc();
     console.profileEnd();
@@ -79,7 +82,8 @@ export class ChatRoomCreateService {
     this.member[this.member.length - 1].channel.onmessage = (event) => {
       console.log('データチャネルメッセージ取得:', event.data);
       console.log(event);
-      var val = event.data;
+      this.date = moment().format('YY/MM/DD HH:mm');
+      var val = event.data + '(' + this.date + ')';
       this.data.next(val);
       this.member.forEach((e) => {
         console.log(event);
@@ -123,8 +127,20 @@ export class ChatRoomCreateService {
     };
     */
   }
-  getio() {
+  get_io() {
     return this.io;
+  }
+  get_member() {
+    return this.member;
+  }
+  get_id() {
+    return this.id;
+  }
+  get_name() {
+    return this.name;
+  }
+  get_pass() {
+    return this.pass;
   }
   // peer通信を始める準備
   connect(pass) {
@@ -219,7 +235,8 @@ export class ChatRoomCreateService {
     return;
   }
   message(e) {
-    var value: string = this.name + ': ' + e;
+    this.date = moment().format('YY/MM/DD HH:mm');
+    var value: string = this.name + ': ' + e + '(' + this.date + ')';
     try {
       this.member.forEach((e) => {
         console.log('--------------------------------------------------------------------', e);

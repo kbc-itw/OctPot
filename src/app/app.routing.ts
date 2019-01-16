@@ -2,6 +2,7 @@ import {ModuleWithProviders} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
 import {TopPageComponent} from './component/top-page/top-page.component';
+import {MenuComponent} from './component/menu/menu.component';
 import {CharacterCreateComponent} from './component/character-create/character-create.component';
 import {CharacterManagementComponent} from './component/character-management/character-management.component';
 import {ChatRoomComponent} from './component/chat-room/chat-room.component';
@@ -14,7 +15,8 @@ const myRoutes = [
   {path: 'management', component: CharacterManagementComponent},
   {path: 'chat-room', component: ChatRoomComponent},
   {path: 'create-chat-room', component: ChatRoomCreateComponent},
-  {path: 'memo-tabs', component: MemoTabsComponent}
+  {path: 'memo-tabs', component: MemoTabsComponent},
+  {path: 'top-room', component: MenuComponent}
   // { path: '**', component: ErrorComponent} 予想外のパスにつないだ時のコンポーネント
 ];
 
