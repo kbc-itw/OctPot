@@ -125,7 +125,15 @@ export class CharacterCreateComponent implements OnInit {
   private negotiationPointAll = 0;
   private knowledgePointAll = 0;
 
+  // 保有ポイント全部
+  private professionalPoint = 0;
+  private interestPoint = 0;
+  // 使用できる保有ポイント
+  private remProfessionalPoint = 0;
+  private remInterestPoint = 0;
+
   constructor(private characre: CharacterCreateService) {
+    // 何のスキルがあるか配列から読み込むメソッド達を使う
     this.generateCombatskillFrame();
     this.generateSearchskillFrame();
     this.generateBehaviorskillFrame();
@@ -133,11 +141,33 @@ export class CharacterCreateComponent implements OnInit {
     this.generateKnowledgeskillFrame();
     this.generateWeponFrame();
     this.generateItemFrame();
+
+    this.totalcalc();
+  }
+
+  totalcalc() {  // 残り使えるスキルポイントを計算する
+    let usedPoint = 0;
+    this.combatList.forEach(function(skill){
+      usedPoint += skill['jobPoint'];
+    });
+    this.searchList.forEach(function(skill){
+      usedPoint += skill['jobPoint'];
+    });
+    this.behaviorList.forEach(function(skill){
+      usedPoint += skill['jobPoint'];
+    });
+    this.negotiationList.forEach(function(skill){
+      usedPoint += skill['jobPoint'];
+    });
+    this.knowledgeList.forEach(function(skill){
+      usedPoint += skill['jobPoint'];
+    });
+    this.remProfessionalPoint = this.professionalPoint - usedPoint;
   }
 
 
   throwDice(dicename) {
-    let throwing = function(times, num, plus) {  // さいころ処理 times:回数 num:ダイスの面数 plus:あとで足す分
+    function throwing(times, num, plus) {  // さいころ処理 times:回数 num:ダイスの面数 plus:あとで足す分
       let result = 0;  // ダイス合計
       function getRandomIntInclusive(max) {
         let min = Math.ceil(1);
@@ -150,7 +180,7 @@ export class CharacterCreateComponent implements OnInit {
       }
       result += dicePlus;
       return result;
-    };
+    }
 
     let diceNum = 0;  // x面ダイス
     let diceTimes = 0;  // x回振る
@@ -218,6 +248,8 @@ export class CharacterCreateComponent implements OnInit {
         break;
     }
 
+    let individualProfessionalPoint = 0;
+    let individualInterestPoint = 0;
     // ダイスを振って各項目に入れる
     if (!(dicename === 'allDice')) {
       let result = throwing(diceTimes, diceNum, dicePlus);
@@ -259,12 +291,16 @@ export class CharacterCreateComponent implements OnInit {
           this.bint = result;
           this.fidea = result * 5;
           this.fHobbySkill = result * 10;
+          this.interestPoint = result * 10;
+          this.remInterestPoint = result * 10;
           break;
 
         case 'edu' :
           this.bedu = result;
           this.fknowledge = result * 5;
           this.fVocationalSkill = result * 20;
+          this.professionalPoint = result * 20;
+          this.remProfessionalPoint = result * 20;
           break;
 
         case 'income' :
@@ -1048,5 +1084,6 @@ export class CharacterCreateComponent implements OnInit {
 
     this.characre.save(characterJson, document.getElementById('download'), this.filename);  // JSON文字列を保存させる
 
+    this.totalcalc();
   }
 }

@@ -273,8 +273,8 @@
                 <tr class="line" *ngFor="let combat of combatList; let i = index">
                   <th><p>{{combat.skillName}}</p></th>
                   <td><p>{{combat.initialValue}}</p></td>
-                  <td><input type="number" min="0" value="{{combat.jobPoint}}" [(ngModel)]="combatList[i].jobPoint" ></td>
-                  <td><input type="number" min="0" value="{{combat.hobbyPoint}}" [(ngModel)]="combatList[i].hobbyPoint"></td>
+                  <td><input type="number" min="0" max="{{remProfessionalPoint}}" value="{{combat.jobPoint}}" [(ngModel)]="combatList[i].jobPoint" ></td>
+                  <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{combat.hobbyPoint}}" [(ngModel)]="combatList[i].hobbyPoint"></td>
                   <td><input type="number" min="0" value="{{combat.growthPoint}}" [(ngModel)]="combatList[i].growthPoint"></td>
                   <td><input type="number" min="0" value="{{combat.otherPoint}}" [(ngModel)]="combatList[i].otherPoint"></td>
                   <td><p>{{combat.jobPoint + combat.hobbyPoint + combat.growthPoint + combat.otherPoint}}</p></td>
@@ -302,8 +302,8 @@
                 <tr class="line" *ngFor="let search of searchList; let i = index">
                   <th><p>{{search.skillName}}</p></th>
                   <td><p>{{search.initialValue}}</p></td>
-                  <td><input type="number" min="0" value="{{search.jobPoint}}" [(ngModel)]="searchList[i].jobPoint" ></td>
-                  <td><input type="number" min="0" value="{{search.hobbyPoint}}" [(ngModel)]="searchList[i].hobbyPoint"></td>
+                  <td><input type="number" min="0" max="{{remProfessionalPoint}}" value="{{search.jobPoint}}" [(ngModel)]="searchList[i].jobPoint" ></td>
+                  <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{search.hobbyPoint}}" [(ngModel)]="searchList[i].hobbyPoint"></td>
                   <td><input type="number" min="0" value="{{search.growthPoint}}" [(ngModel)]="searchList[i].growthPoint"></td>
                   <td><input type="number" min="0" value="{{search.otherPoint}}" [(ngModel)]="searchList[i].otherPoint"></td>
                   <td><p>{{search.jobPoint + search.hobbyPoint + search.growthPoint + search.otherPoint}}</p></td>
@@ -331,8 +331,8 @@
                 <tr class="line" *ngFor="let behavior of behaviorList; let i = index">
                   <th><p>{{behavior.skillName}}</p></th>
                   <td><p>{{behavior.initialValue}}</p></td>
-                  <td><input type="number" min="0" value="{{behavior.jobPoint}}" [(ngModel)]="behaviorList[i].jobPoint" ></td>
-                  <td><input type="number" min="0" value="{{behavior.hobbyPoint}}" [(ngModel)]="behaviorList[i].hobbyPoint"></td>
+                  <td><input type="number" min="0" max="{{remProfessionalPoint}}" value="{{behavior.jobPoint}}" [(ngModel)]="behaviorList[i].jobPoint" ></td>
+                  <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{behavior.hobbyPoint}}" [(ngModel)]="behaviorList[i].hobbyPoint"></td>
                   <td><input type="number" min="0" value="{{behavior.growthPoint}}" [(ngModel)]="behaviorList[i].growthPoint"></td>
                   <td><input type="number" min="0" value="{{behavior.otherPoint}}" [(ngModel)]="behaviorList[i].otherPoint"></td>
                   <td><p>{{behavior.initialValue + behavior.jobPoint + behavior.hobbyPoint + behavior.growthPoint + behavior.otherPoint}}</p></td>
@@ -360,8 +360,8 @@
                 <tr class="line" *ngFor="let negotiation of negotiationList; let i = index">
                   <th><p>{{negotiation.skillName}}</p></th>
                   <td><p>{{negotiation.initialValue}}</p></td>
-                  <td><input type="number" min="0" value="{{negotiation.jobPoint}}" [(ngModel)]="negotiationList[i].jobPoint" ></td>
-                  <td><input type="number" min="0" value="{{negotiation.hobbyPoint}}" [(ngModel)]="negotiationList[i].hobbyPoint"></td>
+                  <td><input type="number" min="0" max="{{remProfessionalPoint}}" value="{{negotiation.jobPoint}}" [(ngModel)]="negotiationList[i].jobPoint" ></td>
+                  <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{negotiation.hobbyPoint}}" [(ngModel)]="negotiationList[i].hobbyPoint"></td>
                   <td><input type="number" min="0" value="{{negotiation.growthPoint}}" [(ngModel)]="negotiationList[i].growthPoint"></td>
                   <td><input type="number" min="0" value="{{negotiation.otherPoint}}" [(ngModel)]="negotiationList[i].otherPoint"></td>
                   <td><p>{{negotiation.initialValue + negotiation.jobPoint + negotiation.hobbyPoint + negotiation.growthPoint + negotiation.otherPoint}}</p></td>
@@ -389,8 +389,8 @@
                 <tr class="line" *ngFor="let knowledge of knowledgeList; let i = index">
                   <th><p>{{knowledge.skillName}}</p></th>
                   <td><p>{{knowledge.initialValue}}</p></td>
-                  <td><input type="number" min="0" value="{{knowledge.jobPoint}}" [(ngModel)]="knowledgeList[i].jobPoint" ></td>
-                  <td><input type="number" min="0" value="{{knowledge.hobbyPoint}}" [(ngModel)]="knowledgeList[i].hobbyPoint"></td>
+                  <td><input type="number" min="0" max="{{remProfessionalPoint}}" value="{{knowledge.jobPoint}}" [(ngModel)]="knowledgeList[i].jobPoint" ></td>
+                  <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{knowledge.hobbyPoint}}" [(ngModel)]="knowledgeList[i].hobbyPoint"></td>
                   <td><input type="number" min="0" value="{{knowledge.growthPoint}}" [(ngModel)]="knowledgeList[i].growthPoint"></td>
                   <td><input type="number" min="0" value="{{knowledge.otherPoint}}" [(ngModel)]="knowledgeList[i].otherPoint"></td>
                   <td><p>{{knowledge.initialValue + knowledge.jobPoint + knowledge.hobbyPoint + knowledge.growthPoint + knowledge.otherPoint}}</p></td>
@@ -409,8 +409,8 @@
           <h2>保有ポイント</h2>
           <div class="contentWrap">
             <ul>
-              <li class="clearfix"><label for="professionPoint">職業ポイント：</label><input type="text" id="professionPoint" value="{{professionalPoint}}" readonly /></li>
-              <li class="clearfix"><label for="interestPoint">興味ポイント：</label><input type="text" id="interestPoint" value="{{interestPoint}}" readonly /></li>
+              <li class="clearfix"><label for="remProfessionPoint">職業ポイント：</label><input type="text" id="professionPoint" value="{{remProfessionalPoint}}" readonly /></li>
+              <li class="clearfix"><label for="remInterestPoint">興味ポイント：</label><input type="text" id="interestPoint" value="{{remInterestPoint}}" readonly /></li>
             </ul>
           </div>
         </div>
