@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ChatRoomCreateService} from '../../Service/chat-room-create.service';
+import {DiceService} from '../../Service/dice-service';
 import * as moment from 'moment';
 
 @Component({
@@ -14,7 +15,7 @@ export class ChatRoomCreateComponent implements OnInit {
   ip;
   bool: boolean = false;
   message_list: any= [];
-  constructor(private chatroom: ChatRoomCreateService ) {
+  constructor(private chatroom: ChatRoomCreateService, private dice: DiceService) {
   }
 
   ngOnInit() {
@@ -52,7 +53,12 @@ export class ChatRoomCreateComponent implements OnInit {
   message() {
     console.log(this.comment);
     if (this.comment !== null && this.comment !== undefined && this.comment !== '') {
-      this.chatroom.message(this.comment);
+      var result = this.dice.roll(this.comment);
+      if (result !== undefined) {
+        this.chatroom.message(this.comment + ' => ' + result);
+      } else {
+        this.chatroom.message(this.comment);
+      }
     }
     this.comment = null;
   }

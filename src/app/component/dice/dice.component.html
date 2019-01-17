@@ -1,8 +1,10 @@
 <p>
   だいすろおる！
 </p>
-
-<input id="dice" type="text" value=""/>
-<input class="raised-roll" type="button" value='roll' (click)="roll()"/>
-
-<div id="dr" #dice></div>
+<form (submit)="roll()" (submit)="$event.target.result.value=null">
+  <input name="result" id="dice" type="text" value="" (input)="word=$event.target.value"/>
+  <input class="raised-roll" type="submit" value='roll'/>
+</form>
+<div id="dr" #dice *ngFor="let val of result">
+  {{val}}
+</div>
