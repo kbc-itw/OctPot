@@ -273,11 +273,13 @@
                 <tr class="line" *ngFor="let combat of combatList; let i = index">
                   <th><p>{{combat.skillName}}</p></th>
                   <td><p>{{combat.initialValue}}</p></td>
-                  <td><input type="number" value="{{combat.jobPoint}}" [(ngModel)]="combatList[i].jobPoint" ></td>
-                  <td><input type="number" value="{{combat.hobbyPoint}}" [(ngModel)]="combatList[i].hobbyPoint"></td>
-                  <td><input type="number" value="{{combat.growthPoint}}" [(ngModel)]="combatList[i].growthPoint"></td>
-                  <td><input type="number" value="{{combat.otherPoint}}" [(ngModel)]="combatList[i].otherPoint"></td>
-                  <td><p>{{combat.jobPoint + combat.hobbyPoint + combat.growthPoint + combat.otherPoint}}</p></td>
+                  <td><input type="number" min="0" max="80" value="{{combat.jobPoint}}" 
+                    [(ngModel)]="combatList[i].jobPoint" (input)="totalcalc($event.target.value, combat, i, 'combat', 'job')" (keyup)="dontKyetype($event.target.value, combat, i, 'combat', 'job')"></td>
+                  <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{combat.hobbyPoint}}" 
+                    [(ngModel)]="combatList[i].hobbyPoint"  (input)="totalcalc($event.target.value, combat, i, 'combat', 'hobby')" (keyup)="dontKyetype($event.target.value, combat, i, 'combat', 'hobby')"></td>
+                  <td><input type="number" min="0" value="{{combat.growthPoint}}" [(ngModel)]="combatList[i].growthPoint" (keyup)="dontKyetype($event.target.value, combat, i, 'combat', 'growth')"></td>
+                  <td><input type="number" min="0" value="{{combat.otherPoint}}" [(ngModel)]="combatList[i].otherPoint" (keyup)="dontKyetype($event.target.value, combat, i, 'combat', 'other')"></td>
+                  <td><p>{{combat.initialValue + combat.jobPoint + combat.hobbyPoint + combat.growthPoint + combat.otherPoint}}</p></td>
                 </tr>
               </table>
               <ul>
@@ -302,11 +304,13 @@
                 <tr class="line" *ngFor="let search of searchList; let i = index">
                   <th><p>{{search.skillName}}</p></th>
                   <td><p>{{search.initialValue}}</p></td>
-                  <td><input type="number" value="{{search.jobPoint}}" [(ngModel)]="searchList[i].jobPoint" ></td>
-                  <td><input type="number" value="{{search.hobbyPoint}}" [(ngModel)]="searchList[i].hobbyPoint"></td>
-                  <td><input type="number" value="{{search.growthPoint}}" [(ngModel)]="searchList[i].growthPoint"></td>
-                  <td><input type="number" value="{{search.otherPoint}}" [(ngModel)]="searchList[i].otherPoint"></td>
-                  <td><p>{{search.jobPoint + search.hobbyPoint + search.growthPoint + search.otherPoint}}</p></td>
+                  <td><input type="number" min="0" max="{{remProfessionalPoint}}" value="{{search.jobPoint}}" 
+                    [(ngModel)]="searchList[i].jobPoint" (input)="totalcalc($event.target.value, combat, i, 'search', 'job')" (keyup)="dontKyetype($event.target.value, combat, i, 'search', 'job')"></td>
+                  <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{search.hobbyPoint}}" 
+                    [(ngModel)]="searchList[i].hobbyPoint" (input)="totalcalc($event.target.value, combat, i, 'search', 'hobby')" (keyup)="dontKyetype($event.target.value, combat, i, 'search', 'hobby')"></td>
+                  <td><input type="number" min="0" value="{{search.growthPoint}}" [(ngModel)]="searchList[i].growthPoint" (keyup)="dontKyetype($event.target.value, combat, i, 'search', 'growth')"></td>
+                  <td><input type="number" min="0" value="{{search.otherPoint}}" [(ngModel)]="searchList[i].otherPoint" (keyup)="dontKyetype($event.target.value, combat, i, 'search', 'other')"></td>
+                  <td><p>{{search.initialValue + search.jobPoint + search.hobbyPoint + search.growthPoint + search.otherPoint}}</p></td>
                 </tr>
               </table>
               <ul>
@@ -331,11 +335,13 @@
                 <tr class="line" *ngFor="let behavior of behaviorList; let i = index">
                   <th><p>{{behavior.skillName}}</p></th>
                   <td><p>{{behavior.initialValue}}</p></td>
-                  <td><input type="number" value="{{behavior.jobPoint}}" [(ngModel)]="behaviorList[i].jobPoint" ></td>
-                  <td><input type="number" value="{{behavior.hobbyPoint}}" [(ngModel)]="behaviorList[i].hobbyPoint"></td>
-                  <td><input type="number" value="{{behavior.growthPoint}}" [(ngModel)]="behaviorList[i].growthPoint"></td>
-                  <td><input type="number" value="{{behavior.otherPoint}}" [(ngModel)]="behaviorList[i].otherPoint"></td>
-                  <td><p>{{behavior.jobPoint + behavior.hobbyPoint + behavior.growthPoint + behavior.otherPoint}}</p></td>
+                  <td><input type="number" min="0" max="{{remProfessionalPoint}}" value="{{behavior.jobPoint}}"
+                     [(ngModel)]="behaviorList[i].jobPoint" (input)="totalcalc($event.target.value, combat, i, 'behavior', 'job')" (keyup)="dontKyetype($event.target.value, combat, i, 'behavior', 'job')"></td>
+                  <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{behavior.hobbyPoint}}"
+                     [(ngModel)]="behaviorList[i].hobbyPoint" (input)="totalcalc($event.target.value, combat, i, 'behavior', 'hobby')" (keyup)="dontKyetype($event.target.value, combat, i, 'behavior', 'hobby')"></td>
+                  <td><input type="number" min="0" value="{{behavior.growthPoint}}" [(ngModel)]="behaviorList[i].growthPoint" (keyup)="dontKyetype($event.target.value, combat, i, 'behavior', 'growth')"></td>
+                  <td><input type="number" min="0" value="{{behavior.otherPoint}}" [(ngModel)]="behaviorList[i].otherPoint" (keyup)="dontKyetype($event.target.value, combat, i, 'behavior', 'other')"></td>
+                  <td><p>{{behavior.initialValue + behavior.jobPoint + behavior.hobbyPoint + behavior.growthPoint + behavior.otherPoint}}</p></td>
                 </tr>
               </table>
               <ul>
@@ -360,11 +366,13 @@
                 <tr class="line" *ngFor="let negotiation of negotiationList; let i = index">
                   <th><p>{{negotiation.skillName}}</p></th>
                   <td><p>{{negotiation.initialValue}}</p></td>
-                  <td><input type="number" value="{{negotiation.jobPoint}}" [(ngModel)]="negotiationList[i].jobPoint" ></td>
-                  <td><input type="number" value="{{negotiation.hobbyPoint}}" [(ngModel)]="negotiationList[i].hobbyPoint"></td>
-                  <td><input type="number" value="{{negotiation.growthPoint}}" [(ngModel)]="negotiationList[i].growthPoint"></td>
-                  <td><input type="number" value="{{negotiation.otherPoint}}" [(ngModel)]="negotiationList[i].otherPoint"></td>
-                  <td><p>{{negotiation.jobPoint + negotiation.hobbyPoint + negotiation.growthPoint + negotiation.otherPoint}}</p></td>
+                  <td><input type="number" min="0" max="{{remProfessionalPoint}}" value="{{negotiation.jobPoint}}"
+                     [(ngModel)]="negotiationList[i].jobPoint" (input)="totalcalc($event.target.value, combat, i, 'negotiation', 'job')" (keyup)="dontKyetype($event.target.value, combat, i, 'negotiation', 'job')"></td>
+                  <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{negotiation.hobbyPoint}}"
+                     [(ngModel)]="negotiationList[i].hobbyPoint" (input)="totalcalc($event.target.value, combat, i, 'negotiation', 'job')" (keyup)="dontKyetype($event.target.value, combat, i, 'negotiation', 'hobby')"></td>
+                  <td><input type="number" min="0" value="{{negotiation.growthPoint}}" [(ngModel)]="negotiationList[i].growthPoint" (keyup)="dontKyetype($event.target.value, combat, i, 'negotiation', 'growth')"></td>
+                  <td><input type="number" min="0" value="{{negotiation.otherPoint}}" [(ngModel)]="negotiationList[i].otherPoint" (keyup)="dontKyetype($event.target.value, combat, i, 'negotiation', 'growth')"></td>
+                  <td><p>{{negotiation.initialValue + negotiation.jobPoint + negotiation.hobbyPoint + negotiation.growthPoint + negotiation.otherPoint}}</p></td>
                 </tr>
               </table>
               <ul>
@@ -389,11 +397,13 @@
                 <tr class="line" *ngFor="let knowledge of knowledgeList; let i = index">
                   <th><p>{{knowledge.skillName}}</p></th>
                   <td><p>{{knowledge.initialValue}}</p></td>
-                  <td><input type="number" value="{{knowledge.jobPoint}}" [(ngModel)]="knowledgeList[i].jobPoint" ></td>
-                  <td><input type="number" value="{{knowledge.hobbyPoint}}" [(ngModel)]="knowledgeList[i].hobbyPoint"></td>
-                  <td><input type="number" value="{{knowledge.growthPoint}}" [(ngModel)]="knowledgeList[i].growthPoint"></td>
-                  <td><input type="number" value="{{knowledge.otherPoint}}" [(ngModel)]="knowledgeList[i].otherPoint"></td>
-                  <td><p>{{knowledge.jobPoint + knowledge.hobbyPoint + knowledge.growthPoint + knowledge.otherPoint}}</p></td>
+                  <td><input type="number" min="0" max="{{remProfessionalPoint}}" value="{{knowledge.jobPoint}}" 
+                    [(ngModel)]="knowledgeList[i].jobPoint" (input)="totalcalc($event.target.value, combat, i, 'knowledge', 'job')" (keyup)="dontKyetype($event.target.value, combat, i, 'knowledge', 'job')"></td>
+                  <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{knowledge.hobbyPoint}}"
+                     [(ngModel)]="knowledgeList[i].hobbyPoint" (input)="totalcalc($event.target.value, combat, i, 'knowledge', 'hobby')" (keyup)="dontKyetype($event.target.value, combat, i, 'knowledge', 'hobby')"></td>
+                  <td><input type="number" min="0" value="{{knowledge.growthPoint}}" [(ngModel)]="knowledgeList[i].growthPoint" (keyup)="dontKyetype($event.target.value, combat, i, 'knowledge', 'growth')"></td>
+                  <td><input type="number" min="0" value="{{knowledge.otherPoint}}" [(ngModel)]="knowledgeList[i].otherPoint" (keyup)="dontKyetype($event.target.value, combat, i, 'knowledge', 'other')"></td>
+                  <td><p>{{knowledge.initialValue + knowledge.jobPoint + knowledge.hobbyPoint + knowledge.growthPoint + knowledge.otherPoint}}</p></td>
                 </tr>
               </table>
               <ul>
@@ -409,8 +419,8 @@
           <h2>保有ポイント</h2>
           <div class="contentWrap">
             <ul>
-              <li class="clearfix"><label for="professionPoint">職業ポイント：</label><input type="text" id="professionPoint" readonly /></li>
-              <li class="clearfix"><label for="interestPoint">興味ポイント：</label><input type="text" id="interestPoint" readonly /></li>
+              <li class="clearfix"><label for="remProfessionPoint">職業ポイント：</label><input type="text" id="professionPoint" value="{{remProfessionalPoint}}" readonly /></li>
+              <li class="clearfix"><label for="remInterestPoint">興味ポイント：</label><input type="text" id="interestPoint" value="{{remInterestPoint}}" readonly /></li>
             </ul>
           </div>
         </div>

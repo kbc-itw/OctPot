@@ -1,18 +1,5 @@
 <div class="container clearfix">
-  <nav class="side">
-    <ul *ngIf="side_flg === true">
-      <li><a href="#">トップページ</a></li>
-      <li><a href="#">キャラクター管理</a></li>
-      <li><a href="#">設定</a></li>
-    </ul>
-    <div class="toggle">
-      <img *ngIf="!side_flg" (click)="side_flg=true;" src="../../../assets/img/character-management/open_button.png"
-           alt="画像右向き">
-      <img class="active" *ngIf="side_flg" (click)="side_flg=false;"
-           src="../../../assets/img/character-management/close_button.png" alt="画像左向き">
-    </div>
-  </nav>
-
+  <app-side-bar></app-side-bar>
   <div class="Left">
     <h1>キャラクター一覧</h1>
     <div class="innerContainer">

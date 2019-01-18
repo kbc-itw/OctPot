@@ -10,55 +10,55 @@ import { Convert, Chara, Setting, Character, Skill,
   styleUrls: ['./character-create.component.css']
 })
 export class CharacterCreateComponent implements OnInit {
-  private roll = '';
-  private race = '';
-  private name = '';
-  private gender = '';
-  private job = '';
+  // private roll = '';
+  // private race = '';
+  // private name = '';
+  // private gender = '';
+  // private job = '';
 
-  private str = '3D6';
-  private con = '3D6';
-  private pow = '3D6';
-  private dex = '3D6';
-  private app = '3D6';
-  private siz = '2D6+6';
-  private int = '2D6+6';
-  private edu = '3D6+3';
-  private income = '3D6';
+  // private str = '3D6';
+  // private con = '3D6';
+  // private pow = '3D6';
+  // private dex = '3D6';
+  // private app = '3D6';
+  // private siz = '2D6+6';
+  // private int = '2D6+6';
+  // private edu = '3D6+3';
+  // private income = '3D6';
 
-  private SAN = 'pow*5';
-  private luck = 'pow*5';
-  private idea = 'int*5';
-  private knowledge = 'edu*5';
-  private health = '(con+size)/2';
-  private mp = 'pow';
-  private VocationalSkill = 'edu*20';
-  private HobbySkill = 'int*10';
-  private DamegeBonus = '';
+  // private SAN = 'pow*5';
+  // private luck = 'pow*5';
+  // private idea = 'int*5';
+  // private knowledge = 'edu*5';
+  // private health = '(con+size)/2';
+  // private mp = 'pow';
+  // private VocationalSkill = 'edu*20';
+  // private HobbySkill = 'int*10';
+  // private DamegeBonus = '';
 
-  private Career = '';
-  private Encounter = '';
+  // private Career = '';
+  // private Encounter = '';
 
-  private strstock;
-  private constock;
-  private powstock;
-  private dexstock;
-  private appstock;
-  private sizstock;
-  private intstock;
-  private edustock;
-  private incomestock;
+  // private strstock;
+  // private constock;
+  // private powstock;
+  // private dexstock;
+  // private appstock;
+  // private sizstock;
+  // private intstock;
+  // private edustock;
+  // private incomestock;
 
   private filename = 'octpot.json';
 
 
-  private combats;
-  private searchs;
-  private behaviors;
-  private negotiations;
-  private knowledges;
-  private wepons;
-  private items;
+  // private combats;
+  // private searchs;
+  // private behaviors;
+  // private negotiations;
+  // private knowledges;
+  // private wepons;
+  // private items;
 
   // Setting
   private stype;
@@ -97,6 +97,7 @@ export class CharacterCreateComponent implements OnInit {
   // Status.reDice
   private diceStr = 3;
   private diceCon = 3;
+  private dicePow = 3;
   private diceDex = 3;
   private diceApp = 3;
   private diceSiz = 3;
@@ -109,11 +110,11 @@ export class CharacterCreateComponent implements OnInit {
   private pEncounter;
   private pOtherMemo;
 
-  private combatList;  // 戦闘技能の配列
-  private searchList; // 探索技能の配列
-  private behaviorList; // 行動技能の配列
-  private negotiationList; // 交渉技能の配列
-  private knowledgeList; // 知識技能の配列
+  private combatList = [];  // 戦闘技能の配列
+  private searchList = []; // 探索技能の配列
+  private behaviorList = []; // 行動技能の配列
+  private negotiationList = []; // 交渉技能の配列
+  private knowledgeList = []; // 知識技能の配列
   private weponList = []; // 所持品(武具)の配列
   private itemslist = [];  // 所持品(item)の配列
 
@@ -124,7 +125,15 @@ export class CharacterCreateComponent implements OnInit {
   private negotiationPointAll = 0;
   private knowledgePointAll = 0;
 
+  // 保有ポイント全部
+  private professionalPoint = 0;
+  private interestPoint = 0;
+  // 使用できる保有ポイント
+  private remProfessionalPoint = 0;
+  private remInterestPoint = 0;
+
   constructor(private characre: CharacterCreateService) {
+    // 何のスキルがあるか配列から読み込むメソッド達を使う
     this.generateCombatskillFrame();
     this.generateSearchskillFrame();
     this.generateBehaviorskillFrame();
@@ -134,9 +143,185 @@ export class CharacterCreateComponent implements OnInit {
     this.generateItemFrame();
   }
 
+  dontKyetype(point, skill, index, listName, pointName) {
+    if ( pointName === 'job' ) {
+      switch (listName) {
+        case 'combat' :
+          this.combatList[index].jobPoint = 0;
+          break;
+        case 'search' :
+          this.searchList[index].jobPoint = 0;
+          break;
+        case 'negotiation' :
+          this.negotiationList[index].jobPoint = 0;
+          break;
+        case 'knowledge' :
+          this.knowledgeList[index].jobPoint = 0;
+          break;
+      }
+    }else if (pointName === 'hobby' ) {
+      switch (listName) {
+        case 'combat' :
+          this.combatList[index].hobbyPoint = 0;
+          break;
+        case 'search' :
+          this.searchList[index].hobbyPoint = 0;
+          break;
+        case 'negotiation' :
+          this.negotiationList[index].hobbyPoint = 0;
+          break;
+        case 'knowledge' :
+          this.knowledgeList[index].hobbyPoint = 0;
+          break;
+      }
+    }else if (pointName === 'growth') {
+      switch (listName) {
+        case 'combat' :
+          this.combatList[index].growthPoint = 0;
+          break;
+        case 'search' :
+          this.searchList[index].growthPoint = 0;
+          break;
+        case 'negotiation' :
+          this.negotiationList[index].growthPoint = 0;
+          break;
+        case 'knowledge' :
+          this.knowledgeList[index].growthPoint = 0;
+          break;
+      }
+    }else if (pointName === 'other') {
+      switch (listName) {
+        case 'combat' :
+          this.combatList[index].otherPoint = 0;
+          break;
+        case 'search' :
+          this.searchList[index].otherPoint = 0;
+          break;
+        case 'negotiation' :
+          this.negotiationList[index].otherPoint = 0;
+          break;
+        case 'knowledge' :
+          this.knowledgeList[index].otherPoint = 0;
+          break;
+      }
+    }
+
+    this.totalcalc(point, skill, index, listName, pointName);
+  }
+
+  totalSingleSkillPoint(pointName) { // pointNameで指定されたポイント(職業P or 興味P)の合計値を返す
+    let usedPoint = 0;
+    if ( pointName === 'job' ) {
+      this.combatList.forEach(function(skill){
+        usedPoint += skill['jobPoint'];
+      });
+      this.searchList.forEach(function(skill){
+        usedPoint += skill['jobPoint'];
+      });
+      this.behaviorList.forEach(function(skill){
+        usedPoint += skill['jobPoint'];
+      });
+      this.negotiationList.forEach(function(skill){
+        usedPoint += skill['jobPoint'];
+      });
+      this.knowledgeList.forEach(function(skill){
+        usedPoint += skill['jobPoint'];
+      });
+    }else if (pointName === 'hobby' ) {
+      this.combatList.forEach(function(skill){
+        usedPoint += skill['hobbyPoint'];
+      });
+      this.searchList.forEach(function(skill){
+        usedPoint += skill['hobbyPoint'];
+      });
+      this.behaviorList.forEach(function(skill){
+        usedPoint += skill['hobbyPoint'];
+      });
+      this.negotiationList.forEach(function(skill){
+        usedPoint += skill['hobbyPoint'];
+      });
+      this.knowledgeList.forEach(function(skill){
+        usedPoint += skill['hobbyPoint'];
+      });
+    }
+    return usedPoint;
+  }
+
+  // point: 割り振っているポイント skill; スキルの名前 index: そのスキルがそのスキル配列の何番目かcombatlist[index]
+  // listName: スキルリストの名前combat,search... pointName: jobポイントかhobbyポイントか
+  totalcalc(point, skill, index, listName, pointName) {  // 残り使えるスキルポイントを計算する。pointNameで職業Pか趣味Pか判定する
+    if ( pointName === 'job' ) {
+      this.jobPointCalc(point, skill, index, listName, pointName);
+    }else if (pointName === 'hobby' ) {
+      this.hobbyPointCalc(point, skill, index, listName, pointName);
+    }
+  }
+
+  jobPointCalc(point, skill, index, listName, pointName) {  // 割り振れる職業Pの計算制御
+    let usedPoint = 0;
+    usedPoint = this.totalSingleSkillPoint(pointName);
+
+    if (usedPoint > this.professionalPoint || point < 0) {  // 入力されたポイントが大きすぎる場合なかったことにする。
+      switch (listName) {
+        case 'combat' :
+          this.combatList[index].jobPoint = 0;
+          this.jobPointCalc(this.combatList[index].jobPoint, skill, index, listName, pointName);
+          break;
+        case 'search' :
+          this.remProfessionalPoint = this.professionalPoint - usedPoint - point;
+          this.jobPointCalc(this.combatList[index].jobPoint, skill, index, listName, pointName);
+          this.searchList[index].jobPoint = 0;
+          break;
+        case 'negotiation' :
+          this.remProfessionalPoint = this.professionalPoint - usedPoint - point;
+          this.jobPointCalc(this.combatList[index].jobPoint, skill, index, listName, pointName);
+          this.negotiationList[index].jobPoint = 0;
+          break;
+        case 'knowledge' :
+          this.remProfessionalPoint = this.professionalPoint - usedPoint - point;
+          this.jobPointCalc(this.combatList[index].jobPoint, skill, index, listName, pointName);
+          this.knowledgeList[index].jobPoint = 0;
+          break;
+      }
+      return;
+    }
+
+    this.remProfessionalPoint = this.professionalPoint - usedPoint;
+  }
+
+  hobbyPointCalc(point, skill, index, listName, pointName) {  // 割り振れる興味Pの計算制御
+    let usedPoint = 0;
+    usedPoint = this.totalSingleSkillPoint(pointName);
+
+    if (usedPoint > this.interestPoint) {  // 入力されたポイントが大きすぎる場合なかったことにする。
+      switch (listName) {
+        case 'combat' :
+          this.combatList[index].hobbyPoint = 0;
+          break;
+        case 'search' :
+          this.searchList[index].hobbyPoint = 0;
+          break;
+        case 'negotiation' :
+          this.negotiationList[index].hobbyPoint = 0;
+          break;
+        case 'knowledge' :
+          this.knowledgeList[index].hobbyPoint = 0;
+          break;
+      }
+      return;
+    }
+
+    this.remInterestPoint = this.interestPoint - usedPoint;
+  }
+
+  UnderEightyTotalSkillPoint(point, skill, index, listName) {
+
+
+  }
+
 
   throwDice(dicename) {
-    let throwing = function(times, num, plus) {  // さいころ処理 times:回数 num:ダイスの面数 plus:あとで足す分
+    function throwing(times, num, plus) {  // さいころ処理 times:回数 num:ダイスの面数 plus:あとで足す分
       let result = 0;  // ダイス合計
       function getRandomIntInclusive(max) {
         let min = Math.ceil(1);
@@ -149,7 +334,7 @@ export class CharacterCreateComponent implements OnInit {
       }
       result += dicePlus;
       return result;
-    };
+    }
 
     let diceNum = 0;  // x面ダイス
     let diceTimes = 0;  // x回振る
@@ -217,6 +402,8 @@ export class CharacterCreateComponent implements OnInit {
         break;
     }
 
+    let individualProfessionalPoint = 0;
+    let individualInterestPoint = 0;
     // ダイスを振って各項目に入れる
     if (!(dicename === 'allDice')) {
       let result = throwing(diceTimes, diceNum, dicePlus);
@@ -227,7 +414,7 @@ export class CharacterCreateComponent implements OnInit {
 
         case 'con' :
           this.bcon = result;
-          if (this.siz) {
+          if (this.bsiz) {
             this.fhealth = (this.bsiz + result) / 2;
           }
           break;
@@ -236,10 +423,12 @@ export class CharacterCreateComponent implements OnInit {
           this.bpow = result;
           this.fsan = result * 5;
           this.fluck = result * 5;
+          this.fmp = result;
           break;
 
         case 'dex' :
           this.bdex = result;
+          this.combatList[0].initialValue = result * 2;
           break;
 
         case 'app' :
@@ -257,12 +446,16 @@ export class CharacterCreateComponent implements OnInit {
           this.bint = result;
           this.fidea = result * 5;
           this.fHobbySkill = result * 10;
+          this.interestPoint = result * 10;
+          this.remInterestPoint = result * 10;
           break;
 
         case 'edu' :
           this.bedu = result;
           this.fknowledge = result * 5;
           this.fVocationalSkill = result * 20;
+          this.professionalPoint = result * 20;
+          this.remProfessionalPoint = result * 20;
           break;
 
         case 'income' :
@@ -633,7 +826,8 @@ export class CharacterCreateComponent implements OnInit {
       },
       {
         'skillName': 'オカルト',
-        'jobPoint': 5,
+        'initialValue': 5,
+        'jobPoint': 0,
         'hobbyPoint': 0,
         'growthPoint': 0,
         'otherPoint': 0
@@ -812,101 +1006,101 @@ export class CharacterCreateComponent implements OnInit {
   ngOnInit() {
   }
 
-  test(type) {
-    switch (type) {
-      case 'str':
-        this.strstock = this.characre.select(type);
-        this.str = this.strstock[1];
-        break;
-      case 'con':
-        this.constock = this.characre.select(type);
-        this.con = this.constock[1];
-        if (this.siz !== '2D6+6') {
-          this. health = this.characre.status('health', this.con, this.siz);
-        }
-        break;
-      case 'pow':
-        this.powstock = this.characre.select(type);
-        this.pow = this.powstock[1];
-        this.SAN = this.characre.status('SAN', this.pow);
-        this.luck = this.characre.status('luck', this.pow);
-        this.mp = this.characre.status('mp', this.pow);
-        break;
-      case 'dex':
-        this.dexstock = this.characre.select(type);
-        this.dex = this.dexstock[1];
-        break;
-      case 'app':
-        this.appstock = this.characre.select(type);
-        this.app = this.appstock[1];
-        break;
-      case 'siz':
-        this.sizstock = this.characre.select(type);
-        this.siz = this.sizstock[1];
-        if (this.con !== '3D6') {
-          this. health = this.characre.status('health', this.con, this.siz);
-        }
-        break;
-      case 'int':
-        this.intstock = this.characre.select(type);
-        this.int = this.intstock[1];
-        this.idea = this.characre.status('idea', this.int);
-        this.HobbySkill = this.characre.status('HobbySkill', this.int);
-        break;
-      case 'edu':
-        this.edustock = this.characre.select(type);
-        this.edu = this.edustock[1];
-        this.knowledge = this.characre.status('knowledge', this.edu);
-        this.VocationalSkill = this.characre.status('VocationalSkill', this.edu);
-        break;
-      case 'income':
-        this.incomestock = this.characre.select(type);
-        this.income = this.incomestock[1];
-        break;
-    }
-    console.log('OK');
-  }
+  // test(type) {
+  //   switch (type) {
+  //     case 'str':
+  //       this.strstock = this.characre.select(type);
+  //       this.str = this.strstock[1];
+  //       break;
+  //     case 'con':
+  //       this.constock = this.characre.select(type);
+  //       this.con = this.constock[1];
+  //       if (this.siz !== '2D6+6') {
+  //         this. health = this.characre.status('health', this.con, this.siz);
+  //       }
+  //       break;
+  //     case 'pow':
+  //       this.powstock = this.characre.select(type);
+  //       this.pow = this.powstock[1];
+  //       this.SAN = this.characre.status('SAN', this.pow);
+  //       this.luck = this.characre.status('luck', this.pow);
+  //       this.mp = this.characre.status('mp', this.pow);
+  //       break;
+  //     case 'dex':
+  //       this.dexstock = this.characre.select(type);
+  //       this.dex = this.dexstock[1];
+  //       break;
+  //     case 'app':
+  //       this.appstock = this.characre.select(type);
+  //       this.app = this.appstock[1];
+  //       break;
+  //     case 'siz':
+  //       this.sizstock = this.characre.select(type);
+  //       this.siz = this.sizstock[1];
+  //       if (this.con !== '3D6') {
+  //         this. health = this.characre.status('health', this.con, this.siz);
+  //       }
+  //       break;
+  //     case 'int':
+  //       this.intstock = this.characre.select(type);
+  //       this.int = this.intstock[1];
+  //       this.idea = this.characre.status('idea', this.int);
+  //       this.HobbySkill = this.characre.status('HobbySkill', this.int);
+  //       break;
+  //     case 'edu':
+  //       this.edustock = this.characre.select(type);
+  //       this.edu = this.edustock[1];
+  //       this.knowledge = this.characre.status('knowledge', this.edu);
+  //       this.VocationalSkill = this.characre.status('VocationalSkill', this.edu);
+  //       break;
+  //     case 'income':
+  //       this.incomestock = this.characre.select(type);
+  //       this.income = this.incomestock[1];
+  //       break;
+  //   }
+  //   console.log('OK');
+  // }
 
-  radiochange(e) {
-    console.log(e.target);
-    if (e.target.name === 'charElem') {
-      this.roll = e.target.value;
-      console.log(e.target.value);
-    }else if (e.target.name === 'gender') {
-      this.gender = e.target.value;
-      console.log(e.target.value);
-    }
-  }
+  // radiochange(e) {
+  //   console.log(e.target);
+  //   if (e.target.name === 'charElem') {
+  //     this.roll = e.target.value;
+  //     console.log(e.target.value);
+  //   }else if (e.target.name === 'gender') {
+  //     this.gender = e.target.value;
+  //     console.log(e.target.value);
+  //   }
+  // }
 
-  racechange(e) {
-    this.race = e.target.value;
-    console.log(e.target.value);
-  }
+  // racechange(e) {
+  //   this.race = e.target.value;
+  //   console.log(e.target.value);
+  // }
 
-  textinput(e) {
-    console.log(e.target);
-    if (e.target.id === 'chara-name') {
-      this.name = e.target.value;
-      console.log(e.target.value);
-    }else if (e.target.id === 'job') {
-      this.job = e.target.value;
-      console.log(e.target.value);
-    }else if (e.target.name === 'Career') {
-      this.Career = e.target.value;
-      console.log(e.target.value);
-    }else if (e.target.name === 'Encounter') {
-      this.Encounter = e.target.value;
-      console.log(e.target.value);
-    }
-  }
+  // textinput(e) {
+  //   console.log(e.target);
+  //   if (e.target.id === 'chara-name') {
+  //     this.name = e.target.value;
+  //     console.log(e.target.value);
+  //   }else if (e.target.id === 'job') {
+  //     this.job = e.target.value;
+  //     console.log(e.target.value);
+  //   }else if (e.target.name === 'Career') {
+  //     this.Career = e.target.value;
+  //     console.log(e.target.value);
+  //   }else if (e.target.name === 'Encounter') {
+  //     this.Encounter = e.target.value;
+  //     console.log(e.target.value);
+  //   }
+  // }
 
   download() {
-    let basic = [ this.roll, this.race, this.name, this.gender, this.job ];
-    let status = [ this.str, this.con, this.pow, this.dex, this.app, this.siz, this.int, this.edu, this.income ];
-    let fstatus = [ this.SAN, this.luck, this.idea, this.knowledge, this.health, this.mp,
-      this.VocationalSkill, this.HobbySkill, this.DamegeBonus ];
-    let profile = [this.Career, this.Encounter];
-    let json = this.characre.change(basic, status, fstatus, profile);
+    // let basic = [ this.roll, this.race, this.name, this.gender, this.job ];
+    // let status = [ this.str, this.con, this.pow, this.dex, this.app, this.siz, this.int, this.edu, this.income ];
+    // let fstatus = [ this.SAN, this.luck, this.idea, this.knowledge, this.health, this.mp,
+    //   this.VocationalSkill, this.HobbySkill, this.DamegeBonus ];
+    // let profile = [this.Career, this.Encounter];
+    // let json = this.characre.change(basic, status, fstatus, profile);
     // this.characre.save(json, document.getElementById('download'), this.filename)
 
     // Charaクラスを完成させる
@@ -1044,6 +1238,5 @@ export class CharacterCreateComponent implements OnInit {
     let characterJson = Convert.charaToJson(newchara);  // CharaクラスをJSONに変換する
 
     this.characre.save(characterJson, document.getElementById('download'), this.filename);  // JSON文字列を保存させる
-
   }
 }

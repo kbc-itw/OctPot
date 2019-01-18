@@ -19,52 +19,6 @@
 
 /* ここまで */
 
-/* サイドメニュー */
-.side{
-  position: fixed;
-  box-sizing: border-box;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 5;
-}
-  .side ul.ng-star-inserted {
-    width: 205px;
-    background: #ddd;
-  }
-    .side ul.ng-star-inserted li {
-      /*padding: 10px 0;*/
-      border: solid 1px #999;
-      text-align: center;
-      font-size: 16px;
-    }
-       .side ul.ng-star-inserted li a {
-          color: #000;
-          text-decoration: none;
-          display: block;
-          padding: 10px 0;
-        }
-        .side ul.ng-star-inserted li a:hover {
-          background: #bdbdbd;
-        }
-  .side .toggle {
-    padding: 5px;
-    background: #dddddd;
-    cursor: pointer;
-  }
-    .side .toggle .active {
-      position: fixed;
-      top: 0;
-      left: 205px;/*sideの幅*/
-      padding: 5px;
-      background: #ddd;
-    }
-  .side .side {
-    background: #dddddd;
-  }
-
-/* ここまで */
-
 .container{
   box-sizing: border-box;
   width: 960px;
