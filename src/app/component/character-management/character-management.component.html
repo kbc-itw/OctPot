@@ -133,40 +133,46 @@
             </table>
           </mat-tab>
           <mat-tab label="技能">
-            <table class="skillList">
-              <tr>
-                <th>1</th>
-                <td>2</td>
-              </tr>
-              <tr>
-                <th>1</th>
-                <td>2</td>
-              </tr>
-            </table>
+            <ul class="skillList">
+              <li>戦闘技能<br>
+                <textarea class="atcSkill" cols="100" rows="6"></textarea><br>
+                探索技能<br>
+                <textarea class="seachSkill" cols="100" rows="6"></textarea><br>
+                行動技能<br>
+                <textarea class="behaviorSkill" cols="100" rows="6"></textarea>
+              </li>
+            </ul>
           </mat-tab>
           <mat-tab label="所持品">
-            <table class="BelongingsList">
+            <table class="belongingsList">
               <tr>
-                <th>1</th>
-                <td>2</td>
+                <th>名前</th>
+                <th>個数</th>
+                <th>説明</th>
               </tr>
               <tr>
-                <th>1</th>
-                <td>2</td>
+                <td>所持品01</td>
+                <td>1</td>
+                <td><input type="text"></td>
+              </tr>
+              <tr>
+                <td>所持品02</td>
+                <td>3</td>
+                <td><input type="text"></td>
               </tr>
             </table>
           </mat-tab>
           <mat-tab label="経歴">
-            <table class="Career">
-              <tr>
-                <th>1</th>
-                <td>2</td>
-              </tr>
-              <tr>
-                <th>1</th>
-                <td>2</td>
-              </tr>
-            </table>
+            <ul class="Career">
+              <li>
+                経歴<br>
+                <textarea class="atcSkill" cols="100" rows="6"></textarea><br>
+                遭遇したもの<br>
+                <textarea class="seachSkill" cols="100" rows="6"></textarea><br>
+                その他メモ<br>
+                <textarea class="behaviorSkill" cols="100" rows="6"></textarea>
+              </li>
+            </ul>
           </mat-tab>
         </mat-tab-group>
       </div>
