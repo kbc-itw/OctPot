@@ -110,11 +110,11 @@ export class CharacterCreateComponent implements OnInit {
   private pEncounter;
   private pOtherMemo;
 
-  private combatList;  // 戦闘技能の配列
-  private searchList; // 探索技能の配列
-  private behaviorList; // 行動技能の配列
-  private negotiationList; // 交渉技能の配列
-  private knowledgeList; // 知識技能の配列
+  private combatList = [];  // 戦闘技能の配列
+  private searchList = []; // 探索技能の配列
+  private behaviorList = []; // 行動技能の配列
+  private negotiationList = []; // 交渉技能の配列
+  private knowledgeList = []; // 知識技能の配列
   private weponList = []; // 所持品(武具)の配列
   private itemslist = [];  // 所持品(item)の配列
 
@@ -141,28 +141,182 @@ export class CharacterCreateComponent implements OnInit {
     this.generateKnowledgeskillFrame();
     this.generateWeponFrame();
     this.generateItemFrame();
-
-    this.totalcalc();
   }
 
-  totalcalc() {  // 残り使えるスキルポイントを計算する
+  dontKyetype(point, skill, index, listName, pointName) {
+    if ( pointName === 'job' ) {
+      switch (listName) {
+        case 'combat' :
+          this.combatList[index].jobPoint = 0;
+          break;
+        case 'search' :
+          this.searchList[index].jobPoint = 0;
+          break;
+        case 'negotiation' :
+          this.negotiationList[index].jobPoint = 0;
+          break;
+        case 'knowledge' :
+          this.knowledgeList[index].jobPoint = 0;
+          break;
+      }
+    }else if (pointName === 'hobby' ) {
+      switch (listName) {
+        case 'combat' :
+          this.combatList[index].hobbyPoint = 0;
+          break;
+        case 'search' :
+          this.searchList[index].hobbyPoint = 0;
+          break;
+        case 'negotiation' :
+          this.negotiationList[index].hobbyPoint = 0;
+          break;
+        case 'knowledge' :
+          this.knowledgeList[index].hobbyPoint = 0;
+          break;
+      }
+    }else if (pointName === 'growth') {
+      switch (listName) {
+        case 'combat' :
+          this.combatList[index].growthPoint = 0;
+          break;
+        case 'search' :
+          this.searchList[index].growthPoint = 0;
+          break;
+        case 'negotiation' :
+          this.negotiationList[index].growthPoint = 0;
+          break;
+        case 'knowledge' :
+          this.knowledgeList[index].growthPoint = 0;
+          break;
+      }
+    }else if (pointName === 'other') {
+      switch (listName) {
+        case 'combat' :
+          this.combatList[index].otherPoint = 0;
+          break;
+        case 'search' :
+          this.searchList[index].otherPoint = 0;
+          break;
+        case 'negotiation' :
+          this.negotiationList[index].otherPoint = 0;
+          break;
+        case 'knowledge' :
+          this.knowledgeList[index].otherPoint = 0;
+          break;
+      }
+    }
+
+    this.totalcalc(point, skill, index, listName, pointName);
+  }
+
+  totalSingleSkillPoint(pointName) { // pointNameで指定されたポイント(職業P or 興味P)の合計値を返す
     let usedPoint = 0;
-    this.combatList.forEach(function(skill){
-      usedPoint += skill['jobPoint'];
-    });
-    this.searchList.forEach(function(skill){
-      usedPoint += skill['jobPoint'];
-    });
-    this.behaviorList.forEach(function(skill){
-      usedPoint += skill['jobPoint'];
-    });
-    this.negotiationList.forEach(function(skill){
-      usedPoint += skill['jobPoint'];
-    });
-    this.knowledgeList.forEach(function(skill){
-      usedPoint += skill['jobPoint'];
-    });
+    if ( pointName === 'job' ) {
+      this.combatList.forEach(function(skill){
+        usedPoint += skill['jobPoint'];
+      });
+      this.searchList.forEach(function(skill){
+        usedPoint += skill['jobPoint'];
+      });
+      this.behaviorList.forEach(function(skill){
+        usedPoint += skill['jobPoint'];
+      });
+      this.negotiationList.forEach(function(skill){
+        usedPoint += skill['jobPoint'];
+      });
+      this.knowledgeList.forEach(function(skill){
+        usedPoint += skill['jobPoint'];
+      });
+    }else if (pointName === 'hobby' ) {
+      this.combatList.forEach(function(skill){
+        usedPoint += skill['hobbyPoint'];
+      });
+      this.searchList.forEach(function(skill){
+        usedPoint += skill['hobbyPoint'];
+      });
+      this.behaviorList.forEach(function(skill){
+        usedPoint += skill['hobbyPoint'];
+      });
+      this.negotiationList.forEach(function(skill){
+        usedPoint += skill['hobbyPoint'];
+      });
+      this.knowledgeList.forEach(function(skill){
+        usedPoint += skill['hobbyPoint'];
+      });
+    }
+    return usedPoint;
+  }
+
+  // point: 割り振っているポイント skill; スキルの名前 index: そのスキルがそのスキル配列の何番目かcombatlist[index]
+  // listName: スキルリストの名前combat,search... pointName: jobポイントかhobbyポイントか
+  totalcalc(point, skill, index, listName, pointName) {  // 残り使えるスキルポイントを計算する。pointNameで職業Pか趣味Pか判定する
+    if ( pointName === 'job' ) {
+      this.jobPointCalc(point, skill, index, listName, pointName);
+    }else if (pointName === 'hobby' ) {
+      this.hobbyPointCalc(point, skill, index, listName, pointName);
+    }
+  }
+
+  jobPointCalc(point, skill, index, listName, pointName) {  // 割り振れる職業Pの計算制御
+    let usedPoint = 0;
+    usedPoint = this.totalSingleSkillPoint(pointName);
+
+    if (usedPoint > this.professionalPoint || point < 0) {  // 入力されたポイントが大きすぎる場合なかったことにする。
+      switch (listName) {
+        case 'combat' :
+          this.combatList[index].jobPoint = 0;
+          this.jobPointCalc(this.combatList[index].jobPoint, skill, index, listName, pointName);
+          break;
+        case 'search' :
+          this.remProfessionalPoint = this.professionalPoint - usedPoint - point;
+          this.jobPointCalc(this.combatList[index].jobPoint, skill, index, listName, pointName);
+          this.searchList[index].jobPoint = 0;
+          break;
+        case 'negotiation' :
+          this.remProfessionalPoint = this.professionalPoint - usedPoint - point;
+          this.jobPointCalc(this.combatList[index].jobPoint, skill, index, listName, pointName);
+          this.negotiationList[index].jobPoint = 0;
+          break;
+        case 'knowledge' :
+          this.remProfessionalPoint = this.professionalPoint - usedPoint - point;
+          this.jobPointCalc(this.combatList[index].jobPoint, skill, index, listName, pointName);
+          this.knowledgeList[index].jobPoint = 0;
+          break;
+      }
+      return;
+    }
+
     this.remProfessionalPoint = this.professionalPoint - usedPoint;
+  }
+
+  hobbyPointCalc(point, skill, index, listName, pointName) {  // 割り振れる興味Pの計算制御
+    let usedPoint = 0;
+    usedPoint = this.totalSingleSkillPoint(pointName);
+
+    if (usedPoint > this.interestPoint) {  // 入力されたポイントが大きすぎる場合なかったことにする。
+      switch (listName) {
+        case 'combat' :
+          this.combatList[index].hobbyPoint = 0;
+          break;
+        case 'search' :
+          this.searchList[index].hobbyPoint = 0;
+          break;
+        case 'negotiation' :
+          this.negotiationList[index].hobbyPoint = 0;
+          break;
+        case 'knowledge' :
+          this.knowledgeList[index].hobbyPoint = 0;
+          break;
+      }
+      return;
+    }
+
+    this.remInterestPoint = this.interestPoint - usedPoint;
+  }
+
+  UnderEightyTotalSkillPoint(point, skill, index, listName) {
+
+
   }
 
 
@@ -1084,7 +1238,5 @@ export class CharacterCreateComponent implements OnInit {
     let characterJson = Convert.charaToJson(newchara);  // CharaクラスをJSONに変換する
 
     this.characre.save(characterJson, document.getElementById('download'), this.filename);  // JSON文字列を保存させる
-
-    this.totalcalc();
   }
 }
