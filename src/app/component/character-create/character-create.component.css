@@ -59,150 +59,59 @@ section {
   .base .left {
     width: 450px;
   }
-  .base .left .top,
-  .base .right .top {
-    margin-bottom: 10px;
-  }
-    .base .left .top {
+    .base .left {
       border: 1px solid #999;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
     }
-      .base .left .top ul {
+      .base .left ul {
         letter-spacing: -0.5em;
       }
-        .base .left .top ul li {
+        .base .left ul li {
           margin-bottom: 25px;
           letter-spacing: normal;
         }
-          .base .left .top ul li:last-child {
+          .base .left ul li:last-child {
             margin-bottom: 0;
           }
-      .base .left .top .twoColumn {}
-        .base .left .top .twoColumn p {
+      .base .left .twoColumn {}
+        .base .left .twoColumn p {
           margin-right: 15px;
           display: inline-block;
         }
-          .base .left .top .twoColumn p:last-child {
+          .base .left .twoColumn p:last-child {
             margin-right: 0;
           }
-          .base .left .top .twoColumn p input[type="text"] {
+          .base .left .twoColumn p input[type="text"] {
             width: 75px;
           }
-      .base .left .top .threeColumn {}
-        .base .left .top .threeColumn p {
+      .base .left .threeColumn {}
+        .base .left .threeColumn p {
           margin-right: 15px;
           display: inline-block;
         }
-          .base .left .top .threeColumn p:last-child {
+          .base .left .threeColumn p:last-child {
             margin-right: 0;
           }
-          .base .left .top .threeColumn p input[type="text"] {
+          .base .left .threeColumn p input[type="text"] {
             width: 75px;
           }
-      .base .left .top .radio {}
-        .base .left .top .radio p:nth-child(2) {
+      .base .left .radio {}
+        .base .left .radio p {
           margin-right: 15px;
         }
-    .base .left .bottom {
-      border: 1px solid #999;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-    }
-      .base .left .bottom select {
-        margin: 0 auto;
-        padding: 5px 0;
-        width: 100%;
-        display: block;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-      }
+          .base .left .radio p:last-child {
+            margin-right: 15px;
+          }
   .base .right {
     width: 450px;
   }
-    .base .right .top {
+    .base .right {
       border: 1px solid #999;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
     }
-      .base .right .top .contentWrap {}
-        .base .right .top .contentWrap .left {
-          width: 175px;
-        }
-          .base .right .top .contentWrap .left .imgWindow {
-            width: 175px;
-            height: 175px;
-            border: 1px solid #999;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-          }
-            .base .right .top .contentWrap .left .imgWindow img {
-              width: 100%;
-              height: 100%;
-            }
-          .base .right .top .contentWrap .left ul {
-            margin-top: 20px;
-          }
-            .base .right .top .contentWrap .left ul li {
-              display: inline-block;
-              border-radius: 7px;
-            }
-              .base .right .top .contentWrap .left ul li button {
-                padding: 5px 25px;
-                border-radius: 7px;
-                border: none;
-                background: #1976d2;
-                border: 2px solid #1976d2;
-                color: #fff;
-                -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-              }
-                .base .right .top .contentWrap .left ul li button:hover {
-                  background: #fff;
-                  color: #1976d2;
-                  transition-duration: 0.3s;
-                }
-              .base .right .top .contentWrap .left ul li:last-child button {
-                margin-left: 10px;
-                background: #f44336;
-                border: 2px solid #f44336;
-              }
-                .base .right .top .contentWrap .left ul li:last-child button:hover {
-                  background: #fff;
-                  color: #f44336;
-                }
-        .base .right .top .contentWrap .right {
-          width: 235px;
-          border: 1px solid #999;
-          -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-        }
-          .base .right .top .contentWrap .right ul {
-            height: 185px;
-            overflow-y: scroll;
-            letter-spacing: -0.5em;
-          }
-            .base .right .top .contentWrap .right ul li {
-              padding: 10px;
-              text-align: center;
-              line-height: 1;
-              letter-spacing: normal;
-              width: 100%;
-              -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-              border-bottom: 1px solid #999;
-            }
-              .base .right .top .contentWrap .right ul li:hover {
-                background: #87ceeb;
-                color: #fff;
-                transition-duration: 0.3s;
-              }
-    .base .right .bottom {
-      border: 1px solid #999;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-    }
-        .base .right .bottom select {
+        .base .right select {
           margin: 0 auto;
           padding: 5px 0;
           width: 100%;
@@ -210,19 +119,19 @@ section {
           -webkit-box-sizing: border-box;
           box-sizing: border-box;
         }
-        .base .right .bottom dl {
+        .base .right dl {
           margin-top: 10px;
         }
-          .base .right .bottom dl dt {
+          .base .right dl dt {
             display: inline-block;
             float: left;
           }
-          .base .right .bottom dl dd {
+          .base .right dl dd {
             display: inline-block;
             vertical-align: top;
             float: right;
           }
-            .base .right .bottom dl dd textarea {
+            .base .right dl dd textarea {
               padding: 5px;
               width: 300px;
               -webkit-box-sizing: border-box;
@@ -255,24 +164,21 @@ section {
           box-sizing: border-box;
           text-align: center;
         }
-  .ability .left {
-    width: 610px;
-  }
-    .ability .left .left {
-      width: 300px;
+    .ability .left {
+      width: 450px;
       border: 1px solid #999;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
     }
-      .ability .left .left table {}
-        .ability .left .left table tr {
+      .ability .left table {}
+        .ability .left table tr {
           width: 100%;
         }
-          .ability .left .left table tr th,
-          .ability .left .left table tr td {
+          .ability .left table tr th,
+          .ability .left table tr td {
             width: calc(100% / 3);
           }
-            .ability .left .left table tr td button {
+            .ability .left table tr td button {
               margin: 0 auto;
               padding: 2px 5px;
               width: 70px;
@@ -287,15 +193,15 @@ section {
               border: 2px solid #999;
               border-radius: 7px;
             }
-              .ability .left .left table tr td button:hover {
+              .ability .left table tr td button:hover {
                 background: #fff;
                 color: #999;
                 transition-duration: 0.3s;
               }
-            .ability .left .left table tr td.role {
+            .ability .left table tr td.role {
               border: none;
             }
-      .ability .left .left .allRole {
+      .ability .left .allRole {
         float: right;
         margin: 5px 0 0;
         padding: 2px 5px;
@@ -307,31 +213,25 @@ section {
         background: #4fc3f7;
         color: #fff;
       }
-        .ability .left .left .allRole:hover {
+        .ability .left .allRole:hover {
           background: #fff;
           color: #4fc3f7;
           transition-duration: 0.3s;
         }
-    .ability .left .right {
-      width: 300px;
+    .ability .right {
+      width: 450px;
       border: 1px solid #999;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
     }
-      .ability .left .right table {}
-        .ability .left .right table tr {
+      .ability .right table {}
+        .ability .right table tr {
           width: 100%;
         }
-          .ability .left .right table tr th,
-          .ability .left .right table tr td {
+          .ability .right table tr th,
+          .ability .right table tr td {
             width: calc(100% / 2);
           }
-  .ability .right {
-    width: 300px;
-    border: 1px solid #999;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-  }
 
 /* 技能値
 ------------------------------*/

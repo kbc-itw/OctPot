@@ -1,104 +1,63 @@
+<app-side-bar></app-side-bar>
 <div class="character-create container">
   <section class="base">
     <h1>基本設定</h1>
     <div class="innerContainer clearfix">
       <div class="left">
-        <div class="top">
-          <h2>キャラクター情報</h2>
-          <div class="contentWrap">
-            <ul>
-              <li>
-                <label for="chara-name">キャラクター名：</label><input type="text" id="chara-name" [(ngModel)]="cname">
-              </li>
-              <li>
-                <div class="radio">
-                  <p>性別：</p>
-                  <p><input type="radio" id="man" name="gender" [(ngModel)]="cgender" value="男"  ><label for="man">男性</label></p>
-                  <p><input type="radio" id="woman" name="gender" [(ngModel)]="cgender" value="女" ><label for="woman">女性</label></p>
-                  <p><input type="radio" id="unknown" name="gender" [(ngModel)]="cgender" value="なし" ><label for="unknown">なし</label></p>
-                </div>
-              </li>
-              <li>
-                <div class="threeColumn">
-                  <p><label for="chara-height">身長：</label><input type="text" id="chara-height" [(ngModel)]="cheight"></p>
-                  <p><label for="chara-weight">体重：</label><input type="text" id="chara-weight" [(ngModel)]="cweight"></p>
-                  <p><label for="chara-age">年齢：</label><input type="text" id="chara-age"></p>
-                </div>
-              </li>
-              <li>
-                <label for="birthplace">出身地：</label><input type="text" id="birthplace" [(ngModel)]="cbirthplace">
-              </li>
-              <li>
-                <div class="twoColumn">
-                  <p><label for="chara-hair-color">髪色：</label><input type="text" id="chara-hair-col" [(ngModel)]="chairColor"></p>
-                  <p><label for="chara-eye-col">目の色：</label><input type="text" id="chara-eye-col" [(ngModel)]="ceyeColor"></p>
-                </div>
-              </li>
-              <li>
-                <div class="radio">
-                  <p>基本設定：</p>
-                  <p><input type="radio" id="PC" name="chara-type" [(ngModel)]="stype" value="PC"><label for="PC">PC</label></p>
-                  <p><input type="radio" id="NPC" name="chara-type" [(ngModel)]="stype" value="NPC"><label for="NPC">NPC</label></p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="bottom">
-          <h2>種族設定</h2>
-          <div class="contentWrap">
-            <select name="" id="" [(ngModel)]="srace">
-              <option value="ひと">dummy01</option>
-              <option value="人">dummy02</option>
-              <option value="人間">dummy03</option>
-              <option value="ヒューマン">dummy04</option>
-              <option value="アダム">dummy05</option>
-            </select>
-          </div>
+        <h2>キャラクター情報</h2>
+        <div class="contentWrap">
+          <ul>
+            <li>
+              <label for="chara-name">キャラクター名：</label><input type="text" id="chara-name" [(ngModel)]="cname">
+            </li>
+            <li>
+              <div class="radio">
+                <p>性別：</p>
+                <p><input type="radio" id="man" name="gender" [(ngModel)]="cgender" value="男"  ><label for="man">男性</label></p>
+                <p><input type="radio" id="woman" name="gender" [(ngModel)]="cgender" value="女" ><label for="woman">女性</label></p>
+                <p><input type="radio" id="unknown" name="gender" [(ngModel)]="cgender" value="なし" ><label for="unknown">なし</label></p>
+              </div>
+            </li>
+            <li>
+              <div class="threeColumn">
+                <p><label for="chara-height">身長：</label><input type="text" id="chara-height" [(ngModel)]="cheight"></p>
+                <p><label for="chara-weight">体重：</label><input type="text" id="chara-weight" [(ngModel)]="cweight"></p>
+                <p><label for="chara-age">年齢：</label><input type="text" id="chara-age"></p>
+              </div>
+            </li>
+            <li>
+              <label for="birthplace">出身地：</label><input type="text" id="birthplace" [(ngModel)]="cbirthplace">
+            </li>
+            <li>
+              <div class="twoColumn">
+                <p><label for="chara-hair-color">髪色：</label><input type="text" id="chara-hair-col" [(ngModel)]="chairColor"></p>
+                <p><label for="chara-eye-col">目の色：</label><input type="text" id="chara-eye-col" [(ngModel)]="ceyeColor"></p>
+              </div>
+            </li>
+            <li>
+              <div class="radio">
+                <p>基本設定：</p>
+                <p><input type="radio" id="PC" name="chara-type" [(ngModel)]="stype" value="PC"><label for="PC">PC</label></p>
+                <p><input type="radio" id="NPC" name="chara-type" [(ngModel)]="stype" value="NPC"><label for="NPC">NPC</label></p>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
       <div class="right">
-        <div class="top">
-          <h2>画像設定</h2>
-          <div class="contentWrap clearfix">
-            <div class="left">
-              <div class="imgWindow"><img src="" alt=""></div>
-              <ul>
-                <li><button>追加</button></li>
-                <li><button>削除</button></li>
-              </ul>
-            </div>
-            <div class="right">
-              <h3>画像一覧</h3>
-              <ul>
-                <li>dummy01</li>
-                <li>dummy02</li>
-                <li>dummy03</li>
-                <li>dummy04</li>
-                <li>dummy05</li>
-                <li>dummy06</li>
-                <li>dummy07</li>
-                <li>dummy08</li>
-                <li>dummy09</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="bottom">
-          <h2>職業設定</h2>
-          <div class="contentWrap">
-            <select name="" id="" [(ngModel)]="sjob">
-              <option value="SUZUKI">dummy01</option>
-              <option value="HONDA">dummy02</option>
-              <option value="KAWAKAMI">dummy03</option>
-              <option value="YAMAHA">dummy04</option>
-              <option value="MEGURO">dummy05</option>
-            </select>
-            <dl class="clearfix">
-              <dt><p>取得できる技能</p></dt>
-              <dd><textarea name="" id="" cols="30" rows="3"></textarea></dd>
-            </dl>
-          </div>
+        <h2>職業設定</h2>
+        <div class="contentWrap">
+          <select name="" id="" [(ngModel)]="sjob">
+            <option value="SUZUKI">dummy01</option>
+            <option value="HONDA">dummy02</option>
+            <option value="KAWAKAMI">dummy03</option>
+            <option value="YAMAHA">dummy04</option>
+            <option value="MEGURO">dummy05</option>
+          </select>
+          <dl class="clearfix">
+            <dt><p>取得できる技能</p></dt>
+            <dd><textarea name="" id="" cols="30" rows="3"></textarea></dd>
+          </dl>
         </div>
       </div>
     </div>
@@ -107,143 +66,98 @@
   <section class="ability">
     <h1>能力値</h1>
     <div class="innerContainer clearfix">
-      <div class="left clearfix">
-        <div class="left">
-          <h2>基礎ステータス</h2>
-          <div class="contentWrap clearfix">
-            <table>
-              <tr>
-                <th>STR</th>
-                <td><p>{{bstr}}</p></td>
-                <td class="role"><button (click)="throwDice('str')">3D6</button></td>
-              </tr>
-              <tr>
-                <th>CON</th>
-                <td><p>{{bcon}}</p></td>
-                <td class="role"><button (click)="throwDice('con')">3D6</button></td>
-              </tr>
-              <tr>
-                <th>POW</th>
-                <td><p>{{bpow}}</p></td>
-                <td class="role"><button (click)="throwDice('pow')">3D6</button></td>
-              </tr>
-              <tr>
-                <th>DEX</th>
-                <td><p>{{bdex}}</p></td>
-                <td class="role"><button (click)="throwDice('dex')">3D6</button></td>
-              </tr>
-              <tr>
-                <th>APP</th>
-                <td><p>{{bapp}}</p></td>
-                <td class="role"><button (click)="throwDice('app')">3D6</button></td>
-              </tr>
-              <tr>
-                <th>SIZ</th>
-                <td><p>{{bsiz}}</p></td>
-                <td class="role"><button (click)="throwDice('siz')">2D6+6</button></td>
-              </tr>
-              <tr>
-                <th>INT</th>
-                <td><p>{{bint}}</p></td>
-                <td class="role"><button (click)="throwDice('int')">2D6+6</button></td>
-              </tr>
-              <tr>
-                <th>EDU</th>
-                <td><p>{{bedu}}</p></td>
-                <td class="role"><button (click)="throwDice('edu')">3D6+3</button></td>
-              </tr>
-              <tr>
-                <th>年収・財産</th>
-                <td><p>{{bincome_and_property}}</p></td>
-                <td class="role"><button (click)="throwDice('income')">3D6</button></td>
-              </tr>
-            </table>
-            <button class="allRole" (click)="throwDice('allDice')">一括ダイスロール</button>
-          </div>
-        </div>
-        <div class="right">
-          <h2>変動ステータス</h2>
-          <div class="contentWrap">
-            <table>
-              <tr>
-                <th>SAN</th>
-                <td><p>{{fsan}}</p></td>
-              </tr>
-              <tr>
-                <th>幸運</th>
-                <td><p>{{fluck}}</p></td>
-              </tr>
-              <tr>
-                <th>アイデア</th>
-                <td><p>{{fidea}}</p></td>
-              </tr>
-              <tr>
-                <th>知識</th>
-                <td><p>{{fknowledge}}</p></td>
-              </tr>
-              <tr>
-                <th>体力</th>
-                <td><p>{{fhealth}}</p></td>
-              </tr>
-              <tr>
-                <th>MP</th>
-                <td><p>{{fmp}}</p></td>
-              </tr>
-              <tr>
-                <th>職業技能値</th>
-                <td><p>{{fVocationalSkill}}</p></td>
-              </tr>
-              <tr>
-                <th>趣味技能値</th>
-                <td><p>{{fHobbySkill}}</p></td>
-              </tr>
-              <tr>
-                <th>ダメージボーナス</th>
-                <td><p>{{fDamegeBonus}}</p></td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="right">
-        <h2>振りなおし回数</h2>
-        <div class="contentWrap">
+      <div class="left">
+        <h2>基礎ステータス</h2>
+        <div class="contentWrap clearfix">
           <table>
             <tr>
               <th>STR</th>
-              <td><p>{{diceStr}}</p></td>
+              <td><p>{{bstr}}</p></td>
+              <td class="role"><button (click)="throwDice('str')">3D6</button></td>
             </tr>
             <tr>
               <th>CON</th>
-              <td><p>{{diceCon}}</p></td>
+              <td><p>{{bcon}}</p></td>
+              <td class="role"><button (click)="throwDice('con')">3D6</button></td>
             </tr>
             <tr>
               <th>POW</th>
-              <td><p>{{dicePow}}</p></td>
+              <td><p>{{bpow}}</p></td>
+              <td class="role"><button (click)="throwDice('pow')">3D6</button></td>
             </tr>
             <tr>
               <th>DEX</th>
-              <td><p>{{diceDex}}</p></td>
+              <td><p>{{bdex}}</p></td>
+              <td class="role"><button (click)="throwDice('dex')">3D6</button></td>
             </tr>
             <tr>
               <th>APP</th>
-              <td><p>{{diceApp}}</p></td>
+              <td><p>{{bapp}}</p></td>
+              <td class="role"><button (click)="throwDice('app')">3D6</button></td>
             </tr>
             <tr>
               <th>SIZ</th>
-              <td><p>{{diceSiz}}</p></td>
+              <td><p>{{bsiz}}</p></td>
+              <td class="role"><button (click)="throwDice('siz')">2D6+6</button></td>
             </tr>
             <tr>
               <th>INT</th>
-              <td><p>{{diceInt}}</p></td>
+              <td><p>{{bint}}</p></td>
+              <td class="role"><button (click)="throwDice('int')">2D6+6</button></td>
             </tr>
             <tr>
               <th>EDU</th>
-              <td><p>{{diceEdu}}</p></td>
+              <td><p>{{bedu}}</p></td>
+              <td class="role"><button (click)="throwDice('edu')">3D6+3</button></td>
             </tr>
             <tr>
               <th>年収・財産</th>
-              <td><p>{{diceIncome_and_property}}</p></td>
+              <td><p>{{bincome_and_property}}</p></td>
+              <td class="role"><button (click)="throwDice('income')">3D6</button></td>
+            </tr>
+          </table>
+          <button class="allRole" (click)="throwDice('allDice')">一括ダイスロール</button>
+        </div>
+      </div>
+      <div class="right">
+        <h2>変動ステータス</h2>
+        <div class="contentWrap">
+          <table>
+            <tr>
+              <th>SAN</th>
+              <td><p>{{fsan}}</p></td>
+            </tr>
+            <tr>
+              <th>幸運</th>
+              <td><p>{{fluck}}</p></td>
+            </tr>
+            <tr>
+              <th>アイデア</th>
+              <td><p>{{fidea}}</p></td>
+            </tr>
+            <tr>
+              <th>知識</th>
+              <td><p>{{fknowledge}}</p></td>
+            </tr>
+            <tr>
+              <th>体力</th>
+              <td><p>{{fhealth}}</p></td>
+            </tr>
+            <tr>
+              <th>MP</th>
+              <td><p>{{fmp}}</p></td>
+            </tr>
+            <tr>
+              <th>職業技能値</th>
+              <td><p>{{fVocationalSkill}}</p></td>
+            </tr>
+            <tr>
+              <th>趣味技能値</th>
+              <td><p>{{fHobbySkill}}</p></td>
+            </tr>
+            <tr>
+              <th>ダメージボーナス</th>
+              <td><p>{{fDamegeBonus}}</p></td>
             </tr>
           </table>
         </div>
@@ -273,9 +187,9 @@
                 <tr class="line" *ngFor="let combat of combatList; let i = index">
                   <th><p>{{combat.skillName}}</p></th>
                   <td><p>{{combat.initialValue}}</p></td>
-                  <td><input type="number" min="0" max="80" value="{{combat.jobPoint}}" 
+                  <td><input type="number" min="0" max="80" value="{{combat.jobPoint}}"
                     [(ngModel)]="combatList[i].jobPoint" (input)="totalcalc($event.target.value, combat, i, 'combat', 'job')" (keyup)="dontKyetype($event.target.value, combat, i, 'combat', 'job')"></td>
-                  <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{combat.hobbyPoint}}" 
+                  <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{combat.hobbyPoint}}"
                     [(ngModel)]="combatList[i].hobbyPoint"  (input)="totalcalc($event.target.value, combat, i, 'combat', 'hobby')" (keyup)="dontKyetype($event.target.value, combat, i, 'combat', 'hobby')"></td>
                   <td><input type="number" min="0" value="{{combat.growthPoint}}" [(ngModel)]="combatList[i].growthPoint"
                     (input)="underHundredTotalSkillPoint($event.target.value, combat, i, 'combat', 'growth')" (keyup)="dontKyetype($event.target.value, combat, i, 'combat', 'growth')"></td>
@@ -306,9 +220,9 @@
                 <tr class="line" *ngFor="let search of searchList; let i = index">
                   <th><p>{{search.skillName}}</p></th>
                   <td><p>{{search.initialValue}}</p></td>
-                  <td><input type="number" min="0" max="{{remProfessionalPoint}}" value="{{search.jobPoint}}" 
+                  <td><input type="number" min="0" max="{{remProfessionalPoint}}" value="{{search.jobPoint}}"
                     [(ngModel)]="searchList[i].jobPoint" (input)="totalcalc($event.target.value, combat, i, 'search', 'job')" (keyup)="dontKyetype($event.target.value, combat, i, 'search', 'job')"></td>
-                  <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{search.hobbyPoint}}" 
+                  <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{search.hobbyPoint}}"
                     [(ngModel)]="searchList[i].hobbyPoint" (input)="totalcalc($event.target.value, combat, i, 'search', 'hobby')" (keyup)="dontKyetype($event.target.value, combat, i, 'search', 'hobby')"></td>
                   <td><input type="number" min="0" value="{{search.growthPoint}}" [(ngModel)]="searchList[i].growthPoint" 
                     (input)="underHundredTotalSkillPoint($event.target.value, combat, i, 'search', 'growth')"  (keyup)="dontKyetype($event.target.value, combat, i, 'search', 'growth')"></td>
@@ -405,7 +319,7 @@
                 <tr class="line" *ngFor="let knowledge of knowledgeList; let i = index">
                   <th><p>{{knowledge.skillName}}</p></th>
                   <td><p>{{knowledge.initialValue}}</p></td>
-                  <td><input type="number" min="0" max="{{remProfessionalPoint}}" value="{{knowledge.jobPoint}}" 
+                  <td><input type="number" min="0" max="{{remProfessionalPoint}}" value="{{knowledge.jobPoint}}"
                     [(ngModel)]="knowledgeList[i].jobPoint" (input)="totalcalc($event.target.value, combat, i, 'knowledge', 'job')" (keyup)="dontKyetype($event.target.value, combat, i, 'knowledge', 'job')"></td>
                   <td><input type="number" min="0" max="{{remInterestPoint}}" value="{{knowledge.hobbyPoint}}"
                      [(ngModel)]="knowledgeList[i].hobbyPoint" (input)="totalcalc($event.target.value, combat, i, 'knowledge', 'hobby')" (keyup)="dontKyetype($event.target.value, combat, i, 'knowledge', 'hobby')"></td>
