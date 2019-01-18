@@ -1,13 +1,18 @@
 <div class="container clearfix">
-  <div class="leftSidebar" id="sidebar">
-    <button onclick="side_close()"> < </button>
-    <a href="#" class="bar-item">Link 1</a>
-    <a href="#" class="bar-item">Link 2</a>
-    <a href="#" class="bar-item">Link 3</a>
-  </div>
-  <div class="leftSidebar-content">
-    <button onclick="side_open()"> > </button>
-  </div>
+  <nav class="side">
+    <ul *ngIf="side_flg === true">
+      <li><a href="#">トップページ</a></li>
+      <li><a href="#">キャラクター管理</a></li>
+      <li><a href="#">設定</a></li>
+    </ul>
+    <div class="toggle">
+      <img *ngIf="!side_flg" (click)="side_flg=true;" src="../../../assets/img/character-management/open_button.png"
+           alt="画像右向き">
+      <img class="active" *ngIf="side_flg" (click)="side_flg=false;"
+           src="../../../assets/img/character-management/close_button.png" alt="画像左向き">
+    </div>
+  </nav>
+
   <div class="Left">
     <h1>キャラクター一覧</h1>
     <div class="innerContainer">
@@ -42,14 +47,104 @@
       <div class="characterStatus">
         <h2>ステータス</h2>
         <mat-tab-group>
-          <mat-tab label="能力値"> Content 1</mat-tab>
-          <mat-tab label="プロフィール"> Content 2</mat-tab>
-          <mat-tab label="技能"> Content 3</mat-tab>
-          <mat-tab label="所持品"> Content 2</mat-tab>
-          <mat-tab label="経歴"> Content 3</mat-tab>
+          <mat-tab label="能力値">
+            <ul class="statusList">
+              <table>
+                <tr>
+                  <th>1</th>
+                  <td>2</td>
+                </tr>
+                <tr>
+                  <th>1</th>
+                  <td>2</td>
+                </tr>
+              </table>
+            </ul>
+          </mat-tab>
+          <mat-tab label="プロフィール">
+            <table>
+              <tr>
+                <th>名前</th>
+                <td>サンプルさん</td>
+              </tr>
+              <tr>
+                <th>職業</th>
+                <td>学生</td>
+              </tr>
+              <tr>
+                <th>年齢</th>
+                <td>18歳</td>
+              </tr>
+              <tr>
+                <th>性別</th>
+                <td>男性</td>
+              </tr>
+              <tr>
+                <th>身長</th>
+                <td>170cm</td>
+              </tr>
+              <tr>
+                <th>体重</th>
+                <td>62kg</td>
+              </tr>
+              <tr>
+                <th>出身地</th>
+                <td>日本</td>
+              </tr>
+              <tr>
+                <th>髪色</th>
+                <td>黒</td>
+              </tr>
+              <tr>
+                <th>瞳の色</th>
+                <td>黒</td>
+              </tr>
+            </table>
+          </mat-tab>
+          <mat-tab label="技能">
+            <ul class="skillList">
+              <table>
+                <tr>
+                  <th>1</th>
+                  <td>2</td>
+                </tr>
+                <tr>
+                  <th>1</th>
+                  <td>2</td>
+                </tr>
+              </table>
+            </ul>
+          </mat-tab>
+          <mat-tab label="所持品">
+            <ul class="BelongingsList">
+              <table>
+                <tr>
+                  <th>1</th>
+                  <td>2</td>
+                </tr>
+                <tr>
+                  <th>1</th>
+                  <td>2</td>
+                </tr>
+              </table>
+            </ul>
+          </mat-tab>
+          <mat-tab label="経歴">
+            <ul class="Career">
+              <table>
+                <tr>
+                  <th>1</th>
+                  <td>2</td>
+                </tr>
+                <tr>
+                  <th>1</th>
+                  <td>2</td>
+                </tr>
+              </table>
+            </ul>
+          </mat-tab>
         </mat-tab-group>
       </div>
     </div>
   </div>
 </div>
-<!--<script type="text/javascript" src="character-management-sidebar.js"></script>-->
