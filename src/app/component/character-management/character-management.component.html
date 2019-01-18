@@ -1,21 +1,5 @@
 <div class="container clearfix">
-  <nav class="side">
-    <ul *ngIf="side_flg === true">
-      <li><a routerLink="/">トップページ</a></li>
-      <li><a routerLink="/create-chat-room">ルームを立てる</a></li>
-      <li><a routerLink="/chat-room">ルームに入出する</a></li>
-      <li><a routerLink="/character-management">キャラクター管理</a></li>
-    </ul>
-    <div class="toggle">
-      <div class="closeWrap" *ngIf="!side_flg" (click)="side_flg=true;">
-        <img src="../../../assets/img/character-management/open_button.png" alt="画像右向き">
-      </div>
-      <div class="activeWrap" *ngIf="side_flg" (click)="side_flg=false;">
-        <img class="active" src="../../../assets/img/character-management/close_button.png" alt="画像左向き">
-      </div>
-    </div>
-  </nav>
-
+  <app-side-bar></app-side-bar>
   <div class="Left">
     <h1>キャラクター一覧</h1>
     <div class="innerContainer">
