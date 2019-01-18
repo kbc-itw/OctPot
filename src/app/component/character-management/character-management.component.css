@@ -45,7 +45,7 @@
           padding: 10px 0;
         }
         .side ul.ng-star-inserted li a:hover {
-          background: #1976d2;
+          background: #bdbdbd;
         }
   .side .toggle {
     padding: 5px;
@@ -165,12 +165,15 @@
           height: 34px;
           padding-top: 4px;
         }
-          .Right .innerContainer .characterStatus li {
-            padding: 7px 0;
-            border: solid 1px #999;
-            text-align: center;
-            cursor: pointer;
-            font-size: 12px;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-          }
+        .Right .innerContainer .characterStatus li {
+          padding: 7px 0;
+          border: solid 1px #999;
+          text-align: center;
+          cursor: pointer;
+          font-size: 12px;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+        }
+        .Right .innerContainer .characterStatus .statusList {}
+          .Right .innerContainer .characterStatus .statusList table{}
+            .Right .innerContainer .characterStatus .statusList {}
