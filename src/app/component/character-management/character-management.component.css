@@ -128,6 +128,42 @@
           -webkit-box-sizing: border-box;
           box-sizing: border-box;
         }
-        .Right .innerContainer .characterStatus .statusList {}
-          .Right .innerContainer .characterStatus .statusList table{}
-            .Right .innerContainer .characterStatus .statusList {}
+        .Right .innerContainer .characterStatus .statusList {
+          height: 100%;
+          font-size: 12px;
+        }
+          .Right .innerContainer .characterStatus .statusList tr {}
+            .Right .innerContainer .characterStatus .statusList tr th {
+              text-align: center;
+              box-sizing: border-box;
+              width: 100px;
+              height: 40px;
+              background: #ddd;
+              border: 1px solid #999;
+            }
+            .Right .innerContainer .characterStatus .statusList tr td {
+              text-align: center;
+              box-sizing: border-box;
+              width: 35%;
+              border: 1px solid #999;
+            }
+
+        .Right .innerContainer .characterStatus .profileList {
+          height: 100%;
+          font-size: 12px;
+        }
+          .Right .innerContainer .characterStatus .profileList tr {}
+            .Right .innerContainer .characterStatus .profileList tr th {
+              text-align: center;
+              box-sizing: border-box;
+              width: 100px;
+              height: 40px;
+              background: #ddd;
+              border: 1px solid #999;
+            }
+            .Right .innerContainer .characterStatus .profileList tr td {
+              text-align: center;
+              box-sizing: border-box;
+              width: 85%;
+              border: 1px solid #999;
+            }
