@@ -503,6 +503,30 @@ export class CharacterCreateComponent implements OnInit {
           break;
       }
     }
+    this.pointReset();
+  }
+
+  pointReset() {
+    this.combatList.forEach(function(skill){
+      skill.jobPoint = 0;
+      skill.hobbyPoint = 0;
+    });
+    this.searchList.forEach(function(skill){
+      skill.jobPoint = 0;
+      skill.hobbyPoint = 0;
+    });
+    this.behaviorList.forEach(function(skill){
+      skill.jobPoint = 0;
+      skill.hobbyPoint = 0;
+    });
+    this.negotiationList.forEach(function(skill){
+      skill.jobPoint = 0;
+      skill.hobbyPoint = 0;
+    });
+    this.knowledgeList.forEach(function(skill){
+      skill.jobPoint = 0;
+      skill.hobbyPoint = 0;
+    });
   }
 
   // 所持品(wepon)枠の作成
