@@ -1,16 +1,18 @@
 <div class="roomForm" *ngIf="!bool; else success">
-  <p>ルーム作成</p><br>
-  <form (submit)="create()">
-    <ul class="column">
-      <li><label for="text">ホストのIPアドレス：</label><input type="text" value={{ip}} readonly></li>
-      <li><label for="password">パスワード：</label><input type="password" (input)="pass=$event.target.value"></li>
-      <li><label for="text">あなたの名前：</label><input type="text" (input)="name=$event.target.value"></li>
-    </ul>
-    <ul class="submits clearfix">
-      <li><button class="submit" type="submit">作成</button></li>
-      <li><a (click)="leave()" routerLink=""><button class="leave">トップへ戻る</button></a></li>
-    </ul>
-  </form>
+  <div class="warp">
+    <h1>ルーム作成</h1>
+    <form (submit)="create()">
+      <ul class="column">
+        <li><label for="text">ホストのIPアドレス：</label><input type="text" value={{ip}} readonly></li>
+        <li><label for="password">パスワード：</label><input type="password" (input)="pass=$event.target.value"></li>
+        <li><label for="text">あなたの名前：</label><input type="text" (input)="name=$event.target.value"></li>
+      </ul>
+      <ul class="submits clearfix">
+        <li><button class="submit" type="submit">作成</button></li>
+        <li><a (click)="leave()" routerLink=""><button class="leave">トップへ戻る</button></a></li>
+      </ul>
+    </form>
+  </div>
 </div>
 <ng-template #success>
   <app-menu></app-menu>

@@ -8,6 +8,7 @@ import {CharacterManagementComponent} from './component/character-management/cha
 import {ChatRoomComponent} from './component/chat-room/chat-room.component';
 import {ChatRoomCreateComponent} from './component/chat-room-create/chat-room-create.component';
 import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
+import {FileSharingComponent} from "./component/file-sharing/file-sharing.component";
 
 const myRoutes = [
   {path: '', component: TopPageComponent},
@@ -16,7 +17,8 @@ const myRoutes = [
   {path: 'chat-room', component: ChatRoomComponent},
   {path: 'create-chat-room', component: ChatRoomCreateComponent},
   {path: 'memo-tabs', component: MemoTabsComponent},
-  {path: 'top-room', component: MenuComponent}
+  {path: 'top-room', component: MenuComponent},
+  {path: 'file-sharing', component: FileSharingComponent}
   // { path: '**', component: ErrorComponent} 予想外のパスにつないだ時のコンポーネント
 ];
 
