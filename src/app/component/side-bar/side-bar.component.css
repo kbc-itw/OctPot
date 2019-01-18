@@ -7,22 +7,22 @@
   left: 0;
   z-index: 5;
 }
-  .side ul.ng-star-inserted {
+  .side ul {
     width: 205px;
     background: #ccc;
     height: 100%;
   }
-    .side ul.ng-star-inserted li {
+    .side ul li {
       text-align: center;
       font-size: 16px;
     }
-       .side ul.ng-star-inserted li a {
+       .side ul li a {
           color: #000;
           text-decoration: none;
           display: block;
           padding: 10px 0;
         }
-        .side ul.ng-star-inserted li a:hover {
+        .side ul li a:hover {
           background: #bdbdbd;
           transition-duration: 0.3s
         }
