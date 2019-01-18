@@ -250,6 +250,7 @@ export class CharacterCreateComponent implements OnInit {
   // point: 割り振っているポイント skill; スキルの名前 index: そのスキルがそのスキル配列の何番目かcombatlist[index]
   // listName: スキルリストの名前combat,search... pointName: jobポイントかhobbyポイントか
   totalcalc(point, skill, index, listName, pointName) {  // 残り使えるスキルポイントを計算する。pointNameで職業Pか趣味Pか判定する
+    this.underHundredTotalSkillPoint(point, skill, index, listName, pointName);
     if ( pointName === 'job' ) {
       this.jobPointCalc(point, skill, index, listName, pointName);
     }else if (pointName === 'hobby' ) {
@@ -314,10 +315,94 @@ export class CharacterCreateComponent implements OnInit {
     this.remInterestPoint = this.interestPoint - usedPoint;
   }
 
-  UnderEightyTotalSkillPoint(point, skill, index, listName) {
+  underHundredTotalSkillPoint(point, skill, index, listName, pointName) { // 各スキルの合計値が99を超えないようにする
+    let choiceSkill = [];
+    switch (listName) {
+      case 'combat' :
+        choiceSkill = this.combatList[index];
+        break;
+      case 'search' :
+        choiceSkill = this.searchList[index];
+        break;
+      case 'negotiation' :
+        choiceSkill = this.negotiationList[index];
+        break;
+      case 'knowledge' :
+        choiceSkill = this.knowledgeList[index];
+        break;
+    }
+    let totalSkillPoint = 0;
+    totalSkillPoint += choiceSkill['initialValue'];
+    totalSkillPoint += choiceSkill['jobPoint'];
+    totalSkillPoint += choiceSkill['hobbyPoint'];
+    totalSkillPoint += choiceSkill['growthPoint'];
+    totalSkillPoint += choiceSkill['otherPoint'];
 
-
+    if ( totalSkillPoint > 99 ) {
+      if ( pointName === 'job' ) {
+        switch (listName) {
+          case 'combat' :
+            this.combatList[index].jobPoint = 0;
+            break;
+          case 'search' :
+            this.searchList[index].jobPoint = 0;
+            break;
+          case 'negotiation' :
+            this.negotiationList[index].jobPoint = 0;
+            break;
+          case 'knowledge' :
+            this.knowledgeList[index].jobPoint = 0;
+            break;
+        }
+      }else if (pointName === 'hobby' ) {
+        switch (listName) {
+          case 'combat' :
+            this.combatList[index].hobbyPoint = 0;
+            break;
+          case 'search' :
+            this.searchList[index].hobbyPoint = 0;
+            break;
+          case 'negotiation' :
+            this.negotiationList[index].hobbyPoint = 0;
+            break;
+          case 'knowledge' :
+            this.knowledgeList[index].hobbyPoint = 0;
+            break;
+        }
+      }else if (pointName === 'growth') {
+        switch (listName) {
+          case 'combat' :
+            this.combatList[index].growthPoint = 0;
+            break;
+          case 'search' :
+            this.searchList[index].growthPoint = 0;
+            break;
+          case 'negotiation' :
+            this.negotiationList[index].growthPoint = 0;
+            break;
+          case 'knowledge' :
+            this.knowledgeList[index].growthPoint = 0;
+            break;
+        }
+      }else if (pointName === 'other') {
+        switch (listName) {
+          case 'combat' :
+            this.combatList[index].otherPoint = 0;
+            break;
+          case 'search' :
+            this.searchList[index].otherPoint = 0;
+            break;
+          case 'negotiation' :
+            this.negotiationList[index].otherPoint = 0;
+            break;
+          case 'knowledge' :
+            this.knowledgeList[index].otherPoint = 0;
+            break;
+        }
+      }
+    }
   }
+
 
 
   throwDice(dicename) {
