@@ -6,30 +6,52 @@ export class DiceService {
   constructor() {}
 
   roll(word) {
+    let result = [];
+    let result2;
     if (word.match(/^[0-9]{1,}d[0-9]{1,}$/i) !== null) {
       // 比較なしのdice振り
-      return this.calculation(word);
+      result[0] = this.calculation(word);
+      console.log(result[0]);
+      result[1] = '(' + result[0].fm + ')' + '=' + result[0].sum;
+      console.log(result[1]);
+      result[2] = word;
+      console.log('result', result);
+      console.log('0', result[0]);
+      console.log('1', result[1]);
+      console.log('2', result[2]);
+      return result;
     } else if (word.match(/^[0-9]{1,}d[0-9]{1,}<[0-9]{1,}$/i) !== null) {
       // 以降、比較あり
-      var result = this.jude(word, '<');
-      console.log(result);
-      var result2 = result.result_num + ': ' + result.result_word;
-      return result2;
+      result[0] = this.jude(word, '<');
+      console.log(result[0]);
+      result2 = result[0].result_num + ':' + result[0].result_word;
+      result[1] = result2;
+      result[2] = result[0].reword;
+      console.log('0', result[0]);
+      console.log('1', result[1]);
+      console.log('2', result[2]);
+      return result;
     } else if (word.match(/^[0-9]{1,}d[0-9]{1,}>[0-9]{1,}$/i) !== null) {
-      var result = this.jude(word, '>');
-      console.log(result);
-      var result2 = result.result_num + ': ' + result.result_word;
-      return result2;
+      result[0] = this.jude(word, '>');
+      console.log(result[0]);
+      result2 = result[0].result_num + ':' + result[0].result_word;
+      result[1] = result2;
+      result[2] = result[0].reword;
+      return result;
     } else if (word.match(/^[0-9]{1,}d[0-9]{1,}<=[0-9]{1,}$/i) !== null) {
-      var result = this.jude(word, '<=');
-      console.log(result);
-      var result2 = result.result_num + ': ' + result.result_word;
-      return result2;
+      result[0] = this.jude(word, '<=');
+      console.log(result[0]);
+      result2 = result[0].result_num + ':' + result[0].result_word;
+      result[1] = result2;
+      result[2] = result[0].reword;
+      return result;
     } else if (word.match(/^[0-9]{1,}d[0-9]{1,}>=[0-9]{1,}$/i) !== null) {
-      var result = this.jude(word, '>=');
-      console.log(result);
-      var result2 = result.result_num + ': ' + result.result_word;
-      return result2;
+      result[0] = this.jude(word, '>=');
+      console.log(result[0]);
+      result2 = result[0].result_num + ':' + result[0].result_word;
+      result[1] = result2;
+      result[2] = result[0].reword;
+      return result;
     } else {
       console.log('しっぱい！');
       return undefined;
@@ -37,6 +59,7 @@ export class DiceService {
   }
   calculation(word) {
     let fst = word.match(/[0-9]{1,}d/i)[0];
+    console.log('fst: ' + fst);
     let num = Number(fst.replace(/[^0-9]/g, ''));
 
     let snd = word.match(/d[0-9]{1,}/i)[0];
@@ -58,9 +81,10 @@ export class DiceService {
       }
     }
     console.log(fm + ' = ' + sum);
-    return sum;
+    return {fm: fm, sum: sum};
   }
   jude(word, symbol) {
+    console.log('---------------------jude------------------------');
     var result = this.calculation(word);
     var result_word = '';
     if (symbol === '<' || symbol === '<=') {
@@ -71,13 +95,15 @@ export class DiceService {
         num = word.match(/<=[0-9]{1,}/i)[0];
       }
       var match_num = Number(num.replace(/[^0-9]/g, ''));
-      if (result < match_num) {
+      if (result.sum < match_num) {
         // result_word = '失敗しました。';
-        result_word = '失敗しました。';
+        result_word = '失敗';
       }else {
-        result_word = '成功しました。';
+        result_word = '成功';
       }
-      return {result_num: result, result_word: result_word};
+      var reword = word.match(/[0-9]{1,}d[0-9]{1,}/i)[0];
+      console.log(reword);
+      return {result_num: result.sum , result_word: result_word, reword: reword};
     } else if (symbol === '>' || symbol === '>=') {
       var num;
       if (symbol === '>') {
@@ -86,12 +112,14 @@ export class DiceService {
         num = word.match(/>=[0-9]{1,}/i)[0];
       }
       var match_num = Number(num.replace(/[^0-9]/g, ''));
-      if (result > match_num || result === match_num) {
-        result_word = '成功しました。';
+      if (result.sum > match_num || result.sum === match_num) {
+        result_word = '成功';
       }else {
-        result_word = '失敗しました。';
+        result_word = '失敗';
       }
-      return {result_num: result, result_word: result_word};
+      var reword = word.match(/[0-9]{1,}d[0-9]{1,}/i)[0];
+      console.log(reword);
+      return {result_num: result.sum , result_word: result_word, reword: reword};
     }
   }
 }

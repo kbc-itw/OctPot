@@ -36,7 +36,7 @@ export class ChatRoomCreateService {
     this.date = moment().format('YY/MM/DD HH:mm');
     this.name = name;
     this.pass = pass;
-    this.data.next('ルームを作成しました。' + '(' + this.date + ')');
+    this.data.next('ルームを作成しました。');
     console.profile('ondatachannel');
     this.dc();
     console.profileEnd();
@@ -235,8 +235,7 @@ export class ChatRoomCreateService {
     return;
   }
   message(e) {
-    this.date = moment().format('YY/MM/DD HH:mm');
-    var value: string = this.name + ': ' + e + '(' + this.date + ')';
+    var value: string = this.name + ': ' + e;
     try {
       this.member.forEach((e) => {
         console.log('--------------------------------------------------------------------', e);

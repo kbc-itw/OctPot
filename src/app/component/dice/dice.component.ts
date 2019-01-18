@@ -18,8 +18,9 @@ export class DiceComponent implements OnInit {
     console.log('roll');
     console.log(this.word);
     if (this.word !== null && this.word !== undefined && this.word !== '') {
-      if (this.dice.roll(this.word) !== undefined) {
-        this.result.push(this.word + ' => ' + this.dice.roll(this.word));
+      var roll = this.dice.roll(this.word);
+      if (roll[1] !== undefined) {
+        this.result.push(roll[2] + '->' + roll[1]);
       }
     }
     this.word = null;
