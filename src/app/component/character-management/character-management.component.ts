@@ -7,7 +7,7 @@ import { CharacterManagementService } from '../../Service/character-management.s
   styleUrls: ['./character-management.component.css']
 })
 export class CharacterManagementComponent implements OnInit {
-
+  side_flg: boolean = false;
   constructor(private charamana: CharacterManagementService) { }
 
   ngOnInit() {
