@@ -167,3 +167,46 @@
               width: 85%;
               border: 1px solid #999;
             }
+
+        .Right .innerContainer .characterStatus .skillList {
+          height: 100%;
+          font-size: 12px;
+          overflow-y: scroll;
+        }
+          .Right .innerContainer .characterStatus .skillList li {
+            height: 365px;
+          }
+
+        .Right .innerContainer .characterStatus .belongingsList {
+          width: 100%;
+          height: 100%;
+          font-size: 12px;
+        }
+          .Right .innerContainer .characterStatus .belongingsList tr {}
+            .Right .innerContainer .characterStatus .belongingsList tr th {
+              text-align: center;
+              box-sizing: border-box;
+              width: 100px;
+              height: 40px;
+              background: #ddd;
+              border: 1px solid #999;
+            }
+            .Right .innerContainer .characterStatus .belongingsList tr td {
+              text-align: center;
+              box-sizing: border-box;
+              height: 40px;
+              border: 1px solid #999;
+            }
+            .Right .innerContainer .characterStatus .belongingsList tr td input {
+              width: 98%;
+              height: 100%;
+            }
+
+        .Right .innerContainer .characterStatus .Career {
+          height: 100%;
+          font-size: 12px;
+          overflow-y: scroll;
+        }
+        .Right .innerContainer .characterStatus .Career li {
+          height: 365px;
+        }
