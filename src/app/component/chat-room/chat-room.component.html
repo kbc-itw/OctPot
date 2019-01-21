@@ -16,7 +16,6 @@
 </div>
 
 <ng-template #room>
-  <a (click)="leave()" routerLink="">退出する</a>
   <div class="chatBlock">
     <ul class="log">
       <li id="message_list" *ngFor="let message of message_list"><span>{{message.message}}</span><span class="date">{{message.date}}</span></li>

@@ -78,9 +78,21 @@
             color: #fff;
           }
 
-.chatBlock {}
+.chatBlock {
+  padding: 8px 15px;
+  width: 455px;
+  height: 220px;
+  border: 1px solid #000;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
   .chatBlock .log {
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
     overflow-y: scroll;
+    height: 175px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
   }
     .chatBlock .log li {
       border-bottom: 1px solid #ccc;
@@ -90,3 +102,23 @@
       .chatBlock .log li .date {
         color: #999;
       }
+  .chatBlock form {
+    height: 20px;
+    font-size: 12px;
+  }
+    .chatBlock form input[type="text"] {
+      border: 1px solid #000;
+      height: 100%;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    .chatBlock form input[type="submit"] {
+      padding: 2px 5px;
+      height: 100%;
+      border: none;
+      color: #fff;
+      background: #9e9e9e;
+      vertical-align: bottom;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
