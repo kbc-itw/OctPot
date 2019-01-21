@@ -3,7 +3,8 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class DiceService {
   // @ts-ignore
-  constructor() {}
+  constructor() {
+  }
 
   roll(word) {
     let result = [];
@@ -19,6 +20,7 @@ export class DiceService {
       console.log('0', result[0]);
       console.log('1', result[1]);
       console.log('2', result[2]);
+      result[3] = '=>';
       return result;
     } else if (word.match(/^[0-9]{1,}d[0-9]{1,}<[0-9]{1,}$/i) !== null) {
       // 以降、比較あり
@@ -30,6 +32,7 @@ export class DiceService {
       console.log('0', result[0]);
       console.log('1', result[1]);
       console.log('2', result[2]);
+      result[3] = '->';
       return result;
     } else if (word.match(/^[0-9]{1,}d[0-9]{1,}>[0-9]{1,}$/i) !== null) {
       result[0] = this.jude(word, '>');
@@ -37,6 +40,7 @@ export class DiceService {
       result2 = result[0].result_num + ':' + result[0].result_word;
       result[1] = result2;
       result[2] = result[0].reword;
+      result[3] = '->';
       return result;
     } else if (word.match(/^[0-9]{1,}d[0-9]{1,}<=[0-9]{1,}$/i) !== null) {
       result[0] = this.jude(word, '<=');
@@ -44,6 +48,7 @@ export class DiceService {
       result2 = result[0].result_num + ':' + result[0].result_word;
       result[1] = result2;
       result[2] = result[0].reword;
+      result[3] = '->';
       return result;
     } else if (word.match(/^[0-9]{1,}d[0-9]{1,}>=[0-9]{1,}$/i) !== null) {
       result[0] = this.jude(word, '>=');
@@ -51,12 +56,18 @@ export class DiceService {
       result2 = result[0].result_num + ':' + result[0].result_word;
       result[1] = result2;
       result[2] = result[0].reword;
+      result[3] = '->';
       return result;
     } else {
       console.log('しっぱい！');
-      return undefined;
+      result[0] = undefined;
+      result[1] = undefined;
+      result[2] = undefined;
+      result[3] = undefined;
+      return result;
     }
   }
+
   calculation(word) {
     let fst = word.match(/[0-9]{1,}d/i)[0];
     console.log('fst: ' + fst);
@@ -83,6 +94,7 @@ export class DiceService {
     console.log(fm + ' = ' + sum);
     return {fm: fm, sum: sum};
   }
+
   jude(word, symbol) {
     console.log('---------------------jude------------------------');
     var result = this.calculation(word);
@@ -91,19 +103,19 @@ export class DiceService {
       var num;
       if (symbol === '<') {
         num = word.match(/<[0-9]{1,}/i)[0];
-      }else if (symbol === '<=') {
+      } else if (symbol === '<=') {
         num = word.match(/<=[0-9]{1,}/i)[0];
       }
       var match_num = Number(num.replace(/[^0-9]/g, ''));
       if (result.sum < match_num) {
         // result_word = '失敗しました。';
         result_word = '失敗';
-      }else {
+      } else {
         result_word = '成功';
       }
       var reword = word.match(/[0-9]{1,}d[0-9]{1,}/i)[0];
       console.log(reword);
-      return {result_num: result.sum , result_word: result_word, reword: reword};
+      return {result_num: result.sum, result_word: result_word, reword: reword};
     } else if (symbol === '>' || symbol === '>=') {
       var num;
       if (symbol === '>') {
@@ -114,12 +126,12 @@ export class DiceService {
       var match_num = Number(num.replace(/[^0-9]/g, ''));
       if (result.sum > match_num || result.sum === match_num) {
         result_word = '成功';
-      }else {
+      } else {
         result_word = '失敗';
       }
       var reword = word.match(/[0-9]{1,}d[0-9]{1,}/i)[0];
       console.log(reword);
-      return {result_num: result.sum , result_word: result_word, reword: reword};
+      return {result_num: result.sum, result_word: result_word, reword: reword};
     }
   }
 }
