@@ -129,8 +129,12 @@
           box-sizing: border-box;
         }
         .Right .innerContainer .characterStatus .statusList {
-          height: 100%;
+          height: 365px;
+          overflow-y: scroll;
           font-size: 12px;
+        }
+        .Right .innerContainer .characterStatus .statusList table {
+          height: 100%;
         }
           .Right .innerContainer .characterStatus .statusList tr {}
             .Right .innerContainer .characterStatus .statusList tr th {
@@ -149,8 +153,12 @@
             }
 
         .Right .innerContainer .characterStatus .profileList {
-          height: 100%;
+          height: 365px;
+          overflow-y: scroll;
           font-size: 12px;
+        }
+        .Right .innerContainer .characterStatus .profileList table {
+          height: 100%;
         }
           .Right .innerContainer .characterStatus .profileList tr {}
             .Right .innerContainer .characterStatus .profileList tr th {
@@ -168,40 +176,66 @@
               border: 1px solid #999;
             }
 
-        .Right .innerContainer .characterStatus .skillList {
+        .Right .innerContainer .characterStatus .textList {
+          padding: 0 15px;
           height: 365px;
           font-size: 12px;
           overflow-y: scroll;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
         }
+          .Right .innerContainer .characterStatus .textList li {
+            border: none;
+          }
+          .Right .innerContainer .characterStatus .textList dl {
+            width: 100%;
+          }
+            .Right .innerContainer .characterStatus .textList dl dt {
+              text-align: left;
+            }
+            .Right .innerContainer .characterStatus .textList dl dd {
+              margin-bottom: 20px;
+              width: 100%;
+            }
+              .Right .innerContainer .characterStatus .textList dl dd textarea {
+                max-width: 100%;
+                min-width: 100%;
+                max-height: 85px;
+                min-height: 85px;
+                overflow-y: scroll;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+              }
 
         .Right .innerContainer .characterStatus .belongingsList {
           width: 100%;
-          height: 100%;
+          height: 365px;
+          overflow-y: scroll;
           font-size: 12px;
         }
+          .Right .innerContainer .characterStatus .belongingsList table {
+            width: 100%;
+          }
           .Right .innerContainer .characterStatus .belongingsList tr {}
             .Right .innerContainer .characterStatus .belongingsList tr th {
               text-align: center;
               box-sizing: border-box;
               width: 100px;
-              height: 40px;
+              min-height: 40px;
               background: #ddd;
               border: 1px solid #999;
             }
             .Right .innerContainer .characterStatus .belongingsList tr td {
               text-align: center;
               box-sizing: border-box;
-              height: 40px;
               border: 1px solid #999;
             }
-            .Right .innerContainer .characterStatus .belongingsList tr td input {
-              width: 98%;
-              height: 100%;
-              border: 0;
-            }
-
-        .Right .innerContainer .characterStatus .Career {
-          height: 100%;
-          font-size: 12px;
-          overflow-y: scroll;
-        }
+              .Right .innerContainer .characterStatus .belongingsList tr td p {
+                padding: 5px;
+                width: 100%;
+                height: 100%;
+                border: 0;
+                display: block;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+              }
