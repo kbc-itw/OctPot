@@ -14,7 +14,8 @@ export class ChatRoomCreateComponent implements OnInit {
   comment;
   ip;
   bool: boolean = false;
-  message_list: any= [];
+  message_list: any = [];
+
   constructor(private chatroom: ChatRoomCreateService, private dice: DiceService) {
   }
 
@@ -55,7 +56,7 @@ export class ChatRoomCreateComponent implements OnInit {
     if (this.comment !== null && this.comment !== undefined && this.comment !== '') {
       var result = this.dice.roll(this.comment);
       if (result[1] !== undefined) {
-        this.chatroom.message(result[2] + '->' + result[1]);
+        this.chatroom.message(result[2] + result[3] + result[1]);
       } else {
         this.chatroom.message(this.comment);
       }
@@ -66,11 +67,14 @@ export class ChatRoomCreateComponent implements OnInit {
   get_params() {
     console.log('get_params');
     var params = [];
-    params.push({io: this.chatroom.get_io(), member: this.chatroom.get_member(),
-      pass: this.chatroom.get_pass(), name: this.chatroom.get_name()});
+    params.push({
+      io: this.chatroom.get_io(), member: this.chatroom.get_member(),
+      pass: this.chatroom.get_pass(), name: this.chatroom.get_name()
+    });
     console.log(params);
     return params;
   }
+
   leave() {
     this.chatroom.leave();
     this.pass = null;

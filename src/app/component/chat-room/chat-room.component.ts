@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ChatRoomService} from '../../Service/chat-room-service';
+import {DiceService} from '../../Service/dice-service';
 import * as moment from 'moment';
 
 @Component({
@@ -16,7 +17,10 @@ export class ChatRoomComponent implements OnInit {
   ip;
   pass;
   name;
-  constructor(private chat: ChatRoomService) {}
+
+  constructor(private chat: ChatRoomService, private dice: DiceService) {
+  }
+
   ngOnInit() {
     console.log('chat-room-component');
     this.message_list = [];
@@ -37,11 +41,13 @@ export class ChatRoomComponent implements OnInit {
       }
     });
   }
+
   connect() {
     console.profile('connectFunction');
     this.chat.connect();
     console.profileEnd();
   }
+
   enter() {
     console.log('enter: ', this.ip);
     if (this.name === '' || this.name === null || this.name === undefined) {
@@ -52,17 +58,25 @@ export class ChatRoomComponent implements OnInit {
     }
     this.chat.enter(this.ip, this.pass, this.name);
   }
+
   offer() {
     console.profile('offerFunction');
     this.chat.offer();
     console.profileEnd();
   }
+
   message() {
     if (this.comment !== null && this.comment !== undefined && this.comment !== '') {
-      this.chat.message(this.comment);
+      var result = this.dice.roll(this.comment);
+      if (result[1] !== undefined) {
+        this.chat.message(result[2] + result[3] + result[1]);
+      } else {
+        this.chat.message(this.comment);
+      }
     }
     this.comment = null;
   }
+
   leave() {
     this.chat.leave();
     this.comment = null;
