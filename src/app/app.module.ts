@@ -25,6 +25,8 @@ import {SwitchTabService} from './Service/switch-tab.service';
 import {TabsManagerService} from './Service/tabs-manager.service';
 import {MenuService} from './Service/menu-service';
 import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
+import {DiceService} from './Service/dice-service';
+import { FileSharingComponent } from './component/file-sharing/file-sharing.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
     ChatRoomCreateComponent,
     DiceComponent,
     MemoComponent,
-    MemoTabsComponent
+    MemoTabsComponent,
+    FileSharingComponent
   ],
   entryComponents: [
     MemoComponent,
@@ -60,7 +63,8 @@ import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
     ChatRoomCreateService,
     SwitchTabService,
     TabsManagerService,
-    MenuService
+    MenuService,
+    DiceService
   ],
   bootstrap: [AppComponent]
 })

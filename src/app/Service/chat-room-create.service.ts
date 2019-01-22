@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import * as client from 'socket.io-client';
 import {BehaviorSubject} from 'rxjs';
 import * as moment from 'moment';
+
 @Injectable()
 export class ChatRoomCreateService {
   // ホスト側が使うルーム作成クラス
@@ -14,19 +15,22 @@ export class ChatRoomCreateService {
   private io;
   private channel;
   private member = [];
-  private  id;
+  private id;
   private name;
   private pass;
   public data = new BehaviorSubject<string>(null);
   private date: string;
+
   constructor() {
   }
+
   io_connect() {
     this.io = client.connect('http://150.95.205.204:80/');
     this.io.on('connect', (socket) => {
       console.log('connect');
     });
   }
+
   create(pass, name) {
     console.groupCollapsed('createFunction(service)');
     console.log('constructor', 'from', 'service');
@@ -36,7 +40,7 @@ export class ChatRoomCreateService {
     this.date = moment().format('YY/MM/DD HH:mm');
     this.name = name;
     this.pass = pass;
-    this.data.next('ルームを作成しました。' + '(' + this.date + ')');
+    this.data.next('ルームを作成しました。');
     console.profile('ondatachannel');
     this.dc();
     console.profileEnd();
@@ -82,8 +86,7 @@ export class ChatRoomCreateService {
     this.member[this.member.length - 1].channel.onmessage = (event) => {
       console.log('データチャネルメッセージ取得:', event.data);
       console.log(event);
-      this.date = moment().format('YY/MM/DD HH:mm');
-      var val = event.data + '(' + this.date + ')';
+      var val = event.data;
       this.data.next(val);
       this.member.forEach((e) => {
         console.log(event);
@@ -105,15 +108,15 @@ export class ChatRoomCreateService {
 
   cd() {
     this.member[this.member.length - 1].peer.onicecandidate = (e) => {
-        console.groupCollapsed('onicecadidate');
-        if (e.candidate) {
-          this.io.emit('candidate', {candidate: e.candidate, sdp: this.member[this.member.length - 1].peer.localDescription.sdp});
-        }else {
-          console.log('candi  err');
-          return;
-        }
-        console.groupEnd();
-      };
+      console.groupCollapsed('onicecadidate');
+      if (e.candidate) {
+        this.io.emit('candidate', {candidate: e.candidate, sdp: this.member[this.member.length - 1].peer.localDescription.sdp});
+      } else {
+        console.log('candi  err');
+        return;
+      }
+      console.groupEnd();
+    };
     /*
     this.peer.onicecandidate = (e) => {
       console.groupCollapsed('onicecadidate');
@@ -127,21 +130,27 @@ export class ChatRoomCreateService {
     };
     */
   }
+
   get_io() {
     return this.io;
   }
+
   get_member() {
     return this.member;
   }
+
   get_id() {
     return this.id;
   }
+
   get_name() {
     return this.name;
   }
+
   get_pass() {
     return this.pass;
   }
+
   // peer通信を始める準備
   connect(pass) {
     console.groupCollapsed('connectFunction');
@@ -175,6 +184,7 @@ export class ChatRoomCreateService {
     });
     console.groupEnd();
   }
+
   // SDPofferが送られてきたときの処理
   sdp() {
     console.groupCollapsed('sdpFunction');
@@ -218,11 +228,12 @@ export class ChatRoomCreateService {
     });
     console.groupEnd();
   }
+
   // sdpを送る処理
   offer(client) {
     console.groupCollapsed('offerFunction');
     console.log('this from offer');
-    this.member[this.member.length - 1].peer.createOffer( (offer) => {
+    this.member[this.member.length - 1].peer.createOffer((offer) => {
       this.member[this.member.length - 1].peer.setLocalDescription(new RTCSessionDescription(offer), () => {
         console.log('HostSide', 'offer');
         console.log(client);
@@ -234,9 +245,9 @@ export class ChatRoomCreateService {
     console.groupEnd();
     return;
   }
+
   message(e) {
-    this.date = moment().format('YY/MM/DD HH:mm');
-    var value: string = this.name + ': ' + e + '(' + this.date + ')';
+    var value: string = this.name + ': ' + e;
     try {
       this.member.forEach((e) => {
         console.log('--------------------------------------------------------------------', e);
@@ -249,14 +260,17 @@ export class ChatRoomCreateService {
     }
     this.data.next(value);
   }
+
   leave() {
     this.io.close();
     var value = this.name + 'が退出しました。';
     try {
       this.member.forEach((e) => {
-        console.log('--------------------------------------------------------------------', e);
-        e.channel.send(value); // closeのほうが早いのでこれ意味ないかも
-        e.channel.close();
+        if (e.channel.readyState === 'open') {
+          console.log('--------------------------------------------------------------------', e);
+          e.channel.send(value); // closeのほうが早いのでこれ意味ないかも
+          e.channel.close();
+        }
       });
       // this.member[this.member.length - 1].channel.send(value);
     } catch (e) {

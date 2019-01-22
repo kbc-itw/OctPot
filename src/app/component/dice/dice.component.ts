@@ -1,4 +1,5 @@
-import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DiceService} from '../../Service/dice-service';
 
 @Component({
   selector: 'app-dice',
@@ -6,62 +7,22 @@ import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core
   styleUrls: ['./dice.component.css']
 })
 export class DiceComponent implements OnInit {
+  word;
+  result = [];
 
   // @ts-ignore
-  constructor(
-    private renderer: Renderer2,
-  ) {
-  }
-
-  // @ts-ignore
-  @ViewChild('dice') memor: ElementRef;
-
-  roll() {
-
-    let input: HTMLInputElement = <HTMLInputElement>document.getElementById('dice');
-    if (input.value.match(/^[0-9]{1,}d[0-9]{1,}$/i) != null) {
-      let fst = input.value.match(/[0-9]{1,}d/i)[0];
-      let num = Number(fst.replace(/[^0-9]/g, ''));
-
-      let snd = input.value.match(/d[0-9]{1,}/i)[0];
-      let max = Number(snd.replace(/[^0-9]/g, ''));
-      let sum = 0;
-      let fm = '';
-      let dice = Math.floor(Math.random() * max + 1);
-      sum += dice;
-      fm += dice;
-      let rep = dice;
-      let brep = false;
-
-      for (let i = 1; i < num; i++) {
-        dice = Math.floor(Math.random() * max + 1);
-        sum += dice;
-        fm += ' + ' + dice;
-        if (rep !== dice) {
-          brep = true;
-        }
-
-      }
-      var srep = '';
-      if (!brep) {
-        srep = ' ぞろ目！';
-      }
-      console.log(fm + ' = ' + sum);
-
-      let p = this.renderer.createElement('p');
-      p.innerHTML = fm + ' = ' + sum + srep;
-      this.renderer.appendChild(this.memor.nativeElement, p);
-
-    } else {
-      console.log('しっぱい！');
-      let p = this.renderer.createElement('p');
-      p.innerHTML = 'しっぱい！';
-      this.renderer.appendChild(this.memor.nativeElement, p);
-
-    }
-  }
-
+  constructor(private dice: DiceService) {}
   ngOnInit() {
   }
-
+  roll() {
+    console.log('roll');
+    console.log(this.word);
+    if (this.word !== null && this.word !== undefined && this.word !== '') {
+      var roll = this.dice.roll(this.word);
+      if (roll[1] !== undefined) {
+        this.result.push(roll[2] + '->' + roll[1]);
+      }
+    }
+    this.word = null;
+  }
 }
