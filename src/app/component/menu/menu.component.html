@@ -5,7 +5,7 @@
       <li (mouseenter)="val='view'" (mouseleave)="val=null"><button>表示</button></li>
       <li class="pass_c" (mouseenter)="val='config'" (mouseleave)="val=null">
         <button (click)="c_pass=true; val='null'">パスワード変更</button>
-        <div class="passForm" *ngIf="c_pass">
+        <div class="passForm clearfix" *ngIf="c_pass">
           <form (submit)="change_pass()" (submit)="$event.target.pass.value=null">
             <input name="pass" type="password" placeholder="パスワード" (input)="pass=$event.target.value">
             <input type="submit" value="送信">

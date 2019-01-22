@@ -43,13 +43,13 @@ section#menu {
       }
     section#menu ul li .passForm {
       padding: 5px 15px;
-      width: 350px;
+      width: 370px;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
       background: #81c784;
     }
       section#menu ul li form {
-        display: inline-block;
+        float: left;
       }
       section#menu ul li .passForm input[type="password"] {
         padding: 5px;
@@ -67,7 +67,7 @@ section#menu {
         box-sizing: border-box;
       }
       section#menu ul li .passForm button {
-        margin-left: 15px;
+        float: right;
         padding: 4px;
         display: inline-block;
         background: #f44336;
