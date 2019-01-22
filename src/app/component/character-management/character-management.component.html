@@ -1,62 +1,30 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" href="../../../assets/octpot.ico">
-    <!--<link rel="stylesheet" href="character-management.component.css" type="text/css">-->
-    <title>キャラクター管理ページ</title>
-  </head>
-
-  <body>
-  <script src="https://www.javapoly.com/javapoly.js"></script>
-
-  <!-- Write your Java code -->
-  <script type="text/java">
-    package com.demo;
-    import com.javapoly.dom.Window;
-
-    public class HelloWorld
-    {
-      public static void sayHello()
-      {
-        Window.alert("Hello World, from Java!");
-      }
-    }
-  </script>
-
-  <!-- Invoke your Java code from Javascript -->
-  <script type="text/javascript">
-    com.demo.HelloWorld.sayHello();
-  </script>
-    <div class="wrap clearfix">
-      <div class="sub">
-        <section class="charList">
-          <h1>キャラクター一覧</h1>
-          <ul class="tab">
-            <li><input type="button" value="プレイヤー"></li>
-            <li><input type="button" value="ＮＰＣ"></li>
-          </ul>
-
-          <ul class="chars">
-            <li>キャラクター01</li>
-            <li>キャラクター02</li>
-            <li>キャラクター03</li>
-            <li>キャラクター04</li>
-          </ul>
-
-          <ul class="edit">
-            <li><a routerLink="/create"><input type="button" value="追加" (click)="test($event)"></a>></li>
-            <li><input type="button" value="編集"></li>
-            <li><input type="button" value="削除"></li>
-          </ul>
-        </section>
-      </div>
-
-      <div class="main">
-        <section class="details">
-          <h1>詳細</h1>
-        </section>
-      </div>
+<div class="container clearfix">
+  <div class="Left">
+    <h1>キャラクター一覧</h1>
+    <div class="innerContainer">
+      <ul class="tabs">
+        <li>PC</li>
+        <li>NPC</li>
+      </ul>
+      <ul class="characterList">
+        <li>キャラクター1</li>
+        <li>キャラクター2</li>
+        <li>キャラクター3</li>
+        <li>キャラクター4</li>
+        <li>キャラクター5</li>
+      </ul>
+      <ul class="bottoms">
+        <li>
+          <button>作成</button>
+        </li>
+        <li>
+          <button>編集</button>
+        </li>
+        <li>
+          <button class="raised-warn">削除</button>
+        </li>
+      </ul>
     </div>
-  </body>
-</html>
+  </div>
+  <div class="Right"></div>
+</div>

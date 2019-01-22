@@ -1,0 +1,124 @@
+.roomForm {
+}
+  .roomForm .warp {
+    margin: 0 auto;
+    width: 440px;
+    border: 1px solid #000;
+  }
+  .roomForm h1 {
+    font-size: 16px;
+    background: #81c784;
+    text-align: center;
+  }
+  .roomForm form {
+    padding: 5px;
+  }
+  .roomForm .column {
+    margin: 0 auto;
+    width: 340px;
+  }
+    .roomForm .column li {
+      margin: 0 0 15px;
+      letter-spacing: -0.5em;
+      font-size: 16px;
+    }
+      .roomForm .column li label {
+        width: 50%;
+        letter-spacing: normal;
+        display: inline-block;
+      }
+      .roomForm .column li input {
+        width: 50%;
+        letter-spacing: normal;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        display: inline-block;
+      }
+  .roomForm .submits {
+    margin: 0 auto;
+    width: 275px;
+    font-size: 12px;
+  }
+    .roomForm .submits li {
+      width: 100px;
+      height: 25px;
+      text-align: center;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+      .roomForm .submits li:first-child {
+        float: left;
+      }
+      .roomForm .submits li:last-child {
+        float: right;
+      }
+      .roomForm .submits li button {
+        width: 100%;
+        border-radius: 3px;
+      }
+        .roomForm .submits li button:hover {
+          transition-duration: 0.3s;
+        }
+        .roomForm .submits li button.submit {
+          background: #1976d2;
+          border: 1px solid #1976d2;
+          color: #fff;
+        }
+          .roomForm .submits li button.submit:hover {
+            background: #fff;
+            color: #1976d2;
+          }
+        .roomForm .submits li button.leave {
+          background: #fff;
+          border: 1px solid #000;
+          color: #000;
+        }
+          .roomForm .submits li button.leave:hover {
+            background: #000;
+            color: #fff;
+          }
+
+.chatBlock {
+  padding: 8px 15px;
+  width: 455px;
+  height: 220px;
+  border: 1px solid #000;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+  .chatBlock .log {
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    overflow-y: scroll;
+    height: 175px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+    .chatBlock .log li {
+      border-bottom: 1px solid #ccc;
+      font-size: 12px;
+      padding: 5px;
+    }
+      .chatBlock .log li .date {
+        color: #999;
+      }
+  .chatBlock form {
+    height: 20px;
+    font-size: 12px;
+  }
+    .chatBlock form input[type="text"] {
+      border: 1px solid #000;
+      height: 100%;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    .chatBlock form input[type="submit"] {
+      padding: 2px 5px;
+      height: 100%;
+      border: none;
+      color: #fff;
+      background: #9e9e9e;
+      vertical-align: bottom;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }

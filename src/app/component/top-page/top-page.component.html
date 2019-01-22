@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <link rel="shortcut icon" href="../../assets/octpot.ico">
-  <!--<link rel="stylesheet" href="top-page.component.css" type="text/css">-->
-  <title>トップページ</title>
-</head>
-<body background="../../assets/background.jpg">
-<h1>TITLE</h1>
-<div class="menu">
-  <a routerLink="/create-chat-room">ルームを立てる</a><br>
-  <a routerLink="/chat-room">ルームに入室する</a><br>
-  <a routerLink="/management">キャラクター管理</a><br>
-  <a href="#">設定</a><br>
-  <a href="#">終了</a><br>
-</div>
-</body>
-</html>
+<section id="top">
+  <div class="container clearfix">
+    <div class="menu">
+      <h1><img src="../../../assets/img/top/logo.png" alt="OCTPOT"></h1>
+      <ul>
+        <li><a mat-raised-button color="primary" routerLink="/create-chat-room">ルームを立てる</a></li>
+        <li><a mat-raised-button color="primary" routerLink="/chat-room">ルームに入室する</a></li>
+        <li><a mat-raised-button color="accent" routerLink="/management">キャラクター管理</a></li>
+        <li><a mat-raised-button href="#">設定</a></li>
+        <li><a mat-raised-button color="warn" href="#">終了</a></li>
+        <li><a mat-raised-button routerLink="/memo-tabs">メモ</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
 <router-outlet></router-outlet>

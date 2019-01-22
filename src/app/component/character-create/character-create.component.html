@@ -1,211 +1,144 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>キャラクター作成ページ</title>
-    <link rel="shortcut icon" href="../../assets/img/octpot.ico">
-  </head>
+<div class="container">
+  <section class="base">
+    <h1>基本設定</h1>
+    <div class="innerContainer clearfix">
+      <div class="left">
+        <div class="top">
+          <h2>キャラクター情報</h2>
+          <div class="contentWrap">
+            <ul>
+              <li>
+                <label for="chara-name">キャラクター名：</label><input type="text" id="chara-name">
+              </li>
+              <li>
+                <div class="radio">
+                  <p>性別：</p>
+                  <p><input type="radio" id="man" name="gender"><label for="man">男性</label></p>
+                  <p><input type="radio" id="woman" name="gender"><label for="woman">女性</label></p>
+                </div>
+              </li>
+              <li>
+                <div class="threeColumn">
+                  <p><label for="chara-height">身長：</label><input type="text" id="chara-height"></p>
+                  <p><label for="chara-weight">体重：</label><input type="text" id="chara-weight"></p>
+                  <p><label for="chara-age">年齢：</label><input type="text" id="chara-age"></p>
+                </div>
+              </li>
+              <li>
+                <label for="birthplace">出身地：</label><input type="text" id="birthplace">
+              </li>
+              <li>
+                <div class="twoColumn">
+                  <p><label for="chara-hair-color">髪色：</label><input type="text" id="chara-hair-col"></p>
+                  <p><label for="chara-eye-col">目の色：</label><input type="text" id="chara-eye-col"></p>
+                </div>
+              </li>
+              <li>
+                <div class="radio">
+                  <p>基本設定：</p>
+                  <p><input type="radio" id="PC" name="chara-type"><label for="PC">PC</label></p>
+                  <p><input type="radio" id="NPC" name="chara-type"><label for="NPC">NPC</label></p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="bottom">
+          <h2>種族設定</h2>
+          <div class="contentWrap">
+            <select name="" id="">
+              <option value="">dummy01</option>
+              <option value="">dummy02</option>
+              <option value="">dummy03</option>
+              <option value="">dummy04</option>
+              <option value="">dummy05</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="top">
+          <h2>画像設定</h2>
+          <div class="contentWrap clearfix">
+            <div class="left">
+              <div class="imgWindow"><img src="" alt=""></div>
+              <ul>
+                <li><button>追加</button></li>
+                <li><button>削除</button></li>
+              </ul>
+            </div>
+            <div class="right">
+              <h3>画像一覧</h3>
+              <ul>
+                <li>dummy01</li>
+                <li>dummy02</li>
+                <li>dummy03</li>
+                <li>dummy04</li>
+                <li>dummy05</li>
+                <li>dummy06</li>
+                <li>dummy07</li>
+                <li>dummy08</li>
+                <li>dummy09</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <h2>職業設定</h2>
+          <div class="contentWrap">
+            <select name="" id="">
+              <option value="">dummy01</option>
+              <option value="">dummy02</option>
+              <option value="">dummy03</option>
+              <option value="">dummy04</option>
+              <option value="">dummy05</option>
+            </select>
+            <dl class="clearfix">
+              <dt><p>取得できる技能</p></dt>
+              <dd><textarea name="" id="" cols="30" rows="3"></textarea></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <body>
-    <section class="parent clearfix">
-      <h1>基本設定</h1>
-      <section class="child left-area">
-        <h2>役割設定</h2>
-        <p>
-          <input type="radio" name="charElem" value="pc" id="pc" (click)="radiochange($event)">
-          <label for="pc">PC</label>
-        </p>
-        <p>
-          <input type="radio" name="charElem" value="npc" id="npc" (click)="radiochange($event)">
-          <label for="npc">NPC</label>
-        </p>
-      </section>
+  <section class="ability">
+    <h1></h1>
+    <div class="innerContainer clearfix">
+      <div class="left clearfix">
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+      <div class="right"></div>
+    </div>
+  </section>
 
-      <section class="child right-area">
-        <h2>種族設定</h2>
-        <select (change)="racechange($event)">
-          <option value="">選択してください</option>
-          <option value="1">人間</option>
-        </select>
-      </section>
+  <section class="skill">
+    <h1></h1>
+    <div class="innerContainer clearfix">
+      <div class="left"></div>
+      <div class="right"></div>
+    </div>
+  </section>
 
-      <section class="child left-area">
-        <h2>キャラクター情報</h2>
-        <p>
-          キャラクタ－名：<input type="text" id="chara-name" (change)="textinput($event)">
-        </p>
-        <p>
-          性別：
-          <input type="radio" name="gender" value="man" id="man" (click)="radiochange($event)">
-          <label for="man">男</label>
-          <input type="radio" name="gender" value="woman" id="woman" (click)="radiochange($event)">
-          <label for="woman">女</label>
-        </p>
-      </section>
+  <section class="item">
+    <h1></h1>
+    <div></div>
+  </section>
 
-      <section class="child right-area">
-        <h2>職業情報</h2>
-        職業：<input type="text" id="job" (change)="textinput($event)">
-      </section>
-    </section>
+  <section class="profile">
+    <div></div>
+    <div class="innerContainer clearfix">
+      <div class="left"></div>
+      <div class="right"></div>
+    </div>
+  </section>
 
-    <section class="parent">
-      <h1>ステータス設定</h1>
-      <section class="child tri-l base">
-        <h2>基礎ステータス</h2>
-        <table>
-          <tbody>
-            <tr>
-              <th><span>str</span></th>
-              <td><input type="text" value={{str}} name="str" readonly/></td>
-              <td><button (click)="test('str')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
-            </tr>
-            <tr>
-              <th><span>con</span></th>
-              <td><input type="text" value={{con}} name="con" readonly/></td>
-              <td><button (click)="test('con')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
-            </tr>
-            <tr>
-              <th><span>pow</span></th>
-              <td><input type="text" value={{pow}} name="pow" readonly/></td>
-              <td><button (click)="test('pow')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
-            </tr>
-            <tr>
-              <th><span>dex</span></th>
-              <td><input type="text" value={{dex}} name="dex" readonly/></td>
-              <td><button (click)="test('dex')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
-            </tr>
-            <tr>
-              <th><span>app</span></th>
-              <td><input type="text" value={{app}} name="app" readonly/></td>
-              <td><button (click)="test('app')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
-            </tr>
-            <tr>
-              <th><span>siz</span></th>
-              <td><input type="text" value={{siz}} name="siz" readonly/></td>
-              <td><button (click)="test('siz')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
-            </tr>
-            <tr>
-              <th><span>int</span></th>
-              <td><input type="text" value={{int}} name="int" readonly/></td>
-              <td><button (click)="test('int')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
-            </tr>
-            <tr>
-              <th><span>edu</span></th>
-              <td><input type="text" value={{edu}} name="edu" readonly/></td>
-              <td><button (click)="test('edu')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
-            </tr>
-            <tr>
-              <th><span>年収・財産</span></th>
-              <td><input type="text" value={{income}} name="income-and-property" readonly/></td>
-              <td><button (click)="test('income')"><img src="../assets/diceIcon.jpeg" width="10" height="10"></button></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section class="child tri-c fluctuation">
-        <h2>変動ステータス</h2>
-        <table>
-          <tbody>
-            <tr>
-              <th><span>SAN</span></th>
-              <td><input type="text" value={{SAN}} name="SAN" readonly/></td>
-            </tr>
-            <tr>
-              <th><span>幸運</span></th>
-              <td><input type="text" value={{luck}} name="luck" readonly/></td>
-            </tr>
-            <tr>
-              <th><span>アイデア</span></th>
-              <td><input type="text" value={{idea}} name="idea" readonly/></td>
-            </tr>
-            <tr>
-              <th><span>知識</span></th>
-              <td><input type="text" value={{knowledge}} name="knowledge" readonly/></td>
-            </tr>
-            <tr>
-              <th><span>体力</span></th>
-              <td><input type="text" value={{health}} name="health" readonly/></td>
-            </tr>
-            <tr>
-              <th><span>MP</span></th>
-              <td><input type="text" value={{mp}} name="mp" readonly/></td>
-            </tr>
-            <tr>
-              <th><span>職業技能</span></th>
-              <td><input type="text" value={{VocationalSkill}} name="VocationalSkill" readonly/></td>
-            </tr>
-            <tr>
-              <th><span>趣味技能</span></th>
-              <td><input type="text" value={{HobbySkill}} name="HobbySkill" readonly/></td>
-            </tr>
-            <tr>
-              <th><span>ダメージボーナス</span></th>
-              <td><input type="text" value={{DamegeBonus}} name="DamegeBonus" readonly/></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section class="child tri-r redice">
-        <h2>振りなおし回数</h2>
-        <table>
-          <tbody>
-            <tr>
-              <th><span>str</span></th>
-              <td><input type="text" value="3D6" name="s-count" readonly/></td>
-            </tr>
-            <tr>
-              <th><span>con</span></th>
-              <td><input type="text" value="3D6" name="c-count" readonly/></td>
-            </tr>
-            <tr>
-              <th><span>pow</span></th>
-              <td><input type="text" value="3D6" name="p-count" readonly/></td>
-            </tr>
-            <tr>
-              <th><span>dex</span></th>
-              <td><input type="text" value="3D6" name="d-count" readonly/></td>
-            </tr>
-            <tr>
-              <th><span>app</span></th>
-              <td><input type="text" value="3D6" name="a-count" readonly/></td>
-            </tr>
-            <tr>
-              <th><span>siz</span></th>
-              <td><input type="text" value="2D6+6" name="s-count" readonly/></td>
-            </tr>
-            <tr>
-              <th><span>int</span></th>
-              <td><input type="text" value="2D6+6" name="i-count" readonly/></td>
-            </tr>
-            <tr>
-              <th><span>edu</span></th>
-              <td><input type="text" value="3D6+3" name="e-count" readonly/></td>
-            </tr>
-            <tr>
-              <th><span>年収・財産</span></th>
-              <td><input type="text" value="3D6" name="inc-count" readonly/></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-    </section>
-
-    <section class="parent plof">
-      <h1>プロフィール</h1>
-      <!-- 行数はとりあえず100 -->
-      <section class="child">
-        <h2>経歴</h2>
-        <textarea rows="100" name="Career" (change)="textinput($event)">経歴</textarea>
-      </section>
-      <section class="child">
-        <h2>遭遇したもの</h2>
-        <textarea rows="100" name="Encounter" (change)="textinput($event)">遭遇したもの</textarea>
-      </section>
-    </section>
-    <button id="download" type="button" (click)="download()">ダウンロード</button>
-
-  </body>
-</html>
+  <div class="submits">
+    <ul>
+      <li class="save"><button>保存</button></li>
+      <li class="cancel"><button>キャンセル</button></li>
+    </ul>
+  </div>
+</div>

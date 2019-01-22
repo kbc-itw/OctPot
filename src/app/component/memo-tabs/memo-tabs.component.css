@@ -1,0 +1,24 @@
+.tabGroup {
+}
+
+.tabGroup .tabs {
+  letter-spacing: -0.5em;
+}
+
+.tabGroup .tabs li {
+  letter-spacing: normal;
+  display: inline-block;
+  background: #fff;
+  border-bottom: 3px solid #999999;
+  padding: 3px 28px;
+}
+
+.tabGroup .tabs li.current {
+  border-bottom: 3px solid #1976d2;
+}
+
+.tabGroup .tabContent {
+}
+
+.tabGroup .tabContent .currentTab {
+}
