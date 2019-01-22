@@ -6,6 +6,7 @@
   font-size: 12px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  background: #fff;
 }
   .charaSheet .left {
     width: 260px;

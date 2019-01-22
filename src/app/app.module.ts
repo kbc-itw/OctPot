@@ -28,6 +28,7 @@ import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
 import {DiceService} from './Service/dice-service';
 import { FileSharingComponent } from './component/file-sharing/file-sharing.component';
 import { CharaSheetComponent } from './component/chara-sheet/chara-sheet.component';
+import { StatusComponent } from './component/status/status.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CharaSheetComponent } from './component/chara-sheet/chara-sheet.compone
     MemoComponent,
     MemoTabsComponent,
     FileSharingComponent,
-    CharaSheetComponent
+    CharaSheetComponent,
+    StatusComponent
   ],
   entryComponents: [
     MemoComponent,
