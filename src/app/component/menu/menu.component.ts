@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MenuService } from '../../Service/menu-service';
-import { ChatRoomCreateComponent } from '../chat-room-create/chat-room-create.component';
+import {Component, OnInit} from '@angular/core';
+import {MenuService} from '../../Service/menu-service';
+import {ChatRoomCreateComponent} from '../chat-room-create/chat-room-create.component';
 
 @Component({
   selector: 'app-menu',
@@ -10,10 +10,15 @@ import { ChatRoomCreateComponent } from '../chat-room-create/chat-room-create.co
 export class MenuComponent implements OnInit {
   val;
   c_pass: boolean = false;
+  view: boolean = false;
   pass;
   name;
   io;
-  constructor(private menu: MenuService, private chatroom: ChatRoomCreateComponent) { }
+  ip = this.chatroom.ip;
+
+  constructor(private menu: MenuService, private chatroom: ChatRoomCreateComponent) {
+  }
+
   /*
   必要な情報
   部屋のパスワード
@@ -27,9 +32,11 @@ export class MenuComponent implements OnInit {
     this.pass = params[0].pass;
     this.name = params[0].name;
   }
+
   click(word) {
     this.menu.click(word);
   }
+
   change_pass() {
     console.log('change_pass');
     this.c_pass = false;
@@ -38,6 +45,7 @@ export class MenuComponent implements OnInit {
     this.io = params[0].io;
     this.io.emit('change_pass', this.pass);
   }
+
   leave() {
     this.chatroom.leave();
   }

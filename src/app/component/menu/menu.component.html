@@ -1,8 +1,15 @@
 <section class="clearfix" id="menu">
   <div class="left">
     <ul>
-      <li (mouseenter)="val='file'" (mouseleave)="val=null"><button>ファイル</button></li>
-      <li (mouseenter)="val='view'" (mouseleave)="val=null"><button>表示</button></li>
+      <li (mouseenter)="val='file'" (mouseleave)="val=null">
+        <button>ファイル</button>
+      </li>
+      <li class="view" (mouseenter)="val='view'" (mouseleave)="val=null">
+        <button (click)="view=true; val='null'">表示</button>
+        <div *ngIf="view" (mouseleave)="view=false">
+          {{ip}}
+        </div>
+      </li>
       <li class="pass_c" (mouseenter)="val='config'" (mouseleave)="val=null">
         <button (click)="c_pass=true; val='null'">パスワード変更</button>
         <div class="passForm clearfix" *ngIf="c_pass">
