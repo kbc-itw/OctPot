@@ -21,6 +21,9 @@
       .statusBlock .character:last-child {
         margin-bottom: 0;
       }
+      .statusBlock .character.hide {
+        display: none;
+      }
       .statusBlock .character .about {
         margin-bottom: 5px;
       }
