@@ -75,6 +75,20 @@ section#menu {
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
       }
+    section#menu ul li.view {
+      position: relative;
+    }
+      section#menu ul li.view .ip {
+        padding: 5px 15px;
+        position: absolute;
+        top: 30px;
+        left: 0;
+        background: #81c784;
+      }
+        section#menu ul li.view .ip p {
+          padding: 5px;
+          background: #fff;
+        }
   section#menu .right {
     float: right;
   }
