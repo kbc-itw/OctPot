@@ -1,0 +1,22 @@
+section#menu {
+  width: 100%;
+  height: 50px;
+  background-color: #81c784;
+}
+section#menu ul li {
+  padding: 10px;
+  float: left;
+}
+section#menu ul li button{
+  border: 0;
+  background: none;
+}
+ul li ul {
+  position: absolute;
+  width: 30%;
+  background-color: #81c784;
+}
+ul li ul li{
+  clear: both;
+  padding: 10px;
+}
