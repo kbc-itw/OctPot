@@ -25,6 +25,7 @@ import {TabsManagerService} from './Service/tabs-manager.service';
 import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
 import {CharacterjsonToHtmlComponent} from './component/characterjson-to-html/characterjson-to-html.component';
 import { SideBarComponent } from './component/side-bar/side-bar.component';
+import { CharacterEditComponent } from './component/character-edit/character-edit.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SideBarComponent } from './component/side-bar/side-bar.component';
     MemoComponent,
     MemoTabsComponent,
     CharacterjsonToHtmlComponent,
-    SideBarComponent
+    SideBarComponent,
+    CharacterEditComponent
   ],
   entryComponents: [
     MemoComponent,
