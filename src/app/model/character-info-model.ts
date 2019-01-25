@@ -29,6 +29,16 @@ export class Chara {
     Skill:   Skill;
     items:   Items;
     profile: Profile;
+
+    constructor(infoObject) {
+        if (infoObject) {
+            this.Setting = new Setting(infoObject['Setting']);
+            this.Status = new Status(infoObject['Status']);
+            this.Skill = new Skill(infoObject['Skill']);
+            this.items = new Items(infoObject['items']);
+            this.profile = new Profile(infoObject['profile']);
+        }
+    }
 }
 
 export class Setting {
@@ -37,6 +47,16 @@ export class Setting {
     character: Character;
     job:       string = '';  // 職業
     images:    any[] = [];
+
+    constructor(infoObject) {
+        if (infoObject) {
+            this.type = infoObject['type'];
+            this.race = infoObject['race'];
+            this.character = new Character(infoObject['character']);
+            this.job = infoObject['job'];
+            // this.images = infoObject['images']; //　画像は未実装
+        }
+    }
 }
 
 export class Character {
@@ -47,6 +67,18 @@ export class Character {
     birthplace: string = '';  // 出身地
     hairColor:  string = '';  // 髪の色
     eyeColor:   string ='';  // 瞳の色
+
+    constructor(infoObject) {
+        if (infoObject) {
+            this.name = infoObject['name'];
+            this.gender = infoObject['gender'];
+            this.height = infoObject['height'];
+            this.weight = infoObject['weight'];
+            this.birthplace = infoObject['birthplace'];
+            this.hairColor = infoObject['hairColor'];
+            this.eyeColor = infoObject['eyeColor'];
+        }
+    }
 }
 
 export class Skill {
@@ -55,6 +87,16 @@ export class Skill {
     behavior:    Behavior[] = [];
     negotiation: Behavior[] = [];
     knowledge:   Behavior[] = [];
+
+    constructor (infoObject) {
+        if (infoObject) {
+            infoObject['conbat'].forEach((skill) => this.conbat.push(new Behavior(skill)));
+            infoObject['search'].forEach((skill) => this.search.push(new Behavior(skill)));
+            infoObject['behavior'].forEach((skill) => this.behavior.push(new Behavior(skill)));
+            infoObject['negotiation'].forEach((skill) => this.negotiation.push(new Behavior(skill)));
+            infoObject['knowledge'].forEach((skill) => this.knowledge.push(new Behavior(skill)));
+        }
+    }
 }
 
 export class Behavior {
@@ -64,12 +106,31 @@ export class Behavior {
     hobbyPoint:    number = 0;  //  割り振った趣味ポイント
     growthPoint:   number = 0;  //  実際に上昇した値
     otherPoint:    number = 0;  //  その他の値
+
+    constructor (infoObject) {
+        if (infoObject) {
+            this.skillName = infoObject['skillName'];
+            this.initialValue = infoObject['initialValue'];
+            this.jobPoint = infoObject['jobPoint'];
+            this.hobbyPoint = infoObject['hobbyPoint'];
+            this.growthPoint = infoObject['growthPoint'];
+            this.otherPoint = infoObject['otherPoint'];
+       }
+    }
 }
 
 export class Status {
     baseStatus:     BaseStatus;
     fluctuationStatus: FluctuationStatus;
     reDice:            BaseStatus;
+
+    constructor (infoObject) {
+        if (infoObject) {
+            this.baseStatus = new BaseStatus(infoObject['baseStatus']);
+            this.fluctuationStatus = new FluctuationStatus(infoObject['fluctuationStatus']);
+            // this.reDice = new BaseStatus(infoObject['reDice']);
+        }
+    }
 }
 
 export class BaseStatus {
@@ -82,6 +143,20 @@ export class BaseStatus {
     int:                   number = 0;  // 知性
     edu:                   number = 0;  // 教育
     income_and_property: number = 0;  // 財産
+
+    constructor (infoObject) {
+        if (infoObject) {
+            this.str = infoObject['str'];
+            this.con = infoObject['con'];
+            this.pow = infoObject['pow'];
+            this.dex = infoObject['dex'];
+            this.siz = infoObject['siz'];
+            this.app = infoObject['app'];
+            this.int = infoObject['int'];
+            this.edu = infoObject['edu'];
+            this.income_and_property = infoObject['income_and_property'];
+        }
+    }
 }
 
 export class FluctuationStatus {
@@ -94,17 +169,46 @@ export class FluctuationStatus {
     VocationalSkill: number = 0;  // 職業技能ポイント
     HobbySkill:      number = 0;  // 趣味技能ポイント
     DamegeBonus:     string = '';  // ダメージボーナス
+
+    constructor (infoObject) {
+        if (infoObject) {
+            this.san = infoObject['san'];
+            this.luck = infoObject['luck'];
+            this.idea = infoObject['idea'];
+            this.knowledge = infoObject['knowledge'];
+            this.health = infoObject['health'];
+            this.mp = infoObject['mp'];
+            this.VocationalSkill = infoObject['VovationalSkill'];
+            this.HobbySkill = infoObject['HobbySkill'];
+            // this.DamegeBonus = infoObject['DamegeBonus'];
+        }
+    }
 }
 
 export class Items {
     weapon: Weapon[] = [];
     item:   Item[] = [];
+
+    constructor (infoObject) {
+        if (infoObject) {
+            infoObject['weapon'].forEach((obj) => new Weapon(obj));
+            infoObject['item'].forEach((obj) => new Item(obj));
+        }
+    }
 }
 
 export class Item {
     itemName: string = '';  // アイテム名
     number:   string = '';  // 個数
     other:    string = '';  // その他
+
+    constructor (infoObject) {
+        if (infoObject) {
+            this.itemName = infoObject['itemName'];
+            this.number = infoObject['number'];
+            this.other = infoObject['other'];
+       }
+    }
 }
 
 export class Weapon {
@@ -116,18 +220,40 @@ export class Weapon {
     loadingCount: number = 0;  // 装弾数
     endurance:    number = 0;  // 耐久値
     other:        string = '';  // その他
+
+    constructor (infoObject) {
+        if (infoObject) {
+            this.weaponName = infoObject['weaponName'];
+            this.successRate = infoObject['successRate'];
+            this.damage = infoObject['damege'];
+            this.range = infoObject['range'];
+            this.attackCount = infoObject['attackCount'];
+            this.loadingCount = infoObject['loadingCount'];
+            this.endurance = infoObject['endurance'];
+            this.other = infoObject['other'];
+        }
+    }
 }
 
 export class Profile {
     Career:    string = '';  // 経歴
     Encounter: string = '';  // 遭遇したもの
     otherMemo: string = '';  // その他メモ
+
+    constructor (infoObject) {
+        if (infoObject) {
+            this.Career = infoObject['Carrer'];
+            this.Encounter = infoObject['Encounter'];
+            this.otherMemo = infoObject['otherMemo'];
+        }
+    }
 }
 
 // Converts JSON strings to/from your types
 export namespace Convert {
     export function toChara(json: string): Chara {  // JSONをCharaに
-        return JSON.parse(json);
+        let charaJson = JSON.parse(json);
+        return new Chara(charaJson);
     }
 
     export function charaToJson(value: Chara): string {  // Charaをstringに
