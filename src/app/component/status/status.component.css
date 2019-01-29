@@ -1,0 +1,74 @@
+.statusBlock {
+  padding: 10px;
+  width: 260px;
+  height: 490px;
+  background: #fff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 12px;
+  overflow-y: scroll;
+}
+  .statusBlock .statusList {
+    width: 100%;
+  }
+    .statusBlock .character {
+      margin-bottom: 10px;
+      padding: 5px;
+      border: 1px solid #000;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+      .statusBlock .character:last-child {
+        margin-bottom: 0;
+      }
+      .statusBlock .character.hide {
+        display: none;
+      }
+      .statusBlock .character .about {
+        margin-bottom: 5px;
+      }
+        .statusBlock .character .about dt {
+          margin-bottom: 5px;
+        }
+      .statusBlock .character .paramEdit {
+        padding: 5px;
+        border: 1px solid #ccc;
+        letter-spacing: -0.5em;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+        .statusBlock .character .paramEdit li {
+          margin: 0 8px;
+          letter-spacing: normal;
+          display: inline-block;
+          width: calc(100% / 3 - 11px);
+        }
+          .statusBlock .character .paramEdit li:first-child {
+            margin-left: 0;
+          }
+          .statusBlock .character .paramEdit li:last-child {
+            margin-right: 0;
+          }
+          .statusBlock .character .paramEdit li input {
+            width: 100%;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+          }
+            .statusBlock .character .paramEdit li .edit {
+              letter-spacing: -0.5em;
+            }
+              .statusBlock .character .paramEdit li .edit button {
+                letter-spacing: normal;
+                display: inline-block;
+                width: 50%;
+                background: #fff;
+                border: 1px solid #ccc;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                border-radius: 5px;
+              }
+                .statusBlock .character .paramEdit li .edit button:hover {
+                  background: #ccc;
+                  color: #fff;
+                  transition-duration: 0.3s;
+                }

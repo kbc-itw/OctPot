@@ -1,9 +1,11 @@
 .roomForm {
+  background: #eee;
 }
   .roomForm .warp {
     margin: 0 auto;
     width: 440px;
     border: 1px solid #000;
+    background: #fff;
   }
   .roomForm h1 {
     font-size: 16px;
@@ -85,6 +87,7 @@
   border: 1px solid #000;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  background: #fff;
 }
   .chatBlock .log {
     margin-bottom: 5px;
@@ -122,3 +125,27 @@
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
     }
+
+.outer {
+  background: #eee;
+  height: 100%;
+  width: 100%;
+}
+.contentWrap {
+  margin: 0 auto;
+  width: 930px;
+}
+.leftArea {
+  float: left;
+  width: 455px;
+}
+.rightArea {
+  float: right;
+  width: 470px;
+}
+  .rightArea .statusArea {
+    float: left;
+  }
+  .rightArea .diceArea {
+    float: right;
+  }
