@@ -251,7 +251,6 @@ export class CharacterEditComponent implements OnInit {
     let point = event.target.valueAsNumber; // 入力されていた値をin
     this.inputSkillArray(point, index, listName, pointName); // 指定スキルに入力された値をin
     if (!this.underHundredTotalSkillPoint(point, skill, index, listName, pointName)) {
-      console.log('多すぎ');
       // 指定スキルの合計が99以下でない場合スキル値を0に戻す
       this.inputSkillArray(0, index, listName, pointName);
       return;
@@ -305,7 +304,6 @@ export class CharacterEditComponent implements OnInit {
   // 引数を元にスキル配列にポイントを入力
   // point: ポイント pointName: 職業Pか興味Pか listName: どの技能か(戦闘、探索...etc) index: 技能の何番目の配列のスキルか
   inputSkillArray(point, index, listName, pointName) {
-    console.log(point, index, listName, pointName);
     if (pointName === 'job') {
       switch (listName) {
         case 'combat' :
@@ -520,11 +518,10 @@ export class CharacterEditComponent implements OnInit {
 
 
   download() {
-    /*
     // Charaクラスを完成させる
-    let newchara = new Chara();
+    let newchara = new Chara(0);
 
-    let newcharacter = new Character();
+    let newcharacter = new Character(0);
     newcharacter.name = this.cname;
     newcharacter.gender = this.cgender;
     newcharacter.height = this.cheight;
@@ -533,7 +530,7 @@ export class CharacterEditComponent implements OnInit {
     newcharacter.hairColor = this.chairColor;
     newcharacter.eyeColor = this.ceyeColor;
 
-    let newsetting = new Setting();
+    let newsetting = new Setting(0);
     newsetting.type = this.stype;
     newsetting.race = this.srace;
     newsetting.job = this.sjob;
@@ -541,9 +538,9 @@ export class CharacterEditComponent implements OnInit {
 
     newchara.Setting = newsetting;  // charaに入れる
 
-    let newskill = new Skill();
+    let newskill = new Skill(0);
     this.combatList.forEach(function (skill) {
-      let newbehavior = new Behavior();
+      let newbehavior = new Behavior(0);
       newbehavior.skillName = skill['skillName'];
       newbehavior.initialValue = skill['initialValue'];
       newbehavior.jobPoint = skill['jobPoint'];
@@ -553,7 +550,7 @@ export class CharacterEditComponent implements OnInit {
       newskill.conbat.push(newbehavior);
     });
     this.searchList.forEach(function (skill) {
-      let newbehavior = new Behavior();
+      let newbehavior = new Behavior(0);
       newbehavior.skillName = skill['skillName'];
       newbehavior.initialValue = skill['initialValue'];
       newbehavior.jobPoint = skill['jobPoint'];
@@ -563,7 +560,7 @@ export class CharacterEditComponent implements OnInit {
       newskill.search.push(newbehavior);
     });
     this.behaviorList.forEach(function (skill) {
-      let newbehavior = new Behavior();
+      let newbehavior = new Behavior(0);
       newbehavior.skillName = skill['skillName'];
       newbehavior.initialValue = skill['initialValue'];
       newbehavior.jobPoint = skill['jobPoint'];
@@ -573,7 +570,7 @@ export class CharacterEditComponent implements OnInit {
       newskill.behavior.push(newbehavior);
     });
     this.negotiationList.forEach(function (skill) {
-      let newbehavior = new Behavior();
+      let newbehavior = new Behavior(0);
       newbehavior.skillName = skill['skillName'];
       newbehavior.initialValue = skill['initialValue'];
       newbehavior.jobPoint = skill['jobPoint'];
@@ -583,7 +580,7 @@ export class CharacterEditComponent implements OnInit {
       newskill.negotiation.push(newbehavior);
     });
     this.knowledgeList.forEach(function (skill) {
-      let newbehavior = new Behavior();
+      let newbehavior = new Behavior(0);
       newbehavior.skillName = skill['skillName'];
       newbehavior.initialValue = skill['initialValue'];
       newbehavior.jobPoint = skill['jobPoint'];
@@ -595,8 +592,8 @@ export class CharacterEditComponent implements OnInit {
 
     newchara.Skill = newskill;  // charaに入れる
 
-    let newstatus = new Status();
-    let newbaseStatus = new BaseStatus();
+    let newstatus = new Status(0);
+    let newbaseStatus = new BaseStatus(0);
     newbaseStatus.str = this.bstr;
     newbaseStatus.con = this.bcon;
     newbaseStatus.pow = this.bpow;
@@ -608,7 +605,7 @@ export class CharacterEditComponent implements OnInit {
     newbaseStatus.income_and_property = this.bincome_and_property;
     newstatus.baseStatus = newbaseStatus;
 
-    let newfluctuationStatus = new FluctuationStatus();
+    let newfluctuationStatus = new FluctuationStatus(0);
     newfluctuationStatus.san = this.fsan;
     newfluctuationStatus.luck = this.fluck;
     newfluctuationStatus.idea = this.fidea;
@@ -622,10 +619,10 @@ export class CharacterEditComponent implements OnInit {
 
     newchara.Status = newstatus;  // charaに入れる
 
-    let newitems = new Items();
+    let newitems = new Items(0);
     this.weponList.forEach(function (item) {
       if (item.name) {
-        let newwepon = new Weapon();
+        let newwepon = new Weapon(0);
         newwepon.weaponName = item.name;
         newwepon.successRate = item.successRate;
         newwepon.damage = item.damage;
@@ -639,7 +636,7 @@ export class CharacterEditComponent implements OnInit {
     });
     this.itemslist.forEach(function (item) {
       if (item.name) {
-        let newitem = new Item();
+        let newitem = new Item(0);
         newitem.itemName = item.name;
         newitem.number = item.times;
         newitem.other = item.description;
@@ -647,7 +644,7 @@ export class CharacterEditComponent implements OnInit {
       }
     });
     newchara.items = newitems;  // charaに入れる
-    let newprofile = new Profile();
+    let newprofile = new Profile(0);
     newprofile.Career = this.pCareer;
     newprofile.Encounter = this.pEncounter;
     newprofile.otherMemo = this.pOtherMemo;
@@ -656,6 +653,6 @@ export class CharacterEditComponent implements OnInit {
     let characterJson = Convert.charaToJson(newchara);  // CharaクラスをJSONに変換する
 
     this.characre.save(characterJson, document.getElementById('download'), this.filename);  // JSON文字列を保存させる
-    */
+
   }
 }
