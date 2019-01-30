@@ -68,8 +68,8 @@
         accept="*.json" (change)="getJson(fl.files)" />
       </dt>
       <dd>
-        <ul *ngFor="let chara of charaList; let i = index">
-          <li><input type="button" value="chara.Setting.character.name" (click)="showHTML(i)" ></li>
+        <ul>
+          <li *ngFor="let chara of charaList; let i = index"><input type="button" value="{{chara.Setting.character.name}}" (click)="showHTML(i)" ></li>
         </ul>
       </dd>
     </dl>
