@@ -9,9 +9,6 @@ import { Convert, Chara, Setting, Character, Skill,
   styleUrls: ['./chara-sheet.component.css']
 })
 export class CharaSheetComponent implements OnInit {
-  private characterList: Chara[];
-
-  private fullJson;
 
   private combats;
   private searchs;
@@ -119,114 +116,45 @@ export class CharaSheetComponent implements OnInit {
   private Encounter;
   private OtherMemo;
 
+  private charaList = [];
   constructor() {
-    this.sampleChara();
+    this.charaList = [];
+    console.log(this.charaList);
    }
 
 
   ngOnInit() {
   }
 
+  // HTMLでファイルが選択されたら呼ばれる予定
+  // ファイルを受け取り、ファイルの中身からCharaを生成する
+  getJson(list: any) {
+
+    if (list <= 0) { return; } // 何も指定されていなければ何もしない
+    let fileobj = list[0];  // 指定されるファイルは1つのみなので[0]
+    let reader = new FileReader();
+    reader.onload = () => {  // readAsTextでファイルの読み込みが終わったら呼び出される
+      console.log(reader.result);
+      this.addCharacter(reader.result);
+    };
+    reader.readAsText(fileobj);  // ファイルの内容をtextで読む (reader.onloadのreader.resultがstringになるへ)
+  }
+
   // jsonの文字列からCharaクラスを作成して、一覧に加える
   addCharacter( jsoninfo ) {
     let chachacha = Convert.toChara(jsoninfo);
-    console.log(chachacha);
-    this.characterList.push(chachacha);
+    let len = 0;
+    this.charaList.push(chachacha);
+    console.log('addChara: \n', this.charaList);
   }
 
-
-  // getJson(list: any) {  // fileオブジェクトを受けるようになっている前提
-
-  //   if (list <= 0) { return; } // 何も指定されていなければ何もしない
-
-  //   let fileobj = list[0];  // 指定されるファイルは1つのみなので[0]
-  //   let reader = new FileReader();
-
-  //   reader.onload = function() {  // readAsTextでファイルの読み込みが終わったら呼び出される
-  //     console.log(reader.result);
-  //     CharaSheetComponent.prototype.pushHTML(reader.result);  // ファイルの内容を各値に入れていく
-  //   };
-  //   reader.readAsText(fileobj);  // ファイルの内容をtextで読む (reader.onloadのreader.resultがstringになるへ)
-  // }
-
-  // // FileReaderで読み込んだJSONを引数にして各要素に値を入れていく
-  // pushJson (str) {
-  //   let jsonobj = JSON.parse(str); // stringのままなのでJSON(object)に変換
-  //   this.fullJson = jsonobj;
-  // }
-
-  // pushHTML ( str ) {  // JSONの文字列が引数である想定
-  //   let chara: Chara = Convert.toChara(str);
-  //   this.characterList.push(chara);
-
-  //   // Setting
-  //   this.type = chara.Setting.type;
-  //   this.race = chara.Setting.race;
-  //   this.job = chara.Setting.job;
-  //   this.images = chara.Setting.images;
-  //   // Setting.character
-  //   this.name = chara.Setting.character.name;
-  //   this.gender = chara.Setting.character.gender;
-  //   this.height = chara.Setting.character.height;
-  //   this.weight = chara.Setting.character.weight;
-  //   this.birthplace = chara.Setting.character.birthplace;
-  //   this.hairColor = chara.Setting.character.hairColor;
-  //   this.eyeColor = chara.Setting.character.eyeColor;
-  //   // Status
-  //   // Status.basestatus
-  //   this.str = chara.Status.baseStatus.str;
-  //   this.con = chara.Status.baseStatus.con;
-  //   this.pow = chara.Status.baseStatus.pow;
-  //   this.dex = chara.Status.baseStatus.dex;
-  //   this.siz = chara.Status.baseStatus.siz;
-  //   this.app = chara.Status.baseStatus.app;
-  //   this.int = chara.Status.baseStatus.int;
-  //   this.edu = chara.Status.baseStatus.edu;
-  //   this.income_and_property = chara.Status.baseStatus.income_and_property;
-  //   // Status.flutuationStatus
-  //   this.san = chara.Status.fluctuationStatus.san;
-  //   this.luck = chara.Status.fluctuationStatus.luck;
-  //   this.idea = chara.Status.fluctuationStatus.idea;
-  //   this.knowledge = chara.Status.fluctuationStatus.knowledge;
-  //   this.health = chara.Status.fluctuationStatus.health;
-  //   this.mp = chara.Status.fluctuationStatus.mp;
-  //   this.VocationalSkill = chara.Status.fluctuationStatus.VocationalSkill;
-  //   this.HobbySkill = chara.Status.fluctuationStatus.HobbySkill;
-  //   this.DamegeBonus = chara.Status.fluctuationStatus.DamegeBonus;
-  //   // Status.reDice
-  //   // this.diceStr = chara.Status.reDice.str;
-  //   // this.diceCon = chara.Status.reDice.con;
-  //   // this.diceDex = chara.Status.reDice.dex;
-  //   // this.diceApp = chara.Status.reDice.app;
-  //   // this.diceSiz = chara.Status.reDice.siz;
-  //   // this.diceInt = chara.Status.reDice.int;
-  //   // this.diceEdu = chara.Status.reDice.edu;
-  //   // this.diceIncome_and_property = chara.Status.reDice.income_and_property;
-  //   // Skill
-  //   // Skill.combat
-  //   this.combats = chara.Skill.conbat;
-  //   // Skill.search
-  //   this.searchs = chara.Skill.search;
-  //   // Skill.behaviors
-  //   this.behaviors = chara.Skill.behavior;
-  //   // Skill.negotiations
-  //   this.negotiations = chara.Skill.negotiation;
-  //   // Skill.knowledges
-  //   this.knowledges = chara.Skill.knowledge;
-  //   // Items.wepons
-  //   this.wepons = chara.items.weapon;
-  //   // Items.items
-  //   this.items = chara.items.item;
-
-  //   this.Career = chara.profile.Career;
-  //   this.Encounter = chara.profile.Encounter;
-  //   this.OtherMemo = chara.profile.otherMemo;
-  // }
 
   // 選択されたキャラ情報をキャラシートに出力する
   // そのキャラが配列の何番目に入っているか引数で受け取る
   showHTML(index) {
-    let chara = this.characterList[index];
+
+    console.log('SHOWHTML: \n', this.charaList[index]);
+    let chara = this.charaList[index];
 
     // Setting
     this.type = chara.Setting.type;
@@ -281,11 +209,6 @@ export class CharaSheetComponent implements OnInit {
     this.Career = chara.profile.Career;
     this.Encounter = chara.profile.Encounter;
     this.OtherMemo = chara.profile.otherMemo;
-  }
-
-
-  sampleChara() {
-
   }
 
 }

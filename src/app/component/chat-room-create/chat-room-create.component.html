@@ -32,7 +32,16 @@
       </div>
       <div class="rightArea clearfix">
         <div class="statusArea"><app-status></app-status></div>
-        <div class="diceArea"><app-dice></app-dice></div>
+        <div class="diceArea">
+          <mat-tab-group>
+            <mat-tab label="メモ">
+              <app-memo></app-memo>
+            </mat-tab>
+            <mat-tab label="ダイス">
+              <app-dice></app-dice>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
       </div>
     </div>
   </div>

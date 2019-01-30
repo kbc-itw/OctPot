@@ -64,9 +64,12 @@
   <div class="right">
     <dl>
       <dt>キャラクター選択</dt>
+      <dt><input id="upfile" name="upfile" type="file" #fl
+        accept="*.json" (change)="getJson(fl.files)" />
+      </dt>
       <dd>
-        <ul *ngFor="let chara of characterList; let i = index">
-          <li><input type="button" value="chara.Setting.character.name" (onclick)="showHTML(i)" ></li>
+        <ul>
+          <li *ngFor="let chara of charaList; let i = index"><input type="button" value="{{chara.Setting.character.name}}" (click)="showHTML(i)" ></li>
         </ul>
       </dd>
     </dl>
