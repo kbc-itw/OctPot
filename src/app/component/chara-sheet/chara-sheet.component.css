@@ -25,11 +25,23 @@
         box-sizing: border-box;
       }
         .charaSheet .left .about .name {
+          padding: 0 5px;
           width: 70%;
+          min-height: 20px;
+          vertical-align: top;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          white-space: nowrap;
+          overflow-x: hidden;
         }
         .charaSheet .left .about .gender {
+          padding: 0 5px;
           width: 30%;
           border-left: none;
+          min-height: 20px;
+          vertical-align: top;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
         }
     .charaSheet .left table {
       width: 100%;
@@ -86,13 +98,18 @@
           overflow-y: scroll;
         }
           .charaSheet .right dl dd ul li {
-            padding: 3px 5px;
             border-bottom: 1px solid #b5b5b5;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
           }
-            .charaSheet .right dl dd ul li:hover {
-              background: #4fc3f7;
-              color: #fff;
-              transition-duration: 0.3s;
+            .charaSheet .right dl dd ul li button {
+              padding: 3px 5px;
+              width: 100%;
+              -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+              background: #fff;
+              border: none;
             }
+              .charaSheet .right dl dd ul li button:hover {
+                background: #4fc3f7;
+                color: #fff;
+                transition-duration: 0.3s;
+              }

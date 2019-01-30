@@ -69,7 +69,9 @@
       </dt>
       <dd>
         <ul>
-          <li *ngFor="let chara of charaList; let i = index"><input type="button" value="{{chara.Setting.character.name}}" (click)="showHTML(i)" ></li>
+          <li *ngFor="let chara of charaList; let i = index">
+            <button (click)="showHTML(i)">{{chara.Setting.character.name}}</button>
+          </li>
         </ul>
       </dd>
     </dl>
