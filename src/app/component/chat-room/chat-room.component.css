@@ -149,3 +149,12 @@
   .rightArea .diceArea {
     float: right;
   }
+    /deep/.rightArea .diceArea .mat-tab-group {
+      width: 195px !important;
+    }
+      /deep/.rightArea .diceArea .mat-tab-group .mat-tab-label {
+        width: 50% !important;
+        height: 30px !important;
+        min-width: auto !important;
+        width: 50% !important;
+      }
