@@ -21,11 +21,14 @@ import {CharacterManagementService} from './Service/character-management.service
 import {ChatRoomService} from './Service/chat-room-service';
 import {ChatRoomCreateService} from './Service/chat-room-create.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCardModule, MatTabsModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatSidenavModule, MatTabsModule} from '@angular/material';
 import {SwitchTabService} from './Service/switch-tab.service';
 import {TabsManagerService} from './Service/tabs-manager.service';
 import {MenuService} from './Service/menu-service';
 import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
+import {CharacterjsonToHtmlComponent} from './component/characterjson-to-html/characterjson-to-html.component';
+import {SideBarComponent} from './component/side-bar/side-bar.component';
+import {CharacterEditComponent} from './component/character-edit/character-edit.component';
 import {DiceService} from './Service/dice-service';
 import {FileSharingService} from './Service/file-sharing.service';
 import { CharaSheetComponent } from './component/chara-sheet/chara-sheet.component';
@@ -43,6 +46,9 @@ import { StatusComponent } from './component/status/status.component';
     DiceComponent,
     MemoComponent,
     MemoTabsComponent,
+    CharacterjsonToHtmlComponent,
+    SideBarComponent,
+    CharacterEditComponent,
     FileSharingComponent,
     CharaSheetComponent,
     StatusComponent
@@ -59,7 +65,8 @@ import { StatusComponent } from './component/status/status.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatTabsModule,
-    MatCardModule
+    MatCardModule,
+    MatSidenavModule
   ],
   providers: [
     CharacterCreateService,
