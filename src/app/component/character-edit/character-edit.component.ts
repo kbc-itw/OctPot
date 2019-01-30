@@ -520,6 +520,7 @@ export class CharacterEditComponent implements OnInit {
 
 
   download() {
+    /*
     // Charaクラスを完成させる
     let newchara = new Chara();
 
@@ -655,5 +656,6 @@ export class CharacterEditComponent implements OnInit {
     let characterJson = Convert.charaToJson(newchara);  // CharaクラスをJSONに変換する
 
     this.characre.save(characterJson, document.getElementById('download'), this.filename);  // JSON文字列を保存させる
+    */
   }
 }

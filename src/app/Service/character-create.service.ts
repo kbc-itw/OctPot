@@ -250,6 +250,7 @@ export class CharacterCreateService {
     console.log('未完成');
 
     // キャラ情報を構成するクラスたち
+    /*
     let chara = new Chara();
     let setting = new Setting();
     let character = new Character();
@@ -280,7 +281,7 @@ export class CharacterCreateService {
     chara.profile = profile;
 
     console.log(Convert.charaToJson(chara));
-
+*/
   }
 
 }
@@ -295,6 +296,3 @@ export class CharacterCreateService {
   file.addEventListener('click', this.save());
   */
 // }
-
-
-
