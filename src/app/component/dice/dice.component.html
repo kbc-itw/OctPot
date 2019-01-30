@@ -1,10 +1,20 @@
-<p>
-  だいすろおる！
-</p>
-<form (submit)="roll()" (submit)="$event.target.result.value=null">
-  <input name="result" id="dice" type="text" value="" (input)="word=$event.target.value"/>
-  <input class="raised-roll" type="submit" value='roll'/>
-</form>
-<div id="dr" #dice *ngFor="let val of result">
-  {{val}}
+<div class="diceBlock">
+  <form (submit)="roll()" (submit)="$event.target.result.value=null">
+    <input name="result" id="dice" type="text" value="" (input)="word=$event.target.value"/>
+    <input class="raised-roll" type="submit" value='roll'/>
+  </form>
+  <div class="imgs">
+    <ul>
+      <li><div class="dice_4"></div></li>
+      <li><div class="dice_6"></div></li>
+      <li><div class="dice_8"></div></li>
+      <li><div class="dice_10"></div></li>
+      <li><div class="dice_12"></div></li>
+      <li><div class="dice_20"></div></li>
+      <li><div class="dice_100"></div></li>
+    </ul>
+  </div>
+  <ul class="diceLog">
+    <li id="dr" #dice *ngFor="let val of result">{{val}}</li>
+  </ul>
 </div>

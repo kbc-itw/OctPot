@@ -1,22 +1,109 @@
 section#menu {
   width: 100%;
-  height: 50px;
-  background-color: #81c784;
+  height: 30px;
+  background: #81c784;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
-section#menu ul li {
-  padding: 10px;
-  float: left;
-}
-section#menu ul li button{
-  border: 0;
-  background: none;
-}
-ul li ul {
-  position: absolute;
-  width: 30%;
-  background-color: #81c784;
-}
-ul li ul li{
-  clear: both;
-  padding: 10px;
-}
+  section#menu .left {
+    float: left;
+  }
+  section#menu ul {
+    display: block;
+    height: 30px;
+  }
+    section#menu ul li {
+      height: 30px;
+      display: inline-block;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      font-size: 12px;
+    }
+      section#menu ul li button {
+        display: block;
+        min-width: 110px;
+        height: 100%;
+        padding: 5px 15px;
+        border: none;
+        background: none;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+        section#menu ul li button:hover {
+          background: #519657;
+          transition-duration: 0.3s;
+        }
+    section#menu ul li.pass_c {
+      position: relative;
+    }
+      section#menu ul li.pass_c .passForm {
+        position: absolute;
+        top: 30px;
+        left: 0;
+      }
+    section#menu ul li .passForm {
+      padding: 5px 15px;
+      width: 370px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      background: #81c784;
+    }
+      section#menu ul li form {
+        float: left;
+      }
+      section#menu ul li .passForm input[type="password"] {
+        padding: 5px;
+        display: inline-block;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      section#menu ul li .passForm input[type="submit"] {
+        padding: 5px;
+        display: inline-block;
+        background: #9e9e9e;
+        color: #fff;
+        border: none;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      section#menu ul li .passForm button {
+        float: right;
+        padding: 4px;
+        display: inline-block;
+        background: #f44336;
+        color: #fff;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+    section#menu ul li.view {
+      position: relative;
+    }
+      section#menu ul li.view .ip {
+        padding: 5px 15px;
+        position: absolute;
+        top: 30px;
+        left: 0;
+        background: #81c784;
+      }
+        section#menu ul li.view .ip p {
+          padding: 5px;
+          background: #fff;
+        }
+  section#menu .right {
+    float: right;
+  }
+    section#menu .right button {
+      padding: 6px 15px;
+      display: block;
+      height: 100%;
+      width: 110px;
+      font-size: 12px;
+      text-align: center;
+      box-sizing: border-box;
+      border: none;
+      background: #81c784;
+    }
+      section#menu .right button:hover {
+        background: #519657;
+        transition-duration: 0.3s;
+      }
