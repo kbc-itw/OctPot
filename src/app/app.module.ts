@@ -10,9 +10,11 @@ import {CharacterCreateComponent} from './component/character-create/character-c
 import {CharacterManagementComponent} from './component/character-management/character-management.component';
 import {ChatRoomComponent} from './component/chat-room/chat-room.component';
 import {TopPageComponent} from './component/top-page/top-page.component';
+import {MenuComponent} from './component/menu/menu.component';
 import {ChatRoomCreateComponent} from './component/chat-room-create/chat-room-create.component';
 import {DiceComponent} from './component/dice/dice.component';
 import {MemoComponent} from './component/memo/memo.component';
+import {FileSharingComponent} from './component/file-sharing/file-sharing.component';
 
 import {CharacterCreateService} from './Service/character-create.service';
 import {CharacterManagementService} from './Service/character-management.service';
@@ -22,10 +24,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCardModule, MatSidenavModule, MatTabsModule} from '@angular/material';
 import {SwitchTabService} from './Service/switch-tab.service';
 import {TabsManagerService} from './Service/tabs-manager.service';
+import {MenuService} from './Service/menu-service';
 import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
 import {CharacterjsonToHtmlComponent} from './component/characterjson-to-html/characterjson-to-html.component';
 import {SideBarComponent} from './component/side-bar/side-bar.component';
 import {CharacterEditComponent} from './component/character-edit/character-edit.component';
+import {DiceService} from './Service/dice-service';
+import {FileSharingService} from './Service/file-sharing.service';
+import { CharaSheetComponent } from './component/chara-sheet/chara-sheet.component';
+import { StatusComponent } from './component/status/status.component';
 
 @NgModule({
   declarations: [
@@ -34,13 +41,17 @@ import {CharacterEditComponent} from './component/character-edit/character-edit.
     CharacterManagementComponent,
     ChatRoomComponent,
     TopPageComponent,
+    MenuComponent,
     ChatRoomCreateComponent,
     DiceComponent,
     MemoComponent,
     MemoTabsComponent,
     CharacterjsonToHtmlComponent,
     SideBarComponent,
-    CharacterEditComponent
+    CharacterEditComponent,
+    FileSharingComponent,
+    CharaSheetComponent,
+    StatusComponent
   ],
   entryComponents: [
     MemoComponent,
@@ -63,7 +74,10 @@ import {CharacterEditComponent} from './component/character-edit/character-edit.
     ChatRoomService,
     ChatRoomCreateService,
     SwitchTabService,
-    TabsManagerService
+    TabsManagerService,
+    MenuService,
+    DiceService,
+    FileSharingService,
   ],
   bootstrap: [AppComponent]
 })

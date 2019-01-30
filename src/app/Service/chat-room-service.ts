@@ -9,12 +9,17 @@ export class ChatRoomService {
   private io;
   private channel;
   private id;
-  public data = new BehaviorSubject<string>('');
-  constructor() {
+  private name;
+  public data;
+  private bool;
+  constructor() {}
+  preparation() {
     console.groupCollapsed('constructor');
     console.log('constructor', 'from', 'service');
     this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
     this.io = client.connect('http://150.95.205.204:80/');
+    this.data = new BehaviorSubject<string>(null);
+    this.bool = true;
     console.profile('sdpFunction');
     this.sdp();
     console.profileEnd();
@@ -54,7 +59,7 @@ export class ChatRoomService {
       console.log(this.channel);
       this.channel.onopen = () => {
         console.log('DataChannelOpen');
-        var value: string = this.id + 'が入室しました。';
+        var value: string = this.name + 'が入室しました。';
         this.channel.send(value);
       };
       this.channel.onmessage = (event) => {
@@ -62,8 +67,17 @@ export class ChatRoomService {
         console.log(event.data);
         this.data.next(event.data);
       };
-      this.channel.onclose = function () {
+      this.channel.onclose = () => {
         console.log('DataChannelClose');
+        if (this.bool) {
+          var value: string = 'hostとの接続が切れました。';
+          this.data.next(value);
+          this.io.close();
+          this.channel.close();
+          this.channel = undefined;
+          this.peer = undefined;
+          console.log('channeldayo:  ', this.channel);
+        }
       };
       this.channel.onerror = function (err) {
         console.log(err);
@@ -89,9 +103,10 @@ export class ChatRoomService {
     return this.io;
   }
 
-  enter(e) {
+  enter(ip, pass, name) {
     // ここでホスト側に入室申請する。
-    this.io.emit('enter', e);
+    this.io.emit('enter', ip, pass);
+    this.name = name;
   }
   // SDPofferが送られてきたときの処理
   sdp() {
@@ -194,9 +209,25 @@ export class ChatRoomService {
     return;
   }
   message(e) {
-    var value = this.id + ': ' + e;
+    var value = this.name + ': ' + e;
     console.log(value);
-    this.channel.send(value);
+    if (this.channel !== undefined) {// もしhostとの接続が切れていなかったら
+      this.channel.send(value);
+    }
     // this.data.next(value);
+  }
+  leave() {
+    var value = this.name + 'が退出しました。';
+    this.channel.send(value);
+    this.bool = false;
+    try {
+      this.io.close();
+      this.channel.close();
+      this.channel = undefined;
+      this.peer = undefined;
+    } catch (e) {
+      console.log(e);
+    }
+    this.data.next(null);
   }
 }

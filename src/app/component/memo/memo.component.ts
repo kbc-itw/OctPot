@@ -1,15 +1,10 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild , Input, Output} from '@angular/core';
 import { MemoService } from '../../Service/memo.service';
 
-import {User} from '../../model/User';
-import {Memo} from '../../model/Memo';
-import {Action} from '../../model/Action';
-
-
 @Component({
   selector: 'app-memo',
   templateUrl: './memo.component.html',
-  styleUrls: ['./memo.component.scss'],
+  styleUrls: ['./memo.component.css'],
   providers: [MemoService]
 
 })
@@ -17,9 +12,6 @@ import {Action} from '../../model/Action';
 
 export class MemoComponent implements OnInit {
 
-  user: User;
-  memo: { user: User; value: string; action: Action };
-  action: Action;
 
   @ViewChild('memos') memor: ElementRef;
   private num = 0;
@@ -40,12 +32,11 @@ export class MemoComponent implements OnInit {
     textarea.id = 'memo' + this.num;
     this.renderer.appendChild(this.memor.nativeElement, textarea);
 
-    this.action = Action.ADD;
-    this.memo = { user: this.user, value: 'aho' ,action: this.action };
-    localStorage.setItem('memo'+this.num, '');
+    localStorage.setItem('memo' + this.num, '');
 
-
+    this.service.create(this.num);
     // this.service.send(this.memo);
+    //
   }
 
   del() {
@@ -82,14 +73,12 @@ export class MemoComponent implements OnInit {
     }
   }
 
+  offer(){}
+
   ngOnInit() {
     console.log('OnInit');
-    this.user = {
-      id: 1,
-      name: `test`
-    };
 
-
+    this.service.init();
     this.init();
   }
 

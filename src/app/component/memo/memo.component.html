@@ -1,10 +1,7 @@
 <div class="memo-block">
-  <form>
-    <input class="raised-primary" type="button" (click)="add()" value="追加"/>
-    <input class="raised-warn" type="button" (click)="del()" value="削除"/>
-    <div id="memos" class="memos" #memos (click)="sel()">
-    </div>
-    <input type="button" (click)="save()" value="保存"/>
-
-  </form>
+  <ul class="clearfix">
+    <li><button class="raised-primary" (click)="add()">追加</button></li>
+    <li><button class="raised-warn" (click)="del()">削除</button></li>
+  </ul>
+  <div id="memos" class="memos" #memos (click)="sel()"></div>
 </div>

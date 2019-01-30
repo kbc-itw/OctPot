@@ -2,6 +2,7 @@ import {ModuleWithProviders} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
 import {TopPageComponent} from './component/top-page/top-page.component';
+import {MenuComponent} from './component/menu/menu.component';
 import {CharacterCreateComponent} from './component/character-create/character-create.component';
 import {CharacterManagementComponent} from './component/character-management/character-management.component';
 import {ChatRoomComponent} from './component/chat-room/chat-room.component';
@@ -9,6 +10,7 @@ import {ChatRoomCreateComponent} from './component/chat-room-create/chat-room-cr
 import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
 import {CharacterjsonToHtmlComponent} from './component/characterjson-to-html/characterjson-to-html.component';
 import {CharacterEditComponent} from './component/character-edit/character-edit.component';
+import {FileSharingComponent} from "./component/file-sharing/file-sharing.component";
 
 const myRoutes = [
   {path: '', component: TopPageComponent},
@@ -18,7 +20,9 @@ const myRoutes = [
   {path: 'create-chat-room', component: ChatRoomCreateComponent},
   {path: 'memo-tabs', component: MemoTabsComponent},
   {path: 'view-characterjson', component: CharacterjsonToHtmlComponent},
-  {path: 'character-edit', component: CharacterEditComponent}
+  {path: 'character-edit', component: CharacterEditComponent},
+  {path: 'top-room', component: MenuComponent},
+  {path: 'file-sharing', component: FileSharingComponent}
   // { path: '**', component: ErrorComponent} 予想外のパスにつないだ時のコンポーネント
 ];
 

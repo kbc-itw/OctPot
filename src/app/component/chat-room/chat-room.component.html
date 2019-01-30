@@ -1,22 +1,49 @@
-<div class="menu">
-  <ul>
-    <li><a routerLink="">ファイル</a></li>
-    <li><a routerLink="">表示</a></li>
-    <li><a routerLink="">コマ</a></li>
-    <li><a routerLink="">マップ</a></li>
-    <li><a routerLink="">トップ</a></li>
-    <li><a routerLink="">設定</a></li>
-    <li><a routerLink="">退室</a></li>
-  </ul>
+<div class="roomForm" *ngIf="!room_in; else room">
+  <div class="warp">
+    <h1>ルーム入室</h1>
+    <form (submit)="enter()">
+      <ul class="column">
+        <li><label for="text">ホストのIPアドレス：</label><input type="text" (input)="ip=$event.target.value"></li>
+        <li><label for="password">パスワード：</label><input type="password" (input)="pass=$event.target.value"></li>
+        <li><label for="text">あなたの名前：</label><input type="text" (input)="name=$event.target.value"></li>
+      </ul>
+      <ul class="submits clearfix">
+        <li><button class="submit" type="submit">入室</button></li>
+        <li><a (click)="leave()" routerLink=""><button class="leave">トップへ戻る</button></a></li>
+      </ul>
+    </form>
+  </div>
 </div>
 
-<div class="room">
-  <div class="mainBlock">
-    <div class="map"></div>
-    <div class="chat"></div>
+<ng-template #room>
+  <div class="outer">
+    <app-menu></app-menu>
+    <div class="contentWrap clearfix">
+      <div class="leftArea">
+        <div class="chatBlock">
+          <ul class="log">
+            <li id="message_list" *ngFor="let message of message_list"><span>{{message.message}}</span><span class="date">{{message.date}}</span></li>
+          </ul>
+          <form (submit)="message()" (submit)="$event.target.text.value=null">
+            <input name='text' type="text" placeholder="テキスト" (input)="comment=$event.target.value">
+            <input type="submit" value="送信">
+          </form>
+        </div>
+        <app-chara-sheet></app-chara-sheet>
+      </div>
+      <div class="rightArea clearfix">
+        <div class="statusArea"><app-status></app-status></div>
+        <div class="diceArea">
+          <mat-tab-group>
+            <mat-tab label="メモ">
+              <app-memo></app-memo>
+            </mat-tab>
+            <mat-tab label="ダイス">
+              <app-dice></app-dice>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="sideBlock">
-    <div class="status"></div>
-    <div class="memo"></div>
-  </div>
-</div>
+</ng-template>
