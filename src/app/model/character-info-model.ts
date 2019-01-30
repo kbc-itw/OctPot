@@ -178,7 +178,7 @@ export class FluctuationStatus {
             this.knowledge = infoObject['knowledge'];
             this.health = infoObject['health'];
             this.mp = infoObject['mp'];
-            this.VocationalSkill = infoObject['VovationalSkill'];
+            this.VocationalSkill = infoObject['VocationalSkill'];
             this.HobbySkill = infoObject['HobbySkill'];
             // this.DamegeBonus = infoObject['DamegeBonus'];
         }
