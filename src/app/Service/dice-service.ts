@@ -12,6 +12,23 @@ export class DiceService {
     if (word.match(/^[0-9]{1,}d[0-9]{1,}$/i) !== null) {
       // 比較なしのdice振り
       result[0] = this.calculation(word);
+      result[4] = false;
+      console.log(result[0]);
+      result[1] = '(' + result[0].fm + ')' + '=' + result[0].sum;
+      console.log(result[1]);
+      result[2] = word;
+      console.log('result', result);
+      console.log('0', result[0]);
+      console.log('1', result[1]);
+      console.log('2', result[2]);
+      result[3] = '=>';
+      return result;
+    } else if (word.match(/^s[0-9]{1,}d[0-9]{1,}$/i) !== null) {
+      // sercretdice
+      let word2 = word.match(/[0-9]{1,}d[0-9]{1,}/i)[0];
+      console.log('sercretdice---------------------', word2);
+      result[0] = this.calculation(word);
+      result[4] = true;
       console.log(result[0]);
       result[1] = '(' + result[0].fm + ')' + '=' + result[0].sum;
       console.log(result[1]);
@@ -33,6 +50,7 @@ export class DiceService {
       console.log('1', result[1]);
       console.log('2', result[2]);
       result[3] = '->';
+      result[4] = false;
       return result;
     } else if (word.match(/^[0-9]{1,}d[0-9]{1,}>[0-9]{1,}$/i) !== null) {
       result[0] = this.jude(word, '>');
@@ -41,6 +59,7 @@ export class DiceService {
       result[1] = result2;
       result[2] = result[0].reword;
       result[3] = '->';
+      result[4] = false;
       return result;
     } else if (word.match(/^[0-9]{1,}d[0-9]{1,}<=[0-9]{1,}$/i) !== null) {
       result[0] = this.jude(word, '<=');
@@ -49,6 +68,7 @@ export class DiceService {
       result[1] = result2;
       result[2] = result[0].reword;
       result[3] = '->';
+      result[4] = false;
       return result;
     } else if (word.match(/^[0-9]{1,}d[0-9]{1,}>=[0-9]{1,}$/i) !== null) {
       result[0] = this.jude(word, '>=');
@@ -57,6 +77,7 @@ export class DiceService {
       result[1] = result2;
       result[2] = result[0].reword;
       result[3] = '->';
+      result[4] = false;
       return result;
     } else {
       console.log('しっぱい！');
@@ -64,11 +85,14 @@ export class DiceService {
       result[1] = undefined;
       result[2] = undefined;
       result[3] = undefined;
+      result[4] = undefined;
       return result;
     }
   }
 
   calculation(word) {
+    // fstは前半 1d6 の 1d
+    // sndは後半 1d6 の d6
     let fst = word.match(/[0-9]{1,}d/i)[0];
     console.log('fst: ' + fst);
     let num = Number(fst.replace(/[^0-9]/g, ''));
