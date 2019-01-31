@@ -30,6 +30,9 @@ export class ChatRoomCreateComponent implements OnInit {
       if (message !== null && message !== undefined && message !== '') {
         this.message_list.push({message: message, date: date});
       }
+      setTimeout(() => {
+        this.scrollHeight();
+      }, 0.0001);
     });
   }
 
@@ -68,6 +71,19 @@ export class ChatRoomCreateComponent implements OnInit {
       }
     }
     this.comment = null;
+  }
+
+  scrollHeight() {
+    // チャット時にチャットスクロールの一番下に移動
+    console.log('scroll');
+    let scr: any = document.getElementsByClassName('log');
+    try {
+      console.log(scr[0].scrollHeight);
+      console.log(scr[0].scrollTop);
+      scr[0].scrollTop = scr[0].scrollHeight;
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   get_params() {
