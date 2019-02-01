@@ -11,6 +11,7 @@
             <li>キャラクター3</li>
             <li>キャラクター4</li>
             <li>キャラクター5</li>
+
           </ul>
         </mat-tab>
         <mat-tab label="NPC"> Content NPC</mat-tab>
@@ -39,55 +40,55 @@
               <table>
                 <tr>
                   <th>STR</th>
-                  <td>13</td>
+                  <td>{{str}}</td>
                   <th>SAN</th>
-                  <td>50</td>
+                  <td>{{san}}</td>
                 </tr>
                 <tr>
                   <th>CON</th>
-                  <td>14</td>
+                  <td>{{con}}</td>
                   <th>幸運</th>
-                  <td>50</td>
+                  <td>{{luck}}</td>
                 </tr>
                 <tr>
                   <th>POW</th>
-                  <td>10</td>
+                  <td>{{pow}}</td>
                   <th>アイデア</th>
-                  <td>40</td>
+                  <td>{{idea}}</td>
                 </tr>
                 <tr>
                   <th>DEX</th>
-                  <td>7</td>
+                  <td>{{dex}}</td>
                   <th>知識</th>
-                  <td>60</td>
+                  <td>{{knowledge}}</td>
                 </tr>
                 <tr>
                   <th>APP</th>
-                  <td>13</td>
+                  <td>{{app}}</td>
                   <th>体力</th>
-                  <td>14</td>
+                  <td>{{health}}</td>
                 </tr>
                 <tr>
                   <th>SIZ</th>
-                  <td>14</td>
+                  <td>{{siz}}</td>
                   <th>MP</th>
-                  <td>10</td>
+                  <td>{{mp}}</td>
                 </tr>
                 <tr>
                   <th>INT</th>
-                  <td>8</td>
+                  <td>{{int}}</td>
                   <th>職業技能</th>
-                  <td>240</td>
+                  <td>{{vocationalskill}}</td>
                 </tr>
                 <tr>
                   <th>EDU</th>
-                  <td>12</td>
+                  <td>{{edu}}</td>
                   <th>趣味技能</th>
-                  <td>80</td>
+                  <td>{{hobbyskill}}</td>
                 </tr>
                 <tr>
                   <th>年収・財産</th>
-                  <td>14</td>
+                  <td>{{incomeproperty}}</td>
                   <th>ダメージ<br>ボーナス</th>
                   <td>+?d?</td>
                 </tr>
@@ -99,39 +100,39 @@
               <table>
                 <tr>
                   <th>名前</th>
-                  <td>サンプルさん</td>
+                  <td>{{name}}</td>
                 </tr>
                 <tr>
                   <th>職業</th>
-                  <td>学生</td>
+                  <td>{{job}}</td>
                 </tr>
                 <tr>
                   <th>年齢</th>
-                  <td>18歳</td>
+                  <td>18</td>
                 </tr>
                 <tr>
                   <th>性別</th>
-                  <td>男性</td>
+                  <td>{{gender}}</td>
                 </tr>
                 <tr>
                   <th>身長</th>
-                  <td>170cm</td>
+                  <td>{{height}}</td>
                 </tr>
                 <tr>
                   <th>体重</th>
-                  <td>62kg</td>
+                  <td>{{weight}}</td>
                 </tr>
                 <tr>
                   <th>出身地</th>
-                  <td>日本</td>
+                  <td>{{birthplace}}</td>
                 </tr>
                 <tr>
                   <th>髪色</th>
-                  <td>黒</td>
+                  <td>{{haircolor}}</td>
                 </tr>
                 <tr>
                   <th>瞳の色</th>
-                  <td>黒</td>
+                  <td>{{eyecolor}}</td>
                 </tr>
               </table>
             </div>
@@ -141,86 +142,26 @@
               <li>
                 <dl>
                   <dt>戦闘技能</dt>
-                  <dd><textarea cols="100" rows="6" readonly></textarea></dd>
+                  <dd><textarea cols="100" rows="6" readonly>{{conbat}}</textarea></dd>
                   <dt>探索技能</dt>
-                  <dd><textarea cols="100" rows="6" readonly></textarea></dd>
+                  <dd><textarea cols="100" rows="6" readonly>{{search}}</textarea></dd>
                   <dt>行動技能</dt>
-                  <dd><textarea cols="100" rows="6" readonly></textarea></dd>
+                  <dd><textarea cols="100" rows="6" readonly>{{behavior}}</textarea></dd>
                   <dt>交渉技能</dt>
-                  <dd><textarea cols="100" rows="6" readonly></textarea></dd>
+                  <dd><textarea cols="100" rows="6" readonly>{{negotiation}}</textarea></dd>
                   <dt>知識技能</dt>
-                  <dd><textarea cols="100" rows="6" readonly></textarea></dd>
+                  <dd><textarea cols="100" rows="6" readonly>{{knowledgeskill}}</textarea></dd>
                 </dl>
               </li>
             </ul>
           </mat-tab>
           <mat-tab label="所持品">
-            <div class="belongingsList">
-              <table>
+            <div  class="belongingsList">
+              <table id="items">
                 <tr>
                   <th>名前</th>
                   <th>個数</th>
                   <th>説明</th>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品02</td>
-                  <td>3</td>
-                  <td><p>説明テキスト説明テキスト説明テキスト説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
                 </tr>
                 <tr>
                   <td>所持品01</td>
@@ -249,3 +190,7 @@
     </div>
   </div>
 </div>
+
+<input id="upfile" name="upfile" type="file" #fl
+       accept="*.json" (change)="getJson(fl.files)" />
+
