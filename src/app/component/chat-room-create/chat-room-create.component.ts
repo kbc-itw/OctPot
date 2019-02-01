@@ -15,8 +15,10 @@ export class ChatRoomCreateComponent implements OnInit {
   ip;
   bool: boolean = false;
   message_list: any = [];
+  userType = false;
 
   constructor(private chatroom: ChatRoomCreateService, private dice: DiceService) {
+    this.userType = true;
   }
 
   ngOnInit() {
@@ -97,6 +99,11 @@ export class ChatRoomCreateComponent implements OnInit {
     return params;
   }
 
+  getUserType() {
+    console.log('getUserType');
+    return this.userType;
+  }
+
   leave() {
     this.chatroom.leave();
     this.pass = null;
@@ -105,5 +112,6 @@ export class ChatRoomCreateComponent implements OnInit {
     this.ip = null;
     this.bool = false;
     this.message_list = [];
+    this.userType = false;
   }
 }

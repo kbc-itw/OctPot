@@ -2,7 +2,13 @@
   <div class="left">
     <ul>
       <li (mouseenter)="val='file'" (mouseleave)="val=null">
-        <button>ファイル</button>
+        <button (click)="file=true; val='null'">ファイル</button>
+        <div *ngIf="file">
+          <form (submit)="sendFile()" (submit)="$event.target">
+            <input type="file" #fl accept="image/*" (change)="upload(fl.files)">
+          </form>
+          <button (click)="file=false; val='null'">キャンセル</button>
+        </div>
       </li>
       <li>
         <button>表示</button>
@@ -19,7 +25,9 @@
       </li>
       <li class="view" (mouseenter)="val='view'" (mouseleave)="val=null">
         <button (click)="view=true; val='null'">ホストＩＰ</button>
-        <div class="ip" *ngIf="view" (mouseleave)="view=false"><p>{{ip}}</p></div>
+        <div class="ip" *ngIf="view" (mouseleave)="view=false">
+          <p>{{ip}}</p>
+        </div>
       </li>
     </ul>
   </div>

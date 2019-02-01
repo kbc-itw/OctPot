@@ -17,8 +17,10 @@ export class ChatRoomComponent implements OnInit {
   ip;
   pass;
   name;
+  userType = false;
 
   constructor(private chat: ChatRoomService, private dice: DiceService) {
+    this.userType = true;
   }
 
   ngOnInit() {
@@ -26,12 +28,12 @@ export class ChatRoomComponent implements OnInit {
     this.message_list = [];
     this.room_in = false;
     this.chat.preparation();
-    this.chat.getio().on('hello', (e) => {
+    this.chat.get_io().on('hello', (e) => {
       console.log('hello ------------------------------------------------------------------------------------------', e);
       this.room_in = true;
       // this.message_list.push(e);
     });
-    this.chat.getio().on('key_default', () => {
+    this.chat.get_io().on('key_default', () => {
       console.log('パスワードが違います。');
     });
     this.chat.data.subscribe(message => {
@@ -77,11 +79,29 @@ export class ChatRoomComponent implements OnInit {
     this.comment = null;
   }
 
+  getUserType() {
+    console.log('getUserType');
+    return this.userType;
+  }
+
+  get_params() {
+    console.log('get_params');
+    var params = [];
+    params.push({
+      io: this.chat.get_io(), member: null,
+      pass: null, name: this.chat.get_name()
+    });
+    console.log(params);
+    return params;
+  }
+
   leave() {
     this.chat.leave();
     this.comment = null;
     this.ip = null;
     this.pass = null;
     this.name = null;
+    this.message_list = [];
+    this.userType = false;
   }
 }
