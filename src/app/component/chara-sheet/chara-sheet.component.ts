@@ -9,8 +9,7 @@ import { CharacterDataListService } from '../../Service/character-data-list.serv
 @Component({
   selector: 'app-chara-sheet',
   templateUrl: './chara-sheet.component.html',
-  styleUrls: ['./chara-sheet.component.css'],
-  providers: [CharacterDataListService]
+  styleUrls: ['./chara-sheet.component.css']
 })
 export class CharaSheetComponent implements OnInit, OnDestroy {
 
@@ -122,16 +121,15 @@ export class CharaSheetComponent implements OnInit, OnDestroy {
 
   private charaList: Chara[] = [];
   public subscription: Subscription;
-  constructor( private clistService: CharacterDataListService) {
-    this.charaList = [];
-  }
+  constructor( private clistService: CharacterDataListService) {}
 
+  // どこかでcharacter-date-list.serviceのnext()が使われたら動きます。
+  // 簡単いうと誰かが送信した値をdataで受け取れます
   ngOnInit() {
     this.subscription = this.clistService.sharedDataSource$.subscribe(
       data => {
         let chachacha = Convert.toChara(data);
         this.charaList.push(chachacha);
-        console.log(this.charaList);
       }
     );
   }
