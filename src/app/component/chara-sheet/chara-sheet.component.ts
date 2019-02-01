@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Convert, Chara, Setting, Character, Skill,
   Behavior, Status, BaseStatus, FluctuationStatus,
   Items, Item, Weapon, Profile } from '../../model/character-info-model';
 
+import { Subscription } from 'rxjs';
+import { CharacterDataListService } from '../../Service/character-data-list.service';
+
 @Component({
   selector: 'app-chara-sheet',
   templateUrl: './chara-sheet.component.html',
-  styleUrls: ['./chara-sheet.component.css']
+  styleUrls: ['./chara-sheet.component.css'],
+  providers: [CharacterDataListService]
 })
-export class CharaSheetComponent implements OnInit {
+export class CharaSheetComponent implements OnInit, OnDestroy {
 
   private combats;
   private searchs;
@@ -116,26 +120,33 @@ export class CharaSheetComponent implements OnInit {
   private Encounter;
   private OtherMemo;
 
-  private charaList = [];
-  constructor() {
+  private charaList: Chara[] = [];
+  public subscription: Subscription;
+  constructor( private clistService: CharacterDataListService) {
     this.charaList = [];
-    console.log(this.charaList);
-   }
-
+  }
 
   ngOnInit() {
+    this.subscription = this.clistService.sharedDataSource$.subscribe(
+      data => {
+        let chachacha = Convert.toChara(data);
+        this.charaList.push(chachacha);
+        console.log(this.charaList);
+      }
+    );
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   // HTMLでファイルが選択されたら呼ばれる予定
   // ファイルを受け取り、ファイルの中身からCharaを生成する
   getJson(list: any) {
-
     if (list <= 0) { return; } // 何も指定されていなければ何もしない
     let fileobj = list[0];  // 指定されるファイルは1つのみなので[0]
     let reader = new FileReader();
     reader.onload = () => {  // readAsTextでファイルの読み込みが終わったら呼び出される
-      console.log(reader.result);
-      this.addCharacter(reader.result);
+      this.clistService.onNotifyShareDataChanged(reader.result);
     };
     reader.readAsText(fileobj);  // ファイルの内容をtextで読む (reader.onloadのreader.resultがstringになるへ)
   }
