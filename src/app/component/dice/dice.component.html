@@ -1,17 +1,17 @@
 <div class="diceBlock">
   <form (submit)="roll()" (submit)="$event.target.result.value=null">
     <input name="result" id="dice" type="text" value="" (input)="word=$event.target.value"/>
-    <input class="raised-roll" type="submit" value='roll'/>
+    <button class="raised-roll" type="submit">roll</button>
   </form>
   <div class="imgs">
     <ul>
-      <li><div class="dice_4"></div></li>
-      <li><div class="dice_6"></div></li>
-      <li><div class="dice_8"></div></li>
-      <li><div class="dice_10"></div></li>
-      <li><div class="dice_12"></div></li>
-      <li><div class="dice_20"></div></li>
-      <li><div class="dice_100"></div></li>
+      <li><div class="dice_4" (click)="imgRoll('1d4')" ></div></li>
+      <li><div class="dice_6" (click)="imgRoll('1d6')"></div></li>
+      <li><div class="dice_8" (click)="imgRoll('1d8')"></div></li>
+      <li><div class="dice_10" (click)="imgRoll('1d10')"></div></li>
+      <li><div class="dice_12" (click)="imgRoll('1d12')"></div></li>
+      <li><div class="dice_20" (click)="imgRoll('1d20')"></div></li>
+      <li><div class="dice_100" (click)="imgRoll('1d100')"></div></li>
     </ul>
   </div>
   <ul class="diceLog">
