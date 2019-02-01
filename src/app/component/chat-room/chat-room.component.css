@@ -81,19 +81,21 @@
           }
 
 .chatBlock {
+  margin: 0 0 10px;
   padding: 8px 15px;
   width: 455px;
   height: 220px;
-  border: 1px solid #000;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background: #fff;
+  box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
 }
   .chatBlock .log {
     margin-bottom: 5px;
     border: 1px solid #ccc;
     overflow-y: scroll;
     height: 175px;
+    width: 100%;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
   }
@@ -101,6 +103,10 @@
       border-bottom: 1px solid #ccc;
       font-size: 12px;
       padding: 5px;
+      width: 100%;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      word-wrap: break-word;
     }
       .chatBlock .log li .date {
         color: #999;
@@ -110,6 +116,7 @@
     font-size: 12px;
   }
     .chatBlock form input[type="text"] {
+      padding: 0 5px;
       border: 1px solid #000;
       height: 100%;
       -webkit-box-sizing: border-box;
@@ -133,7 +140,10 @@
 }
 .contentWrap {
   margin: 0 auto;
+  padding: 20px 0;
   width: 930px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .leftArea {
   float: left;
@@ -141,13 +151,16 @@
 }
 .rightArea {
   float: right;
-  width: 470px;
+  width: 465px;
 }
   .rightArea .statusArea {
     float: left;
+    box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
   }
   .rightArea .diceArea {
     float: right;
+    height: 490px;
+    box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
   }
     /deep/.rightArea .diceArea .mat-tab-group {
       width: 195px !important;
