@@ -4,7 +4,7 @@ import { MemoService } from '../../Service/memo.service';
 @Component({
   selector: 'app-memo',
   templateUrl: './memo.component.html',
-  styleUrls: ['./memo.component.scss'],
+  styleUrls: ['./memo.component.css'],
   providers: [MemoService]
 })
 

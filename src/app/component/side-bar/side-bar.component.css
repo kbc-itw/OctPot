@@ -1,0 +1,62 @@
+/* サイドメニュー */
+.side{
+  position: fixed;
+  box-sizing: border-box;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+  .side ul {
+    width: 205px;
+    background: #ccc;
+    height: 100%;
+  }
+    .side ul li {
+      text-align: center;
+      font-size: 16px;
+    }
+       .side ul li a {
+          color: #000;
+          text-decoration: none;
+          display: block;
+          padding: 10px 0;
+        }
+        .side ul li a:hover {
+          background: #bdbdbd;
+          transition-duration: 0.3s
+        }
+  .side .toggle {
+    background: #ccc;
+    cursor: pointer;
+  }
+    .side .toggle .closeWrap {
+      padding: 5px;
+      height: 205px;
+      width: 25px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      display: block;
+    }
+    .side .toggle .activeWrap {
+      padding: 5px;
+      height: 205px;
+      width: 25px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 205px;/*sideの幅*/
+      background: #ccc;
+    }
+      .side .toggle div:hover {
+        background: #bdbdbd;
+        transition-duration: 0.3s
+      }
+    .side .toggle div img {
+      display: block;
+      margin: 90px 0;
+    }
+
+/* ここまで */

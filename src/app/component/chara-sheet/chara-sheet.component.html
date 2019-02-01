@@ -1,0 +1,79 @@
+<div class="charaSheet clearfix">
+  <div class="left">
+    <div class="about">
+      <p class="name">{{name}}</p>
+      <p class="gender">性別：{{gender}}</p>
+    </div>
+    <table>
+      <tr>
+        <th>STR</th>
+        <td>{{str}}</td>
+        <th>SAN</th>
+        <td>{{san}}</td>
+      </tr>
+      <tr>
+        <th>CON</th>
+        <td>{{con}}</td>
+        <th>幸運</th>
+        <td>{{luck}}</td>
+      </tr>
+      <tr>
+        <th>POW</th>
+        <td>{{pow}}</td>
+        <th>アイデア</th>
+        <td>{{idea}}</td>
+      </tr>
+      <tr>
+        <th>DEX</th>
+        <td>{{dex}}</td>
+        <th>知識</th>
+        <td>{{knowledge}}</td>
+      </tr>
+      <tr>
+        <th>APP</th>
+        <td>{{app}}</td>
+        <th>体力</th>
+        <td>{{health}}</td>
+      </tr>
+      <tr>
+        <th>SIZ</th>
+        <td>{{siz}}</td>
+        <th>MP</th>
+        <td>{{mp}}</td>
+      </tr>
+      <tr>
+        <th>INT</th>
+        <td>{{int}}</td>
+        <th>職業技能</th>
+        <td>{{VocationalSkill}}</td>
+      </tr>
+      <tr>
+        <th>EDU</th>
+        <td>{{edu}}</td>
+        <th>趣味技能</th>
+        <td>{{HobbySkill}}</td>
+      </tr>
+      <tr>
+        <th>年収・財産</th>
+        <td>{{income_and_property}}</td>
+        <th>ダメージ<br>ボーナス</th>
+        <td>{{DamegeBonus}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="right">
+    <dl>
+      <dt>キャラクター選択</dt>
+      <dt><input id="upfile" name="upfile" type="file" #fl
+        accept="*.json" (change)="getJson(fl.files)" />
+      </dt>
+      <dd>
+        <ul>
+          <li *ngFor="let chara of charaList; let i = index">
+            <button (click)="showHTML(i)">{{chara.Setting.character.name}}</button>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+</div>

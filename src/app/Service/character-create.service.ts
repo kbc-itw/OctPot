@@ -2,6 +2,9 @@
 // 作成画面をhymlで
 // 基本フロー3,6,9の処理
 import { Injectable } from '@angular/core';
+import { Convert, Chara, Setting, Character, Skill,
+        Behavior, Status, BaseStatus, FluctuationStatus,
+        Items, Item, Weapon, Profile } from '../model/character-info-model';
 
 // 3,アクターは作成するキャラクターPCかNPCかを選択する。
 @Injectable()
@@ -213,7 +216,7 @@ export class CharacterCreateService {
         'career': profile[0],
         'encount': profile[1]
       }
-    }
+    };
   return JSON.stringify(json, null, ' ');
   }
 
@@ -221,10 +224,11 @@ export class CharacterCreateService {
   save(content, id, filename) {
     let blob = new Blob([ content ], { 'type' : 'application/json' });
     let downLoadLink = document.createElement('a');
-    downLoadLink.download = filename;
-    downLoadLink.href = URL.createObjectURL(blob);
-    downLoadLink.dataset.downloadurl = ['text/plain', downLoadLink.download, downLoadLink.href].join(':');
+    downLoadLink.download = filename;  // ダウンロードするときのファイル名
+    downLoadLink.href = URL.createObjectURL(blob);  // ファイルの一時的な保存場所(自動生成)
+    downLoadLink.dataset.downloadurl = ['application/json'/*text/plain*/, downLoadLink.download, downLoadLink.href].join(':');
     downLoadLink.click();
+
   }
   errorlog(e) {
     e.onerror = (msg, url, line, col, error) => {
@@ -239,6 +243,45 @@ export class CharacterCreateService {
 
   test() {
     console.log('引数が見つかりません。');
+  }
+
+  // 入力画面が完成次第changeにとってかわる予定
+  convert_character_json() {
+    console.log('未完成');
+
+    // キャラ情報を構成するクラスたち
+    /*
+    let chara = new Chara();
+    let setting = new Setting();
+    let character = new Character();
+    let skill = new Skill();
+    let behavior = new Behavior();  // スキルの数だけ存在する
+    let status = new Status();
+    let baseStatus = new BaseStatus();
+    let fluctuationStatus = new FluctuationStatus();
+    let items = new Items();
+    let item = new Item();  // 持ってるアイテムの数だけ存在する
+    let weapon = new Weapon();  // 持ってる武器の数だけ存在する
+    let profile = new Profile();
+    items.weapon[0] = weapon;
+    items.item[0] = item;
+    skill.conbat[0] = behavior;
+    skill.knowledge[0] = behavior;
+    skill.negotiation[0] = behavior;
+    skill.search[0] = behavior;
+    skill.behavior[0] = behavior;
+    status.baseStatus = baseStatus;
+    status.fluctuationStatus = fluctuationStatus;
+    status.reDice = baseStatus;
+    setting.character = character;
+    chara.Setting = setting;
+    chara.Skill = skill;
+    chara.Status = status;
+    chara.items = items;
+    chara.profile = profile;
+
+    console.log(Convert.charaToJson(chara));
+*/
   }
 
 }
