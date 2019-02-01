@@ -85,10 +85,10 @@
   padding: 8px 15px;
   width: 455px;
   height: 220px;
-  border: 1px solid #000;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background: #fff;
+  box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
 }
   .chatBlock .log {
     margin-bottom: 5px;
@@ -151,14 +151,16 @@
 }
 .rightArea {
   float: right;
-  width: 470px;
+  width: 465px;
 }
   .rightArea .statusArea {
     float: left;
+    box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
   }
   .rightArea .diceArea {
     float: right;
     height: 490px;
+    box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
   }
     /deep/.rightArea .diceArea .mat-tab-group {
       width: 195px !important;
