@@ -18,6 +18,12 @@
 }
 
 /* ここまで */
+h3 {
+ background: #aed581;
+ color: #fff;
+ font-size: 16px;
+ text-align: center;
+}
 
 .container{
   box-sizing: border-box;
@@ -188,11 +194,6 @@
             .Right .innerContainer .characterStatus .skillList dt {
               text-align: center;
             }
-              .Right .innerContainer .characterStatus .skillList dt h3 {
-                background: #aed581;
-                color: #fff;
-                font-size: 16px;
-              }
             .Right .innerContainer .characterStatus .skillList dd {
               margin-bottom: 10px;
               width: 100%;

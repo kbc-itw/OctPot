@@ -348,33 +348,23 @@
           </mat-tab>
           <mat-tab label="所持品">
             <div class="belongingsList">
-              <table id="items">
-                <tr>
-                  <th>名前</th>
-                  <th>個数</th>
-                  <th>説明</th>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-              </table>
+              <dl>
+                <dt><h3>所持品</h3></dt>
+                <dd><textarea cols="100" rows="6" readonly></textarea></dd>
+                <dt><h3>戦闘・武器・防具</h3></dt>
+                <dd><textarea cols="100" rows="6" readonly></textarea></dd>
+              </dl>
             </div>
           </mat-tab>
           <mat-tab label="経歴">
-            <ul class="textList">
-              <li>
-                <dl>
-                  <dt>経歴</dt>
-                  <dd><textarea cols="100" rows="6" readonly></textarea></dd>
-                  <dt>遭遇したもの</dt>
-                  <dd><textarea cols="100" rows="6" readonly></textarea></dd>
-                  <dt>その他メモ</dt>
-                  <dd><textarea cols="100" rows="6" readonly></textarea></dd>
-                </dl>
-              </li>
-            </ul>
+            <dl class="textList">
+              <dt><h3>経歴</h3></dt>
+              <dd><textarea cols="100" rows="6" readonly></textarea></dd>
+              <dt><h3>遭遇したもの</h3></dt>
+              <dd><textarea cols="100" rows="6" readonly></textarea></dd>
+              <dt><h3>その他メモ</h3></dt>
+              <dd><textarea cols="100" rows="6" readonly></textarea></dd>
+            </dl>
           </mat-tab>
         </mat-tab-group>
       </div>
