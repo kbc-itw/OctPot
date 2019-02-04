@@ -108,7 +108,7 @@
                 </tr>
                 <tr>
                   <th>年齢</th>
-                  <td>18</td>
+                  <td>{{age}}</td>
                 </tr>
                 <tr>
                   <th>性別</th>
@@ -141,7 +141,7 @@
             <dl class="skillList">
               <dt><h3>戦闘技能</h3></dt>
               <dd>
-                <table>
+                <table #conbat>
                   <tr>
                     <th>技能名／技能値</th>
                     <th>初期値</th>
@@ -348,23 +348,33 @@
           </mat-tab>
           <mat-tab label="所持品">
             <div class="belongingsList">
-              <dl class="textList">
-                <dt><h3>所持品</h3></dt>
-                <dd><textarea cols="100" rows="6" readonly></textarea></dd>
-                <dt><h3>戦闘・武器・防具</h3></dt>
-                <dd><textarea cols="100" rows="6" readonly></textarea></dd>
-              </dl>
+              <table id="items">
+                <tr>
+                  <th>名前</th>
+                  <th>個数</th>
+                  <th>説明</th>
+                </tr>
+                <tr>
+                  <td>所持品01</td>
+                  <td>1</td>
+                  <td><p>説明テキスト</p></td>
+                </tr>
+              </table>
             </div>
           </mat-tab>
           <mat-tab label="経歴">
-            <dl class="textList">
-              <dt><h3>経歴</h3></dt>
-              <dd><textarea cols="100" rows="6" readonly></textarea></dd>
-              <dt><h3>遭遇したもの</h3></dt>
-              <dd><textarea cols="100" rows="6" readonly></textarea></dd>
-              <dt><h3>その他メモ</h3></dt>
-              <dd><textarea cols="100" rows="6" readonly></textarea></dd>
-            </dl>
+            <ul class="textList">
+              <li>
+                <dl>
+                  <dt>経歴</dt>
+                  <dd><textarea cols="100" rows="6" readonly>{{career}}</textarea></dd>
+                  <dt>遭遇したもの</dt>
+                  <dd><textarea cols="100" rows="6" readonly>{{encounter}}</textarea></dd>
+                  <dt>その他メモ</dt>
+                  <dd><textarea cols="100" rows="6" readonly>{{othermemo}}</textarea></dd>
+                </dl>
+              </li>
+            </ul>
           </mat-tab>
         </mat-tab-group>
       </div>
