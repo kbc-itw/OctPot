@@ -176,36 +176,51 @@
               border: 1px solid #999;
             }
 
-        .Right .innerContainer .characterStatus .textList {
-          padding: 0 15px;
+        .Right .innerContainer .characterStatus .skillList {
+          padding: 0;
           height: 365px;
+          width: 100%;
           font-size: 12px;
           overflow-y: scroll;
           -webkit-box-sizing: border-box;
           box-sizing: border-box;
         }
-          .Right .innerContainer .characterStatus .textList li {
-            border: none;
-          }
-          .Right .innerContainer .characterStatus .textList dl {
-            width: 100%;
-          }
-            .Right .innerContainer .characterStatus .textList dl dt {
-              text-align: left;
+            .Right .innerContainer .characterStatus .skillList dt {
+              text-align: center;
             }
-            .Right .innerContainer .characterStatus .textList dl dd {
-              margin-bottom: 20px;
+              .Right .innerContainer .characterStatus .skillList dt h3 {
+                background: #aed581;
+                color: #fff;
+                font-size: 16px;
+              }
+            .Right .innerContainer .characterStatus .skillList dd {
+              margin-bottom: 10px;
               width: 100%;
             }
-              .Right .innerContainer .characterStatus .textList dl dd textarea {
-                max-width: 100%;
-                min-width: 100%;
-                max-height: 85px;
-                min-height: 85px;
-                overflow-y: scroll;
-                -webkit-box-sizing: border-box;
-                box-sizing: border-box;
+              .Right .innerContainer .characterStatus .skillList dd table {
+                width: 100%;
               }
+                .Right .innerContainer .characterStatus .skillList dd table tr {
+                  width: 100%;
+                  letter-spacing: -0.5em;
+                  -webkit-box-sizing: border-box;
+                  box-sizing: border-box;
+                }
+                  .Right .innerContainer .characterStatus .skillList dd table tr td ,
+                  .Right .innerContainer .characterStatus .skillList dd table tr th {
+                    padding: 5px;
+                    border: 1px solid #666;
+                    letter-spacing: normal;
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                    text-align: center;
+                  }
+                  .Right .innerContainer .characterStatus .skillList dd table tr th {
+                    background: #ccc;
+                  }
+                  .Right .innerContainer .characterStatus .skillList dd table tr td {
+                    background: #fff;
+                  }
 
         .Right .innerContainer .characterStatus .belongingsList {
           width: 100%;
