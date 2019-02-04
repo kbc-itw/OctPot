@@ -192,8 +192,9 @@ export class Items {
 
     constructor (infoObject) {
         if (infoObject != 0) {
-            infoObject['weapon'].forEach((obj) => new Weapon(obj));
-            infoObject['item'].forEach((obj) => new Item(obj));
+
+          infoObject['weapon'].forEach((obj) => this.weapon.push(new Weapon(obj)));
+            infoObject['item'].forEach((obj) => this.item.push(new Item(obj)));
         }
     }
 }

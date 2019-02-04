@@ -1,6 +1,6 @@
-import {Component, OnInit, Renderer2} from '@angular/core';
+import {Component, OnInit, Renderer2, ElementRef, ViewChild} from '@angular/core';
 import { CharacterManagementService } from '../../Service/character-management.service';
-import { Convert, Chara } from '../../model/character-info-model';
+import { Convert, Chara ,Item} from '../../model/character-info-model';
 
 @Component({
   selector: 'app-character-management',
@@ -8,9 +8,8 @@ import { Convert, Chara } from '../../model/character-info-model';
   styleUrls: ['./character-management.component.css']
 })
 export class CharacterManagementComponent implements OnInit {
-  side_flg: boolean = false;
 
-  // baseStatus
+  // 能力値
   private str;
   private con;
   private pow;
@@ -20,7 +19,6 @@ export class CharacterManagementComponent implements OnInit {
   private int;
   private edu;
 
-  // fluctuationStatus
   private san;
   private luck;
   private idea;
@@ -32,7 +30,7 @@ export class CharacterManagementComponent implements OnInit {
   private hobbyskill;
   private incomeproperty;
 
-  // Setting
+  // プロフィール
   private name;
   private job;
   private gender;
@@ -42,17 +40,31 @@ export class CharacterManagementComponent implements OnInit {
   private haircolor;
   private eyecolor;
 
-  // Skill
+  private age = '不詳' ; // jsonに要素がない！？
+
+  // 技能
   private conbat;
   private search;
   private behavior;
   private negotiation;
   private knowledgeskill;
 
-  private item;
+  // 所持品
+  private weapons;
+  private items;
 
-  constructor(private charamana: CharacterManagementService,
-              private renderer: Renderer2,
+  // 経歴
+  private career;
+  private encounter;
+  private othermemo;
+
+private table:HTMLElement;
+
+@ViewChild('conbat')
+private el: ElementRef;
+
+  constructor(private charamana: CharacterManagementService,private renderer: Renderer2
+
   ) {
   }
 
@@ -60,12 +72,15 @@ export class CharacterManagementComponent implements OnInit {
 
 
   ngOnInit() {
+    let textarea = this.renderer.createElement('textarea');
+
     /*
     if (window.File && window.FileReader && window.FileList && window.Blob) {
       alert('未');
     } else {
       alert('未対応');
     }
+
     */
 
   }
@@ -90,7 +105,9 @@ export class CharacterManagementComponent implements OnInit {
     let chara: Chara = Convert.toChara(str);
     console.log(chara);
 
-    // Setting
+
+    // 能力値
+    // Status.baseStatus
     this.str = chara.Status.baseStatus.str;
     this.con = chara.Status.baseStatus.con;
     this.pow = chara.Status.baseStatus.pow;
@@ -100,6 +117,7 @@ export class CharacterManagementComponent implements OnInit {
     this.int = chara.Status.baseStatus.int;
     this.edu = chara.Status.baseStatus.edu;
 
+    // Status.fluctuationStatus
     this.san = chara.Status.fluctuationStatus.san;
     this.luck = chara.Status.fluctuationStatus.luck;
     this.idea = chara.Status.fluctuationStatus.idea;
@@ -111,6 +129,8 @@ export class CharacterManagementComponent implements OnInit {
     this.hobbyskill = chara.Status.fluctuationStatus.HobbySkill;
     this.incomeproperty = chara.Status.baseStatus.income_and_property;
 
+    // プロフィール
+    // Setting
     this.name = chara.Setting.character.name;
     this.job = chara.Setting.job;
     this.gender = chara.Setting.character.gender;
@@ -120,8 +140,13 @@ export class CharacterManagementComponent implements OnInit {
     this.haircolor = chara.Setting.character.hairColor;
     this.eyecolor = chara.Setting.character.eyeColor;
 
-    let split = ',';
+    // this.age = chara.Setting
 
+    let split = ',';
+/*
+    // 技能
+    // 戦闘技能
+    // Skill.conbat
     this.conbat = '';
     let conbat_len = Object.keys(chara.Skill.conbat).length;
     for(let i = 0 ; i < conbat_len ; i++) {
@@ -133,7 +158,9 @@ export class CharacterManagementComponent implements OnInit {
         '成長P:' + chara.Skill.conbat[i].growthPoint + split +
         'その他:' + chara.Skill.conbat[i].otherPoint  + '\n';
     }
-
+  
+    // 探索技能
+    // Skill.search
     this.search = '';
     let search_len = Object.keys(chara.Skill.search).length;
     for(let i = 0 ; i < search_len ; i++) {
@@ -146,6 +173,8 @@ export class CharacterManagementComponent implements OnInit {
         'その他:' + chara.Skill.search[i].otherPoint  + '\n';
     }
 
+    // 行動技能
+    // Skill.behavior
     this.behavior = '';
     let behavior_len = Object.keys(chara.Skill.behavior).length;
     for(let i = 0 ; i < behavior_len ; i++) {
@@ -158,6 +187,8 @@ export class CharacterManagementComponent implements OnInit {
         'その他:' + chara.Skill.behavior[i].otherPoint  + '\n';
     }
 
+    // 交渉技能
+    // Skill.negotiation
     this.negotiation = '';
     let negotiation_len = Object.keys(chara.Skill.negotiation).length;
     for(let i = 0 ; i < negotiation_len ; i++) {
@@ -170,6 +201,8 @@ export class CharacterManagementComponent implements OnInit {
         'その他:' + chara.Skill.negotiation[i].otherPoint  + '\n';
     }
 
+    // 知識技能
+    // Skill.knowledge
     this.knowledgeskill = '';
     let knowledgeskill_len = Object.keys(chara.Skill.knowledge).length;
     for(let i = 0 ; i < knowledgeskill_len ; i++) {
@@ -182,6 +215,32 @@ export class CharacterManagementComponent implements OnInit {
         'その他:' + chara.Skill.knowledge[i].otherPoint  + '\n';
     }
 
+*/
+    // 所持品
+    // 戦闘・武器・防具
+    this.weapons = '';
+    let weapon_len = Object.keys(chara.items.weapon).length;
+    for(let i = 0 ; i < weapon_len ; i++) {
+      this.weapons +=
+        '名称:'+ chara.items.weapon[i].weaponName + split +
+        '成功率:'+ chara.items.weapon[i].successRate + split +
+        'ダメージ:' + chara.items.weapon[i].damage + split +
+        '射程:' + chara.items.weapon[i].range + split +
+        '攻撃回数:' + chara.items.weapon[i].attackCount + split +
+        '装填数:' + chara.items.weapon[i].loadingCount + split +
+        '耐久力:' + chara.items.weapon[i].endurance + split +
+        'その他:' + chara.items.weapon[i].other + '\n';
+    }
+
+      // 所持品
+    this.items = '';
+    let items_len = Object.keys(chara.items.item).length;
+    for(let i = 0 ; i < items_len ; i++) {
+      this.items +=
+        '名称:'+ chara.items.item[i].itemName + split +
+        '個数:'+ chara.items.item[i].number + split +
+        '説明:' + chara.items.item[i].other + '\n' ;
+    }
     /*
     let table = document.getElementById('items');
     console.log(table);
@@ -203,6 +262,11 @@ export class CharacterManagementComponent implements OnInit {
       td2.innerText = chara.items.item[i].number;
       td3.innerText = chara.items.weapon[i].other;
 */
+    // 経歴
+    this.career = chara.profile.Career;
+    this.encounter = chara.profile.Encounter;
+    this.othermemo = chara.profile.otherMemo;
+
     }
 
 }
