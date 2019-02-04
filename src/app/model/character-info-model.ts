@@ -67,7 +67,7 @@ export class Character {
     weight:     string = '';  // 体重
     birthplace: string = '';  // 出身地
     hairColor:  string = '';  // 髪の色
-    eyeColor:   string ='';  // 瞳の色
+    eyeColor:   string = '';  // 瞳の色
 
     constructor(infoObject) {
         if (infoObject != 0) {
@@ -226,7 +226,7 @@ export class Weapon {
         if (infoObject != 0) {
             this.weaponName = infoObject['weaponName'];
             this.successRate = infoObject['successRate'];
-            this.damage = infoObject['damege'];
+            this.damage = infoObject['damage'];
             this.range = infoObject['range'];
             this.attackCount = infoObject['attackCount'];
             this.loadingCount = infoObject['loadingCount'];
@@ -243,7 +243,7 @@ export class Profile {
 
     constructor (infoObject) {
         if (infoObject != 0) {
-            this.Career = infoObject['Carrer'];
+            this.Career = infoObject['Career'];
             this.Encounter = infoObject['Encounter'];
             this.otherMemo = infoObject['otherMemo'];
         }
