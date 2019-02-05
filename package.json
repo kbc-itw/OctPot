@@ -1,5 +1,5 @@
 {
-  "name": "octpot",
+  "name": "OctPot",
   "version": "1.0.0",
   "description": "サーバー関係の知識が全く無い人でも容易にTRPGのチャットルームを作成することができるものを目指します。",
   "main": "./chat-server.js",
@@ -17,6 +17,9 @@
     "appId": "OctPot",
     "mac": {
       "target": "dmg"
+    },
+    "win": {
+      "icon": "favicon.ico"
     }
   },
   "private": true,
