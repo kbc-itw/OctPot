@@ -31,8 +31,9 @@ import {SideBarComponent} from './component/side-bar/side-bar.component';
 import {CharacterEditComponent} from './component/character-edit/character-edit.component';
 import {DiceService} from './Service/dice-service';
 import {FileSharingService} from './Service/file-sharing.service';
-import {CharaSheetComponent} from './component/chara-sheet/chara-sheet.component';
-import {StatusComponent} from './component/status/status.component';
+import { CharaSheetComponent } from './component/chara-sheet/chara-sheet.component';
+import { StatusComponent } from './component/status/status.component';
+import { CharacterDataListService } from './Service/character-data-list.service';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import {StatusComponent} from './component/status/status.component';
     MenuService,
     DiceService,
     FileSharingService,
+    CharacterDataListService,
     ChatRoomCreateComponent
   ],
   bootstrap: [AppComponent]
