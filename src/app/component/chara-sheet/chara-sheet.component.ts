@@ -158,15 +158,12 @@ export class CharaSheetComponent implements OnInit, OnDestroy {
     let chachacha = Convert.toChara(jsoninfo);
     let len = 0;
     this.charaList.push(chachacha);
-    console.log('addChara: \n', this.charaList);
   }
 
 
   // 選択されたキャラ情報をキャラシートに出力する
   // そのキャラが配列の何番目に入っているか引数で受け取る
   showHTML(index) {
-
-    console.log('SHOWHTML: \n', this.charaList[index]);
     let chara = this.charaList[index];
 
     // Setting
