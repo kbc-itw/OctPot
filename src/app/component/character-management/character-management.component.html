@@ -29,7 +29,7 @@
       </ul>
     </div>
   </div>
-  <div class="Right">
+  <div class="Right" appFileDrop (dragover)="onDragOver($event)" (drop)="onDrop($event)" (onFileDrop)="onFileDrop($event)" >
     <h1>キャラクター詳細</h1>
     <div class="innerContainer clearfix">
       <div class="characterStatus">
@@ -138,10 +138,10 @@
             </div>
           </mat-tab>
           <mat-tab label="技能">
-            <dl class="skillList">
+            <dl class="skillList" >
               <dt><h3>戦闘技能</h3></dt>
               <dd>
-                <table #conbat>
+                <table>
                   <tr>
                     <th>技能名／技能値</th>
                     <th>初期値</th>
@@ -151,33 +151,16 @@
                     <th>その他</th>
                     <th>合計</th>
                   </tr>
-                  <tr>
-                    <td>技能名</td>
-                    <td>25</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>25</td>
+                  <tr *ngFor="let combat of combats">
+                    <td>{{combat.skillName}}</td>
+                    <td>{{combat.initialValue}}</td>
+                    <td>{{combat.jobPoint}}</td>
+                    <td>{{combat.hobbyPoint}}</td>
+                    <td>{{combat.growthPoint}}</td>
+                    <td>{{combat.otherPoint}}</td>
+                    <td>{{combat.initialValue+combat.jobPoint+combat.hobbyPoint+combat.growthPoint+combat.otherPoint}}</td>
                   </tr>
-                  <tr>
-                    <td>技能名</td>
-                    <td>25</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>25</td>
-                  </tr>
-                  <tr>
-                    <td>技能名</td>
-                    <td>25</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>25</td>
-                  </tr>
+
                 </table>
               </dd>
               <dt><h3>探索技能</h3></dt>
@@ -192,32 +175,14 @@
                     <th>その他</th>
                     <th>合計</th>
                   </tr>
-                  <tr>
-                    <td>技能名</td>
-                    <td>25</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>25</td>
-                  </tr>
-                  <tr>
-                    <td>技能名</td>
-                    <td>25</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>25</td>
-                  </tr>
-                  <tr>
-                    <td>技能名</td>
-                    <td>25</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>25</td>
+                  <tr *ngFor="let search of searchs">
+                    <td>{{search.skillName}}</td>
+                    <td>{{search.initialValue}}</td>
+                    <td>{{search.jobPoint}}</td>
+                    <td>{{search.hobbyPoint}}</td>
+                    <td>{{search.growthPoint}}</td>
+                    <td>{{search.otherPoint}}</td>
+                    <td>{{search.initialValue+search.jobPoint+search.hobbyPoint+search.growthPoint+search.otherPoint}}</td>
                   </tr>
                 </table>
               </dd>
@@ -233,33 +198,16 @@
                     <th>その他</th>
                     <th>合計</th>
                   </tr>
-                  <tr>
-                    <td>技能名</td>
-                    <td>25</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>25</td>
+                  <tr *ngFor="let behavior of behaviors">
+                    <td>{{behavior.skillName}}</td>
+                    <td>{{behavior.initialValue}}</td>
+                    <td>{{behavior.jobPoint}}</td>
+                    <td>{{behavior.hobbyPoint}}</td>
+                    <td>{{behavior.growthPoint}}</td>
+                    <td>{{behavior.otherPoint}}</td>
+                    <td>{{behavior.initialValue+behavior.jobPoint+behavior.hobbyPoint+behavior.growthPoint+behavior.otherPoint}}</td>
                   </tr>
-                  <tr>
-                    <td>技能名</td>
-                    <td>25</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>25</td>
-                  </tr>
-                  <tr>
-                    <td>技能名</td>
-                    <td>25</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>25</td>
-                  </tr>
+
                 </table>
               </dd>
               <dt><h3>交渉技能</h3></dt>
@@ -274,33 +222,16 @@
                     <th>その他</th>
                     <th>合計</th>
                   </tr>
-                  <tr>
-                    <td>技能名</td>
-                    <td>25</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>25</td>
+                  <tr *ngFor="let negotiation of negotiations">
+                    <td>{{negotiation.skillName}}</td>
+                    <td>{{negotiation.initialValue}}</td>
+                    <td>{{negotiation.jobPoint}}</td>
+                    <td>{{negotiation.hobbyPoint}}</td>
+                    <td>{{negotiation.growthPoint}}</td>
+                    <td>{{negotiation.otherPoint}}</td>
+                    <td>{{negotiation.initialValue+negotiation.jobPoint+negotiation.hobbyPoint+negotiation.growthPoint+negotiation.otherPoint}}</td>
                   </tr>
-                  <tr>
-                    <td>技能名</td>
-                    <td>25</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>25</td>
-                  </tr>
-                  <tr>
-                    <td>技能名</td>
-                    <td>25</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>25</td>
-                  </tr>
+
                 </table>
               </dd>
               <dt><h3>知識技能</h3></dt>
@@ -315,43 +246,66 @@
                     <th>その他</th>
                     <th>合計</th>
                   </tr>
-                  <tr>
-                    <td>技能名</td>
-                    <td>25</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>25</td>
+                  <tr *ngFor="let know of knowledges">
+                    <td>{{know.skillName}}</td>
+                    <td>{{know.initialValue}}</td>
+                    <td>{{know.jobPoint}}</td>
+                    <td>{{know.hobbyPoint}}</td>
+                    <td>{{know.growthPoint}}</td>
+                    <td>{{know.otherPoint}}</td>
+                    <td>{{know.initialValue+know.jobPoint+know.hobbyPoint+know.growthPoint+know.otherPoint}}</td>
                   </tr>
-                  <tr>
-                    <td>技能名</td>
-                    <td>25</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>25</td>
-                  </tr>
-                  <tr>
-                    <td>技能名</td>
-                    <td>25</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>25</td>
-                  </tr>
+
                 </table>
               </dd>
             </dl>
           </mat-tab>
           <mat-tab label="所持品">
-            <dl class="textList">
+            <dl class="skillList">
               <dt><h3>所持品</h3></dt>
-              <dd><textarea cols="100" rows="6" readonly>{{items}}</textarea></dd>
+              <dd>
+                <table>
+                  <tr>
+                    <th>名前</th>
+                    <th>個数</th>
+                    <th>説明</th>
+
+                  </tr>
+                  <tr *ngFor="let item of items">
+                    <td>{{item.itemName}}</td>
+                    <td>{{item.number}}</td>
+                    <td><p>{{item.other}}</p></td>
+                  </tr>
+                </table>
+              </dd>
+
+
               <dt><h3>戦闘・武器・防具</h3></dt>
-              <dd><textarea cols="100" rows="6" readonly>{{weapons}}</textarea></dd>
+              <dd>
+                <table>
+                  <tr>
+                    <th>名称</th>
+                    <th>成功率</th>
+                    <th>ダメージ</th>
+                    <th>射程</th>
+                    <th>攻撃回数</th>
+                    <th>装填数</th>
+                    <th>耐久力</th>
+                    <th>その他</th>
+
+                  </tr>
+                  <tr *ngFor="let weapon of weapons">
+                    <td>{{weapon.weaponName}}</td>
+                    <td>{{weapon.successRate}}</td>
+                    <td>{{weapon.damage}}</td>
+                    <td>{{weapon.range}}</td>
+                    <td>{{weapon.attackCount}}</td>
+                    <td>{{weapon.loadingCount}}</td>
+                    <td>{{weapon.endurance}}</td>
+                    <td>{{weapon.other}}</td>
+                  </tr>
+                </table>
+              </dd>
             </dl>
           </mat-tab>
           <mat-tab label="経歴">
@@ -371,4 +325,4 @@
 </div>
 
 <input id="upfile" name="upfile" type="file" #fl
-       accept="*.json" (change)="getJson(fl.files)" />
+       accept="application/json" (change)="getJson(fl.files)" />
