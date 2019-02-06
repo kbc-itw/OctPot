@@ -540,9 +540,9 @@ export class CharacterEditComponent implements OnInit {
   // アイテム削除ボタンが押されたらそのアイテムを削除する
   deleteItem(itemType, index) {
     if (itemType === 'wepon') {
-      this.weponList.slice(index, 1 );
-    }else if (itemType === 'item') {
-      this.itemslist.slice(index, 1 );
+      this.weponList.splice(index, 1 );
+    } else if (itemType === 'item') {
+      this.itemslist.splice(index, 1 );
     }
   }
 
