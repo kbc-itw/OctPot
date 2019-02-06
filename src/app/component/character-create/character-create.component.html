@@ -1,425 +1,377 @@
 <app-side-bar></app-side-bar>
-<div class="character-create container">
-  <section class="base">
-    <h1>基本設定</h1>
-    <div class="innerContainer clearfix">
-      <div class="left">
-        <h2>キャラクター情報</h2>
-        <div class="contentWrap">
-          <ul>
-            <li>
-              <label for="chara-name">キャラクター名：</label><input type="text" id="chara-name" [(ngModel)]="cname">
-            </li>
-            <li>
-              <div class="radio">
-                <p>性別：</p>
-                <p><input type="radio" id="man" name="gender" [(ngModel)]="cgender" value="男"  ><label for="man">男性</label></p>
-                <p><input type="radio" id="woman" name="gender" [(ngModel)]="cgender" value="女" ><label for="woman">女性</label></p>
-                <p><input type="radio" id="unknown" name="gender" [(ngModel)]="cgender" value="なし" ><label for="unknown">なし</label></p>
-              </div>
-            </li>
-            <li>
-              <div class="threeColumn">
-                <p><label for="chara-height">身長：</label><input type="text" id="chara-height" [(ngModel)]="cheight"></p>
-                <p><label for="chara-weight">体重：</label><input type="text" id="chara-weight" [(ngModel)]="cweight"></p>
-                <p><label for="chara-age">年齢：</label><input type="text" id="chara-age"></p>
-              </div>
-            </li>
-            <li>
-              <label for="birthplace">出身地：</label><input type="text" id="birthplace" [(ngModel)]="cbirthplace">
-            </li>
-            <li>
-              <div class="twoColumn">
-                <p><label for="chara-hair-color">髪色：</label><input type="text" id="chara-hair-col" [(ngModel)]="chairColor"></p>
-                <p><label for="chara-eye-col">目の色：</label><input type="text" id="chara-eye-col" [(ngModel)]="ceyeColor"></p>
-              </div>
-            </li>
-            <li>
-              <div class="radio">
-                <p>基本設定：</p>
-                <p><input type="radio" id="PC" name="chara-type" [(ngModel)]="stype" value="PC"><label for="PC">PC</label></p>
-                <p><input type="radio" id="NPC" name="chara-type" [(ngModel)]="stype" value="NPC"><label for="NPC">NPC</label></p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="right">
-        <h2>職業設定</h2>
-        <div class="contentWrap">
-          <select name="" id="" [(ngModel)]="sjob">
-            <option value="SUZUKI">dummy01</option>
-            <option value="HONDA">dummy02</option>
-            <option value="KAWAKAMI">dummy03</option>
-            <option value="YAMAHA">dummy04</option>
-            <option value="MEGURO">dummy05</option>
-          </select>
-          <dl class="clearfix">
-            <dt><p>取得できる技能</p></dt>
-            <dd><textarea name="" id="" cols="30" rows="3"></textarea></dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="ability">
-    <h1>能力値</h1>
-    <div class="innerContainer clearfix">
-      <div class="left">
-        <h2>基礎ステータス</h2>
-        <div class="contentWrap clearfix">
-          <table>
-            <tr>
-              <th>STR</th>
-              <td><p>{{bstr}}</p></td>
-              <td class="role"><button (click)="throwDice('str')">3D6</button></td>
-            </tr>
-            <tr>
-              <th>CON</th>
-              <td><p>{{bcon}}</p></td>
-              <td class="role"><button (click)="throwDice('con')">3D6</button></td>
-            </tr>
-            <tr>
-              <th>POW</th>
-              <td><p>{{bpow}}</p></td>
-              <td class="role"><button (click)="throwDice('pow')">3D6</button></td>
-            </tr>
-            <tr>
-              <th>DEX</th>
-              <td><p>{{bdex}}</p></td>
-              <td class="role"><button (click)="throwDice('dex')">3D6</button></td>
-            </tr>
-            <tr>
-              <th>APP</th>
-              <td><p>{{bapp}}</p></td>
-              <td class="role"><button (click)="throwDice('app')">3D6</button></td>
-            </tr>
-            <tr>
-              <th>SIZ</th>
-              <td><p>{{bsiz}}</p></td>
-              <td class="role"><button (click)="throwDice('siz')">2D6+6</button></td>
-            </tr>
-            <tr>
-              <th>INT</th>
-              <td><p>{{bint}}</p></td>
-              <td class="role"><button (click)="throwDice('int')">2D6+6</button></td>
-            </tr>
-            <tr>
-              <th>EDU</th>
-              <td><p>{{bedu}}</p></td>
-              <td class="role"><button (click)="throwDice('edu')">3D6+3</button></td>
-            </tr>
-            <tr>
-              <th>年収・財産</th>
-              <td><p>{{bincome_and_property}}</p></td>
-              <td class="role"><button (click)="throwDice('income')">3D6</button></td>
-            </tr>
-          </table>
-          <button class="allRole" (click)="throwDice('allDice')">一括ダイスロール</button>
-        </div>
-      </div>
-      <div class="right">
-        <h2>変動ステータス</h2>
-        <div class="contentWrap">
-          <table>
-            <tr>
-              <th>SAN</th>
-              <td><p>{{fsan}}</p></td>
-            </tr>
-            <tr>
-              <th>幸運</th>
-              <td><p>{{fluck}}</p></td>
-            </tr>
-            <tr>
-              <th>アイデア</th>
-              <td><p>{{fidea}}</p></td>
-            </tr>
-            <tr>
-              <th>知識</th>
-              <td><p>{{fknowledge}}</p></td>
-            </tr>
-            <tr>
-              <th>体力</th>
-              <td><p>{{fhealth}}</p></td>
-            </tr>
-            <tr>
-              <th>MP</th>
-              <td><p>{{fmp}}</p></td>
-            </tr>
-            <tr>
-              <th>職業技能値</th>
-              <td><p>{{fVocationalSkill}}</p></td>
-            </tr>
-            <tr>
-              <th>趣味技能値</th>
-              <td><p>{{fHobbySkill}}</p></td>
-            </tr>
-            <tr>
-              <th>ダメージボーナス</th>
-              <td><p>{{fDamegeBonus}}</p></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="skill">
-    <h1>技能</h1>
-    <div class="innerContainer clearfix">
-      <div class="left">
-        <h2>技能リスト</h2>
-        <div class="skillWrap">
-          <dl>
-            <dt>戦闘技能</dt>
-            <dd>
-              <table>
-                <tr>
-                  <th>技能名／技能値</th>
-                  <th>初期値</th>
-                  <th>職業Ｐ</th>
-                  <th>興味Ｐ</th>
-                  <th>成長Ｐ</th>
-                  <th>その他</th>
-                  <th>合計</th>
-                </tr>
-                <tr class="line" *ngFor="let combat of combatList; let i = index">
-                  <th><p>{{combat.skillName}}</p></th>
-                  <td><p>{{combat.initialValue}}</p></td>
-                  <td><input type="number" min="0" max="80" [(ngModel)]="combatList[i].jobPoint" (input)="totalcalc($event, combat, i, 'combat', 'job')" ></td> 
-                  <td><input type="number" min="0" max="80" [(ngModel)]="combatList[i].hobbyPoint" (input)="totalcalc($event, combat, i, 'combat', 'hobby')"></td>
-                  <td><input type="number" min="0" [(ngModel)]="combatList[i].growthPoint" (input)="totalcalc($event, combat, i, 'combat', 'growth')"></td>
-                  <td><input type="number" min="0" [(ngModel)]="combatList[i].otherPoint" (input)="totalcalc($event, combat, i, 'combat', 'other')"></td>
-                  <td><p>{{combat.initialValue + combatList[i].jobPoint + combatList[i].hobbyPoint + combatList[i].growthPoint + combatList[i].otherPoint}}</p></td>
-                </tr>
-              </table>
-              <ul>
-                <li><button>追加</button></li>
-                <li><button class="del">削除</button></li>
-              </ul>
-            </dd>
-          </dl>
-          <dl>
-            <dt>探索技能</dt>
-            <dd>
-              <table>
-                <tr>
-                  <th>技能名／技能値</th>
-                  <th>初期値</th>
-                  <th>職業Ｐ</th>
-                  <th>興味Ｐ</th>
-                  <th>成長Ｐ</th>
-                  <th>その他</th>
-                  <th>合計</th>
-                </tr>
-                <tr class="line" *ngFor="let search of searchList; let i = index">
-                  <th><p>{{search.skillName}}</p></th>
-                  <td><p>{{search.initialValue}}</p></td>
-                  <td><input type="number" min="0" max="80" [(ngModel)]="searchList[i].jobPoint" (input)="totalcalc($event, combat, i, 'search', 'job')" ></td> 
-                  <td><input type="number" min="0" max="80" [(ngModel)]="searchList[i].hobbyPoint" (input)="totalcalc($event, combat, i, 'search', 'hobby')"></td>
-                  <td><input type="number" min="0" [(ngModel)]="searchList[i].growthPoint" (input)="totalcalc($event, combat, i, 'search', 'growth')"></td>
-                  <td><input type="number" min="0" [(ngModel)]="searchList[i].otherPoint" (input)="totalcalc($event, combat, i, 'search', 'other')"></td>
-                  <td><p>{{search.initialValue + search.jobPoint + search.hobbyPoint + search.growthPoint + search.otherPoint}}</p></td>
-                </tr>
-              </table>
-              <ul>
-                <li><button>追加</button></li>
-                <li><button class="del">削除</button></li>
-              </ul>
-            </dd>
-          </dl>
-          <dl>
-            <dt>行動技能</dt>
-            <dd>
-              <table>
-                <tr>
-                  <th>技能名／技能値</th>
-                  <th>初期値</th>
-                  <th>職業Ｐ</th>
-                  <th>興味Ｐ</th>
-                  <th>成長Ｐ</th>
-                  <th>その他</th>
-                  <th>合計</th>
-                </tr>
-                <tr class="line" *ngFor="let behavior of behaviorList; let i = index">
-                  <th><p>{{behavior.skillName}}</p></th>
-                  <td><p>{{behavior.initialValue}}</p></td>
-                  <td><input type="number" min="0" max="80" [(ngModel)]="behaviorList[i].jobPoint" (input)="totalcalc($event, combat, i, 'behavior', 'job')" ></td> 
-                  <td><input type="number" min="0" max="80" [(ngModel)]="behaviorList[i].hobbyPoint" (input)="totalcalc($event, combat, i, 'behavior', 'hobby')"></td>
-                  <td><input type="number" min="0" [(ngModel)]="behaviorList[i].growthPoint" (input)="totalcalc($event, combat, i, 'behavior', 'growth')"></td>
-                  <td><input type="number" min="0" [(ngModel)]="behaviorList[i].otherPoint" (input)="totalcalc($event, combat, i, 'behavior', 'other')"></td>
-                  <td><p>{{behavior.initialValue + behavior.jobPoint + behavior.hobbyPoint + behavior.growthPoint + behavior.otherPoint}}</p></td>
-                </tr>
-              </table>
-              <ul>
-                <li><button>追加</button></li>
-                <li><button class="del">削除</button></li>
-              </ul>
-            </dd>
-          </dl>
-          <dl>
-            <dt>交渉技能</dt>
-            <dd>
-              <table>
-                <tr>
-                  <th>技能名／技能値</th>
-                  <th>初期値</th>
-                  <th>職業Ｐ</th>
-                  <th>興味Ｐ</th>
-                  <th>成長Ｐ</th>
-                  <th>その他</th>
-                  <th>合計</th>
-                </tr>
-                <tr class="line" *ngFor="let negotiation of negotiationList; let i = index">
-                  <th><p>{{negotiation.skillName}}</p></th>
-                  <td><p>{{negotiation.initialValue}}</p></td>
-                  <td><input type="number" min="0" max="80" [(ngModel)]="negotiationList[i].jobPoint" (input)="totalcalc($event, combat, i, 'negotiation', 'job')" ></td> 
-                  <td><input type="number" min="0" max="80" [(ngModel)]="negotiationList[i].hobbyPoint" (input)="totalcalc($event, combat, i, 'negotiation', 'hobby')"></td>
-                  <td><input type="number" min="0" [(ngModel)]="negotiationList[i].growthPoint" (input)="totalcalc($event, combat, i, 'negotiation', 'growth')"></td>
-                  <td><input type="number" min="0" [(ngModel)]="negotiationList[i].otherPoint" (input)="totalcalc($event, combat, i, 'negotiation', 'other')"></td>
-                  <td><p>{{negotiation.initialValue + negotiation.jobPoint + negotiation.hobbyPoint + negotiation.growthPoint + negotiation.otherPoint}}</p></td>
-                </tr>
-              </table>
-              <ul>
-                <li><button>追加</button></li>
-                <li><button class="del">削除</button></li>
-              </ul>
-            </dd>
-          </dl>
-          <dl>
-            <dt>知識技能</dt>
-            <dd>
-              <table>
-                <tr>
-                  <th>技能名／技能値</th>
-                  <th>初期値</th>
-                  <th>職業Ｐ</th>
-                  <th>興味Ｐ</th>
-                  <th>成長Ｐ</th>
-                  <th>その他</th>
-                  <th>合計</th>
-                </tr>
-                <tr class="line" *ngFor="let knowledge of knowledgeList; let i = index">
-                  <th><p>{{knowledge.skillName}}</p></th>
-                  <td><p>{{knowledge.initialValue}}</p></td>
-                  <td><input type="number" min="0" max="80" [(ngModel)]="knowledgeList[i].jobPoint" (input)="totalcalc($event, combat, i, 'knowledge', 'job')" ></td> 
-                  <td><input type="number" min="0" max="80" [(ngModel)]="knowledgeList[i].hobbyPoint" (input)="totalcalc($event, combat, i, 'knowledge', 'hobby')"></td>
-                  <td><input type="number" min="0" [(ngModel)]="knowledgeList[i].growthPoint" (input)="totalcalc($event, combat, i, 'knowledge', 'growth')"></td>
-                  <td><input type="number" min="0" [(ngModel)]="knowledgeList[i].otherPoint" (input)="totalcalc($event, combat, i, 'knowledge', 'other')"></td>
-                  <td><p>{{knowledge.initialValue + knowledge.jobPoint + knowledge.hobbyPoint + knowledge.growthPoint + knowledge.otherPoint}}</p></td>
-                </tr>
-              </table>
-              <ul>
-                <li><button>追加</button></li>
-                <li><button class="del">削除</button></li>
-              </ul>
-            </dd>
-          </dl>
-        </div>
-      </div>
-      <div class="right">
-        <div class="top">
-          <h2>保有ポイント</h2>
-          <div class="contentWrap">
-            <ul>
-              <li class="clearfix"><label for="remProfessionPoint">職業ポイント：</label><input type="text" id="professionPoint" value="{{remProfessionalPoint}}" readonly /></li>
-              <li class="clearfix"><label for="remInterestPoint">興味ポイント：</label><input type="text" id="interestPoint" value="{{remInterestPoint}}" readonly /></li>
-            </ul>
-          </div>
-        </div>
-        <div class="bottom">
-          <h2>取得技能</h2>
-          <div class="contentWrap">
-            <textarea name="name" rows="8" cols="80" readonly></textarea>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="item">
-    <h1>所持品</h1>
-    <div class="innerContainer">
-      <div class="top">
-        <h2>戦闘・武器・防具</h2>
-        <div class="containerWrap">
-          <table>
-            <tr>
-              <th>名称</th>
-              <th>成功率</th>
-              <th>ダメージ</th>
-              <th>射程</th>
-              <th>攻撃回数</th>
-              <th>装填数</th>
-              <th>耐久力</th>
-              <th>その他</th>
-            </tr>
-            <tr *ngFor="let wepon of weponList; let i = index">
-              <td><input type="text" value="{{wepon.name}}" [(ngModel)]="weponList[i].name"></td>
-              <td><input type="text" value="{{wepon.successRate}}" [(ngModel)]="weponList[i].successRate"></td>
-              <td><input type="text" value="{{wepon.damage}}" [(ngModel)]="weponList[i].damage"></td>
-              <td><input type="text" value="{{wepon.range}}" [(ngModel)]="weponList[i].range"></td>
-              <td><input type="text" value="{{wepon.attackCount}}" [(ngModel)]="weponList[i].attackCount"></td>
-              <td><input type="text" value="{{wepon.loadingCount}}" [(ngModel)]="weponList[i].loadingCount"></td>
-              <td><input type="text" value="{{wepon.endurance}}" [(ngModel)]="weponList[i].endurance"></td>
-              <td><input type="text" value="{{wepon.other}}" [(ngModel)]="weponList[i].other"></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div class="bottom">
-        <h2>所持品</h2>
-        <div class="containerWrap">
-          <table>
-            <tr>
-              <th>名称</th>
-              <th>個数</th>
-              <th>説明</th>
-            </tr>
-            <tr *ngFor="let item of itemslist; let i = index">
-              <td><input type="text" value="{{item.name}}" [(ngModel)]="itemslist[i].name"></td>
-              <td><input type="text" value="{{item.times}}" [(ngModel)]="itemslist[i].times"></td>
-              <td><input type="text" value="{{item.description}}" [(ngModel)]="itemslist[i].description"></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="profile">
-    <h1>プロフィール</h1>
-    <div class="innerContainer">
-      <div class="top">
-        <h2>経歴</h2>
-        <div class="containerWrap">
-          <textarea name="" id="" cols="30" rows="10" [(ngModel)]="pCareer"></textarea>
-        </div>
-      </div>
-      <div class="bottom">
-        <div class="clearfix">
+<div class="bgWrap">
+  <div class="character-create container">
+    <div class="wrap">
+      <section class="base">
+        <h1>基本設定</h1>
+        <div class="innerContainer clearfix">
           <div class="left">
-            <h2>遭遇したもの</h2>
-            <div class="containerWrap">
-              <textarea name="" id="" cols="30" rows="10" [(ngModel)]="pEncounter"></textarea>
+            <h2>キャラクター情報</h2>
+            <div class="contentWrap">
+              <ul>
+                <li>
+                  <label for="chara-name">キャラクター名：</label><input type="text" id="chara-name" [(ngModel)]="cname">
+                </li>
+                <li>
+                  <div class="radio">
+                    <p>性別：</p>
+                    <p><input type="radio" id="man" name="gender" [(ngModel)]="cgender" value="男"  ><label for="man">男性</label></p>
+                    <p><input type="radio" id="woman" name="gender" [(ngModel)]="cgender" value="女" ><label for="woman">女性</label></p>
+                    <p><input type="radio" id="unknown" name="gender" [(ngModel)]="cgender" value="なし" ><label for="unknown">なし</label></p>
+                  </div>
+                </li>
+                <li>
+                  <div class="threeColumn">
+                    <p><label for="chara-height">身長：</label><input type="text" id="chara-height" [(ngModel)]="cheight"></p>
+                    <p><label for="chara-weight">体重：</label><input type="text" id="chara-weight" [(ngModel)]="cweight"></p>
+                    <p><label for="chara-age">年齢：</label><input type="text" id="chara-age"></p>
+                  </div>
+                </li>
+                <li>
+                  <label for="birthplace">出身地：</label><input type="text" id="birthplace" [(ngModel)]="cbirthplace">
+                </li>
+                <li>
+                  <div class="twoColumn">
+                    <p><label for="chara-hair-color">髪色：</label><input type="text" id="chara-hair-col" [(ngModel)]="chairColor"></p>
+                    <p><label for="chara-eye-col">目の色：</label><input type="text" id="chara-eye-col" [(ngModel)]="ceyeColor"></p>
+                  </div>
+                </li>
+                <li>
+                  <div class="radio">
+                    <p>基本設定：</p>
+                    <p><input type="radio" id="PC" name="chara-type" [(ngModel)]="stype" value="PC"><label for="PC">PC</label></p>
+                    <p><input type="radio" id="NPC" name="chara-type" [(ngModel)]="stype" value="NPC"><label for="NPC">NPC</label></p>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
           <div class="right">
-            <h2>その他</h2>
-            <div class="containerWrap">
-              <textarea name="" id="" cols="30" rows="10" [(ngModel)]="pOtherMemo"></textarea>
+            <h2>職業設定</h2>
+            <div class="contentWrap">
+              <select name="" id="" [(ngModel)]="sjob">
+                <option value="SUZUKI">dummy01</option>
+                <option value="HONDA">dummy02</option>
+                <option value="KAWAKAMI">dummy03</option>
+                <option value="YAMAHA">dummy04</option>
+                <option value="MEGURO">dummy05</option>
+              </select>
+              <dl class="clearfix">
+                <dt><p>取得できる技能</p></dt>
+                <dd><textarea name="" id="" cols="30" rows="3"></textarea></dd>
+              </dl>
             </div>
           </div>
         </div>
+      </section>
+
+      <section class="ability">
+        <h1>能力値</h1>
+        <div class="innerContainer clearfix">
+          <div class="left">
+            <h2>基礎ステータス</h2>
+            <div class="contentWrap clearfix">
+              <table>
+                <tr>
+                  <th>STR</th>
+                  <td><p>{{bstr}}</p></td>
+                  <td class="role"><button (click)="throwDice('str')">3D6</button></td>
+                </tr>
+                <tr>
+                  <th>CON</th>
+                  <td><p>{{bcon}}</p></td>
+                  <td class="role"><button (click)="throwDice('con')">3D6</button></td>
+                </tr>
+                <tr>
+                  <th>POW</th>
+                  <td><p>{{bpow}}</p></td>
+                  <td class="role"><button (click)="throwDice('pow')">3D6</button></td>
+                </tr>
+                <tr>
+                  <th>DEX</th>
+                  <td><p>{{bdex}}</p></td>
+                  <td class="role"><button (click)="throwDice('dex')">3D6</button></td>
+                </tr>
+                <tr>
+                  <th>APP</th>
+                  <td><p>{{bapp}}</p></td>
+                  <td class="role"><button (click)="throwDice('app')">3D6</button></td>
+                </tr>
+                <tr>
+                  <th>SIZ</th>
+                  <td><p>{{bsiz}}</p></td>
+                  <td class="role"><button (click)="throwDice('siz')">2D6+6</button></td>
+                </tr>
+                <tr>
+                  <th>INT</th>
+                  <td><p>{{bint}}</p></td>
+                  <td class="role"><button (click)="throwDice('int')">2D6+6</button></td>
+                </tr>
+                <tr>
+                  <th>EDU</th>
+                  <td><p>{{bedu}}</p></td>
+                  <td class="role"><button (click)="throwDice('edu')">3D6+3</button></td>
+                </tr>
+                <tr>
+                  <th>年収・財産</th>
+                  <td><p>{{bincome_and_property}}</p></td>
+                  <td class="role"><button (click)="throwDice('income')">3D6</button></td>
+                </tr>
+              </table>
+              <button class="allRole" (click)="throwDice('allDice')">一括ダイスロール</button>
+            </div>
+          </div>
+          <div class="right">
+            <h2>変動ステータス</h2>
+            <div class="contentWrap">
+              <table>
+                <tr>
+                  <th>SAN</th>
+                  <td><p>{{fsan}}</p></td>
+                </tr>
+                <tr>
+                  <th>幸運</th>
+                  <td><p>{{fluck}}</p></td>
+                </tr>
+                <tr>
+                  <th>アイデア</th>
+                  <td><p>{{fidea}}</p></td>
+                </tr>
+                <tr>
+                  <th>知識</th>
+                  <td><p>{{fknowledge}}</p></td>
+                </tr>
+                <tr>
+                  <th>体力</th>
+                  <td><p>{{fhealth}}</p></td>
+                </tr>
+                <tr>
+                  <th>MP</th>
+                  <td><p>{{fmp}}</p></td>
+                </tr>
+                <tr>
+                  <th>職業技能値</th>
+                  <td><p>{{fVocationalSkill}}</p></td>
+                </tr>
+                <tr>
+                  <th>趣味技能値</th>
+                  <td><p>{{fHobbySkill}}</p></td>
+                </tr>
+                <tr>
+                  <th>ダメージボーナス</th>
+                  <td><p>{{fDamegeBonus}}</p></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="skill">
+        <h1>技能</h1>
+        <div class="innerContainer clearfix">
+          <div class="left">
+            <h2>技能リスト</h2>
+            <div class="skillWrap">
+              <dl>
+                <dt>戦闘技能</dt>
+                <dd>
+                  <table>
+                    <tr>
+                      <th>技能名／技能値</th>
+                      <th>初期値</th>
+                      <th>職業Ｐ</th>
+                      <th>興味Ｐ</th>
+                      <th>成長Ｐ</th>
+                      <th>その他</th>
+                      <th>合計</th>
+                    </tr>
+                    <tr class="line" *ngFor="let combat of combatList; let i = index">
+                      <th><p>{{combat.skillName}}</p></th>
+                      <td><p>{{combat.initialValue}}</p></td>
+                      <td><input type="number" min="0" max="80" [(ngModel)]="combatList[i].jobPoint" (input)="totalcalc($event, combat, i, 'combat', 'job')" ></td>
+                      <td><input type="number" min="0" max="80" [(ngModel)]="combatList[i].hobbyPoint" (input)="totalcalc($event, combat, i, 'combat', 'hobby')"></td>
+                      <td><input type="number" min="0" [(ngModel)]="combatList[i].growthPoint" (input)="totalcalc($event, combat, i, 'combat', 'growth')"></td>
+                      <td><input type="number" min="0" [(ngModel)]="combatList[i].otherPoint" (input)="totalcalc($event, combat, i, 'combat', 'other')"></td>
+                      <td><p>{{combat.initialValue + combatList[i].jobPoint + combatList[i].hobbyPoint + combatList[i].growthPoint + combatList[i].otherPoint}}</p></td>
+                    </tr>
+                  </table>
+                </dd>
+              </dl>
+              <dl>
+                <dt>探索技能</dt>
+                <dd>
+                  <table>
+                    <tr>
+                      <th>技能名／技能値</th>
+                      <th>初期値</th>
+                      <th>職業Ｐ</th>
+                      <th>興味Ｐ</th>
+                      <th>成長Ｐ</th>
+                      <th>その他</th>
+                      <th>合計</th>
+                    </tr>
+                    <tr class="line" *ngFor="let search of searchList; let i = index">
+                      <th><p>{{search.skillName}}</p></th>
+                      <td><p>{{search.initialValue}}</p></td>
+                      <td><input type="number" min="0" max="80" [(ngModel)]="searchList[i].jobPoint" (input)="totalcalc($event, combat, i, 'search', 'job')" ></td>
+                      <td><input type="number" min="0" max="80" [(ngModel)]="searchList[i].hobbyPoint" (input)="totalcalc($event, combat, i, 'search', 'hobby')"></td>
+                      <td><input type="number" min="0" [(ngModel)]="searchList[i].growthPoint" (input)="totalcalc($event, combat, i, 'search', 'growth')"></td>
+                      <td><input type="number" min="0" [(ngModel)]="searchList[i].otherPoint" (input)="totalcalc($event, combat, i, 'search', 'other')"></td>
+                      <td><p>{{search.initialValue + search.jobPoint + search.hobbyPoint + search.growthPoint + search.otherPoint}}</p></td>
+                    </tr>
+                  </table>
+                </dd>
+              </dl>
+              <dl>
+                <dt>行動技能</dt>
+                <dd>
+                  <table>
+                    <tr>
+                      <th>技能名／技能値</th>
+                      <th>初期値</th>
+                      <th>職業Ｐ</th>
+                      <th>興味Ｐ</th>
+                      <th>成長Ｐ</th>
+                      <th>その他</th>
+                      <th>合計</th>
+                    </tr>
+                    <tr class="line" *ngFor="let behavior of behaviorList; let i = index">
+                      <th><p>{{behavior.skillName}}</p></th>
+                      <td><p>{{behavior.initialValue}}</p></td>
+                      <td><input type="number" min="0" max="80" [(ngModel)]="behaviorList[i].jobPoint" (input)="totalcalc($event, combat, i, 'behavior', 'job')" ></td>
+                      <td><input type="number" min="0" max="80" [(ngModel)]="behaviorList[i].hobbyPoint" (input)="totalcalc($event, combat, i, 'behavior', 'hobby')"></td>
+                      <td><input type="number" min="0" [(ngModel)]="behaviorList[i].growthPoint" (input)="totalcalc($event, combat, i, 'behavior', 'growth')"></td>
+                      <td><input type="number" min="0" [(ngModel)]="behaviorList[i].otherPoint" (input)="totalcalc($event, combat, i, 'behavior', 'other')"></td>
+                      <td><p>{{behavior.initialValue + behavior.jobPoint + behavior.hobbyPoint + behavior.growthPoint + behavior.otherPoint}}</p></td>
+                    </tr>
+                  </table>
+                </dd>
+              </dl>
+              <dl>
+                <dt>交渉技能</dt>
+                <dd>
+                  <table>
+                    <tr>
+                      <th>技能名／技能値</th>
+                      <th>初期値</th>
+                      <th>職業Ｐ</th>
+                      <th>興味Ｐ</th>
+                      <th>成長Ｐ</th>
+                      <th>その他</th>
+                      <th>合計</th>
+                    </tr>
+                    <tr class="line" *ngFor="let negotiation of negotiationList; let i = index">
+                      <th><p>{{negotiation.skillName}}</p></th>
+                      <td><p>{{negotiation.initialValue}}</p></td>
+                      <td><input type="number" min="0" max="80" [(ngModel)]="negotiationList[i].jobPoint" (input)="totalcalc($event, combat, i, 'negotiation', 'job')" ></td>
+                      <td><input type="number" min="0" max="80" [(ngModel)]="negotiationList[i].hobbyPoint" (input)="totalcalc($event, combat, i, 'negotiation', 'hobby')"></td>
+                      <td><input type="number" min="0" [(ngModel)]="negotiationList[i].growthPoint" (input)="totalcalc($event, combat, i, 'negotiation', 'growth')"></td>
+                      <td><input type="number" min="0" [(ngModel)]="negotiationList[i].otherPoint" (input)="totalcalc($event, combat, i, 'negotiation', 'other')"></td>
+                      <td><p>{{negotiation.initialValue + negotiation.jobPoint + negotiation.hobbyPoint + negotiation.growthPoint + negotiation.otherPoint}}</p></td>
+                    </tr>
+                  </table>
+                </dd>
+              </dl>
+              <dl>
+                <dt>知識技能</dt>
+                <dd>
+                  <table>
+                    <tr>
+                      <th>技能名／技能値</th>
+                      <th>初期値</th>
+                      <th>職業Ｐ</th>
+                      <th>興味Ｐ</th>
+                      <th>成長Ｐ</th>
+                      <th>その他</th>
+                      <th>合計</th>
+                    </tr>
+                    <tr class="line" *ngFor="let knowledge of knowledgeList; let i = index">
+                      <th><p>{{knowledge.skillName}}</p></th>
+                      <td><p>{{knowledge.initialValue}}</p></td>
+                      <td><input type="number" min="0" max="80" [(ngModel)]="knowledgeList[i].jobPoint" (input)="totalcalc($event, combat, i, 'knowledge', 'job')" ></td>
+                      <td><input type="number" min="0" max="80" [(ngModel)]="knowledgeList[i].hobbyPoint" (input)="totalcalc($event, combat, i, 'knowledge', 'hobby')"></td>
+                      <td><input type="number" min="0" [(ngModel)]="knowledgeList[i].growthPoint" (input)="totalcalc($event, combat, i, 'knowledge', 'growth')"></td>
+                      <td><input type="number" min="0" [(ngModel)]="knowledgeList[i].otherPoint" (input)="totalcalc($event, combat, i, 'knowledge', 'other')"></td>
+                      <td><p>{{knowledge.initialValue + knowledge.jobPoint + knowledge.hobbyPoint + knowledge.growthPoint + knowledge.otherPoint}}</p></td>
+                    </tr>
+                  </table>
+                </dd>
+              </dl>
+            </div>
+          </div>
+          <div class="right">
+            <div class="top">
+              <h2>保有ポイント</h2>
+              <div class="contentWrap">
+                <ul>
+                  <li class="clearfix"><label for="remProfessionPoint">職業ポイント：</label><input type="text" id="professionPoint" value="{{remProfessionalPoint}}" readonly /></li>
+                  <li class="clearfix"><label for="remInterestPoint">興味ポイント：</label><input type="text" id="interestPoint" value="{{remInterestPoint}}" readonly /></li>
+                </ul>
+              </div>
+            </div>
+            <div class="bottom">
+              <h2>取得技能</h2>
+              <div class="contentWrap">
+                <textarea name="name" rows="8" cols="80" readonly></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="item">
+        <h1>所持品</h1>
+        <div class="innerContainer clearfix">
+          <div class="left">
+            <h2>戦闘・武器・防具</h2>
+            <div class="containerWrap">
+              <textarea name="" id="" cols="30" rows="10"></textarea>
+            </div>
+          </div>
+          <div class="right">
+            <h2>所持品</h2>
+            <div class="containerWrap">
+              <textarea name="" id="" cols="30" rows="10"></textarea>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="profile">
+        <h1>プロフィール</h1>
+        <div class="innerContainer">
+          <div class="top">
+            <h2>経歴</h2>
+            <div class="containerWrap">
+              <textarea name="" id="" cols="30" rows="10" [(ngModel)]="pCareer"></textarea>
+            </div>
+          </div>
+          <div class="bottom">
+            <div class="clearfix">
+              <div class="left">
+                <h2>遭遇したもの</h2>
+                <div class="containerWrap">
+                  <textarea name="" id="" cols="30" rows="10" [(ngModel)]="pEncounter"></textarea>
+                </div>
+              </div>
+              <div class="right">
+                <h2>その他</h2>
+                <div class="containerWrap">
+                  <textarea name="" id="" cols="30" rows="10" [(ngModel)]="pOtherMemo"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="submits">
+        <ul>
+          <li class="save"><button (click)="download()">保存</button></li>
+          <li class="cancel"><button>キャンセル</button></li>
+        </ul>
       </div>
     </div>
-  </section>
-
-  <div class="submits">
-    <ul>
-      <li class="save"><button (click)="download()">保存</button></li>
-      <li class="cancel"><button>キャンセル</button></li>
-    </ul>
   </div>
 </div>

@@ -1,205 +1,35 @@
 <div class="statusBlock">
   <ul class="statusList">
-    <li class="character">
+    <li *ngFor="let chara of charaList; let i = index;" class="character">
       <dl class="about">
-        <dt>サンプルさん</dt>
-        <dd>HP:<span>8</span>/<span>12</span></dd>
-        <dd>MP:<span>10</span>/<span>10</span></dd>
-        <dd>SAN:<span>45</span>/<span>45</span></dd>
+        <dt>{{chara.Setting.character.name}}</dt>
+        <dd>HP:<span>{{charaStatusList[i].hp}}</span>/<span>{{chara.Status.fluctuationStatus.health}}</span></dd>
+        <dd>MP:<span>{{charaStatusList[i].mp}}</span>/<span>{{chara.Status.fluctuationStatus.mp}}</span></dd>
+        <dd>SAN:<span>{{charaStatusList[i].san}}</span>/<span>{{chara.Status.fluctuationStatus.san}}</span></dd>
       </dl>
       <ul class="paramEdit">
         <li>
           <p>HP</p>
-          <input type="text" value="8" readonly>
+          <input type="text" value="{{charaStatusList[i].hp}}" readonly>
           <div class="edit">
-            <button>+</button>
-            <button>-</button>
+            <button (click)="changeStatus('hp', 1, i)">+</button>
+            <button (click)="changeStatus('hp', -1, i)">-</button>
           </div>
         </li>
         <li>
           <p>MP</p>
-          <input type="text" value="10" readonly>
+          <input type="text" value="{{charaStatusList[i].mp}}" readonly>
           <div class="edit">
-            <button>+</button>
-            <button>-</button>
+            <button (click)="changeStatus('mp', 1, i)">+</button>
+            <button (click)="changeStatus('mp', -1, i)">-</button>
           </div>
         </li>
         <li>
           <p>SAN</p>
-          <input type="text" value="45" readonly>
+          <input type="text" value="{{charaStatusList[i].san}}" readonly>
           <div class="edit">
-            <button>+</button>
-            <button>-</button>
-          </div>
-        </li>
-      </ul>
-    </li>
-    <li class="character">
-      <dl class="about">
-        <dt>サンプルさん</dt>
-        <dd>HP:<span>8</span>/<span>12</span></dd>
-        <dd>MP:<span>10</span>/<span>10</span></dd>
-        <dd>SAN:<span>45</span>/<span>45</span></dd>
-      </dl>
-      <ul class="paramEdit">
-        <li>
-          <p>HP</p>
-          <input type="text" value="8" readonly>
-          <div class="edit">
-            <button>+</button>
-            <button>-</button>
-          </div>
-        </li>
-        <li>
-          <p>MP</p>
-          <input type="text" value="10" readonly>
-          <div class="edit">
-            <button>+</button>
-            <button>-</button>
-          </div>
-        </li>
-        <li>
-          <p>SAN</p>
-          <input type="text" value="45" readonly>
-          <div class="edit">
-            <button>+</button>
-            <button>-</button>
-          </div>
-        </li>
-      </ul>
-    </li>
-    <li class="character">
-      <dl class="about">
-        <dt>サンプルさん</dt>
-        <dd>HP:<span>8</span>/<span>12</span></dd>
-        <dd>MP:<span>10</span>/<span>10</span></dd>
-        <dd>SAN:<span>45</span>/<span>45</span></dd>
-      </dl>
-      <ul class="paramEdit">
-        <li>
-          <p>HP</p>
-          <input type="text" value="8" readonly>
-          <div class="edit">
-            <button>+</button>
-            <button>-</button>
-          </div>
-        </li>
-        <li>
-          <p>MP</p>
-          <input type="text" value="10" readonly>
-          <div class="edit">
-            <button>+</button>
-            <button>-</button>
-          </div>
-        </li>
-        <li>
-          <p>SAN</p>
-          <input type="text" value="45" readonly>
-          <div class="edit">
-            <button>+</button>
-            <button>-</button>
-          </div>
-        </li>
-      </ul>
-    </li>
-    <li class="character">
-      <dl class="about">
-        <dt>サンプルさん</dt>
-        <dd>HP:<span>8</span>/<span>12</span></dd>
-        <dd>MP:<span>10</span>/<span>10</span></dd>
-        <dd>SAN:<span>45</span>/<span>45</span></dd>
-      </dl>
-      <ul class="paramEdit">
-        <li>
-          <p>HP</p>
-          <input type="text" value="8" readonly>
-          <div class="edit">
-            <button>+</button>
-            <button>-</button>
-          </div>
-        </li>
-        <li>
-          <p>MP</p>
-          <input type="text" value="10" readonly>
-          <div class="edit">
-            <button>+</button>
-            <button>-</button>
-          </div>
-        </li>
-        <li>
-          <p>SAN</p>
-          <input type="text" value="45" readonly>
-          <div class="edit">
-            <button>+</button>
-            <button>-</button>
-          </div>
-        </li>
-      </ul>
-    </li>
-    <li class="character">
-      <dl class="about">
-        <dt>サンプルさん</dt>
-        <dd>HP:<span>8</span>/<span>12</span></dd>
-        <dd>MP:<span>10</span>/<span>10</span></dd>
-        <dd>SAN:<span>45</span>/<span>45</span></dd>
-      </dl>
-      <ul class="paramEdit">
-        <li>
-          <p>HP</p>
-          <input type="text" value="8" readonly>
-          <div class="edit">
-            <button>+</button>
-            <button>-</button>
-          </div>
-        </li>
-        <li>
-          <p>MP</p>
-          <input type="text" value="10" readonly>
-          <div class="edit">
-            <button>+</button>
-            <button>-</button>
-          </div>
-        </li>
-        <li>
-          <p>SAN</p>
-          <input type="text" value="45" readonly>
-          <div class="edit">
-            <button>+</button>
-            <button>-</button>
-          </div>
-        </li>
-      </ul>
-    </li>
-    <li class="character">
-      <dl class="about">
-        <dt>サンプルさん</dt>
-        <dd>HP:<span>8</span>/<span>12</span></dd>
-        <dd>MP:<span>10</span>/<span>10</span></dd>
-        <dd>SAN:<span>45</span>/<span>45</span></dd>
-      </dl>
-      <ul class="paramEdit">
-        <li>
-          <p>HP</p>
-          <input type="text" value="8" readonly>
-          <div class="edit">
-            <button>+</button>
-            <button>-</button>
-          </div>
-        </li>
-        <li>
-          <p>MP</p>
-          <input type="text" value="10" readonly>
-          <div class="edit">
-            <button>+</button>
-            <button>-</button>
-          </div>
-        </li>
-        <li>
-          <p>SAN</p>
-          <input type="text" value="45" readonly>
-          <div class="edit">
-            <button>+</button>
-            <button>-</button>
+            <button (click)="changeStatus('san', 1, i)">+</button>
+            <button (click)="changeStatus('san', -1, i)">-</button>
           </div>
         </li>
       </ul>

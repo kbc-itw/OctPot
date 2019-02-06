@@ -32,7 +32,7 @@ export class Chara {
     profile: Profile;
 
     constructor(infoObject) {
-        if (infoObject != 0) {
+        if (infoObject !== 0) {
             this.Setting = new Setting(infoObject['Setting']);
             this.Status = new Status(infoObject['Status']);
             this.Skill = new Skill(infoObject['Skill']);
@@ -50,7 +50,7 @@ export class Setting {
     images:    any[] = [];
 
     constructor(infoObject) {
-        if (infoObject != 0) {
+        if (infoObject !== 0) {
             this.type = infoObject['type'];
             this.race = infoObject['race'];
             this.character = new Character(infoObject['character']);
@@ -70,7 +70,7 @@ export class Character {
     eyeColor:   string = '';  // 瞳の色
 
     constructor(infoObject) {
-        if (infoObject != 0) {
+        if (infoObject !== 0) {
             this.name = infoObject['name'];
             this.gender = infoObject['gender'];
             this.height = infoObject['height'];
@@ -90,7 +90,7 @@ export class Skill {
     knowledge:   Behavior[] = [];
 
     constructor (infoObject) {
-        if (infoObject != 0) {
+        if (infoObject !== 0) {
             infoObject['conbat'].forEach((skill) => this.conbat.push(new Behavior(skill)));
             infoObject['search'].forEach((skill) => this.search.push(new Behavior(skill)));
             infoObject['behavior'].forEach((skill) => this.behavior.push(new Behavior(skill)));
@@ -109,7 +109,7 @@ export class Behavior {
     otherPoint:    number = 0;  //  その他の値
 
     constructor (infoObject) {
-        if (infoObject != 0) {
+        if (infoObject !== 0) {
             this.skillName = infoObject['skillName'];
             this.initialValue = infoObject['initialValue'];
             this.jobPoint = infoObject['jobPoint'];
@@ -126,7 +126,7 @@ export class Status {
     reDice:            BaseStatus;
 
     constructor (infoObject) {
-        if (infoObject != 0) {
+        if (infoObject !== 0) {
             this.baseStatus = new BaseStatus(infoObject['baseStatus']);
             this.fluctuationStatus = new FluctuationStatus(infoObject['fluctuationStatus']);
             // this.reDice = new BaseStatus(infoObject['reDice']);
@@ -146,7 +146,7 @@ export class BaseStatus {
     income_and_property: number = 0;  // 財産
 
     constructor (infoObject) {
-        if (infoObject != 0) {
+        if (infoObject !== 0) {
             this.str = infoObject['str'];
             this.con = infoObject['con'];
             this.pow = infoObject['pow'];
@@ -172,7 +172,7 @@ export class FluctuationStatus {
     DamegeBonus:     string = '';  // ダメージボーナス
 
     constructor (infoObject) {
-        if (infoObject != 0) {
+        if (infoObject !== 0) {
             this.san = infoObject['san'];
             this.luck = infoObject['luck'];
             this.idea = infoObject['idea'];
@@ -191,10 +191,9 @@ export class Items {
     item:   Item[] = [];
 
     constructor (infoObject) {
-        if (infoObject != 0) {
-
-          infoObject['weapon'].forEach((obj) => this.weapon.push(new Weapon(obj)));
-            infoObject['item'].forEach((obj) => this.item.push(new Item(obj)));
+        if (infoObject !== 0) {
+            infoObject['weapon'].forEach((obj) => new Weapon(obj));
+            infoObject['item'].forEach((obj) => new Item(obj));
         }
     }
 }
@@ -205,7 +204,7 @@ export class Item {
     other:    string = '';  // その他
 
     constructor (infoObject) {
-        if (infoObject != 0) {
+        if (infoObject !== 0) {
             this.itemName = infoObject['itemName'];
             this.number = infoObject['number'];
             this.other = infoObject['other'];
@@ -224,7 +223,7 @@ export class Weapon {
     other:        string = '';  // その他
 
     constructor (infoObject) {
-        if (infoObject != 0) {
+        if (infoObject !== 0) {
             this.weaponName = infoObject['weaponName'];
             this.successRate = infoObject['successRate'];
             this.damage = infoObject['damage'];
@@ -243,8 +242,8 @@ export class Profile {
     otherMemo: string = '';  // その他メモ
 
     constructor (infoObject) {
-        if (infoObject != 0) {
-            this.Career = infoObject['Career'];
+        if (infoObject !== 0) {
+            this.Career = infoObject['Carrer'];
             this.Encounter = infoObject['Encounter'];
             this.otherMemo = infoObject['otherMemo'];
         }
