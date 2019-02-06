@@ -1,11 +1,18 @@
 .roomForm {
+  padding-top: 186px;
   background: #eee;
+  height: 100%;
+  min-height: 550px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
   .roomForm .warp {
     margin: 0 auto;
     width: 440px;
-    border: 1px solid #000;
     background: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
   }
   .roomForm h1 {
     font-size: 16px;

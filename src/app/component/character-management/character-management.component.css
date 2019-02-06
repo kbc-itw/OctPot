@@ -22,7 +22,8 @@
 .container{
   box-sizing: border-box;
   width: 960px;
-  height: 500px;
+  height: 100%;
+  min-height: 550px;
   background: #eee;
 }
 .Left {
@@ -31,7 +32,7 @@
   height: 486px;
   box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
   background: #fff;
-  margin-left: 28px;
+  margin: 32px 0 32px 28px;
 }
   .Left h1 {
     text-align: center;
@@ -90,7 +91,7 @@
   width: 710px;
   height: 486px;
   box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
-  margin-right: 8px;
+  margin: 32px 8px 32px 0;
   background: #fff;
 }
   .Right h1{
