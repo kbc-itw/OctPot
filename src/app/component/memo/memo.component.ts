@@ -6,13 +6,10 @@ import { MemoService } from '../../Service/memo.service';
   templateUrl: './memo.component.html',
   styleUrls: ['./memo.component.css'],
   providers: [MemoService]
-
 })
 
 
 export class MemoComponent implements OnInit {
-
-
   @ViewChild('memos') memor: ElementRef;
   private num = 0;
   private latest = '';
@@ -56,7 +53,6 @@ export class MemoComponent implements OnInit {
 
   sel() {
     let current = document.activeElement;
-
     if (current.className === 'memo') {
       this.latest = current.id;
     }

@@ -1,6 +1,12 @@
 @charset "UTF-8";
 /* 全体
 ------------------------------*/
+.bgWrap {
+    background: #eee;
+    width: 100%;
+    padding: 10px 0;
+    margin-top: -10px;
+}
 .character-create {
   font-size: 12px;
 }
@@ -29,13 +35,16 @@ h3 {
   font-size: 16px;
 }
 section {
-  border: 1px solid #999;
+  margin: 15px 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  background: #fff;
+  box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
 }
 .innerContainer {
   width: 920px;
-  margin: 10px auto;
+  margin: 0 auto;
+  padding: 10px 0;
 }
 .contentWrap {
   padding: 15px;
@@ -244,15 +253,19 @@ section {
         height: 320px;
         overflow-y: scroll;
       }
-        .skill .left .skillWrap dl {}
+        .skill .left .skillWrap dl {
+          margin: 0 0 10px;
+        }
+          .skill .left .skillWrap dl:last-child {
+            margin: 0;
+          }
           .skill .left .skillWrap dl dt {
             text-align: center;
             font-size: 16px;
             background: #ffd740;
           }
           .skill .left .skillWrap dl dd {
-            width: calc(100% - 20px);
-            margin: 10px;
+            width: 100%;
           }
             .skill .left .skillWrap dl dd table {
               width: 100%;
@@ -373,54 +386,20 @@ section {
 /* 所持品
 ------------------------------*/
 .item {}
-  .item table {
-    width: 100%;
+  .item .left {
+    float: left;
+    width: 450px;
   }
-    .item table tr {}
-      .item table tr th,
-      .item table tr td {
-        text-align: center;
-        border: 1px solid #666;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-      }
-      .item table tr th {
-        background: #ccc;
-        padding: 5px;
-      }
-    .item table input {
-      padding: 5px;
+  .item .right {
+    float: right;
+    width: 450px;
+  }
+    .item .innerContainer .containerWrap textarea {
       width: 100%;
-      border: none;
+      padding: 5px;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
-      text-align: center;
     }
-  .item .top {
-    border: 1px solid #999;
-    margin-bottom: 10px;
-  }
-    .item .top table tr td {
-      width: 80px;
-    }
-      .item .top table tr td:first-child {
-        width: 135px;
-      }
-      .item .top table tr td:last-child {
-        width: auto;
-      }
-  .item .bottom {
-    border: 1px solid #999;
-  }
-    .item .bottom table tr td {
-      width: 85px;
-    }
-      .item .bottom table tr td:first-child {
-        width: 300px;
-      }
-      .item .bottom table tr td:last-child {
-        width: auto;
-      }
 
 /* プロフィール
 ------------------------------*/

@@ -79,7 +79,8 @@ import { CharacterDataListService } from './Service/character-data-list.service'
     MenuService,
     DiceService,
     FileSharingService,
-    CharacterDataListService
+    CharacterDataListService,
+    ChatRoomCreateComponent
   ],
   bootstrap: [AppComponent]
 })

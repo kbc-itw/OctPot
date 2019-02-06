@@ -11,6 +11,7 @@ import {DiceComponent} from './component/dice/dice.component';
   selector: 'app-root',
   template: '<router-outlet></router-outlet>'
 })
+
 export class AppComponent implements OnInit {
   private memoTabService: SwitchTabService = new SwitchTabService();
   private memoTabs: Array<TabModel> = new Array();

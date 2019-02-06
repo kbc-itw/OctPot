@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {DiceService} from '../../Service/dice-service';
-
 @Component({
   selector: 'app-dice',
   templateUrl: './dice.component.html',
   styleUrls: ['./dice.component.css']
 })
 export class DiceComponent implements OnInit {
+
   word;
   result = [];
 
@@ -24,5 +24,10 @@ export class DiceComponent implements OnInit {
       }
     }
     this.word = null;
+  }
+  imgRoll(rollDice : string) {
+    var roll = this.dice.roll(rollDice);
+    this.result.push(roll[2] + '->' + roll[1]);
+    return null;
   }
 }
