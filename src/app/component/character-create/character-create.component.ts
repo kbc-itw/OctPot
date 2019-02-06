@@ -650,7 +650,7 @@ export class CharacterCreateComponent implements OnInit {
 
   // アイテム追加ボタンを押されたら、アイテム枠を追加する。
   addItem(itemType) {
-    if (itemType === 'weapon') {
+    if (itemType === 'wepon') {
       let wepon = {
         name: '',
         successRate: 0,
