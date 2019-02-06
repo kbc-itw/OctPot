@@ -4,9 +4,10 @@
 .bgWrap {
     background: #eee;
     width: 100%;
-    min-width: 960px;
-    padding: 10px 0;
+    padding: 10px;
     margin-top: -10px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 .character-create {
   font-size: 12px;
@@ -42,12 +43,15 @@ section {
   background: #fff;
   box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
 }
+.character-create.container {
+  width: 100%;
+}
 .wrap {
-  width: 940px;
+  width: 920px;
   margin: 0 auto;
 }
 .innerContainer {
-  width: 920px;
+  width: 900px;
   margin: 0 auto;
   padding: 10px 0;
 }
@@ -71,7 +75,7 @@ section {
 ------------------------------*/
 .base {}
   .base .left {
-    width: 450px;
+    width: 440px;
   }
     .base .left {
       border: 1px solid #999;
@@ -118,7 +122,7 @@ section {
             margin-right: 15px;
           }
   .base .right {
-    width: 450px;
+    width: 440px;
   }
     .base .right {
       border: 1px solid #999;
@@ -179,7 +183,7 @@ section {
           text-align: center;
         }
     .ability .left {
-      width: 450px;
+      width: 440px;
       border: 1px solid #999;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
@@ -233,7 +237,7 @@ section {
           transition-duration: 0.3s;
         }
     .ability .right {
-      width: 450px;
+      width: 440px;
       border: 1px solid #999;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
@@ -251,7 +255,7 @@ section {
 ------------------------------*/
 .skill {}
   .skill .left {
-    width: 560px;
+    width: 550px;
   }
       .skill .left .skillWrap {
         width: 100%;
@@ -357,7 +361,7 @@ section {
                     transition-duration: 0.3s;
                   }
   .skill .right {
-    width: 340px;
+    width: 330px;
   }
     .skill .right .top {
       margin-bottom: 10px;
@@ -393,11 +397,11 @@ section {
 .item {}
   .item .left {
     float: left;
-    width: 450px;
+    width: 440px;
   }
   .item .right {
     float: right;
-    width: 450px;
+    width: 440px;
   }
     .item .innerContainer .containerWrap textarea {
       width: 100%;
@@ -420,10 +424,10 @@ section {
   }
   .profile .bottom {}
     .profile .bottom .left {
-      width: 540px;
+      width: 530px;
     }
     .profile .bottom .right {
-      width: 365px;
+      width: 355px;
     }
 
 /* 保存・キャンセル
