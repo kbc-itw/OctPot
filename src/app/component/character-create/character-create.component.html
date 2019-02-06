@@ -322,32 +322,63 @@
     <section class="item">
       <h1>所持品</h1>
       <div class="innerContainer clearfix">
-        <div class="left">
-          <h2>戦闘・武器・防具</h2>
-          <div class="containerWrap">
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-          </div>
-        </div>
-        <!-- <div class="right">
+        <div class="top">
           <h2>所持品</h2>
           <div class="containerWrap">
-            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <table>
+              <thead>
+                <tr>
+                  <th>名称</th>
+                  <th>個数</th>
+                  <th>説明</th>
+                  <th class="delBtn"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of itemslist; let i = index">
+                  <td><input type="text" value="{{item.name}}" [(ngModel)]="itemslist[i].name"></td>
+                  <td><input type="text" value="{{item.times}}" [(ngModel)]="itemslist[i].times"></td>
+                  <td><input type="text" value="{{item.description}}" [(ngModel)]="itemslist[i].description"></td>
+                  <td class="delBtn"><button>削除</button></td>
+                </tr>
+              </tbody>
+            </table>
+            <button class="addBtn" (click)="addItem('item')">追加</button>
           </div>
-        </div> -->
-        <div class="containerWrap">
-          <table>
-            <tr>
-              <th>名称</th>
-              <th>個数</th>
-              <th>説明</th>
-            </tr>
-            <tr *ngFor="let item of itemslist; let i = index">
-              <td><input type="text" value="{{item.name}}" [(ngModel)]="itemslist[i].name"></td>
-              <td><input type="text" value="{{item.times}}" [(ngModel)]="itemslist[i].times"></td>
-              <td><input type="text" value="{{item.description}}" [(ngModel)]="itemslist[i].description"></td>
-            </tr>
-          </table>
-          <button (click)="addItem('item')">追加</button>
+        </div>
+        <div class="bottom">
+          <h2>戦闘・武器・防具</h2>
+          <div class="containerWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>名称</th>
+                  <th>成功率</th>
+                  <th>ダメージ</th>
+                  <th>射程</th>
+                  <th>攻撃回数</th>
+                  <th>装填数</th>
+                  <th>耐久力</th>
+                  <th>その他</th>
+                  <th class="delBtn"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let wepon of weponList; let i = index">
+                  <td><input type="text" value="{{wepon.name}}" [(ngModel)]="weponList[i].name"></td>
+                  <td><input type="text" value="{{wepon.successRate}}" [(ngModel)]="weponList[i].successRate"></td>
+                  <td><input type="text" value="{{wepon.damage}}" [(ngModel)]="weponList[i].damage"></td>
+                  <td><input type="text" value="{{wepon.range}}" [(ngModel)]="weponList[i].range"></td>
+                  <td><input type="text" value="{{wepon.attackCount}}" [(ngModel)]="weponList[i].attackCount"></td>
+                  <td><input type="text" value="{{wepon.loadingCount}}" [(ngModel)]="weponList[i].loadingCount"></td>
+                  <td><input type="text" value="{{wepon.endurance}}" [(ngModel)]="weponList[i].endurance"></td>
+                  <td><input type="text" value="{{wepon.other}}" [(ngModel)]="weponList[i].other"></td>
+                  <td class="delBtn"><button>削除</button></td>
+                </tr>
+              </tbody>
+            </table>
+            <button class="addBtn" (click)="addItem('item')">追加</button>
+          </div>
         </div>
       </div>
     </section>
