@@ -513,6 +513,40 @@ export class CharacterEditComponent implements OnInit {
     }
   }
 
+  // アイテム追加ボタンを押されたら、アイテム枠を追加する。
+  addItem(itemType) {
+    if (itemType === 'wepon') {
+      let wepon = {
+        name: '',
+        successRate: 0,
+        damage: '',
+        range: '',
+        attackCount: 0,
+        loadingCount: 0,
+        endurance: 0,
+        other: ''
+      };
+      this.weponList.push(wepon);
+    } else if (itemType === 'item') {
+      let item = {
+        name: '',
+        times: '',
+        description: ''
+      };
+      this.itemslist.push(item);
+    }
+  }
+
+  // アイテム削除ボタンが押されたらそのアイテムを削除する
+  deleteItem(itemType, index) {
+    if (itemType === 'wepon') {
+      this.weponList.slice(index, 1 );
+    }else if (itemType === 'item') {
+      this.itemslist.slice(index, 1 );
+    }
+  }
+
+
   ngOnInit() {
   }
 
@@ -652,6 +686,7 @@ export class CharacterEditComponent implements OnInit {
 
     let characterJson = Convert.charaToJson(newchara);  // CharaクラスをJSONに変換する
 
+    this.filename = this.cname + '.json'; // ファイル名を[キャラクターの名前].json  
     this.characre.save(characterJson, document.getElementById('download'), this.filename);  // JSON文字列を保存させる
 
   }

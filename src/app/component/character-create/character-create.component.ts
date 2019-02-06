@@ -630,19 +630,52 @@ export class CharacterCreateComponent implements OnInit {
         endurance: 0,
         other: ''
       } ;
-      this.weponList[i] = wepon;
+      this.weponList.push(wepon);
     }
   }
 
   // 所持品(item)の枠作成
   generateItemFrame() {
-    for (let i = 0; i < 5; i++ ) {
+    for (let i = 0; i < 10; i++ ) {
       let item = {
         name: '',
         times: '',
         description: ''
       } ;
       this.itemslist[i] = item;
+    }
+  }
+
+  // アイテム追加ボタンを押されたら、アイテム枠を追加する。
+  addItem(itemType) {
+    if (itemType === 'wepon') {
+      let wepon = {
+        name: '',
+        successRate: 0,
+        damage: '',
+        range: '',
+        attackCount: 0,
+        loadingCount: 0,
+        endurance: 0,
+        other: ''
+      };
+      this.weponList.push(wepon);
+    } else if (itemType === 'item') {
+      let item = {
+        name: '',
+        times: '',
+        description: ''
+      };
+      this.itemslist.push(item);
+    }
+  }
+
+  // アイテム削除ボタンが押されたらそのアイテムを削除する
+  deleteItem(itemType, index) {
+    if (itemType === 'wepon') {
+      this.weponList.splice(index, 1 );
+    }else if (itemType === 'item') {
+      this.itemslist.splice(index, 1 );
     }
   }
 
@@ -785,6 +818,7 @@ export class CharacterCreateComponent implements OnInit {
 
     let characterJson = Convert.charaToJson(newchara);  // CharaクラスをJSONに変換する
 
+    this.filename = this.cname + '.json'; // ファイル名を[キャラクターの名前].jsonに
     this.characre.save(characterJson, document.getElementById('download'), this.filename);  // JSON文字列を保存させる
 
   }

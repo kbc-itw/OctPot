@@ -395,20 +395,106 @@ section {
 /* 所持品
 ------------------------------*/
 .item {}
-  .item .left {
-    float: left;
-    width: 440px;
+  .item table {
+    width: 100%;
   }
-  .item .right {
-    float: right;
-    width: 440px;
+  .item table thead {
+    display: block;
   }
-    .item .innerContainer .containerWrap textarea {
-      width: 100%;
-      padding: 5px;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
+  .item table tbody {
+    display: block;
+    height: 145px;
+    overflow-y: scroll;
+  }
+    .item table tr {}
+      .item table tr th,
+      .item table tr td {
+        table-layout: fixed;
+        text-align: center;
+        border: 1px solid #666;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+        .item table tr th {
+          background: #ccc;
+          padding: 5px;
+        }
+        .item table tr th.delBtn ,
+        .item table tr td.delBtn {
+          background: #fff;
+          border: none;
+        }
+          .item table tr th.delBtn button ,
+          .item table tr td.delBtn button {
+            background: #f44336;
+            border: 2px solid #f44336;
+            border-radius: 7px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            color: #fff;
+          }
+            .item table tr th.delBtn button:hover ,
+            .item table tr td.delBtn button:hover {
+              background: #fff;
+              color: #f44336;
+              transition-duration: 0.3s;
+            }
+        .item table input {
+          padding: 5px;
+          width: 100%;
+          height: 100%;
+          border: none;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          text-align: center;
+        }
+        .item .addBtn {
+          margin: 10px 5px;
+          border-radius: 7px;
+          background: #1976d2;
+          border: 2px solid #1976d2;
+          color: #fff;
+        }
+          .item .addBtn:hover {
+            background: #fff;
+            color: #1976d2;
+            transition-duration: 0.3s;
+          }
+  .item .top {
+    border: 1px solid #999;
+    margin-bottom: 10px;
+  }
+    .item .top table tr th ,
+    .item .top table tr td {
+      width: 120px;
     }
+      .item .top table tr th:first-child ,
+      .item .top table tr td:first-child {
+        width: 200px;
+      }
+      .item .top table tr th:nth-last-child(2) ,
+      .item .top table tr td:nth-last-child(2) {
+        width: 534px;
+      }
+      .item .top table tr th:last-child ,
+      .item .top table tr td:last-child {
+        width: 44px;
+      }
+  .item .bottom {
+    border: 1px solid #999;
+  }
+    .item .bottom table tr th ,
+    .item .bottom table tr td {
+      width: 79px;
+    }
+      .item .bottom table tr th:first-child ,
+      .item .bottom table tr td:first-child {
+        width: 300px;
+      }
+      .item .bottom table tr th:last-child ,
+      .item .bottom table tr td:last-child {
+        width: auto;
+      }
 
 /* プロフィール
 ------------------------------*/
