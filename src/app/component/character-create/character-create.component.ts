@@ -632,13 +632,13 @@ export class CharacterCreateComponent implements OnInit {
         endurance: 0,
         other: ''
       } ;
-      this.weponList[i] = wepon;
+      this.weponList.push(wepon);
     }
   }
 
   // 所持品(item)の枠作成
   generateItemFrame() {
-    for (let i = 0; i < 5; i++ ) {
+    for (let i = 0; i < 10; i++ ) {
       let item = {
         name: '',
         times: '',
@@ -675,9 +675,9 @@ export class CharacterCreateComponent implements OnInit {
   // アイテム削除ボタンが押されたらそのアイテムを削除する
   deleteItem(itemType, index) {
     if (itemType === 'wepon') {
-      this.weponList.slice(index, 1 );
+      this.weponList.splice(index, 1 );
     }else if (itemType === 'item') {
-      this.itemslist.slice(index, 1 );
+      this.itemslist.splice(index, 1 );
     }
   }
 

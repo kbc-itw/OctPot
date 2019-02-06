@@ -339,7 +339,7 @@
                   <td><input type="text" value="{{item.name}}" [(ngModel)]="itemslist[i].name"></td>
                   <td><input type="text" value="{{item.times}}" [(ngModel)]="itemslist[i].times"></td>
                   <td><input type="text" value="{{item.description}}" [(ngModel)]="itemslist[i].description"></td>
-                  <td class="delBtn"><button>削除</button></td>
+                  <td class="delBtn" (click)="deleteItem('item', i )"><button>削除</button></td>
                 </tr>
               </tbody>
             </table>
@@ -373,11 +373,11 @@
                   <td><input type="text" value="{{wepon.loadingCount}}" [(ngModel)]="weponList[i].loadingCount"></td>
                   <td><input type="text" value="{{wepon.endurance}}" [(ngModel)]="weponList[i].endurance"></td>
                   <td><input type="text" value="{{wepon.other}}" [(ngModel)]="weponList[i].other"></td>
-                  <td class="delBtn"><button>削除</button></td>
+                  <td class="delBtn" (click)="deleteItem('wepon', i )"><button>削除</button></td>
                 </tr>
               </tbody>
             </table>
-            <button class="addBtn" (click)="addItem('item')">追加</button>
+            <button class="addBtn" (click)="addItem('wepon')">追加</button>
           </div>
         </div>
       </div>
