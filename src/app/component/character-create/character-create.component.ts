@@ -649,8 +649,8 @@ export class CharacterCreateComponent implements OnInit {
   }
 
   // アイテム追加ボタンを押されたら、アイテム枠を追加する。
-  addItem(type) {
-    if (type === 'weapon') {
+  addItem(itemType) {
+    if (itemType === 'weapon') {
       let wepon = {
         name: '',
         successRate: 0,
@@ -662,13 +662,22 @@ export class CharacterCreateComponent implements OnInit {
         other: ''
       };
       this.weponList.push(wepon);
-    } else if (type === 'item') {
+    } else if (itemType === 'item') {
       let item = {
         name: '',
         times: '',
         description: ''
       };
       this.itemslist.push(item);
+    }
+  }
+
+  // アイテム削除ボタンが押されたらそのアイテムを削除する
+  deleteItem(itemType, index) {
+    if (itemType === 'wepon') {
+      this.weponList.slice(index, 1 );
+    }else if (itemType === 'item') {
+      this.itemslist.slice(index, 1 );
     }
   }
 
