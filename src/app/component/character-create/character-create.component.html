@@ -328,11 +328,26 @@
             <textarea name="" id="" cols="30" rows="10"></textarea>
           </div>
         </div>
-        <div class="right">
+        <!-- <div class="right">
           <h2>所持品</h2>
           <div class="containerWrap">
             <textarea name="" id="" cols="30" rows="10"></textarea>
           </div>
+        </div> -->
+        <div class="containerWrap">
+          <table>
+            <tr>
+              <th>名称</th>
+              <th>個数</th>
+              <th>説明</th>
+            </tr>
+            <tr *ngFor="let item of itemslist; let i = index">
+              <td><input type="text" value="{{item.name}}" [(ngModel)]="itemslist[i].name"></td>
+              <td><input type="text" value="{{item.times}}" [(ngModel)]="itemslist[i].times"></td>
+              <td><input type="text" value="{{item.description}}" [(ngModel)]="itemslist[i].description"></td>
+            </tr>
+          </table>
+          <button (click)="addItem('item')">追加</button>
         </div>
       </div>
     </section>

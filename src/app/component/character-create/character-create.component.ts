@@ -648,6 +648,30 @@ export class CharacterCreateComponent implements OnInit {
     }
   }
 
+  // アイテム追加ボタンを押されたら、アイテム枠を追加する。
+  addItem(type) {
+    if (type === 'weapon') {
+      let wepon = {
+        name: '',
+        successRate: 0,
+        damage: '',
+        range: '',
+        attackCount: 0,
+        loadingCount: 0,
+        endurance: 0,
+        other: ''
+      };
+      this.weponList.push(wepon);
+    } else if (type === 'item') {
+      let item = {
+        name: '',
+        times: '',
+        description: ''
+      };
+      this.itemslist.push(item);
+    }
+  }
+
   ngOnInit() {
   }
 
