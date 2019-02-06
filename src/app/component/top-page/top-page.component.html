@@ -3,11 +3,10 @@
     <div class="menu">
       <h1><img src="../../../assets/img/top/logo.png" alt="OCTPOT"></h1>
       <ul>
-        <li><a mat-raised-button color="primary" routerLink="/create-chat-room">ルームを立てる</a></li>
-        <li><a mat-raised-button color="primary" routerLink="/chat-room">ルームに入室する</a></li>
-        <li><a mat-raised-button color="accent" routerLink="/management">キャラクター管理</a></li>
-        <li><a mat-raised-button color="warn" href="#">終了</a></li>
-        <li><a mat-raised-button routerLink="/memo-tabs">メモ</a></li>
+        <li><a class="room" mat-raised-button routerLink="/create-chat-room">ルーム作成</a></li>
+        <li><a class="room" mat-raised-button routerLink="/chat-room">ルーム入室</a></li>
+        <li><a class="chara" mat-raised-button routerLink="/management">キャラクター管理</a></li>
+        <li><a class="exit" mat-raised-button href="#" (click)="closeWindow()">終了</a></li>
       </ul>
     </div>
   </div>

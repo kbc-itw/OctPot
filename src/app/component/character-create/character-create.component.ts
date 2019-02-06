@@ -532,8 +532,6 @@ export class CharacterCreateComponent implements OnInit {
         break;
     }
 
-    let individualProfessionalPoint = 0;
-    let individualInterestPoint = 0;
     // ダイスを振って各項目に入れる
     if (!(dicename === 'allDice')) {
       let result = throwing(diceTimes, diceNum, dicePlus);
