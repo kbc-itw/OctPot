@@ -226,7 +226,7 @@ export class Weapon {
         if (infoObject !== 0) {
             this.weaponName = infoObject['weaponName'];
             this.successRate = infoObject['successRate'];
-            this.damage = infoObject['damege'];
+            this.damage = infoObject['damage'];
             this.range = infoObject['range'];
             this.attackCount = infoObject['attackCount'];
             this.loadingCount = infoObject['loadingCount'];
