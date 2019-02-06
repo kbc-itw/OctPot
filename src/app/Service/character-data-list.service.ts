@@ -26,6 +26,10 @@ export class CharacterDataListService {
 
   // Charaを登録するときにこれで送信します。
   public onNotifyShareDataChanged(updated) {
-    this.shareDataSource.next(updated);
+    try {
+      this.shareDataSource.next(updated);
+    }catch (e) {
+      console.error('キャラクター管理関係でエラーが発生しました');
+    }
   }
 }

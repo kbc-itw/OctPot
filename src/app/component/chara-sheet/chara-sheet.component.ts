@@ -127,10 +127,14 @@ export class CharaSheetComponent implements OnInit, OnDestroy {
   // 簡単いうと誰かが送信した値をdataで受け取れます
   ngOnInit() {
     this.subscription = this.clistService.sharedDataSource$.subscribe(
-      data => {
-        let chachacha = Convert.toChara(data);
-        this.charaList.push(chachacha);
-      }
+        data => {
+          try {
+            let chachacha = Convert.toChara(data);
+            this.charaList.push(chachacha);
+          }catch (e) {
+            console.error('読み込んだファイルのJSON形式が間違っています');
+          }
+        }
     );
   }
   ngOnDestroy() {

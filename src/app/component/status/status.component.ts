@@ -25,13 +25,17 @@ export class StatusComponent implements OnInit {
     // 簡単いうと誰かが送信した値をdataで受け取れます
     this.subscription = this.clistService.sharedDataSource$.subscribe(
       data => {
-        let chachacha = Convert.toChara(data);
-        this.charaList.push(chachacha);
-        this.charaStatusList.push(new CharaStatus(
+        try {
+          let chachacha = Convert.toChara(data);
+          this.charaList.push(chachacha);
+          this.charaStatusList.push(new CharaStatus(
             chachacha.Setting.character.name,
             chachacha.Status.fluctuationStatus.health,
             chachacha.Status.fluctuationStatus.san,
             chachacha.Status.fluctuationStatus.mp));
+        }catch (e) {
+          console.error('送られてきたキャラデータの形式が間違っています');
+        }
       }
     );
   }
