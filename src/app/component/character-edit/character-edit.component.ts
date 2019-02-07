@@ -107,7 +107,68 @@ export class CharacterEditComponent implements OnInit {
     this.generateItemFrame();
   }
 
-  // キーボードを使ったらもれなく値を0にするメソッド　(未使用)
+  // 編集したいキャラJSONを読み込む
+  readCharacterFile(list: any) {
+    if (list <= 0) { return; } // 何も指定されていなければ何もしない
+
+    let fileobj = list[0];  // 指定されるファイルは1つのみなので[0]
+    let reader = new FileReader();
+
+    reader.onload = () => {  // readAsTextでファイルの読み込みが終わったら呼び出される
+      console.log(reader.result);
+      this.pushCharaData(reader.result);  // ファイルの内容を各値に入れていく
+
+    };
+    reader.readAsText(fileobj);  // ファイルの内容をtextで読む (reader.onloadのreader.resultがstringになるへ)
+  }
+
+  // strで受け取ったJSONをキャラクラスにして各所に入れていく
+  pushCharaData ( str ) {
+    let chara: Chara = Convert.toChara(str);
+    console.log(chara);
+
+    this.stype = chara.Setting.type;
+    this.srace = chara.Setting.race;
+    this.sjob = chara.Setting.job;
+    this.cname = chara.Setting.character.name;
+    this.cgender = chara.Setting.character.gender;
+    this.cheight = chara.Setting.character.height;
+    this.cweight = chara.Setting.character.weight;
+    this.cbirthplace = chara.Setting.character.birthplace;
+    this.chairColor = chara.Setting.character.hairColor;
+    this.ceyeColor = chara.Setting.character.eyeColor;
+    this.bstr = chara.Status.baseStatus.str;
+    this.bcon = chara.Status.baseStatus.con;
+    this.bpow = chara.Status.baseStatus.pow;
+    this.bdex = chara.Status.baseStatus.dex;
+    this.bsiz = chara.Status.baseStatus.siz;
+    this.bapp = chara.Status.baseStatus.app;
+    this.bint = chara.Status.baseStatus.int;
+    this.bedu = chara.Status.baseStatus.edu;
+    this.bincome_and_property = chara.Status.baseStatus.income_and_property;
+    this.fsan = chara.Status.fluctuationStatus.san;
+    this.fluck = chara.Status.fluctuationStatus.luck;
+    this.fidea = chara.Status.fluctuationStatus.idea;
+    this.fknowledge = chara.Status.fluctuationStatus.knowledge;
+    this.fhealth = chara.Status.fluctuationStatus.health;
+    this.fmp = chara.Status.fluctuationStatus.mp;
+    this.fVocationalSkill = chara.Status.fluctuationStatus.VocationalSkill;
+    this.fHobbySkill = chara.Status.fluctuationStatus.HobbySkill;
+    this.fDamegeBonus = chara.Status.fluctuationStatus.DamegeBonus;
+    this.pCareer = chara.profile.Career;
+    this.pEncounter = chara.profile.Encounter;
+    this.pOtherMemo = chara.profile.otherMemo;
+    this.combatList = chara.Skill.conbat;
+    this.searchList = chara.Skill.search;
+    this.behaviorList = chara.Skill.behavior;
+    this.negotiationList = chara.Skill.negotiation;
+    this.knowledgeList = chara.Skill.knowledge;
+    this.weponList = chara.items.weapon;
+    this.itemslist = chara.items.item;
+  }
+
+
+    // キーボードを使ったらもれなく値を0にするメソッド　(未使用)
   dontKyetype(point, skill, index, listName, pointName) {
     if (pointName === 'job') {
       switch (listName) {

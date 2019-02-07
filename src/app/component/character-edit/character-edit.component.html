@@ -62,6 +62,12 @@
               </dl>
             </div>
           </div>
+          <div>
+            <p>
+            <input id="upfile" name="upfile" type="file" #fl
+                   accept="*.json" (change)="readCharacterFile(fl.files)" />
+            </p>
+          </div>
         </div>
       </section>
 
