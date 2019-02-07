@@ -153,7 +153,9 @@ export class CharacterEditComponent implements OnInit {
     this.fhealth = chara.Status.fluctuationStatus.health;
     this.fmp = chara.Status.fluctuationStatus.mp;
     this.fVocationalSkill = chara.Status.fluctuationStatus.VocationalSkill;
+    this.professionalPoint = chara.Status.fluctuationStatus.VocationalSkill;
     this.fHobbySkill = chara.Status.fluctuationStatus.HobbySkill;
+    this.interestPoint = chara.Status.fluctuationStatus.HobbySkill;
     this.fDamegeBonus = chara.Status.fluctuationStatus.DamegeBonus;
     this.pCareer = chara.profile.Career;
     this.pEncounter = chara.profile.Encounter;
