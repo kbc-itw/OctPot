@@ -23,8 +23,6 @@ import {CharacterCreateService} from '../../Service/character-create.service';
   styleUrls: ['./character-edit.component.css']
 })
 export class CharacterEditComponent implements OnInit {
-  private filename = 'octpot.json';
-
   // Setting
   private stype;
   private srace;
@@ -686,8 +684,8 @@ export class CharacterEditComponent implements OnInit {
 
     let characterJson = Convert.charaToJson(newchara);  // CharaクラスをJSONに変換する
 
-    this.filename = this.cname + '.json'; // ファイル名を[キャラクターの名前].json  
-    this.characre.save(characterJson, document.getElementById('download'), this.filename);  // JSON文字列を保存させる
+    let filename = this.cname + '.json'; // ファイル名を[キャラクターの名前].json
+    this.characre.save(characterJson, document.getElementById('download'), filename);  // JSON文字列を保存させる
 
   }
 }
