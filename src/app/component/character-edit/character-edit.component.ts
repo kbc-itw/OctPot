@@ -548,16 +548,7 @@ export class CharacterEditComponent implements OnInit {
   // 所持品(wepon)枠の作成
   generateWeponFrame() {
     for (let i = 0; i < 5; i++) {
-      let wepon = {
-        name: '',
-        successRate: 0,
-        damage: '',
-        range: '',
-        attackCount: 0,
-        loadingCount: 0,
-        endurance: 0,
-        other: ''
-      };
+      let wepon = new Weapon(0);
       this.weponList[i] = wepon;
     }
   }
@@ -565,11 +556,7 @@ export class CharacterEditComponent implements OnInit {
   // 所持品(item)の枠作成
   generateItemFrame() {
     for (let i = 0; i < 5; i++) {
-      let item = {
-        name: '',
-        times: '',
-        description: ''
-      };
+      let item = new Item(0);
       this.itemslist[i] = item;
     }
   }
@@ -577,23 +564,10 @@ export class CharacterEditComponent implements OnInit {
   // アイテム追加ボタンを押されたら、アイテム枠を追加する。
   addItem(itemType) {
     if (itemType === 'wepon') {
-      let wepon = {
-        name: '',
-        successRate: 0,
-        damage: '',
-        range: '',
-        attackCount: 0,
-        loadingCount: 0,
-        endurance: 0,
-        other: ''
-      };
+      let wepon = new Weapon(0);
       this.weponList.push(wepon);
     } else if (itemType === 'item') {
-      let item = {
-        name: '',
-        times: '',
-        description: ''
-      };
+      let item = new Item(0);
       this.itemslist.push(item);
     }
   }
@@ -718,7 +692,7 @@ export class CharacterEditComponent implements OnInit {
     this.weponList.forEach(function (item) {
       if (item.name) {
         let newwepon = new Weapon(0);
-        newwepon.weaponName = item.name;
+        newwepon.weaponName = item.weaponName;
         newwepon.successRate = item.successRate;
         newwepon.damage = item.damage;
         newwepon.range = item.range;
@@ -732,9 +706,9 @@ export class CharacterEditComponent implements OnInit {
     this.itemslist.forEach(function (item) {
       if (item.name) {
         let newitem = new Item(0);
-        newitem.itemName = item.name;
-        newitem.number = item.times;
-        newitem.other = item.description;
+        newitem.itemName = item.itemName;
+        newitem.number = item.number;
+        newitem.other = item.other;
         newitems.item.push(newitem);
       }
     });

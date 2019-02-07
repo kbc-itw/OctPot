@@ -333,9 +333,9 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of itemslist; let i = index">
-                  <td><input type="text" value="{{item.name}}" [(ngModel)]="itemslist[i].name"></td>
-                  <td><input type="text" value="{{item.times}}" [(ngModel)]="itemslist[i].times"></td>
-                  <td><input type="text" value="{{item.description}}" [(ngModel)]="itemslist[i].description"></td>
+                  <td><input type="text" value="{{item.itemName}}" [(ngModel)]="itemslist[i].itemName"></td>
+                  <td><input type="text" value="{{item.number}}" [(ngModel)]="itemslist[i].number"></td>
+                  <td><input type="text" value="{{item.other}}" [(ngModel)]="itemslist[i].other"></td>
                   <td class="delBtn" (click)="deleteItem('item', i )"><button>削除</button></td>
                 </tr>
               </tbody>
@@ -362,7 +362,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let wepon of weponList; let i = index">
-                  <td><input type="text" value="{{wepon.name}}" [(ngModel)]="weponList[i].name"></td>
+                  <td><input type="text" value="{{wepon.name}}" [(ngModel)]="weponList[i].weaponName"></td>
                   <td><input type="text" value="{{wepon.successRate}}" [(ngModel)]="weponList[i].successRate"></td>
                   <td><input type="text" value="{{wepon.damage}}" [(ngModel)]="weponList[i].damage"></td>
                   <td><input type="text" value="{{wepon.range}}" [(ngModel)]="weponList[i].range"></td>
