@@ -191,10 +191,11 @@ export class Items {
     item:   Item[] = [];
 
     constructor (infoObject) {
-        if (infoObject !== 0) {
-            infoObject['weapon'].forEach((obj) => new Weapon(obj));
-            infoObject['item'].forEach((obj) => new Item(obj));
-        }
+      if (infoObject !== 0) {
+
+        infoObject['weapon'].forEach((obj) => this.weapon.push(new Weapon(obj)));
+        infoObject['item'].forEach((obj) => this.item.push(new Item(obj)));
+      }
     }
 }
 
@@ -243,7 +244,7 @@ export class Profile {
 
     constructor (infoObject) {
         if (infoObject !== 0) {
-            this.Career = infoObject['Carrer'];
+            this.Career = infoObject['Career'];
             this.Encounter = infoObject['Encounter'];
             this.otherMemo = infoObject['otherMemo'];
         }
