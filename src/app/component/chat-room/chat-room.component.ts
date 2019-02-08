@@ -20,11 +20,11 @@ export class ChatRoomComponent implements OnInit {
   userType = false;
 
   constructor(private chat: ChatRoomService, private dice: DiceService) {
-    this.userType = true;
   }
 
   ngOnInit() {
     console.log('chat-room-component');
+    this.userType = true;
     this.message_list = [];
     this.room_in = false;
     this.chat.preparation();
@@ -93,6 +93,10 @@ export class ChatRoomComponent implements OnInit {
     });
     console.log(params);
     return params;
+  }
+
+  get_channel() {
+    return this.chat.get_channel();
   }
 
   leave() {

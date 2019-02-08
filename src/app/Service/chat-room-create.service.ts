@@ -11,9 +11,11 @@ export class ChatRoomCreateService {
   // passはあとでいいか
   // peerは一人につき一つ必要
   // channelも？
-  private peer;
+  private message_peer;
+  private file_peer;
   private io;
-  private channel;
+  private message_channel;
+  private file_channel;
   private member = [];
   private id;
   private name;
@@ -34,9 +36,11 @@ export class ChatRoomCreateService {
   create(pass, name) {
     console.groupCollapsed('createFunction(service)');
     console.log('constructor', 'from', 'service');
-    this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
-    this.channel = this.peer.createDataChannel('my channel');
-    this.member.push({peer: this.peer, channel: this.channel});
+    this.message_peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
+    this.file_peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
+    this.message_channel = this.message_peer.createDataChannel('message_channel');
+    this.file_channel = this.file_peer.createDataChannel('file_channel');
+    this.member.push({peer: this.message_peer, channel: this.message_channel, file: this.file_channel});
     this.date = moment().format('YY/MM/DD HH:mm');
     this.name = name;
     this.pass = pass;
@@ -60,6 +64,7 @@ export class ChatRoomCreateService {
     this.member.forEach((e) => {
       console.log('peer; ', e.peer);
       console.log('channel: ', e.channel);
+      console.log(e.file);
     });
     this.member[this.member.length - 1].peer.ondatachannel = (e) => {
       console.groupCollapsed('dcFunction');
@@ -71,9 +76,11 @@ export class ChatRoomCreateService {
     };
     this.member[this.member.length - 1].channel.onopen = () => {
       console.log('DataChannelOpen');
-      this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
-      this.channel = this.peer.createDataChannel('my channel');
-      this.member.push({peer: this.peer, channel: this.channel}); // ここでonmessageより先にpushしてるからerrorがでるのかな？
+      this.message_peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
+      this.file_peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
+      this.message_channel = this.message_peer.createDataChannel('message_channel');
+      this.file_channel = this.file_peer.createDataChannel('file_channel');
+      this.member.push({peer: this.message_peer, channel: this.message_channel, file: this.file_channel});
       console.log(this.member);
       try {
         this.dc();
@@ -86,6 +93,11 @@ export class ChatRoomCreateService {
     this.member[this.member.length - 1].channel.onmessage = (event) => {
       console.log('データチャネルメッセージ取得:', event.data);
       console.log(event);
+      console.log(typeof event.data);
+      if (false) {
+        // jsonかどうか見分けて処理を分ける。
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajbjasbcbcjbcj');
+      }
       var val = event.data;
       this.data.next(val);
       this.member.forEach((e) => {

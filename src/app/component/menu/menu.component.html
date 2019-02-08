@@ -1,11 +1,12 @@
 <section class="clearfix" id="menu">
   <div class="left">
     <ul>
-      <li (mouseenter)="val='file'" (mouseleave)="val=null">
+      <li class="pass_c" (mouseenter)="val='file'" (mouseleave)="val=null">
         <button (click)="file=true; val='null'">ファイル</button>
-        <div *ngIf="file">
-          <form (submit)="sendFile()" (submit)="$event.target">
-            <input type="file" #fl accept="image/*" (change)="upload(fl.files)">
+        <div lass="passForm clearfix" *ngIf="file">
+          <form (submit)="sendFile(fl.files)" method="post" enctype="multipart/form-data">
+            <input name="file" type="file" #fl accept="application/json">
+            <input type="submit" value="送信">
           </form>
           <button (click)="file=false; val='null'">キャンセル</button>
         </div>
