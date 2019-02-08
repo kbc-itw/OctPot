@@ -470,7 +470,7 @@ section {
     }
       .item .top table tr th:first-child ,
       .item .top table tr td:first-child {
-        width: 200px;
+        width: 180px;
       }
       .item .top table tr th:nth-last-child(2) ,
       .item .top table tr td:nth-last-child(2) {
@@ -489,7 +489,7 @@ section {
     }
       .item .bottom table tr th:first-child ,
       .item .bottom table tr td:first-child {
-        width: 300px;
+        width: 280px;
       }
       .item .bottom table tr th:last-child ,
       .item .bottom table tr td:last-child {
