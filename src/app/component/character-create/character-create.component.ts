@@ -539,6 +539,24 @@ export class CharacterCreateComponent implements OnInit {
       switch (dicename) {
         case 'str' :
           this.bstr = result;
+          if (this.bsiz) {
+            let strPlusSiz = this.bstr + this.bsiz;
+            if (strPlusSiz <= 12 ) {
+              this.fDamegeBonus = '-1D6';
+            }else if (strPlusSiz <= 16) {
+              this.fDamegeBonus = '-1D4';
+            }else if (strPlusSiz <= 24) {
+              this.fDamegeBonus = '±0';
+            }else if (strPlusSiz <= 32) {
+              this.fDamegeBonus = '+1D4';
+            }else if (strPlusSiz <= 40) {
+              this.fDamegeBonus = '+1D6';
+            }else if (strPlusSiz <= 56) {
+              this.fDamegeBonus = '+2D6';
+            }else if (strPlusSiz <= 72) {
+              this.fDamegeBonus = '+3D6';
+            }
+          }
           break;
 
         case 'con' :
@@ -568,6 +586,24 @@ export class CharacterCreateComponent implements OnInit {
           this.bsiz = result;
           if (this.bcon) {
             this.fhealth = Math.round((this.bcon + result) / 2);
+          }
+          if (this.bstr) {
+            let strPlusSiz = this.bstr + this.bsiz;
+            if (strPlusSiz <= 12 ) {
+              this.fDamegeBonus = '-1D6';
+            }else if (strPlusSiz <= 16) {
+              this.fDamegeBonus = '-1D4';
+            }else if (strPlusSiz <= 24) {
+              this.fDamegeBonus = '±0';
+            }else if (strPlusSiz <= 32) {
+              this.fDamegeBonus = '+1D4';
+            }else if (strPlusSiz <= 40) {
+              this.fDamegeBonus = '+1D6';
+            }else if (strPlusSiz <= 56) {
+              this.fDamegeBonus = '+2D6';
+            }else if (strPlusSiz <= 72) {
+              this.fDamegeBonus = '+3D6';
+            }
           }
           break;
 
