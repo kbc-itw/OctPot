@@ -132,14 +132,12 @@ export class CharacterManagementComponent implements OnInit {
     this.name = chara.Setting.character.name;
     this.job = chara.Setting.job;
     this.gender = chara.Setting.character.gender;
+    this.age = chara.Setting.character.age;
     this.height = chara.Setting.character.height;
     this.weight = chara.Setting.character.weight;
     this.birthplace = chara.Setting.character.birthplace;
     this.haircolor = chara.Setting.character.hairColor;
     this.eyecolor = chara.Setting.character.eyeColor;
-
-    this.age = '不詳'; // jsonに要素がない！？
-
 
     let split = ',';
 
