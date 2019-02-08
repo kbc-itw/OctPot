@@ -29,6 +29,7 @@ export class CharaSheetComponent implements OnInit, OnDestroy {
   // Setting.character
   private name;
   private gender;
+  private age;
   private height;
   private weight;
   private birthplace;
@@ -174,6 +175,7 @@ export class CharaSheetComponent implements OnInit, OnDestroy {
     // Setting.character
     this.name = chara.Setting.character.name;
     this.gender = chara.Setting.character.gender;
+    this.age = chara.Setting.character.age;
     this.height = chara.Setting.character.height;
     this.weight = chara.Setting.character.weight;
     this.birthplace = chara.Setting.character.birthplace;

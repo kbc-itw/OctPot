@@ -133,6 +133,7 @@ export class CharacterEditComponent implements OnInit {
     this.sjob = chara.Setting.job;
     this.cname = chara.Setting.character.name;
     this.cgender = chara.Setting.character.gender;
+    this.cage = chara.Setting.character.age;
     this.cheight = chara.Setting.character.height;
     this.cweight = chara.Setting.character.weight;
     this.cbirthplace = chara.Setting.character.birthplace;
