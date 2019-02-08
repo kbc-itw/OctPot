@@ -183,7 +183,7 @@ export class FluctuationStatus {
             this.mp = infoObject['mp'];
             this.VocationalSkill = infoObject['VocationalSkill'];
             this.HobbySkill = infoObject['HobbySkill'];
-            // this.DamegeBonus = infoObject['DamegeBonus'];
+            this.DamegeBonus = infoObject['DamegeBonus'];
         }
     }
 }
