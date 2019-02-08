@@ -31,6 +31,7 @@ export class CharacterEditComponent implements OnInit {
   // Setting.character
   private cname;
   private cgender;
+  private cage;
   private cheight;
   private cweight;
   private cbirthplace;
@@ -593,6 +594,7 @@ export class CharacterEditComponent implements OnInit {
     let newcharacter = new Character(0);
     newcharacter.name = this.cname;
     newcharacter.gender = this.cgender;
+    newcharacter.age = this.cage;
     newcharacter.height = this.cheight;
     newcharacter.weight = this.cweight;
     newcharacter.birthplace = this.cbirthplace;
