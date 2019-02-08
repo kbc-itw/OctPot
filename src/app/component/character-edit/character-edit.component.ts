@@ -695,9 +695,13 @@ export class CharacterEditComponent implements OnInit {
     this.weponList.forEach(function (weapon: Weapon) {
       if (weapon.weaponName !== '') {
         newitems.weapon.push(weapon);
+      }
+    });
     this.itemslist.forEach(function (item: Item) {
       if (item.itemName !== '') {
         newitems.item.push(item);
+      }
+    });
     newchara.items = newitems;  // charaに入れる
 
     let newprofile = new Profile(0);
