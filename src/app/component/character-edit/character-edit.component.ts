@@ -692,30 +692,19 @@ export class CharacterEditComponent implements OnInit {
     newchara.Status = newstatus;  // charaに入れる
 
     let newitems = new Items(0);
-    this.weponList.forEach(function (item) {
-      if (item.name) {
-        let newwepon = new Weapon(0);
-        newwepon.weaponName = item.weaponName;
-        newwepon.successRate = item.successRate;
-        newwepon.damage = item.damage;
-        newwepon.range = item.range;
-        newwepon.attackCount = item.attackCount;
-        newwepon.loadingCount = item.loadingCount;
-        newwepon.endurance = item.endurance;
-        newwepon.other = item.other;
-        newitems.weapon.push(newwepon);
+    this.weponList.forEach(function (weapon: Weapon) {
+      if (weapon.weaponName !== '') {
+        newitems.weapon.push(weapon);
       }
     });
-    this.itemslist.forEach(function (item) {
-      if (item.name) {
-        let newitem = new Item(0);
-        newitem.itemName = item.itemName;
-        newitem.number = item.number;
-        newitem.other = item.other;
-        newitems.item.push(newitem);
+
+    this.itemslist.forEach(function (item: Item) {
+      if (item.itemName !== '') {
+        newitems.item.push(item);
       }
     });
     newchara.items = newitems;  // charaに入れる
+
     let newprofile = new Profile(0);
     newprofile.Career = this.pCareer;
     newprofile.Encounter = this.pEncounter;
