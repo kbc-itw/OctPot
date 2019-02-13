@@ -1,4 +1,4 @@
-<div class="container clearfix">
+<div class="container clearfix" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
   <app-side-bar></app-side-bar>
   <div class="Left">
     <h1>キャラクター一覧</h1>
@@ -6,15 +6,15 @@
       <mat-tab-group class="matTabs">
         <mat-tab label="PC">
           <ul class="characterList">
-            <li><a routerLink="/view-characterjson">character.json閲覧テスト</a></li>
-            <li>キャラクター2</li>
-            <li>キャラクター3</li>
-            <li>キャラクター4</li>
-            <li>キャラクター5</li>
-
+            <li *ngFor="let p of PC ; let i = index" [attr.data-index]="i" (click)="click($event)"  >{{p.Setting.character.name}}</li>
+          <!--  <li *ngFor="let chara of list">{{chara.Setting.character.name}}</li> -->
           </ul>
         </mat-tab>
-        <mat-tab label="NPC"> Content NPC</mat-tab>
+        <mat-tab label="NPC">
+          <ul class="characterList">
+            <li *ngFor="let n of NPC" (click)="click($event)">{{n.Setting.character.name}}</li>
+          </ul>
+        </mat-tab>
       </mat-tab-group>
       <ul class="bottoms">
         <li>
@@ -24,7 +24,9 @@
           <a class="linkBtn" routerLink="/character-edit">編集</a>
         </li>
         <li>
-          <a class="linkBtn raised-warn">削除</a>
+          <input id="upfile" name="upfile" type="file"  style="display: none;" #fl
+                 accept="application/json" (change)="getJson(fl.files)" />
+          <label for="upfile" class="linkBtn">追加</label>
         </li>
       </ul>
     </div>
@@ -324,5 +326,4 @@
   </div>
 </div>
 
-<input id="upfile" name="upfile" type="file" #fl
-       accept="application/json" (change)="getJson(fl.files)" />
+
