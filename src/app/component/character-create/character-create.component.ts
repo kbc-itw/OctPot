@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterCreateService } from '../../Service/character-create.service';
 import { SkillList } from '../../model/skillList';
+import { JobList} from '../../model/jobList';
 import { Convert, Chara, Setting, Character, Skill,
       Behavior, Status, BaseStatus, FluctuationStatus,
       Items, Item, Weapon, Profile } from '../../model/character-info-model';
@@ -14,10 +15,14 @@ export class CharacterCreateComponent implements OnInit {
 
   private filename = 'octpot.json';
 
+  private jobList = [];
   // Setting
   private stype;
   private srace;
   private sjob;
+  private sjobName;
+  private sjobDescription = '';
+  private sjobSkills = [];
   private simages;
   // Setting.character
   private cname;
@@ -88,6 +93,9 @@ export class CharacterCreateComponent implements OnInit {
   private remInterestPoint = 0;
 
   constructor(private characre: CharacterCreateService) {
+    // 全職業のリストを取得する
+    this.jobList = new JobList().getAllJob();
+    console.log(this.jobList);
     // 何のスキルがあるか配列から読み込むメソッド達を使う
     let skillList = new SkillList();
     this.combatList = skillList.combatList;
@@ -97,6 +105,15 @@ export class CharacterCreateComponent implements OnInit {
     this.knowledgeList = skillList.knowledgeList;
     this.generateWeponFrame();
     this.generateItemFrame();
+  }
+
+  selectJob(event) {
+    this.jobList.forEach((job) => {
+      if (job.jobName === this.sjobName) {
+        this.sjobDescription = job.description;
+        this.sjobSkills = job.skills.join(',');
+      }
+    });
   }
 
   // キーボードを使ったらもれなく値を0にするメソッド　(未使用)
@@ -539,6 +556,24 @@ export class CharacterCreateComponent implements OnInit {
       switch (dicename) {
         case 'str' :
           this.bstr = result;
+          if (this.bsiz) {
+            let strPlusSiz = this.bstr + this.bsiz;
+            if (strPlusSiz <= 12 ) {
+              this.fDamegeBonus = '-1D6';
+            }else if (strPlusSiz <= 16) {
+              this.fDamegeBonus = '-1D4';
+            }else if (strPlusSiz <= 24) {
+              this.fDamegeBonus = '±0';
+            }else if (strPlusSiz <= 32) {
+              this.fDamegeBonus = '+1D4';
+            }else if (strPlusSiz <= 40) {
+              this.fDamegeBonus = '+1D6';
+            }else if (strPlusSiz <= 56) {
+              this.fDamegeBonus = '+2D6';
+            }else if (strPlusSiz <= 72) {
+              this.fDamegeBonus = '+3D6';
+            }
+          }
           break;
 
         case 'con' :
@@ -568,6 +603,24 @@ export class CharacterCreateComponent implements OnInit {
           this.bsiz = result;
           if (this.bcon) {
             this.fhealth = Math.round((this.bcon + result) / 2);
+          }
+          if (this.bstr) {
+            let strPlusSiz = this.bstr + this.bsiz;
+            if (strPlusSiz <= 12 ) {
+              this.fDamegeBonus = '-1D6';
+            }else if (strPlusSiz <= 16) {
+              this.fDamegeBonus = '-1D4';
+            }else if (strPlusSiz <= 24) {
+              this.fDamegeBonus = '±0';
+            }else if (strPlusSiz <= 32) {
+              this.fDamegeBonus = '+1D4';
+            }else if (strPlusSiz <= 40) {
+              this.fDamegeBonus = '+1D6';
+            }else if (strPlusSiz <= 56) {
+              this.fDamegeBonus = '+2D6';
+            }else if (strPlusSiz <= 72) {
+              this.fDamegeBonus = '+3D6';
+            }
           }
           break;
 
@@ -701,7 +754,7 @@ export class CharacterCreateComponent implements OnInit {
     let newsetting = new Setting(0);
     newsetting.type = this.stype;
     newsetting.race = this.srace;
-    newsetting.job = this.sjob;
+    newsetting.job = this.sjobName;
     newsetting.character = newcharacter;
 
     newchara.Setting = newsetting;  // charaに入れる

@@ -26,6 +26,7 @@ export class CharacterManagementComponent implements OnInit {
   private knowledge;
   private health;
   private mp;
+  private damegeBonus;
 
   private vocationalskill;
   private hobbyskill;
@@ -122,6 +123,7 @@ export class CharacterManagementComponent implements OnInit {
     this.knowledge = chara.Status.fluctuationStatus.knowledge;
     this.health = chara.Status.fluctuationStatus.health;
     this.mp = chara.Status.fluctuationStatus.mp;
+    this.damegeBonus = chara.Status.fluctuationStatus.DamegeBonus;
 
     this.vocationalskill = chara.Status.fluctuationStatus.VocationalSkill;
     this.hobbyskill = chara.Status.fluctuationStatus.HobbySkill;

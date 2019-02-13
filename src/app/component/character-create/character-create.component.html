@@ -49,16 +49,16 @@
           <div class="right">
             <h2>職業設定</h2>
             <div class="contentWrap">
-              <select name="" id="" [(ngModel)]="sjob">
-                <option value="SUZUKI">dummy01</option>
-                <option value="HONDA">dummy02</option>
-                <option value="KAWAKAMI">dummy03</option>
-                <option value="YAMAHA">dummy04</option>
-                <option value="MEGURO">dummy05</option>
+              <select [(ngModel)]="sjobName" (change)="selectJob($event)">
+                <option *ngFor="let job of jobList" value="{{job.jobName}}" (click)="selectJob(job)">{{job.jobName}}</option>
               </select>
-              <dl class="clearfix">
+              <dl>
+                <dt><p>概要</p></dt>
+                <dd><textarea name="" id="" cols="30" rows="10" [(ngModel)]="sjobDescription" readonly></textarea></dd>
+              </dl>
+              <dl>
                 <dt><p>取得できる技能</p></dt>
-                <dd><textarea name="" id="" cols="30" rows="3"></textarea></dd>
+                <dd><textarea name="" id="" cols="30" rows="10" [(ngModel)]="sjobSkills" readonly></textarea></dd>
               </dl>
             </div>
           </div>
