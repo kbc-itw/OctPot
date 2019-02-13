@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SkillList} from '../../model/skillList';
+import {JobList} from '../../model/jobList';
 import {
   BaseStatus,
   Behavior,
@@ -23,10 +24,15 @@ import {CharacterCreateService} from '../../Service/character-create.service';
   styleUrls: ['./character-edit.component.css']
 })
 export class CharacterEditComponent implements OnInit {
+
+  private jobList = [];
   // Setting
   private stype;
   private srace;
   private sjob;
+  private sjobName;
+  private sjobDescription = '';
+  private sjobSkills = '';
   private simages;
   // Setting.character
   private cname;
@@ -97,6 +103,8 @@ export class CharacterEditComponent implements OnInit {
   private remInterestPoint = 0;
 
   constructor(private characre: CharacterCreateService) {
+    // 全職業のリストを取得する。
+    this.jobList = new JobList().getAllJob();
     // 何のスキルがあるか配列から読み込むメソッド達を使う
     let skillList = new SkillList();
     this.combatList = skillList.combatList;
@@ -106,6 +114,15 @@ export class CharacterEditComponent implements OnInit {
     this.knowledgeList = skillList.knowledgeList;
     this.generateWeponFrame();
     this.generateItemFrame();
+  }
+
+  selectJob(event) {
+    this.jobList.forEach((job) => {
+      if (job.jobName === this.sjobName) {
+        this.sjobDescription = job.description;
+        this.sjobSkills = job.skills.join(',');
+      }
+    });
   }
 
   // 編集したいキャラJSONを読み込む
@@ -130,7 +147,7 @@ export class CharacterEditComponent implements OnInit {
 
     this.stype = chara.Setting.type;
     this.srace = chara.Setting.race;
-    this.sjob = chara.Setting.job;
+    this.sjobName = chara.Setting.job;
     this.cname = chara.Setting.character.name;
     this.cgender = chara.Setting.character.gender;
     this.cage = chara.Setting.character.age;
@@ -605,7 +622,7 @@ export class CharacterEditComponent implements OnInit {
     let newsetting = new Setting(0);
     newsetting.type = this.stype;
     newsetting.race = this.srace;
-    newsetting.job = this.sjob;
+    newsetting.job = this.sjobName;
     newsetting.character = newcharacter;
 
     newchara.Setting = newsetting;  // charaに入れる
