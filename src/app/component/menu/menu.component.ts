@@ -84,49 +84,23 @@ export class MenuComponent implements OnInit {
     } else if (this.chat.getUserType()) {
       console.log('client');
       // clientの場合
-      var channel = this.userType.get_channel();
-      var value = this.name + ': ' + file;
+      var file_channel = this.userType.get_file_channel();
       console.log(value);
       try {
         console.log(file[0]);
         console.log(file[0].name);
         console.log(file[0].path);
-        // var file2: any = new File(file, 'tessss.json');
-        // console.log(file2);
-        /*
+        console.log(file);
+        console.log(file[0]);
         var fr = new FileReader();
-        fr.onload = () => {
-          // 読み込み完了時に送信
-          if (channel !== undefined) {// もしhostとの接続が切れていなかったら
-            console.log(fr.result);
-            console.log(fr.result.toString());
-            var b_file: any = Buffer.from(fr.result.toString());
-            console.log(b_file);
-            var array_file = new Uint8Array(b_file);
-            console.log(array_file);
-            channel.send(fr.result);
-            channel.send(array_file);
-            // channel.send(file);
-          }
-        };
-        fr.readAsText(file[0]);
-        */
-        var fr = new FileReader();
-        console.log(channel);
-        console.log(channel.binaryType);
-        console.log(channel);
-        fr.onload = () => {
-          // 読み込み完了時に送信
-          console.log(fr.result);
-          channel.send(fr.result);
-          // channel.send(new Blob(file)); binarytypeは変えられないのか？
-          // どうやってファイルとstringを見分けるか
-          // もう一つchannelを作ってそっちでファイルを送信するか。
-          // きりかえれない？
-          // channelとpeerに1:1
-          console.log(channel);
-        };
 
+        console.log();
+        fr.onload = () => {
+          // 読み込み完了時に送信
+          console.log(typeof fr.result);
+          console.log(fr.result);
+          file_channel.send(fr.result);
+        };
         fr.readAsText(file[0]);
       } catch (e) {
         console.log(e);

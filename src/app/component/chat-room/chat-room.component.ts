@@ -63,7 +63,8 @@ export class ChatRoomComponent implements OnInit {
 
   offer() {
     console.profile('offerFunction');
-    this.chat.offer();
+    this.chat.message_offer();
+    this.chat.file_offer();
     console.profileEnd();
   }
 
@@ -97,6 +98,10 @@ export class ChatRoomComponent implements OnInit {
 
   get_channel() {
     return this.chat.get_channel();
+  }
+
+  get_file_channel() {
+    return this.chat.get_file_channel();
   }
 
   leave() {
