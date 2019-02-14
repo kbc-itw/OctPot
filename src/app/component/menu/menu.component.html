@@ -1,29 +1,29 @@
-<section id="menu">
-  <ul>
-    <li (mouseenter)="val='file'" (mouseleave)="val=null"><button>ファイル</button></li>
-    <li (mouseenter)="val='view'" (mouseleave)="val=null"><button>表示</button></li>
-    <li (mouseenter)="val='koma'" (mouseleave)="val=null"><button>コマ</button></li>
-    <li (mouseenter)="val='map'" (mouseleave)="val=null"><button>マップ</button></li>
-    <li (mouseenter)="val='config'" (mouseleave)="val=null"><button>設定</button>
-      <ul *ngIf="val === 'config'">
-        <li (click)="c_pass=true; val='null'"><button>パスワード変更</button></li>
-      </ul>
-    </li>
-    <li (click)="leave()" routerLink="" style="float: right;"><button>退室</button></li>
-  </ul>
-  <div class="container clearfix">
-    <!--
-    入室したらメニューを表示させたい。
-    chat-room-createのプロパティを使いたい。
-    できなければ、そのプロパティを別にするか。
-    若しくは処理をこっちに持ってくるか、ここの処理をあっちに持っていくか。
-    -->
-    <div *ngIf="c_pass === true">
-      <!--もしc_passがtrueだったら、パスワード変更のポップアップを出す。-->
-      <form (submit)="change_pass()" (submit)="$event.target.pass.value=null">
-        <input name="pass" type="text" placeholder="パスワード" (input)="pass=$event.target.value">
-        <input type="submit" value="送信">
-      </form><br>
-    </div>
+<section class="clearfix" id="menu">
+  <div class="left">
+    <ul>
+      <li (mouseenter)="val='file'" (mouseleave)="val=null">
+        <button>ファイル</button>
+      </li>
+      <li>
+        <button>表示</button>
+      </li>
+      <li class="pass_c" (mouseenter)="val='config'" (mouseleave)="val=null">
+        <button (click)="c_pass=true; val='null'">パスワード変更</button>
+        <div class="passForm clearfix" *ngIf="c_pass">
+          <form (submit)="change_pass()" (submit)="$event.target.pass.value=null">
+            <input name="pass" type="password" placeholder="パスワード" (input)="pass=$event.target.value">
+            <input type="submit" value="送信">
+          </form>
+          <button (click)="c_pass=false; val='null'">キャンセル</button>
+        </div>
+      </li>
+      <li class="view" (mouseenter)="val='view'" (mouseleave)="val=null">
+        <button (click)="view=true; val='null'">ホストＩＰ</button>
+        <div class="ip" *ngIf="view" (mouseleave)="view=false"><p>{{ip}}</p></div>
+      </li>
+    </ul>
+  </div>
+  <div class="right">
+    <button (click)="leave()" routerLink="">退室</button>
   </div>
 </section>

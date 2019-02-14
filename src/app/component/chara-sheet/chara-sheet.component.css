@@ -1,0 +1,115 @@
+.charaSheet {
+  padding: 8px 15px;
+  width: 455px;
+  height: 260px;
+  font-size: 12px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #fff;
+  box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
+}
+  .charaSheet .left {
+    width: 260px;
+    float: left;
+  }
+    .charaSheet .left .about {
+      margin-bottom: 5px;
+      width: 100%;
+      letter-spacing: -0.5em;
+    }
+      .charaSheet .left .about p {
+        display: inline-block;
+        border: 1px solid #b5b5b5;
+        letter-spacing: normal;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+        .charaSheet .left .about .name {
+          padding: 0 5px;
+          width: 70%;
+          min-height: 20px;
+          vertical-align: top;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          white-space: nowrap;
+          overflow-x: hidden;
+        }
+        .charaSheet .left .about .gender {
+          padding: 0 5px;
+          width: 30%;
+          border-left: none;
+          min-height: 20px;
+          vertical-align: top;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+        }
+    .charaSheet .left table {
+      width: 100%;
+    }
+      .charaSheet .left tr {
+        border: 1px solid #000;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+        .charaSheet .left th,
+         .charaSheet .left td {
+           width: 25%;
+           text-align: center;
+           -webkit-box-sizing: border-box;
+           box-sizing: border-box;
+           line-height: 1;
+         }
+        .charaSheet .left th {
+          background: #ccc;
+          border: solid 2px #666;
+          height: 23px;
+        }
+        .charaSheet .left td {
+          border: solid 1px #000;
+        }
+  .charaSheet .right {
+    float: right;
+    width: 150px;
+  }
+    .charaSheet .right dl {
+      text-align: center;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+      .charaSheet .right dl dt {
+        padding: 5px 0;
+        height: 30px;
+        width: 100%;
+        background: #aed581;
+        border: 1px solid #b5b5b5;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      .charaSheet .right dl dd {
+        width: 100%;
+        height: 215px;
+      }
+        .charaSheet .right dl dd ul {
+          height: 100%;
+          width: 100%;
+          border: 1px solid #b5b5b5;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          overflow-y: scroll;
+        }
+          .charaSheet .right dl dd ul li {
+            border-bottom: 1px solid #b5b5b5;
+          }
+            .charaSheet .right dl dd ul li button {
+              padding: 3px 5px;
+              width: 100%;
+              -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+              background: #fff;
+              border: none;
+            }
+              .charaSheet .right dl dd ul li button:hover {
+                background: #4fc3f7;
+                color: #fff;
+                transition-duration: 0.3s;
+              }

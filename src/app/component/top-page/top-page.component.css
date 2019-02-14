@@ -1,5 +1,6 @@
 section#top {
   height: 100%;
+  min-height: 550px;
   width: 100%;
   background: url("../../../assets/img/top/background02.jpg") no-repeat center center;
   background-size: cover;
@@ -8,6 +9,8 @@ section#top {
 section#top .menu {
   background: rgba(0, 0, 0, 0.5);
   width: 350px;
+  height: 100%;
+  min-height: 550px;
   padding: 15px;
   float: right;
   text-align: center;
@@ -48,4 +51,14 @@ section#top .menu ul li a {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 27px;
+  color: #fff;
+}
+section#top .menu ul li a.room {
+  background: #81c784;
+}
+section#top .menu ul li a.chara {
+  background: #4fc3f7;
+}
+section#top .menu ul li a.exit {
+  background: #f44336;
 }

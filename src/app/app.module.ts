@@ -14,19 +14,26 @@ import {MenuComponent} from './component/menu/menu.component';
 import {ChatRoomCreateComponent} from './component/chat-room-create/chat-room-create.component';
 import {DiceComponent} from './component/dice/dice.component';
 import {MemoComponent} from './component/memo/memo.component';
+import {FileSharingComponent} from './component/file-sharing/file-sharing.component';
 
 import {CharacterCreateService} from './Service/character-create.service';
 import {CharacterManagementService} from './Service/character-management.service';
 import {ChatRoomService} from './Service/chat-room-service';
 import {ChatRoomCreateService} from './Service/chat-room-create.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCardModule, MatTabsModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatSidenavModule, MatTabsModule} from '@angular/material';
 import {SwitchTabService} from './Service/switch-tab.service';
 import {TabsManagerService} from './Service/tabs-manager.service';
 import {MenuService} from './Service/menu-service';
 import {MemoTabsComponent} from './component/memo-tabs/memo-tabs.component';
+import {CharacterjsonToHtmlComponent} from './component/characterjson-to-html/characterjson-to-html.component';
+import {SideBarComponent} from './component/side-bar/side-bar.component';
+import {CharacterEditComponent} from './component/character-edit/character-edit.component';
 import {DiceService} from './Service/dice-service';
-import { FileSharingComponent } from './component/file-sharing/file-sharing.component';
+import {FileSharingService} from './Service/file-sharing.service';
+import { CharaSheetComponent } from './component/chara-sheet/chara-sheet.component';
+import { StatusComponent } from './component/status/status.component';
+import { CharacterDataListService } from './Service/character-data-list.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +47,12 @@ import { FileSharingComponent } from './component/file-sharing/file-sharing.comp
     DiceComponent,
     MemoComponent,
     MemoTabsComponent,
-    FileSharingComponent
+    CharacterjsonToHtmlComponent,
+    SideBarComponent,
+    CharacterEditComponent,
+    FileSharingComponent,
+    CharaSheetComponent,
+    StatusComponent
   ],
   entryComponents: [
     MemoComponent,
@@ -54,7 +66,8 @@ import { FileSharingComponent } from './component/file-sharing/file-sharing.comp
     BrowserAnimationsModule,
     MatButtonModule,
     MatTabsModule,
-    MatCardModule
+    MatCardModule,
+    MatSidenavModule
   ],
   providers: [
     CharacterCreateService,
@@ -64,7 +77,10 @@ import { FileSharingComponent } from './component/file-sharing/file-sharing.comp
     SwitchTabService,
     TabsManagerService,
     MenuService,
-    DiceService
+    DiceService,
+    FileSharingService,
+    CharacterDataListService,
+    ChatRoomCreateComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -30,6 +30,9 @@ export class ChatRoomCreateComponent implements OnInit {
       if (message !== null && message !== undefined && message !== '') {
         this.message_list.push({message: message, date: date});
       }
+      setTimeout(() => {
+        this.scrollHeight();
+      }, 0.0001);
     });
   }
 
@@ -56,12 +59,31 @@ export class ChatRoomCreateComponent implements OnInit {
     if (this.comment !== null && this.comment !== undefined && this.comment !== '') {
       var result = this.dice.roll(this.comment);
       if (result[1] !== undefined) {
-        this.chatroom.message(result[2] + result[3] + result[1]);
+        if (result[4] !== true) {
+          // sercretdice出ない場合
+          this.chatroom.message(result[2] + result[3] + result[1]);
+        } else if (result[4] === true) {
+          // sercretdice
+          this.chatroom.message(result[2] + result[3] + result[1], true);
+        }
       } else {
         this.chatroom.message(this.comment);
       }
     }
     this.comment = null;
+  }
+
+  scrollHeight() {
+    // チャット時にチャットスクロールの一番下に移動
+    console.log('scroll');
+    let scr: any = document.getElementsByClassName('log');
+    try {
+      console.log(scr[0].scrollHeight);
+      console.log(scr[0].scrollTop);
+      scr[0].scrollTop = scr[0].scrollHeight;
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   get_params() {

@@ -25,4 +25,9 @@ export class DiceComponent implements OnInit {
     }
     this.word = null;
   }
+  imgRoll(rollDice : string) {
+    var roll = this.dice.roll(rollDice);
+    this.result.push(roll[2] + '->' + roll[1]);
+    return null;
+  }
 }

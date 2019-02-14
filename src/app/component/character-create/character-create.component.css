@@ -1,6 +1,17 @@
 @charset "UTF-8";
 /* 全体
 ------------------------------*/
+.bgWrap {
+    background: #eee;
+    width: 100%;
+    padding: 10px;
+    margin-top: -10px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.character-create {
+  font-size: 12px;
+}
 h1, h2, h3 {
   display: block;
   width: 100%;
@@ -26,13 +37,23 @@ h3 {
   font-size: 16px;
 }
 section {
-  border: 1px solid #999;
+  margin: 15px 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  background: #fff;
+  box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
+}
+.character-create.container {
+  width: 100%;
+}
+.wrap {
+  width: 920px;
+  margin: 0 auto;
 }
 .innerContainer {
-  width: 920px;
-  margin: 10px auto;
+  width: 900px;
+  margin: 0 auto;
+  padding: 10px 0;
 }
 .contentWrap {
   padding: 15px;
@@ -54,152 +75,61 @@ section {
 ------------------------------*/
 .base {}
   .base .left {
-    width: 450px;
+    width: 440px;
   }
-  .base .left .top,
-  .base .right .top {
-    margin-bottom: 10px;
-  }
-    .base .left .top {
+    .base .left {
       border: 1px solid #999;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
     }
-      .base .left .top ul {
+      .base .left ul {
         letter-spacing: -0.5em;
       }
-        .base .left .top ul li {
+        .base .left ul li {
           margin-bottom: 25px;
           letter-spacing: normal;
         }
-          .base .left .top ul li:last-child {
+          .base .left ul li:last-child {
             margin-bottom: 0;
           }
-      .base .left .top .twoColumn {}
-        .base .left .top .twoColumn p {
+      .base .left .twoColumn {}
+        .base .left .twoColumn p {
           margin-right: 15px;
           display: inline-block;
         }
-          .base .left .top .twoColumn p:last-child {
+          .base .left .twoColumn p:last-child {
             margin-right: 0;
           }
-          .base .left .top .twoColumn p input[type="text"] {
+          .base .left .twoColumn p input[type="text"] {
             width: 75px;
           }
-      .base .left .top .threeColumn {}
-        .base .left .top .threeColumn p {
+      .base .left .threeColumn {}
+        .base .left .threeColumn p {
           margin-right: 15px;
           display: inline-block;
         }
-          .base .left .top .threeColumn p:last-child {
+          .base .left .threeColumn p:last-child {
             margin-right: 0;
           }
-          .base .left .top .threeColumn p input[type="text"] {
+          .base .left .threeColumn p input[type="text"] {
             width: 75px;
           }
-      .base .left .top .radio {}
-        .base .left .top .radio p:nth-child(2) {
+      .base .left .radio {}
+        .base .left .radio p {
           margin-right: 15px;
         }
-    .base .left .bottom {
-      border: 1px solid #999;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-    }
-      .base .left .bottom select {
-        margin: 0 auto;
-        padding: 5px 0;
-        width: 100%;
-        display: block;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-      }
+          .base .left .radio p:last-child {
+            margin-right: 15px;
+          }
   .base .right {
-    width: 450px;
+    width: 440px;
   }
-    .base .right .top {
+    .base .right {
       border: 1px solid #999;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
     }
-      .base .right .top .contentWrap {}
-        .base .right .top .contentWrap .left {
-          width: 175px;
-        }
-          .base .right .top .contentWrap .left .imgWindow {
-            width: 175px;
-            height: 175px;
-            border: 1px solid #999;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-          }
-            .base .right .top .contentWrap .left .imgWindow img {
-              width: 100%;
-              height: 100%;
-            }
-          .base .right .top .contentWrap .left ul {
-            margin-top: 20px;
-          }
-            .base .right .top .contentWrap .left ul li {
-              display: inline-block;
-              border-radius: 7px;
-            }
-              .base .right .top .contentWrap .left ul li button {
-                padding: 5px 25px;
-                border-radius: 7px;
-                border: none;
-                background: #1976d2;
-                border: 2px solid #1976d2;
-                color: #fff;
-                -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-              }
-                .base .right .top .contentWrap .left ul li button:hover {
-                  background: #fff;
-                  color: #1976d2;
-                  transition-duration: 0.3s;
-                }
-              .base .right .top .contentWrap .left ul li:last-child button {
-                margin-left: 10px;
-                background: #f44336;
-                border: 2px solid #f44336;
-              }
-                .base .right .top .contentWrap .left ul li:last-child button:hover {
-                  background: #fff;
-                  color: #f44336;
-                }
-        .base .right .top .contentWrap .right {
-          width: 235px;
-          border: 1px solid #999;
-          -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-        }
-          .base .right .top .contentWrap .right ul {
-            height: 185px;
-            overflow-y: scroll;
-            letter-spacing: -0.5em;
-          }
-            .base .right .top .contentWrap .right ul li {
-              padding: 10px;
-              text-align: center;
-              line-height: 1;
-              letter-spacing: normal;
-              width: 100%;
-              -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-              border-bottom: 1px solid #999;
-            }
-              .base .right .top .contentWrap .right ul li:hover {
-                background: #87ceeb;
-                color: #fff;
-                transition-duration: 0.3s;
-              }
-    .base .right .bottom {
-      border: 1px solid #999;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-    }
-        .base .right .bottom select {
+        .base .right select {
           margin: 0 auto;
           padding: 5px 0;
           width: 100%;
@@ -207,18 +137,384 @@ section {
           -webkit-box-sizing: border-box;
           box-sizing: border-box;
         }
-        .base .right .bottom dl {
+        .base .right dl {
           margin-top: 10px;
         }
-          .base .right .bottom dl dt {
+          .base .right dl dt {
             display: inline-block;
             float: left;
           }
-          .base .right .bottom dl dd {
+          .base .right dl dd {
             display: inline-block;
             vertical-align: top;
             float: right;
           }
+            .base .right dl dd textarea {
+              padding: 5px;
+              width: 300px;
+              -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+            }
+
+/* 能力値
+------------------------------*/
+.ability {}
+  .ability table {
+    width: 100%;
+    height: 200px;
+  }
+    .ability table tr {
+      letter-spacing: 0.5em;
+      height: calc(100% / 9);
+    }
+      .ability table tr th,
+      .ability table tr td {
+        letter-spacing: normal;
+        width: calc(100% / 2);
+        border: 1px solid #666;
+        text-align: center;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+        .ability table tr td p {
+          width: 100%;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          text-align: center;
+        }
+    .ability .left {
+      width: 440px;
+      border: 1px solid #999;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+      .ability .left table {}
+        .ability .left table tr {
+          width: 100%;
+        }
+          .ability .left table tr th,
+          .ability .left table tr td {
+            width: calc(100% / 3);
+          }
+            .ability .left table tr td button {
+              margin: 0 auto;
+              padding: 2px 5px;
+              width: 70px;
+              height: 85%;
+              -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+              text-align: center;
+              display: block;
+              border: none;
+              background: #999;
+              color: #fff;
+              border: 2px solid #999;
+              border-radius: 7px;
+            }
+              .ability .left table tr td button:hover {
+                background: #fff;
+                color: #999;
+                transition-duration: 0.3s;
+              }
+            .ability .left table tr td.role {
+              border: none;
+            }
+      .ability .left .allRole {
+        float: right;
+        margin: 5px 0 0;
+        padding: 2px 5px;
+        border: 2px solid #4fc3f7;
+        border-radius: 7px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        text-align: center;
+        background: #4fc3f7;
+        color: #fff;
+      }
+        .ability .left .allRole:hover {
+          background: #fff;
+          color: #4fc3f7;
+          transition-duration: 0.3s;
+        }
+    .ability .right {
+      width: 440px;
+      border: 1px solid #999;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+      .ability .right table {}
+        .ability .right table tr {
+          width: 100%;
+        }
+          .ability .right table tr th,
+          .ability .right table tr td {
+            width: calc(100% / 2);
+          }
+
+/* 技能値
+------------------------------*/
+.skill {}
+  .skill .left {
+    width: 550px;
+  }
+      .skill .left .skillWrap {
+        width: 100%;
+        height: 320px;
+        overflow-y: scroll;
+      }
+        .skill .left .skillWrap dl {
+          margin: 0 0 10px;
+        }
+          .skill .left .skillWrap dl:last-child {
+            margin: 0;
+          }
+          .skill .left .skillWrap dl dt {
+            text-align: center;
+            font-size: 16px;
+            background: #ffd740;
+          }
+          .skill .left .skillWrap dl dd {
+            width: 100%;
+          }
+            .skill .left .skillWrap dl dd table {
+              width: 100%;
+            }
+              .skill .left .skillWrap dl dd table tr {
+                width: 100%;
+                letter-spacing: -0.5em;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+              }
+                .skill .left .skillWrap dl dd table tr th {
+                  padding: 5px;
+                  letter-spacing: normal;
+                  border: 1px solid #666;
+                  background: #ccc;
+                  -webkit-box-sizing: border-box;
+                  box-sizing: border-box;
+                  text-align: center;
+                }
+                .skill .left .skillWrap dl dd table tr td {
+                  padding: 5px;
+                  letter-spacing: normal;
+                  border: 1px solid #666;
+                  -webkit-box-sizing: border-box;
+                  box-sizing: border-box;
+                  text-align: center;
+                }
+                  .skill .left .skillWrap dl dd table tr td input {
+                    width: 100%;
+                    border: none;
+                  }
+                .skill .left .skillWrap dl dd table tr.line {}
+                  .skill .left .skillWrap dl dd table tr.line th {
+                    width: 120px;
+                  }
+                  .skill .left .skillWrap dl dd table tr.line td {
+                    padding: 0;
+                    width: 75px;
+                  }
+                    .skill .left .skillWrap dl dd table tr.line td:first-child {
+                      padding: 5px;
+                      width: 50px;
+                    }
+                    .skill .left .skillWrap dl dd table tr.line td:last-child {
+                      padding: 5px;
+                    }
+                    .skill .left .skillWrap dl dd table tr.line td input {
+                      padding: 5px;
+                      -webkit-box-sizing: border-box;
+                      box-sizing: border-box;
+                      text-align: center;
+                    }
+            .skill .left .skillWrap dl dd ul {
+              letter-spacing: -0.5em;
+            }
+              .skill .left .skillWrap dl dd ul li {
+                letter-spacing: normal;
+                display: inline-block;
+              }
+                .skill .left .skillWrap dl dd ul li button {
+                  width: 75px;
+                  height: 25px;
+                  padding: 0 5px;
+                  border-radius: 7px;
+                  border: none;
+                  background: #1976d2;
+                  border: 2px solid #1976d2;
+                  color: #fff;
+                  -webkit-box-sizing: border-box;
+                  box-sizing: border-box;
+                }
+                  .skill .left .skillWrap dl dd ul li button.del {
+                    background: #f44336;
+                    border-color: #f44336;
+                  }
+                  .skill .left .skillWrap dl dd ul li button:hover {
+                    background: #fff;
+                    color: #1976d2;
+                    transition-duration: 0.3s;
+                  }
+                  .skill .left .skillWrap dl dd ul li button.del:hover {
+                    background: #fff;
+                    color: #f44336;
+                    transition-duration: 0.3s;
+                  }
+  .skill .right {
+    width: 330px;
+  }
+    .skill .right .top {
+      margin-bottom: 10px;
+      border: 1px solid #999;
+    }
+      .skill .right .top ul {}
+        .skill .right .top ul li {}
+          .skill .right .top ul li:first-child {
+            margin-bottom: 20px;
+          }
+          .skill .right .top ul li label {
+            float: left;
+          }
+          .skill .right .top ul li input {
+            width: 210px;
+            padding: 5px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            float: right;
+          }
+    .skill .right .bottom {
+      border: 1px solid #999;
+    }
+      .skill .right .bottom textarea {
+        padding: 5px;
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+/* 所持品
+------------------------------*/
+.item {}
+  .item table {
+    width: 100%;
+  }
+  .item table thead {
+    display: block;
+  }
+  .item table tbody {
+    display: block;
+    height: 145px;
+    overflow-y: scroll;
+  }
+    .item table tr {}
+      .item table tr th,
+      .item table tr td {
+        table-layout: fixed;
+        text-align: center;
+        border: 1px solid #666;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+        .item table tr th {
+          background: #ccc;
+          padding: 5px;
+        }
+        .item table tr th.delBtn ,
+        .item table tr td.delBtn {
+          background: #fff;
+          border: none;
+        }
+          .item table tr th.delBtn button ,
+          .item table tr td.delBtn button {
+            background: #f44336;
+            border: 2px solid #f44336;
+            border-radius: 7px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            color: #fff;
+          }
+            .item table tr th.delBtn button:hover ,
+            .item table tr td.delBtn button:hover {
+              background: #fff;
+              color: #f44336;
+              transition-duration: 0.3s;
+            }
+        .item table input {
+          padding: 5px;
+          width: 100%;
+          height: 100%;
+          border: none;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          text-align: center;
+        }
+        .item .addBtn {
+          margin: 10px 5px;
+          border-radius: 7px;
+          background: #1976d2;
+          border: 2px solid #1976d2;
+          color: #fff;
+        }
+          .item .addBtn:hover {
+            background: #fff;
+            color: #1976d2;
+            transition-duration: 0.3s;
+          }
+  .item .top {
+    border: 1px solid #999;
+    margin-bottom: 10px;
+  }
+    .item .top table tr th ,
+    .item .top table tr td {
+      width: 120px;
+    }
+      .item .top table tr th:first-child ,
+      .item .top table tr td:first-child {
+        width: 200px;
+      }
+      .item .top table tr th:nth-last-child(2) ,
+      .item .top table tr td:nth-last-child(2) {
+        width: 534px;
+      }
+      .item .top table tr th:last-child ,
+      .item .top table tr td:last-child {
+        width: 44px;
+      }
+  .item .bottom {
+    border: 1px solid #999;
+  }
+    .item .bottom table tr th ,
+    .item .bottom table tr td {
+      width: 79px;
+    }
+      .item .bottom table tr th:first-child ,
+      .item .bottom table tr td:first-child {
+        width: 300px;
+      }
+      .item .bottom table tr th:last-child ,
+      .item .bottom table tr td:last-child {
+        width: auto;
+      }
+
+/* プロフィール
+------------------------------*/
+.profile {}
+  .profile textarea {
+    padding: 5px;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .profile .top {
+    margin-bottom: 10px;
+  }
+  .profile .bottom {}
+    .profile .bottom .left {
+      width: 530px;
+    }
+    .profile .bottom .right {
+      width: 355px;
+    }
 
 /* 保存・キャンセル
 ------------------------------*/

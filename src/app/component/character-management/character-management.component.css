@@ -1,41 +1,278 @@
-.tabs {
-  display: flex;
+/* タブ用のコード */
+/deep/.mat-tab-label {
+  height: 30px !important;
+  opacity: .6 !important;
+  min-width: 102.5px !important;
+  text-align: center !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+  position: relative !important;
+}
+/deep/.Left .mat-tab-label{
+  width: calc(100% / 2) !important;
+}
+/deep/.Right .innerContainer .characterStatus .mat-tab-label{
+  width: calc(100% / 5) !important;
 }
 
-.characterList {
-  border: solid 1px #999;
-  overflow-y: scroll;
+/* ここまで */
+h3 {
+ background: #aed581;
+ color: #fff;
+ font-size: 16px;
+ text-align: center;
+}
+
+.container{
   box-sizing: border-box;
-  height: 346px;
-  width: 197px;
-  margin: 0px 3.5px;
+  width: 960px;
+  height: 100%;
+  min-height: 550px;
+  background: #eee;
 }
-
-.characterList li {
-  border: solid 1px #999999;
-  height: 34px;
-  text-align: center;
-  cursor: pointer;
-}
-
-.bottoms {
-  display: flex;
-}
-
-button {
-  background-color: #1976d2;
-  color: #fff;
-  text-decoration: none;
-  margin: 8px 3.5px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: .3s;
-  border: none;
+.Left {
+  float: left;
   box-sizing: border-box;
-  height: 27px;
-  width: 61px;
+  height: 486px;
+  box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
+  background: #fff;
+  margin: 32px 0 32px 28px;
 }
+  .Left h1 {
+    text-align: center;
+    border: solid 1px #81C784;
+    background: #81C784;
+    box-sizing: border-box;
+    height: 38px;
+    padding-top: 6px;
+  }
+  .Left .innerContainer {}
+    .Left .innerContainer {}
+    .Left .innerContainer .matTabs .characterList {
+      border: solid 1px #999;
+      overflow-y: scroll;
+      box-sizing: border-box;
+      height: 367px;
+      width: 197px;
+      margin: 4px 3.5px;
+    }
+      .Left .innerContainer .matTabs .characterList li {
+        padding: 7px 0;
+        border: solid 1px #999;
+        text-align: center;
+        cursor: pointer;
+        font-size: 12px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+        .Left .innerContainer .matTabs .characterList li.current {
+          background: #4fc3f7;
+          color: #fff;
+        }
+        .Left .innerContainer .matTabs .characterList li:hover {
+          background: #4fc3f7;
+          color: #fff;
+          transition-duration: 0.3s;
+        }
+    .Left .innerContainer .bottoms {
+      display: flex;
+    }
+      .Left .innerContainer .bottoms .linkBtn {
+        text-align: center;
+        background-color: #1976d2;
+        color: #fff;
+        text-decoration: none;
+        margin: 8px 3.5px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: .3s;
+        border: none;
+        box-sizing: border-box;
+        height: 27px;
+        width: 61px;
+        display: block;
+        font-size: 12px;
+        padding-top: 5px;
+      }
+      .Left .innerContainer .bottoms .raised-warn {
+        background-color: #f44336;
+      }
 
-.raised-warn {
-  background-color: #f44336;
+.Right {
+  float: right;
+  box-sizing: border-box;
+  width: 710px;
+  height: 486px;
+  box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
+  margin: 32px 8px 32px 0;
+  background: #fff;
+}
+  .Right h1{
+    text-align: center;
+    border: solid 1px #81C784;
+    background: #81C784;
+    box-sizing: border-box;
+    height: 38px;
+    padding-top: 6px;
+  }
+    .Right .innerContainer{}
+      .Right .innerContainer .textList {
+        width: 100%;
+        letter-spacing: -0.5em;
+      }
+        .Right .innerContainer .textList dt {
+          letter-spacing: normal;
+        }
+        .Right .innerContainer .textList dd {
+          letter-spacing: normal;
+          margin-bottom: 15px;
+        }
+          .Right .innerContainer .textList dd:last-child {
+            margin-bottom: 0;
+          }
+          .Right .innerContainer .textList dd textarea {
+            min-width: 100%;
+            max-width: 100%;
+            min-height: 85px;
+            max-height: 85px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            overflow-y: scroll;
+          }
+      .Right .innerContainer .characterStatus {
+        float: right;
+        border: solid 1px #999;
+        box-sizing: border-box;
+        width: 668px;
+        height: 431px;
+        margin: 10px 21px;
+      }
+        .Right .innerContainer .characterStatus h2 {
+          text-align: center;
+          border: solid 1px #519657;
+          background: #519657;
+          color: #fff;
+          box-sizing: border-box;
+          height: 34px;
+          padding-top: 4px;
+        }
+        .Right .innerContainer .characterStatus li {
+          padding: 7px 0;
+          border: solid 1px #999;
+          text-align: center;
+          cursor: pointer;
+          font-size: 12px;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+        }
+        .Right .innerContainer .characterStatus .statusList {
+          height: 365px;
+          overflow-y: scroll;
+          font-size: 12px;
+        }
+        .Right .innerContainer .characterStatus .statusList table {
+          height: 100%;
+        }
+          .Right .innerContainer .characterStatus .statusList tr {}
+            .Right .innerContainer .characterStatus .statusList tr th {
+              text-align: center;
+              box-sizing: border-box;
+              width: 100px;
+              height: 40px;
+              background: #ddd;
+              border: 1px solid #999;
+            }
+            .Right .innerContainer .characterStatus .statusList tr td {
+              text-align: center;
+              box-sizing: border-box;
+              width: 35%;
+              border: 1px solid #999;
+            }
+
+        .Right .innerContainer .characterStatus .profileList {
+          height: 365px;
+          overflow-y: scroll;
+          font-size: 12px;
+        }
+        .Right .innerContainer .characterStatus .profileList table {
+          height: 100%;
+        }
+          .Right .innerContainer .characterStatus .profileList tr {}
+            .Right .innerContainer .characterStatus .profileList tr th {
+              text-align: center;
+              box-sizing: border-box;
+              width: 100px;
+              height: 40px;
+              background: #ddd;
+              border: 1px solid #999;
+            }
+            .Right .innerContainer .characterStatus .profileList tr td {
+              text-align: center;
+              box-sizing: border-box;
+              width: 85%;
+              border: 1px solid #999;
+            }
+
+        .Right .innerContainer .characterStatus .skillList {
+          padding: 0;
+          height: 365px;
+          width: 100%;
+          font-size: 12px;
+          overflow-y: scroll;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+        }
+            .Right .innerContainer .characterStatus .skillList dt {
+              text-align: center;
+            }
+            .Right .innerContainer .characterStatus .skillList dd {
+              margin-bottom: 10px;
+              width: 100%;
+            }
+              .Right .innerContainer .characterStatus .skillList dd table {
+                width: 100%;
+              }
+                .Right .innerContainer .characterStatus .skillList dd table tr {
+                  width: 100%;
+                  letter-spacing: -0.5em;
+                  -webkit-box-sizing: border-box;
+                  box-sizing: border-box;
+                }
+                  .Right .innerContainer .characterStatus .skillList dd table tr td ,
+                  .Right .innerContainer .characterStatus .skillList dd table tr th {
+                    padding: 5px;
+                    border: 1px solid #666;
+                    letter-spacing: normal;
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                    text-align: center;
+                  }
+                  .Right .innerContainer .characterStatus .skillList dd table tr th {
+                    background: #ccc;
+                  }
+                  .Right .innerContainer .characterStatus .skillList dd table tr td {
+                    background: #fff;
+                  }
+
+        .Right .innerContainer .characterStatus .belongingsList {
+          width: 100%;
+          height: 365px;
+          font-size: 12px;
+        }
+          .Right .innerContainer .characterStatus .belongingsList .textList {}
+            .Right .innerContainer .characterStatus .belongingsList .textList textarea {
+              min-height: 145px;
+              max-height: 145px;
+            }
+
+ .skillList tr td p {
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }

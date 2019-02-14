@@ -16,13 +16,34 @@
 </div>
 
 <ng-template #room>
-  <div class="chatBlock">
-    <ul class="log">
-      <li id="message_list" *ngFor="let message of message_list"><span>{{message.message}}</span><span class="date">{{message.date}}</span></li>
-    </ul>
-    <form (submit)="message()" (submit)="$event.target.text.value=null">
-      <input name='text' type="text" placeholder="テキスト" (input)="comment=$event.target.value">
-      <input type="submit" value="送信">
-    </form>
+  <div class="outer">
+    <app-menu></app-menu>
+    <div class="contentWrap clearfix">
+      <div class="leftArea">
+        <div class="chatBlock">
+          <ul class="log">
+            <li id="message_list" *ngFor="let message of message_list"><span>{{message.message}}</span><span class="date">{{message.date}}</span></li>
+          </ul>
+          <form (submit)="message()" (submit)="$event.target.text.value=null">
+            <input name='text' type="text" placeholder="テキスト" (input)="comment=$event.target.value">
+            <input type="submit" value="送信">
+          </form>
+        </div>
+        <app-chara-sheet></app-chara-sheet>
+      </div>
+      <div class="rightArea clearfix">
+        <div class="statusArea"><app-status></app-status></div>
+        <div class="diceArea">
+          <mat-tab-group>
+            <mat-tab label="メモ">
+              <app-memo></app-memo>
+            </mat-tab>
+            <mat-tab label="ダイス">
+              <app-dice></app-dice>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
   </div>
 </ng-template>

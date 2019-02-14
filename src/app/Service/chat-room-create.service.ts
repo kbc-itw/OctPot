@@ -246,17 +246,32 @@ export class ChatRoomCreateService {
     return;
   }
 
-  message(e) {
-    var value: string = this.name + ': ' + e;
-    try {
-      this.member.forEach((e) => {
-        console.log('--------------------------------------------------------------------', e);
-        e.channel.send(value);
-      });
-      // this.member[this.member.length - 1].channel.send(value);
-    } catch (e) {
-      console.log('message: ');
-      console.log(e);
+  message(e, bool = false) {
+    if (!bool) {
+      var value: string = this.name + ': ' + e;
+      try {
+        this.member.forEach((e) => {
+          console.log('--------------------------------------------------------------------', e);
+          e.channel.send(value);
+        });
+        // this.member[this.member.length - 1].channel.send(value);
+      } catch (e) {
+        console.log('message: ');
+        console.log(e);
+      }
+    } else if (bool) {
+      // sercretdice
+      var value: string = this.name + ': ' + 'シークレットダイス';
+      try {
+        this.member.forEach((e) => {
+          console.log('--------------------------------------------------------------------', e);
+          e.channel.send(value);
+        });
+      } catch (e) {
+        console.log('message: ');
+        console.log(e);
+      }
+      value = this.name + ': ' + e;
     }
     this.data.next(value);
   }

@@ -46,3 +46,7 @@ Thumbs.db
 # yarn Files
 /yarn.lock
 /yarn-error.log
+
+
+# ユーザー用のファイルとか保存してるフォルダ
+/UserFiles
