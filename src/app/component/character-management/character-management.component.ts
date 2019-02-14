@@ -1,4 +1,4 @@
-import {Component, OnInit, Renderer2, ElementRef, ViewChild, HostListener} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { CharacterManagementService } from '../../Service/character-management.service';
 import { Convert, Chara } from '../../model/character-info-model';
 
@@ -61,36 +61,42 @@ export class CharacterManagementComponent implements OnInit {
   private encounter;
   private othermemo;
 
-  private _el: HTMLElement;
-
-  constructor(
-    private el: ElementRef,
-    private renderer: Renderer2 ) {
+  constructor() {
   }
 
-  @ViewChild('PC')
-  el1: ElementRef;
+  ngOnInit() {
+    this.setData(); // ページ読み込み時にキャラクター取得
+  }
 
-  click( event ) {
+  PC_click( event ) {
 
     let index = event.target.dataset.index;
-    console.log('click', event.target.dataset.index);
 
     let pls = JSON.parse(localStorage.getItem('PC'));
     let plist = [];
     for (let i = 0; i < pls.length; i++) {
       plist[i] = pls[i];
     }
-    this.pushHTML(JSON.stringify(plist[index]));
+    this.pushHTML(JSON.stringify(pls[index]) , false);
 
   }
 
-  ngOnInit() {
-    this.setData();
+  NPC_click( event ) {
+
+    let index = event.target.dataset.index;
+
+    let nls = JSON.parse(localStorage.getItem('NPC'));
+    let nlist = [];
+    for (let i = 0; i < nls.length; i++) {
+      nlist[i] = nls[i];
+    }
+    this.pushHTML(JSON.stringify(nls[index]) , false);
+
   }
 
   setData() {
 
+    // PC取得
     let pls = JSON.parse(localStorage.getItem('PC'));
     let plist = [];
     for (let i = 0; i < pls.length; i++) {
@@ -98,6 +104,7 @@ export class CharacterManagementComponent implements OnInit {
     }
     this.PC = plist;
 
+    // NPC取得
     let nls = JSON.parse(localStorage.getItem('NPC'));
     let nlist = [];
     for (let i = 0; i < nls.length; i++) {
@@ -105,14 +112,14 @@ export class CharacterManagementComponent implements OnInit {
     }
     this.NPC = nlist;
   }
-  onDrop(event) {
+
+  onDrop(event) { // ドラッグアンドドロップでのキャラクター追加
     console.log('on drop');
     event.preventDefault();
     let file = event.dataTransfer.files;
     this.getJson(file);
   }
   onDragOver(event) {
-    console.log('on drag over');
     event.stopPropagation();
     event.preventDefault();
   }
@@ -128,10 +135,9 @@ export class CharacterManagementComponent implements OnInit {
     reader.readAsText(fileobj);  // ファイルの内容をtextで読む (reader.onloadのreader.resultがstringになるへ)
   }
 
-  pushHTML(str) {
-    console.log(str);
+  pushHTML(str , bool: boolean = true) {
     let chara: Chara = Convert.toChara(str);
-  //  console.log(chara);
+  　// console.log(chara);
     let plist = Array();
     let nlist = Array();
 
@@ -149,27 +155,29 @@ export class CharacterManagementComponent implements OnInit {
        }
      }
 
-    if ( chara.Setting.type === 'PC' ) {
-      console.log('Hes PC');
-      if (plist.length === 0) {
-        plist[0] = chara;
+     if ( bool ) {
+      if ( chara.Setting.type === 'PC' ) {
+        if (plist.length === 0) {
+          plist[0] = chara;
+        } else {
+          plist.push(chara);
+        }
       } else {
-        plist.push(chara);
+        if (nlist.length === 0) {
+          nlist[0] = chara;
+        } else {
+          nlist.push(chara);
+        }
       }
-    } else {
-      console.log('Hes NPC');
-      if (nlist.length === 0) {
-        nlist[0] = chara;
-      } else {
-        nlist.push(chara);
-      }
-    }
+     }
 
     localStorage.setItem('PC', JSON.stringify(plist));
     localStorage.setItem('NPC', JSON.stringify(nlist));
 
-    this.setData();
-
+    if (bool) {
+      console.log('boooo');
+      this.setData();
+    }
     // 能力値
     // Status.baseStatus
     this.str = chara.Status.baseStatus.str;
