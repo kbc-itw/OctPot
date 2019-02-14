@@ -67,6 +67,15 @@ h3 {
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
       }
+        .Left .innerContainer .matTabs .characterList li.current {
+          background: #4fc3f7;
+          color: #fff;
+        }
+        .Left .innerContainer .matTabs .characterList li:hover {
+          background: #4fc3f7;
+          color: #fff;
+          transition-duration: 0.3s;
+        }
     .Left .innerContainer .bottoms {
       display: flex;
     }
