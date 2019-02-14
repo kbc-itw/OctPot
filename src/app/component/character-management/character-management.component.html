@@ -6,12 +6,12 @@
       <mat-tab-group class="matTabs">
         <mat-tab label="PC">
           <ul class="characterList">
-            <li *ngFor="let p of PC ; let i = index" [attr.data-index]="i" (click)="PC_click($event)" class="current" >{{p.Setting.character.name}}</li>
+            <li *ngFor="let p of PC ; let i = index" [attr.data-index]="i" (click)="PC_click($event)" >{{p.Setting.character.name}}</li>
           </ul>
         </mat-tab>
         <mat-tab label="NPC">
           <ul class="characterList">
-            <li *ngFor="let n of NPC ; let i = index" [attr.data-index]="i" (click)="NPC_click($event)" class="current" >{{n.Setting.character.name}}</li>
+            <li *ngFor="let n of NPC ; let i = index" [attr.data-index]="i" (click)="NPC_click($event)" >{{n.Setting.character.name}}</li>
           </ul>
         </mat-tab>
       </mat-tab-group>

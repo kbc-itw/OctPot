@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Renderer2, ViewChild, ElementRef} from '@angular/core';
 import { CharacterManagementService } from '../../Service/character-management.service';
 import { Convert, Chara } from '../../model/character-info-model';
 
@@ -61,7 +61,12 @@ export class CharacterManagementComponent implements OnInit {
   private encounter;
   private othermemo;
 
-  constructor() {
+  private current;
+
+  @ViewChild('PC') el: ElementRef;
+
+
+  constructor(private renderer: Renderer2) {
   }
 
   ngOnInit() {
@@ -70,6 +75,11 @@ export class CharacterManagementComponent implements OnInit {
 
   PC_click( event ) {
 
+    if (this.current !== undefined) {
+      this.renderer.removeClass(this.current, 'current');
+    }
+    this.renderer.addClass(event.target , 'current');
+    this.current = event.target;
     let index = event.target.dataset.index;
 
     let pls = JSON.parse(localStorage.getItem('PC'));
@@ -83,6 +93,8 @@ export class CharacterManagementComponent implements OnInit {
 
   NPC_click( event ) {
 
+    this.renderer.removeClass(event , 'current');
+    // this.renderer.addClass(  , 'current');
     let index = event.target.dataset.index;
 
     let nls = JSON.parse(localStorage.getItem('NPC'));
