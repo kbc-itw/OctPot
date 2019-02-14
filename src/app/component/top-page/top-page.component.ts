@@ -13,4 +13,7 @@ export class TopPageComponent implements OnInit {
   ngOnInit() {
   }
 
+  closeWindow() {
+    window.close();
+  }
 }

@@ -1,14 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { Convert, Chara, Setting, Character, Skill,
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {
+  Convert, Chara, Setting, Character, Skill,
   Behavior, Status, BaseStatus, FluctuationStatus,
-  Items, Item, Weapon, Profile } from '../../model/character-info-model';
+  Items, Item, Weapon, Profile
+} from '../../model/character-info-model';
+
+import {Subscription} from 'rxjs';
+import {CharacterDataListService} from '../../Service/character-data-list.service';
 
 @Component({
   selector: 'app-chara-sheet',
   templateUrl: './chara-sheet.component.html',
   styleUrls: ['./chara-sheet.component.css']
 })
-export class CharaSheetComponent implements OnInit {
+export class CharaSheetComponent implements OnInit, OnDestroy {
 
   private combats;
   private searchs;
@@ -26,6 +31,7 @@ export class CharaSheetComponent implements OnInit {
   // Setting.character
   private name;
   private gender;
+  private age;
   private height;
   private weight;
   private birthplace;
@@ -116,44 +122,56 @@ export class CharaSheetComponent implements OnInit {
   private Encounter;
   private OtherMemo;
 
-  private charaList = [];
-  constructor() {
-    this.charaList = [];
-    console.log(this.charaList);
-   }
+  private charaList: Chara[] = [];
+  public subscription: Subscription;
 
+  constructor(private clistService: CharacterDataListService) {
+  }
 
+  // どこかでcharacter-date-list.serviceのnext()が使われたら動きます。
+  // 簡単いうと誰かが送信した値をdataで受け取れます
   ngOnInit() {
+    this.subscription = this.clistService.sharedDataSource$.subscribe(
+      data => {
+        try {
+          let chachacha = Convert.toChara(data);
+          this.charaList.push(chachacha);
+        } catch (e) {
+          console.error('読み込んだファイルのJSON形式が間違っています');
+        }
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   // HTMLでファイルが選択されたら呼ばれる予定
   // ファイルを受け取り、ファイルの中身からCharaを生成する
   getJson(list: any) {
-
-    if (list <= 0) { return; } // 何も指定されていなければ何もしない
+    if (list <= 0) {
+      return;
+    } // 何も指定されていなければ何もしない
     let fileobj = list[0];  // 指定されるファイルは1つのみなので[0]
     let reader = new FileReader();
     reader.onload = () => {  // readAsTextでファイルの読み込みが終わったら呼び出される
-      console.log(reader.result);
-      this.addCharacter(reader.result);
+      this.clistService.onNotifyShareDataChanged(reader.result);
     };
     reader.readAsText(fileobj);  // ファイルの内容をtextで読む (reader.onloadのreader.resultがstringになるへ)
   }
 
   // jsonの文字列からCharaクラスを作成して、一覧に加える
-  addCharacter( jsoninfo ) {
+  addCharacter(jsoninfo) {
     let chachacha = Convert.toChara(jsoninfo);
     let len = 0;
     this.charaList.push(chachacha);
-    console.log('addChara: \n', this.charaList);
   }
 
 
   // 選択されたキャラ情報をキャラシートに出力する
   // そのキャラが配列の何番目に入っているか引数で受け取る
   showHTML(index) {
-
-    console.log('SHOWHTML: \n', this.charaList[index]);
     let chara = this.charaList[index];
 
     // Setting
@@ -164,6 +182,7 @@ export class CharaSheetComponent implements OnInit {
     // Setting.character
     this.name = chara.Setting.character.name;
     this.gender = chara.Setting.character.gender;
+    this.age = chara.Setting.character.age;
     this.height = chara.Setting.character.height;
     this.weight = chara.Setting.character.weight;
     this.birthplace = chara.Setting.character.birthplace;

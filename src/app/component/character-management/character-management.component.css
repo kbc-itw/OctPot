@@ -18,11 +18,18 @@
 }
 
 /* ここまで */
+h3 {
+ background: #aed581;
+ color: #fff;
+ font-size: 16px;
+ text-align: center;
+}
 
 .container{
   box-sizing: border-box;
   width: 960px;
-  height: 500px;
+  height: 100%;
+  min-height: 550px;
   background: #eee;
 }
 .Left {
@@ -31,7 +38,7 @@
   height: 486px;
   box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
   background: #fff;
-  margin-left: 28px;
+  margin: 32px 0 32px 28px;
 }
   .Left h1 {
     text-align: center;
@@ -90,7 +97,7 @@
   width: 710px;
   height: 486px;
   box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
-  margin-right: 8px;
+  margin: 32px 8px 32px 0;
   background: #fff;
 }
   .Right h1{
@@ -102,6 +109,29 @@
     padding-top: 6px;
   }
     .Right .innerContainer{}
+      .Right .innerContainer .textList {
+        width: 100%;
+        letter-spacing: -0.5em;
+      }
+        .Right .innerContainer .textList dt {
+          letter-spacing: normal;
+        }
+        .Right .innerContainer .textList dd {
+          letter-spacing: normal;
+          margin-bottom: 15px;
+        }
+          .Right .innerContainer .textList dd:last-child {
+            margin-bottom: 0;
+          }
+          .Right .innerContainer .textList dd textarea {
+            min-width: 100%;
+            max-width: 100%;
+            min-height: 85px;
+            max-height: 85px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            overflow-y: scroll;
+          }
       .Right .innerContainer .characterStatus {
         float: right;
         border: solid 1px #999;
@@ -176,66 +206,64 @@
               border: 1px solid #999;
             }
 
-        .Right .innerContainer .characterStatus .textList {
-          padding: 0 15px;
+        .Right .innerContainer .characterStatus .skillList {
+          padding: 0;
           height: 365px;
+          width: 100%;
           font-size: 12px;
           overflow-y: scroll;
           -webkit-box-sizing: border-box;
           box-sizing: border-box;
         }
-          .Right .innerContainer .characterStatus .textList li {
-            border: none;
-          }
-          .Right .innerContainer .characterStatus .textList dl {
-            width: 100%;
-          }
-            .Right .innerContainer .characterStatus .textList dl dt {
-              text-align: left;
+            .Right .innerContainer .characterStatus .skillList dt {
+              text-align: center;
             }
-            .Right .innerContainer .characterStatus .textList dl dd {
-              margin-bottom: 20px;
+            .Right .innerContainer .characterStatus .skillList dd {
+              margin-bottom: 10px;
               width: 100%;
             }
-              .Right .innerContainer .characterStatus .textList dl dd textarea {
-                max-width: 100%;
-                min-width: 100%;
-                max-height: 85px;
-                min-height: 85px;
-                overflow-y: scroll;
-                -webkit-box-sizing: border-box;
-                box-sizing: border-box;
+              .Right .innerContainer .characterStatus .skillList dd table {
+                width: 100%;
               }
+                .Right .innerContainer .characterStatus .skillList dd table tr {
+                  width: 100%;
+                  letter-spacing: -0.5em;
+                  -webkit-box-sizing: border-box;
+                  box-sizing: border-box;
+                }
+                  .Right .innerContainer .characterStatus .skillList dd table tr td ,
+                  .Right .innerContainer .characterStatus .skillList dd table tr th {
+                    padding: 5px;
+                    border: 1px solid #666;
+                    letter-spacing: normal;
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                    text-align: center;
+                  }
+                  .Right .innerContainer .characterStatus .skillList dd table tr th {
+                    background: #ccc;
+                  }
+                  .Right .innerContainer .characterStatus .skillList dd table tr td {
+                    background: #fff;
+                  }
 
         .Right .innerContainer .characterStatus .belongingsList {
           width: 100%;
           height: 365px;
-          overflow-y: scroll;
           font-size: 12px;
         }
-          .Right .innerContainer .characterStatus .belongingsList table {
-            width: 100%;
-          }
-          .Right .innerContainer .characterStatus .belongingsList tr {}
-            .Right .innerContainer .characterStatus .belongingsList tr th {
-              text-align: center;
-              box-sizing: border-box;
-              width: 100px;
-              min-height: 40px;
-              background: #ddd;
-              border: 1px solid #999;
+          .Right .innerContainer .characterStatus .belongingsList .textList {}
+            .Right .innerContainer .characterStatus .belongingsList .textList textarea {
+              min-height: 145px;
+              max-height: 145px;
             }
-            .Right .innerContainer .characterStatus .belongingsList tr td {
-              text-align: center;
-              box-sizing: border-box;
-              border: 1px solid #999;
-            }
-              .Right .innerContainer .characterStatus .belongingsList tr td p {
-                padding: 5px;
-                width: 100%;
-                height: 100%;
-                border: 0;
-                display: block;
-                -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-              }
+
+ .skillList tr td p {
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}

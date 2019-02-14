@@ -11,6 +11,7 @@
             <li>キャラクター3</li>
             <li>キャラクター4</li>
             <li>キャラクター5</li>
+
           </ul>
         </mat-tab>
         <mat-tab label="NPC"> Content NPC</mat-tab>
@@ -28,7 +29,7 @@
       </ul>
     </div>
   </div>
-  <div class="Right">
+  <div class="Right" appFileDrop (dragover)="onDragOver($event)" (drop)="onDrop($event)" (onFileDrop)="onFileDrop($event)" >
     <h1>キャラクター詳細</h1>
     <div class="innerContainer clearfix">
       <div class="characterStatus">
@@ -39,55 +40,55 @@
               <table>
                 <tr>
                   <th>STR</th>
-                  <td>13</td>
+                  <td>{{str}}</td>
                   <th>SAN</th>
-                  <td>50</td>
+                  <td>{{san}}</td>
                 </tr>
                 <tr>
                   <th>CON</th>
-                  <td>14</td>
+                  <td>{{con}}</td>
                   <th>幸運</th>
-                  <td>50</td>
+                  <td>{{luck}}</td>
                 </tr>
                 <tr>
                   <th>POW</th>
-                  <td>10</td>
+                  <td>{{pow}}</td>
                   <th>アイデア</th>
-                  <td>40</td>
+                  <td>{{idea}}</td>
                 </tr>
                 <tr>
                   <th>DEX</th>
-                  <td>7</td>
+                  <td>{{dex}}</td>
                   <th>知識</th>
-                  <td>60</td>
+                  <td>{{knowledge}}</td>
                 </tr>
                 <tr>
                   <th>APP</th>
-                  <td>13</td>
+                  <td>{{app}}</td>
                   <th>体力</th>
-                  <td>14</td>
+                  <td>{{health}}</td>
                 </tr>
                 <tr>
                   <th>SIZ</th>
-                  <td>14</td>
+                  <td>{{siz}}</td>
                   <th>MP</th>
-                  <td>10</td>
+                  <td>{{mp}}</td>
                 </tr>
                 <tr>
                   <th>INT</th>
-                  <td>8</td>
+                  <td>{{int}}</td>
                   <th>職業技能</th>
-                  <td>240</td>
+                  <td>{{vocationalskill}}</td>
                 </tr>
                 <tr>
                   <th>EDU</th>
-                  <td>12</td>
+                  <td>{{edu}}</td>
                   <th>趣味技能</th>
-                  <td>80</td>
+                  <td>{{hobbyskill}}</td>
                 </tr>
                 <tr>
                   <th>年収・財産</th>
-                  <td>14</td>
+                  <td>{{incomeproperty}}</td>
                   <th>ダメージ<br>ボーナス</th>
                   <td>+?d?</td>
                 </tr>
@@ -99,153 +100,229 @@
               <table>
                 <tr>
                   <th>名前</th>
-                  <td>サンプルさん</td>
+                  <td>{{name}}</td>
                 </tr>
                 <tr>
                   <th>職業</th>
-                  <td>学生</td>
+                  <td>{{job}}</td>
                 </tr>
                 <tr>
                   <th>年齢</th>
-                  <td>18歳</td>
+                  <td>{{age}}</td>
                 </tr>
                 <tr>
                   <th>性別</th>
-                  <td>男性</td>
+                  <td>{{gender}}</td>
                 </tr>
                 <tr>
                   <th>身長</th>
-                  <td>170cm</td>
+                  <td>{{height}}</td>
                 </tr>
                 <tr>
                   <th>体重</th>
-                  <td>62kg</td>
+                  <td>{{weight}}</td>
                 </tr>
                 <tr>
                   <th>出身地</th>
-                  <td>日本</td>
+                  <td>{{birthplace}}</td>
                 </tr>
                 <tr>
                   <th>髪色</th>
-                  <td>黒</td>
+                  <td>{{haircolor}}</td>
                 </tr>
                 <tr>
                   <th>瞳の色</th>
-                  <td>黒</td>
+                  <td>{{eyecolor}}</td>
                 </tr>
               </table>
             </div>
           </mat-tab>
           <mat-tab label="技能">
-            <ul class="textList">
-              <li>
-                <dl>
-                  <dt>戦闘技能</dt>
-                  <dd><textarea cols="100" rows="6" readonly></textarea></dd>
-                  <dt>探索技能</dt>
-                  <dd><textarea cols="100" rows="6" readonly></textarea></dd>
-                  <dt>行動技能</dt>
-                  <dd><textarea cols="100" rows="6" readonly></textarea></dd>
-                  <dt>交渉技能</dt>
-                  <dd><textarea cols="100" rows="6" readonly></textarea></dd>
-                  <dt>知識技能</dt>
-                  <dd><textarea cols="100" rows="6" readonly></textarea></dd>
-                </dl>
-              </li>
-            </ul>
+            <dl class="skillList" >
+              <dt><h3>戦闘技能</h3></dt>
+              <dd>
+                <table>
+                  <tr>
+                    <th>技能名／技能値</th>
+                    <th>初期値</th>
+                    <th>職業Ｐ</th>
+                    <th>興味Ｐ</th>
+                    <th>成長Ｐ</th>
+                    <th>その他</th>
+                    <th>合計</th>
+                  </tr>
+                  <tr *ngFor="let combat of combats">
+                    <td>{{combat.skillName}}</td>
+                    <td>{{combat.initialValue}}</td>
+                    <td>{{combat.jobPoint}}</td>
+                    <td>{{combat.hobbyPoint}}</td>
+                    <td>{{combat.growthPoint}}</td>
+                    <td>{{combat.otherPoint}}</td>
+                    <td>{{combat.initialValue+combat.jobPoint+combat.hobbyPoint+combat.growthPoint+combat.otherPoint}}</td>
+                  </tr>
+
+                </table>
+              </dd>
+              <dt><h3>探索技能</h3></dt>
+              <dd>
+                <table>
+                  <tr>
+                    <th>技能名／技能値</th>
+                    <th>初期値</th>
+                    <th>職業Ｐ</th>
+                    <th>興味Ｐ</th>
+                    <th>成長Ｐ</th>
+                    <th>その他</th>
+                    <th>合計</th>
+                  </tr>
+                  <tr *ngFor="let search of searchs">
+                    <td>{{search.skillName}}</td>
+                    <td>{{search.initialValue}}</td>
+                    <td>{{search.jobPoint}}</td>
+                    <td>{{search.hobbyPoint}}</td>
+                    <td>{{search.growthPoint}}</td>
+                    <td>{{search.otherPoint}}</td>
+                    <td>{{search.initialValue+search.jobPoint+search.hobbyPoint+search.growthPoint+search.otherPoint}}</td>
+                  </tr>
+                </table>
+              </dd>
+              <dt><h3>行動技能</h3></dt>
+              <dd>
+                <table>
+                  <tr>
+                    <th>技能名／技能値</th>
+                    <th>初期値</th>
+                    <th>職業Ｐ</th>
+                    <th>興味Ｐ</th>
+                    <th>成長Ｐ</th>
+                    <th>その他</th>
+                    <th>合計</th>
+                  </tr>
+                  <tr *ngFor="let behavior of behaviors">
+                    <td>{{behavior.skillName}}</td>
+                    <td>{{behavior.initialValue}}</td>
+                    <td>{{behavior.jobPoint}}</td>
+                    <td>{{behavior.hobbyPoint}}</td>
+                    <td>{{behavior.growthPoint}}</td>
+                    <td>{{behavior.otherPoint}}</td>
+                    <td>{{behavior.initialValue+behavior.jobPoint+behavior.hobbyPoint+behavior.growthPoint+behavior.otherPoint}}</td>
+                  </tr>
+
+                </table>
+              </dd>
+              <dt><h3>交渉技能</h3></dt>
+              <dd>
+                <table>
+                  <tr>
+                    <th>技能名／技能値</th>
+                    <th>初期値</th>
+                    <th>職業Ｐ</th>
+                    <th>興味Ｐ</th>
+                    <th>成長Ｐ</th>
+                    <th>その他</th>
+                    <th>合計</th>
+                  </tr>
+                  <tr *ngFor="let negotiation of negotiations">
+                    <td>{{negotiation.skillName}}</td>
+                    <td>{{negotiation.initialValue}}</td>
+                    <td>{{negotiation.jobPoint}}</td>
+                    <td>{{negotiation.hobbyPoint}}</td>
+                    <td>{{negotiation.growthPoint}}</td>
+                    <td>{{negotiation.otherPoint}}</td>
+                    <td>{{negotiation.initialValue+negotiation.jobPoint+negotiation.hobbyPoint+negotiation.growthPoint+negotiation.otherPoint}}</td>
+                  </tr>
+
+                </table>
+              </dd>
+              <dt><h3>知識技能</h3></dt>
+              <dd>
+                <table>
+                  <tr>
+                    <th>技能名／技能値</th>
+                    <th>初期値</th>
+                    <th>職業Ｐ</th>
+                    <th>興味Ｐ</th>
+                    <th>成長Ｐ</th>
+                    <th>その他</th>
+                    <th>合計</th>
+                  </tr>
+                  <tr *ngFor="let know of knowledges">
+                    <td>{{know.skillName}}</td>
+                    <td>{{know.initialValue}}</td>
+                    <td>{{know.jobPoint}}</td>
+                    <td>{{know.hobbyPoint}}</td>
+                    <td>{{know.growthPoint}}</td>
+                    <td>{{know.otherPoint}}</td>
+                    <td>{{know.initialValue+know.jobPoint+know.hobbyPoint+know.growthPoint+know.otherPoint}}</td>
+                  </tr>
+
+                </table>
+              </dd>
+            </dl>
           </mat-tab>
           <mat-tab label="所持品">
-            <div class="belongingsList">
-              <table>
-                <tr>
-                  <th>名前</th>
-                  <th>個数</th>
-                  <th>説明</th>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品02</td>
-                  <td>3</td>
-                  <td><p>説明テキスト説明テキスト説明テキスト説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-                <tr>
-                  <td>所持品01</td>
-                  <td>1</td>
-                  <td><p>説明テキスト</p></td>
-                </tr>
-              </table>
-            </div>
+            <dl class="skillList">
+              <dt><h3>所持品</h3></dt>
+              <dd>
+                <table>
+                  <tr>
+                    <th>名前</th>
+                    <th>個数</th>
+                    <th>説明</th>
+
+                  </tr>
+                  <tr *ngFor="let item of items">
+                    <td>{{item.itemName}}</td>
+                    <td>{{item.number}}</td>
+                    <td><p>{{item.other}}</p></td>
+                  </tr>
+                </table>
+              </dd>
+
+
+              <dt><h3>戦闘・武器・防具</h3></dt>
+              <dd>
+                <table>
+                  <tr>
+                    <th>名称</th>
+                    <th>成功率</th>
+                    <th>ダメージ</th>
+                    <th>射程</th>
+                    <th>攻撃回数</th>
+                    <th>装填数</th>
+                    <th>耐久力</th>
+                    <th>その他</th>
+
+                  </tr>
+                  <tr *ngFor="let weapon of weapons">
+                    <td>{{weapon.weaponName}}</td>
+                    <td>{{weapon.successRate}}</td>
+                    <td>{{weapon.damage}}</td>
+                    <td>{{weapon.range}}</td>
+                    <td>{{weapon.attackCount}}</td>
+                    <td>{{weapon.loadingCount}}</td>
+                    <td>{{weapon.endurance}}</td>
+                    <td>{{weapon.other}}</td>
+                  </tr>
+                </table>
+              </dd>
+            </dl>
           </mat-tab>
           <mat-tab label="経歴">
-            <ul class="textList">
-              <li>
-                <dl>
-                  <dt>経歴</dt>
-                  <dd><textarea cols="100" rows="6" readonly></textarea></dd>
-                  <dt>遭遇したもの</dt>
-                  <dd><textarea cols="100" rows="6" readonly></textarea></dd>
-                  <dt>その他メモ</dt>
-                  <dd><textarea cols="100" rows="6" readonly></textarea></dd>
-                </dl>
-              </li>
-            </ul>
+            <dl class="textList">
+              <dt><h3>経歴</h3></dt>
+              <dd><textarea cols="100" rows="6" readonly>{{career}}</textarea></dd>
+              <dt><h3>遭遇したもの</h3></dt>
+              <dd><textarea cols="100" rows="6" readonly>{{encounter}}</textarea></dd>
+              <dt><h3>その他メモ</h3></dt>
+              <dd><textarea cols="100" rows="6" readonly>{{othermemo}}</textarea></dd>
+            </dl>
           </mat-tab>
         </mat-tab-group>
       </div>
     </div>
   </div>
 </div>
+
+<input id="upfile" name="upfile" type="file" #fl
+       accept="application/json" (change)="getJson(fl.files)" />

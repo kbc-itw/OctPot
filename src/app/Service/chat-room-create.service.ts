@@ -28,9 +28,8 @@ export class ChatRoomCreateService {
   private pass;
   public data = new BehaviorSubject<string>(null);
   private date: string;
-  private sheet = new CharaSheetComponent;
 
-  constructor() {
+  constructor(private sheet: CharaSheetComponent) {
   }
 
   io_connect() {
@@ -183,7 +182,11 @@ export class ChatRoomCreateService {
     this.member[this.member.length - 1].f_channel.onmessage = (event) => {
       console.log('データチャネルメッセージ取得:', event.data);
       console.log(event.data[0]);
-      this.sheet.addCharacter(event.data);
+      try {
+        this.sheet.addCharacter(event.data);
+      } catch (e) {
+        console.log(e);
+      }
       this.member.forEach((e) => {
         if (e.f_channel.readyState === 'open') {
           if (true) { // 送って来たやつ以外
