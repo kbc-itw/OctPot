@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import * as client from 'socket.io-client';
 import {BehaviorSubject} from 'rxjs';
 import * as moment from 'moment';
+import {CharacterDataListService} from './character-data-list.service';
 
 @Injectable()
 export class ChatRoomCreateService {
@@ -11,9 +12,16 @@ export class ChatRoomCreateService {
   // passはあとでいいか
   // peerは一人につき一つ必要
   // channelも？
-  private peer;
+
+  /*
+  今の問題
+  部屋から抜けて入ったらhostからのメッセージが届かない。いったん終了して接続しなおしてもだめ。一つのpcでためした。
+   */
+  private message_peer;
+  private file_peer;
   private io;
-  private channel;
+  private message_channel;
+  private file_channel;
   private member = [];
   private id;
   private name;
@@ -21,7 +29,7 @@ export class ChatRoomCreateService {
   public data = new BehaviorSubject<string>(null);
   private date: string;
 
-  constructor() {
+  constructor(private cdl: CharacterDataListService) {
   }
 
   io_connect() {
@@ -34,19 +42,32 @@ export class ChatRoomCreateService {
   create(pass, name) {
     console.groupCollapsed('createFunction(service)');
     console.log('constructor', 'from', 'service');
-    this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
-    this.channel = this.peer.createDataChannel('my channel');
-    this.member.push({peer: this.peer, channel: this.channel});
+    this.message_peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
+    this.file_peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
+    this.message_channel = this.message_peer.createDataChannel('message_channel');
+    this.file_channel = this.file_peer.createDataChannel('file_channel');
+    this.member.push({
+      m_peer: this.message_peer, m_channel: this.message_channel,
+      f_peer: this.file_peer, f_channel: this.file_channel
+    });
     this.date = moment().format('YY/MM/DD HH:mm');
     this.name = name;
     this.pass = pass;
     this.data.next('ルームを作成しました。');
-    console.profile('ondatachannel');
-    this.dc();
+    console.profile('m_ondatachannel');
+    this.message_dc();
     console.profileEnd();
 
-    console.profile('onicecadidate');
-    this.cd();
+    console.profile('m_onicecadidate');
+    this.message_cd();
+    console.profileEnd();
+
+    console.profile('f_ondatachannel');
+    this.file_dc();
+    console.profileEnd();
+
+    console.profile('f_onicecadidate');
+    this.file_cd();
     console.profileEnd();
 
     console.profile('connectFunction');
@@ -56,79 +77,145 @@ export class ChatRoomCreateService {
     console.groupEnd();
   }
 
-  dc() {
+  message_dc() {
     this.member.forEach((e) => {
       console.log('peer; ', e.peer);
       console.log('channel: ', e.channel);
+      console.log(e.file);
     });
-    this.member[this.member.length - 1].peer.ondatachannel = (e) => {
+    // message用ののイベントハンドラ
+    // channelがつながったら？実行
+    this.member[this.member.length - 1].m_peer.ondatachannel = (e) => {
       console.groupCollapsed('dcFunction');
       // e.channelにtestが格納されているのでそれを使う
       console.log('ondDataChannel');
       // console.log(e.candidate.candidate.split(' ')[4]); // address
-      console.log(this.member[this.member.length - 1].channel);
+      console.log(this.member[this.member.length - 1].m_channel);
       console.groupEnd();
     };
-    this.member[this.member.length - 1].channel.onopen = () => {
+    // channelが開いたら実行
+    this.member[this.member.length - 1].m_channel.onopen = () => {
       console.log('DataChannelOpen');
-      this.peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
-      this.channel = this.peer.createDataChannel('my channel');
-      this.member.push({peer: this.peer, channel: this.channel}); // ここでonmessageより先にpushしてるからerrorがでるのかな？
+      this.message_peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
+      this.file_peer = new RTCPeerConnection({iceServers: [{urls: 'stun:stun.l.google.com:19302'}]});
+      this.message_channel = this.message_peer.createDataChannel('message_channel');
+      this.file_channel = this.file_peer.createDataChannel('file_channel');
+      this.member.push({
+        m_peer: this.message_peer, m_channel: this.message_channel,
+        f_peer: this.file_peer, f_channel: this.file_channel
+      });
       console.log(this.member);
       try {
-        this.dc();
-        this.cd();
+        this.message_dc();
+        this.message_cd();
+        this.file_dc();
+        this.file_cd();
       } catch (e) {
         console.log('local dc and cd');
         console.log(e);
       }
     };
-    this.member[this.member.length - 1].channel.onmessage = (event) => {
+    // channelの接続相手からmessageが来たとき実行
+    this.member[this.member.length - 1].m_channel.onmessage = (event) => {
       console.log('データチャネルメッセージ取得:', event.data);
       console.log(event);
+      console.log(typeof event.data);
+      if (false) {
+        // jsonかどうか見分けて処理を分ける。
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajbjasbcbcjbcj');
+      }
       var val = event.data;
       this.data.next(val);
       this.member.forEach((e) => {
         console.log(event);
         console.log('e: ', e);
-        console.log('e.peer: ', e.peer);
-        console.log('e.channel: ', e.channel);
-        if (e.channel.readyState === 'open') {
-          e.channel.send(val);
+        console.log('e.peer: ', e.m_peer);
+        console.log('e.channel: ', e.m_channel);
+        if (e.m_channel.readyState === 'open') {
+          e.m_channel.send(val);
         }
       });
     };
-    this.member[this.member.length - 1].channel.onclose = () => {
+    this.member[this.member.length - 1].m_channel.onclose = () => {
       console.log('DataChannelClose');
     };
-    this.member[this.member.length - 1].channel.onerror = (err) => {
+    this.member[this.member.length - 1].m_channel.onerror = (err) => {
       console.log(err);
     };
   }
 
-  cd() {
-    this.member[this.member.length - 1].peer.onicecandidate = (e) => {
+  message_cd() {
+    this.member[this.member.length - 1].m_peer.onicecandidate = (e) => {
       console.groupCollapsed('onicecadidate');
       if (e.candidate) {
-        this.io.emit('candidate', {candidate: e.candidate, sdp: this.member[this.member.length - 1].peer.localDescription.sdp});
+        this.io.emit('candidate', {candidate: e.candidate, sdp: this.member[this.member.length - 1].m_peer.localDescription.sdp});
       } else {
         console.log('candi  err');
         return;
       }
       console.groupEnd();
     };
-    /*
-    this.peer.onicecandidate = (e) => {
+  }
+
+  file_dc() {
+    this.member.forEach((e) => {
+      console.log('peer; ', e.peer);
+      console.log('channel: ', e.channel);
+      console.log(e.file);
+    });
+    // file用のイベントハンド
+    // channelがつながったら？実行
+    this.member[this.member.length - 1].f_peer.ondatachannel = (e) => {
+      console.groupCollapsed('dcFunction');
+      // e.channelにtestが格納されているのでそれを使う
+      console.log('ondDataChannel');
+      // console.log(e.candidate.candidate.split(' ')[4]); // address
+      console.log(this.member[this.member.length - 1].f_channel);
+      console.groupEnd();
+    };
+
+    // channelが開いたら実行
+    this.member[this.member.length - 1].f_channel.onopen = () => {
+      console.log('DataChannelOpen');
+    };
+    // channelの接続相手からmessageが来たとき実行
+    this.member[this.member.length - 1].f_channel.onmessage = (event) => {
+      console.log('データチャネルメッセージ取得:', event.data);
+      console.log(event.data[0]);
+      console.log(typeof event.data);
+      try {
+        this.cdl.onNotifyShareDataChanged(event.data);
+      } catch (e) {
+        console.log(e);
+      }
+      this.member.forEach((e) => {
+        if (e.f_channel.readyState === 'open') {
+          if (true) { // 送って来たやつ以外
+            e.f_channel.send(event.data);
+            console.log('file_OK');
+          }
+        }
+      });
+    };
+    this.member[this.member.length - 1].f_channel.onclose = () => {
+      console.log('DataChannelClose');
+    };
+    this.member[this.member.length - 1].f_channel.onerror = (err) => {
+      console.log(err);
+    };
+  }
+
+  file_cd() {
+    this.member[this.member.length - 1].f_peer.onicecandidate = (e) => {
       console.groupCollapsed('onicecadidate');
       if (e.candidate) {
-        this.io.emit('candidate', {candidate: e.candidate, sdp: this.peer.localDescription.sdp});
-      }else {
+        this.io.emit('candidate', {candidate: e.candidate, sdp: this.member[this.member.length - 1].f_peer.localDescription.sdp});
+      } else {
         console.log('candi  err');
         return;
       }
       console.groupEnd();
     };
-    */
   }
 
   get_io() {
@@ -156,7 +243,8 @@ export class ChatRoomCreateService {
     console.groupCollapsed('connectFunction');
     console.log('connect service');
     console.profile('sdpFunction');
-    this.sdp();
+    this.message_sdp();
+    this.file_sdp();
     console.profileEnd();
 
     this.io.emit('create', {pass: pass});
@@ -174,7 +262,8 @@ export class ChatRoomCreateService {
     this.io.on('enter', (e) => {
       console.log('enter');
       console.log('client: ', e, 'が申請してきました。');
-      this.offer(e);
+      this.message_offer(e);
+      this.file_offer(e);
     });
     this.io.on('id', (e) => {
       console.groupCollapsed('ioのid');
@@ -186,7 +275,7 @@ export class ChatRoomCreateService {
   }
 
   // SDPofferが送られてきたときの処理
-  sdp() {
+  message_sdp() {
     console.groupCollapsed('sdpFunction');
     console.log('from here socket function');
     // let answer = this.answer;
@@ -197,16 +286,16 @@ export class ChatRoomCreateService {
         console.log('sdp.sdp is not property');
         return;
       }
-      if (e.sdp.sdp !== this.member[this.member.length - 1].peer.localDescription.sdp) {
+      if (e.sdp.sdp !== this.member[this.member.length - 1].m_peer.localDescription.sdp) {
         console.log('check the sdp');
         var description = new RTCSessionDescription(e.sdp);
         console.log(description);
-        this.member[this.member.length - 1].peer.setRemoteDescription(description, () => {
+        this.member[this.member.length - 1].m_peer.setRemoteDescription(description, () => {
           console.log('peerDescription');
           console.log('desctype= ', description.type);
           if (description.type === 'offer') {
             console.log('sdp type is offer');
-            console.log(this.member[this.member.length - 1].peer);
+            console.log(this.member[this.member.length - 1].m_peer);
             console.profile('answerFunction');
             console.profileEnd();
           }
@@ -217,11 +306,54 @@ export class ChatRoomCreateService {
     // candidateを受け取る処理
     this.io.on('candidate', (e) => {
       console.groupCollapsed('ioのcandidate');
-      if (this.member[this.member.length - 1].peer.localDescription.sdp !== e.sdp) {
+      if (this.member[this.member.length - 1].m_peer.localDescription.sdp !== e.sdp) {
         console.log('candis ok');
         if (e.candidate) {
           var candidate = new RTCIceCandidate(e.candidate);
-          this.member[this.member.length - 1].peer.addIceCandidate(candidate);
+          this.member[this.member.length - 1].m_peer.addIceCandidate(candidate);
+        }
+      }
+      console.groupEnd();
+    });
+    console.groupEnd();
+  }
+
+  file_sdp() {
+    console.groupCollapsed('sdpFunction');
+    console.log('from here socket function');
+    // let answer = this.answer;
+    this.io.on('File_SDP', (e) => {
+      console.groupCollapsed('ioのSDP');
+      console.log('clientSide', 'SDP');
+      if (!e.sdp.sdp) {
+        console.log('sdp.sdp is not property');
+        return;
+      }
+      if (e.sdp.sdp !== this.member[this.member.length - 1].f_peer.localDescription.sdp) {
+        console.log('check the sdp');
+        var description = new RTCSessionDescription(e.sdp);
+        console.log(description);
+        this.member[this.member.length - 1].f_peer.setRemoteDescription(description, () => {
+          console.log('peerDescription');
+          console.log('desctype= ', description.type);
+          if (description.type === 'offer') {
+            console.log('sdp type is offer');
+            console.log(this.member[this.member.length - 1].f_peer);
+            console.profile('answerFunction');
+            console.profileEnd();
+          }
+        });
+      }
+      console.groupEnd();
+    });
+    // candidateを受け取る処理
+    this.io.on('candidate', (e) => {
+      console.groupCollapsed('ioのcandidate');
+      if (this.member[this.member.length - 1].f_peer.localDescription.sdp !== e.sdp) {
+        console.log('candis ok');
+        if (e.candidate) {
+          var candidate = new RTCIceCandidate(e.candidate);
+          this.member[this.member.length - 1].f_peer.addIceCandidate(candidate);
         }
       }
       console.groupEnd();
@@ -230,14 +362,31 @@ export class ChatRoomCreateService {
   }
 
   // sdpを送る処理
-  offer(client) {
+  message_offer(client) {
     console.groupCollapsed('offerFunction');
     console.log('this from offer');
-    this.member[this.member.length - 1].peer.createOffer((offer) => {
-      this.member[this.member.length - 1].peer.setLocalDescription(new RTCSessionDescription(offer), () => {
+    this.member[this.member.length - 1].m_peer.createOffer((offer) => {
+      this.member[this.member.length - 1].m_peer.setLocalDescription(new RTCSessionDescription(offer), () => {
         console.log('HostSide', 'offer');
         console.log(client);
         this.io.emit('offer', {sdp: offer}, {client: client});
+      });
+    }, function (error) {
+      console.log(error);
+    });
+    console.groupEnd();
+    return;
+  }
+
+  // sdpを送る処理
+  file_offer(client) {
+    console.groupCollapsed('offerFunction');
+    console.log('this from offer');
+    this.member[this.member.length - 1].f_peer.createOffer((offer) => {
+      this.member[this.member.length - 1].f_peer.setLocalDescription(new RTCSessionDescription(offer), () => {
+        console.log('HostSide', 'offer');
+        console.log(client);
+        this.io.emit('file_offer', {sdp: offer}, {client: client});
       });
     }, function (error) {
       console.log(error);
@@ -252,7 +401,7 @@ export class ChatRoomCreateService {
       try {
         this.member.forEach((e) => {
           console.log('--------------------------------------------------------------------', e);
-          e.channel.send(value);
+          e.m_channel.send(value);
         });
         // this.member[this.member.length - 1].channel.send(value);
       } catch (e) {
@@ -265,7 +414,7 @@ export class ChatRoomCreateService {
       try {
         this.member.forEach((e) => {
           console.log('--------------------------------------------------------------------', e);
-          e.channel.send(value);
+          e.m_channel.send(value);
         });
       } catch (e) {
         console.log('message: ');
@@ -281,10 +430,11 @@ export class ChatRoomCreateService {
     var value = this.name + 'が退出しました。';
     try {
       this.member.forEach((e) => {
-        if (e.channel.readyState === 'open') {
+        if (e.m_channel.readyState === 'open') {
           console.log('--------------------------------------------------------------------', e);
-          e.channel.send(value); // closeのほうが早いのでこれ意味ないかも
-          e.channel.close();
+          e.m_channel.send(value); // closeのほうが早いのでこれ意味ないかも
+          e.m_channel.close();
+          e.f_channel.close();
         }
       });
       // this.member[this.member.length - 1].channel.send(value);

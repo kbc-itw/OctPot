@@ -15,11 +15,13 @@ export class ChatRoomCreateComponent implements OnInit {
   ip;
   bool: boolean = false;
   message_list: any = [];
+  userType = false;
 
   constructor(private chatroom: ChatRoomCreateService, private dice: DiceService) {
   }
 
   ngOnInit() {
+    this.userType = true;
     this.chatroom.io_connect();
     this.chatroom.get_io().on('IP', (e) => {
       console.log('IPdayo', e);
@@ -90,11 +92,20 @@ export class ChatRoomCreateComponent implements OnInit {
     console.log('get_params');
     var params = [];
     params.push({
-      io: this.chatroom.get_io(), member: this.chatroom.get_member(),
-      pass: this.chatroom.get_pass(), name: this.chatroom.get_name()
+      io: this.chatroom.get_io(), pass: this.chatroom.get_pass(), name: this.chatroom.get_name()
     });
     console.log(params);
     return params;
+  }
+
+  get_member() {
+    // member(channel, peer)を返す
+    return this.chatroom.get_member();
+  }
+
+  getUserType() {
+    console.log('getUserType');
+    return this.userType;
   }
 
   leave() {
@@ -105,5 +116,6 @@ export class ChatRoomCreateComponent implements OnInit {
     this.ip = null;
     this.bool = false;
     this.message_list = [];
+    this.userType = false;
   }
 }
