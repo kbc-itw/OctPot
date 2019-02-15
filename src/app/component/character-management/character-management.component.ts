@@ -137,9 +137,9 @@ export class CharacterManagementComponent implements OnInit {
   }
 
   delete() {
-    console.log(this.current.parentNode.closest('label'));
-    // let index = this.current.dataset.index;
-    // this.service.delete('PC', index);
+    let key = this.current.parentNode.id;
+    let index = this.current.dataset.index;
+    this.service.delete(key, index);
     this.setData();
   }
 
@@ -159,41 +159,13 @@ export class CharacterManagementComponent implements OnInit {
     let chara: Chara = Convert.toChara(str);
     // console.log(chara);
     if (bool) { // ファイルがアップロードされた場合
-      let plist = Array();
-      let nlist = Array();
 
-      let pls = JSON.parse(localStorage.getItem('PC'));
-      if (pls !== null) {
-        for (let i = 0; i < pls.length; i++) {
-          plist.push(pls[i]);
-        }
-      }
-
-      let nls = JSON.parse(localStorage.getItem('NPC'));
-      if (nls !== null) {
-        for (let i = 0; i < nls.length; i++) {
-          nlist.push(nls[i]);
-        }
-      }
 
       if (chara.Setting.type === 'PC') {
-        if (plist.length === 0) {
-          plist[0] = chara;
-        } else {
-          plist.push(chara);
-        }
+        this.service.setItem('PC' , chara);
       } else {
-        if (nlist.length === 0) {
-          nlist[0] = chara;
-        } else {
-          nlist.push(chara);
-        }
+        this.service.setItem('NPC' , chara);
       }
-
-     // this.service.setItem('PC' , plist);
-
-      localStorage.setItem('PC', JSON.stringify(plist));
-      localStorage.setItem('NPC', JSON.stringify(nlist));
 
       this.setData();
 
