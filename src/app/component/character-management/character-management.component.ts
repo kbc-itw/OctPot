@@ -155,25 +155,25 @@ export class CharacterManagementComponent implements OnInit {
   pushHTML(str , bool: boolean = true) {
     let chara: Chara = Convert.toChara(str);
   　// console.log(chara);
-    let plist = Array();
-    let nlist = Array();
+    if (bool) { // ファイルがアップロードされた場合
+      let plist = Array();
+      let nlist = Array();
 
-    let pls = JSON.parse(localStorage.getItem('PC'));
-    if (pls !== null) {
-      for (let i = 0; i < pls.length; i++) {
-        plist.push(pls[i]);
+      let pls = JSON.parse(localStorage.getItem('PC'));
+      if (pls !== null) {
+        for (let i = 0; i < pls.length; i++) {
+          plist.push(pls[i]);
+        }
       }
-    }
 
-     let nls = JSON.parse(localStorage.getItem('NPC'));
-     if (nls !== null) {
-       for (let i = 0; i < nls.length; i++) {
-         nlist.push(nls[i]);
-       }
-     }
+      let nls = JSON.parse(localStorage.getItem('NPC'));
+      if (nls !== null) {
+        for (let i = 0; i < nls.length; i++) {
+          nlist.push(nls[i]);
+        }
+      }
 
-     if ( bool ) {
-      if ( chara.Setting.type === 'PC' ) {
+      if (chara.Setting.type === 'PC') {
         if (plist.length === 0) {
           plist[0] = chara;
         } else {
@@ -186,14 +186,13 @@ export class CharacterManagementComponent implements OnInit {
           nlist.push(chara);
         }
       }
-     }
 
-    localStorage.setItem('PC', JSON.stringify(plist));
-    localStorage.setItem('NPC', JSON.stringify(nlist));
 
-    if (bool) {
-      console.log('boooo');
+      localStorage.setItem('PC', JSON.stringify(plist));
+      localStorage.setItem('NPC', JSON.stringify(nlist));
+
       this.setData();
+
     }
     // 能力値
     // Status.baseStatus
