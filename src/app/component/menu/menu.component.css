@@ -19,6 +19,7 @@ section#menu {
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
       font-size: 12px;
+      position: relative;
     }
       section#menu ul li button {
         display: block;
@@ -34,21 +35,47 @@ section#menu {
           background: #519657;
           transition-duration: 0.3s;
         }
-    section#menu ul li.pass_c {
-      position: relative;
-    }
+    section#menu ul li.flieSelect {}
+      section#menu ul li.flieSelect .sendFlie {
+        position: absolute;
+        top: 30px;
+        left: 0;
+        padding: 5px 15px;
+        width: 370px;
+        height: 400px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        background: #81c784;
+      }
+        section#menu ul li.flieSelect .sendFlie form {
+          width: 100%;
+          height: auto;
+          background: #fff;
+        }
+          section#menu ul li.flieSelect .sendFlie form input {}
+            section#menu ul li.flieSelect .sendFlie form input:first-child {
+              float: left;
+            }
+            section#menu ul li.flieSelect .sendFlie form input:last-child {
+              float: right;
+              height: 24px;
+              -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+            }
+        section#menu ul li.flieSelect .sendFlie ul.charaList {}
+          section#menu ul li.flieSelect .sendFlie ul.charaList li {}
+            section#menu ul li.flieSelect .sendFlie ul.charaList li button {}
+    section#menu ul li.pass_c {}
       section#menu ul li.pass_c .passForm {
         position: absolute;
         top: 30px;
         left: 0;
+        padding: 5px 15px;
+        width: 370px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        background: #81c784;
       }
-    section#menu ul li .passForm {
-      padding: 5px 15px;
-      width: 370px;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-      background: #81c784;
-    }
       section#menu ul li form {
         float: left;
       }
