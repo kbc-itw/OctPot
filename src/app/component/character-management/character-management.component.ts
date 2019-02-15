@@ -67,19 +67,24 @@ export class CharacterManagementComponent implements OnInit {
   @ViewChild('PC') el: ElementRef;
 
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2,
+              private service: CharacterManagementService
+  ) {
   }
 
   ngOnInit() {
     this.setData(); // ページ読み込み時にキャラクター取得
+  //  this.service.set('PC', '{ aa , ii}');
   }
 
-  PC_click( event ) {
+
+
+  PC_click(event) {
 
     if (this.current !== undefined) {
       this.renderer.removeClass(this.current, 'current');
     }
-    this.renderer.addClass(event.target , 'current');
+    this.renderer.addClass(event.target, 'current');
     this.current = event.target;
 
     let index = event.target.dataset.index;
@@ -89,16 +94,16 @@ export class CharacterManagementComponent implements OnInit {
     for (let i = 0; i < pls.length; i++) {
       plist[i] = pls[i];
     }
-    this.pushHTML(JSON.stringify(pls[index]) , false);
+    this.pushHTML(JSON.stringify(pls[index]), false);
 
   }
 
-  NPC_click( event ) {
+  NPC_click(event) {
 
     if (this.current !== undefined) {
       this.renderer.removeClass(this.current, 'current');
     }
-    this.renderer.addClass(event.target , 'current');
+    this.renderer.addClass(event.target, 'current');
     this.current = event.target;
 
     let index = event.target.dataset.index;
@@ -108,27 +113,15 @@ export class CharacterManagementComponent implements OnInit {
     for (let i = 0; i < nls.length; i++) {
       nlist[i] = nls[i];
     }
-    this.pushHTML(JSON.stringify(nls[index]) , false);
+    this.pushHTML(JSON.stringify(nls[index]), false);
 
   }
 
   setData() {
 
-    // PC取得
-    let pls = JSON.parse(localStorage.getItem('PC'));
-    let plist = [];
-    for (let i = 0; i < pls.length; i++) {
-      plist[i] = pls[i];
-    }
-    this.PC = plist;
+   this.PC = this.service.getItem( 'PC' );
+   this.NPC = this.service.getItem( 'NPC' );
 
-    // NPC取得
-    let nls = JSON.parse(localStorage.getItem('NPC'));
-    let nlist = [];
-    for (let i = 0; i < nls.length; i++) {
-      nlist[i] = nls[i];
-    }
-    this.NPC = nlist;
   }
 
   onDrop(event) { // ドラッグアンドドロップでのキャラクター追加
@@ -137,25 +130,34 @@ export class CharacterManagementComponent implements OnInit {
     let file = event.dataTransfer.files;
     this.getJson(file);
   }
+
   onDragOver(event) {
     event.stopPropagation();
     event.preventDefault();
+  }
+
+  delete() {
+    console.log(this.current.parentNode.closest('label'));
+    // let index = this.current.dataset.index;
+    // this.service.delete('PC', index);
+    this.setData();
   }
 
   getJson(list: File[]) {
 
     let fileobj = list[0];  // 指定されるファイルは1つのみなので[0]
     let reader = new FileReader();
-    reader.onload = function () {  // readAsTextでファイルの読み込みが終わったら呼び出される
+    reader.onload = () => {  // readAsTextでファイルの読み込みが終わったら呼び出される
       // CharacterjsonToHtmlComponent.prototype.pushJson(reader.result);  // ファイルの内容を各値に入れていく
-      CharacterManagementComponent.prototype.pushHTML(reader.result);  // ファイルの内容を各値に入れていく
+      // CharacterManagementComponent.prototype.pushHTML(reader.result);  // ファイルの内容を各値に入れていく
+      this.pushHTML(reader.result);
     };
     reader.readAsText(fileobj);  // ファイルの内容をtextで読む (reader.onloadのreader.resultがstringになるへ)
   }
 
-  pushHTML(str , bool: boolean = true) {
+  pushHTML(str, bool: boolean = true) {
     let chara: Chara = Convert.toChara(str);
-  　// console.log(chara);
+    // console.log(chara);
     if (bool) { // ファイルがアップロードされた場合
       let plist = Array();
       let nlist = Array();
@@ -188,6 +190,7 @@ export class CharacterManagementComponent implements OnInit {
         }
       }
 
+     // this.service.setItem('PC' , plist);
 
       localStorage.setItem('PC', JSON.stringify(plist));
       localStorage.setItem('NPC', JSON.stringify(nlist));

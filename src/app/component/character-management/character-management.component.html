@@ -5,12 +5,12 @@
     <div class="innerContainer">
       <mat-tab-group class="matTabs">
         <mat-tab label="PC">
-          <ul class="characterList">
+          <ul class="characterList" label="PC">
             <li *ngFor="let p of PC ; let i = index" [attr.data-index]="i" (click)="PC_click($event)" >{{p.Setting.character.name}}</li>
           </ul>
         </mat-tab>
         <mat-tab label="NPC">
-          <ul class="characterList">
+          <ul class="characterList" label="NPC">
             <li *ngFor="let n of NPC ; let i = index" [attr.data-index]="i" (click)="NPC_click($event)" >{{n.Setting.character.name}}</li>
           </ul>
         </mat-tab>
@@ -26,6 +26,9 @@
           <input id="upfile" name="upfile" type="file"  style="display: none;" #fl
                  accept="application/json" (change)="getJson(fl.files)" />
           <label for="upfile" class="linkBtn">追加</label>
+        </li>
+        <li>
+          <label class="linkBtn" (click)="delete()">削除</label>
         </li>
       </ul>
     </div>
