@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import * as client from 'socket.io-client';
 import {BehaviorSubject} from 'rxjs';
+import {CharacterDataListService} from './character-data-list.service';
 
 @Injectable()
 export class ChatRoomService {
@@ -16,7 +17,7 @@ export class ChatRoomService {
   public data;
   private bool;
 
-  constructor() {
+  constructor(private cdl: CharacterDataListService) {
   }
 
   preparation() {
@@ -116,6 +117,12 @@ export class ChatRoomService {
         console.log('file_channel_open');
       };
       this.file_channel.onmessage = (event) => {
+        console.log('データチャネルメッセージ取得:', event.data);
+        try {
+          this.cdl.onNotifyShareDataChanged(event.data);
+        } catch (e) {
+          console.log(e);
+        }
       };
       this.file_channel.onclose = () => {
         console.log('DataChannelClose');

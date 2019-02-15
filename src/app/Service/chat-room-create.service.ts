@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import * as client from 'socket.io-client';
 import {BehaviorSubject} from 'rxjs';
 import * as moment from 'moment';
-import {CharaSheetComponent} from '../component/chara-sheet/chara-sheet.component';
+import {CharacterDataListService} from './character-data-list.service';
 
 @Injectable()
 export class ChatRoomCreateService {
@@ -29,7 +29,7 @@ export class ChatRoomCreateService {
   public data = new BehaviorSubject<string>(null);
   private date: string;
 
-  constructor(private sheet: CharaSheetComponent) {
+  constructor(private cdl: CharacterDataListService) {
   }
 
   io_connect() {
@@ -182,8 +182,9 @@ export class ChatRoomCreateService {
     this.member[this.member.length - 1].f_channel.onmessage = (event) => {
       console.log('データチャネルメッセージ取得:', event.data);
       console.log(event.data[0]);
+      console.log(typeof event.data);
       try {
-        this.sheet.addCharacter(event.data);
+        this.cdl.onNotifyShareDataChanged(event.data);
       } catch (e) {
         console.log(e);
       }

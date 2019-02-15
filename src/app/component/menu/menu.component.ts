@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MenuService} from '../../Service/menu-service';
 import {ChatRoomCreateComponent} from '../chat-room-create/chat-room-create.component';
 import {ChatRoomComponent} from '../chat-room/chat-room.component';
+import {CharacterDataListService} from '../../Service/character-data-list.service';
 
 @Component({
   selector: 'app-menu',
@@ -19,7 +20,8 @@ export class MenuComponent implements OnInit {
   ip;
   userType;
 
-  constructor(private menu: MenuService, private chatroom: ChatRoomCreateComponent, private chat: ChatRoomComponent) {
+  constructor(private menu: MenuService, private chatroom: ChatRoomCreateComponent,
+              private chat: ChatRoomComponent, private cdl: CharacterDataListService) {
   }
 
   /*
@@ -70,12 +72,18 @@ export class MenuComponent implements OnInit {
     if (this.chatroom.getUserType()) {
       console.log('host');
       // もしhostだったらmember全員にfile送信
-      var value = this.name + ': ' + file;
       try {
-        this.userType.get_member().forEach((e) => {
-          console.log('--------------------------------------------------------------------', e);
-          e.channel.send(value);
-        });
+        var fr = new FileReader();
+        fr.onload = () => {
+          // 読み込み完了時に送信
+          console.log(typeof fr.result);
+          this.cdl.onNotifyShareDataChanged(fr.result);
+          this.userType.get_member().forEach((e) => {
+            console.log('--------------------------------------------------------------------', e);
+            e.f_channel.send(fr.result);
+          });
+        };
+        fr.readAsText(file[0]);
         // this.member[this.member.length - 1].channel.send(value);
       } catch (e) {
         console.log('message: ');
@@ -85,7 +93,6 @@ export class MenuComponent implements OnInit {
       console.log('client');
       // clientの場合
       var file_channel = this.userType.get_file_channel();
-      console.log(value);
       try {
         console.log(file[0]);
         console.log(file[0].name);
