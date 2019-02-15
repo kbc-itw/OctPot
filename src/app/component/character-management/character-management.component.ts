@@ -80,6 +80,7 @@ export class CharacterManagementComponent implements OnInit {
     }
     this.renderer.addClass(event.target , 'current');
     this.current = event.target;
+
     let index = event.target.dataset.index;
 
     let pls = JSON.parse(localStorage.getItem('PC'));
@@ -93,8 +94,12 @@ export class CharacterManagementComponent implements OnInit {
 
   NPC_click( event ) {
 
-    this.renderer.removeClass(event , 'current');
-    // this.renderer.addClass(  , 'current');
+    if (this.current !== undefined) {
+      this.renderer.removeClass(this.current, 'current');
+    }
+    this.renderer.addClass(event.target , 'current');
+    this.current = event.target;
+
     let index = event.target.dataset.index;
 
     let nls = JSON.parse(localStorage.getItem('NPC'));
