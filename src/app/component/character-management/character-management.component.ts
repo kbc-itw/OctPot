@@ -73,8 +73,9 @@ export class CharacterManagementComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.setData(); // ページ読み込み時にキャラクター取得
-  //  this.service.set('PC', '{ aa , ii}');
+
   }
 
 
@@ -119,8 +120,8 @@ export class CharacterManagementComponent implements OnInit {
 
   setData() {
 
-   this.PC = this.service.getItem( 'PC' );
-   this.NPC = this.service.getItem( 'NPC' );
+    this.PC = this.service.getItem('PC');
+    this.NPC = this.service.getItem( 'NPC' );
 
   }
 
@@ -159,8 +160,6 @@ export class CharacterManagementComponent implements OnInit {
     let chara: Chara = Convert.toChara(str);
     // console.log(chara);
     if (bool) { // ファイルがアップロードされた場合
-
-
       if (chara.Setting.type === 'PC') {
         this.service.setItem('PC' , chara);
       } else {

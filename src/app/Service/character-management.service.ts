@@ -8,11 +8,17 @@ export class CharacterManagementService {
   }
 
   getItem( key ) {
-    return  JSON.parse(localStorage.getItem(key));
+    if (localStorage.getItem(key) === null) {
+      console.log('null');
+      localStorage.setItem( key, JSON.stringify( Array()) );
+      return '';
+    } else {
+      return JSON.parse( localStorage.getItem(key));
+    }
   }
 
   setItem(key , value) {
-    let ls = [];
+    let ls = Array();
     ls = JSON.parse(localStorage.getItem(key));
     ls.push( value );
     localStorage.setItem( key, JSON.stringify(ls));
