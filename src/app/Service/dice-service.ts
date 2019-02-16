@@ -14,6 +14,7 @@ export class DiceService {
       result[0] = this.calculation(word);
       if (result[0].fm === 0) {
         result[1] = '不正なダイスです。';
+        result[2] = undefined;
         return result;
       }
 

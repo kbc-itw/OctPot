@@ -61,10 +61,17 @@ export class ChatRoomCreateComponent implements OnInit {
     if (this.comment !== null && this.comment !== undefined && this.comment !== '') {
       var result = this.dice.roll(this.comment);
       if (result[1] !== undefined) {
-        if (result[4] !== true) {
+        console.log('dice');
+        if ( result[2] === undefined ) {
+          console.log('error');
+          this.chatroom.message(result[1]);
+        } else if (result[4] !== true) {
+          console.log('ok');
           // sercretdice出ない場合
           this.chatroom.message(result[2] + result[3] + result[1]);
         } else if (result[4] === true) {
+          console.log('ok');
+
           // sercretdice
           this.chatroom.message(result[2] + result[3] + result[1], true);
         }
