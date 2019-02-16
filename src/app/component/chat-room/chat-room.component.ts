@@ -71,8 +71,13 @@ export class ChatRoomComponent implements OnInit {
   message() {
     if (this.comment !== null && this.comment !== undefined && this.comment !== '') {
       var result = this.dice.roll(this.comment);
-      if (result[1] !== undefined) {
-        this.chat.message(result[2] + result[3] + result[1]);
+
+        if (result[1] !== undefined) {
+        if ( result[2] === undefined ) {
+          this.chat.message( result[1] );
+        } else {
+          this.chat.message(result[2]);
+        }
       } else {
         this.chat.message(this.comment);
       }
