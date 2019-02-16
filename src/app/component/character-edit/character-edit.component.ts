@@ -126,8 +126,6 @@ export class CharacterEditComponent implements OnInit {
       let charaArray = this.characterManagement.getItem(this.characterSelected.selectedType);
       this.pushCharaData(JSON.stringify(charaArray[this.characterSelected.selectedIndex]));
     }
-    console.log(this.characterSelected.selectedIndex);
-    console.log(this.characterSelected.selectedType);
   }
 
   selectJob(event) {
@@ -627,7 +625,13 @@ export class CharacterEditComponent implements OnInit {
   saveLocal() {
     try {
       let charaClass = this.getCharaClass();
-      this.characterManagement.setItem(this.stype, charaClass);
+      if (this.characterSelected.selectedType === this.stype) {
+          this.characterManagement.editItem(this.characterSelected.selectedType,
+          this.characterSelected.selectedIndex,
+          charaClass);
+      } else {
+        this.characterManagement.setItem(this.stype, charaClass);
+      }
       alert('ローカルストレージに保存できました。');
     }catch (e) {
       alert('保存できませんでした。記述に誤りがないか確認してください。');

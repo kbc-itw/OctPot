@@ -25,6 +25,15 @@ export class CharacterManagementService {
 
   }
 
+  // ローカルストレージの指定したオブジェクトの内容を書き換えます。
+  // key:PC or NPC, index: 配列の番号, value:その配列に新たに入れたい値
+  editItem(key, index, value) {
+    let ls = Array();
+    ls = JSON.parse(localStorage.getItem(key));
+    ls[index] = value;
+    localStorage.setItem( key, JSON.stringify(ls));
+  }
+
   delete( key , index ) {
     let ls = JSON.parse(localStorage.getItem(key));
     ls.splice( index , 1);
