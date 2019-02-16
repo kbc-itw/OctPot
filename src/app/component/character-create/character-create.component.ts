@@ -6,6 +6,7 @@ import { CharacterManagementService} from '../../Service/character-management.se
 import { Convert, Chara, Setting, Character, Skill,
       Behavior, Status, BaseStatus, FluctuationStatus,
       Items, Item, Weapon, Profile } from '../../model/character-info-model';
+import {tryCatch} from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'app-character-create',
@@ -749,8 +750,13 @@ export class CharacterCreateComponent implements OnInit {
 
   // ローカルストレージに保存
   saveLocal() {
-    let charaClass = this.getCharaClass();
-    this.characterManagement.setItem(this.stype, charaClass);
+    try {
+      let charaClass = this.getCharaClass();
+      this.characterManagement.setItem(this.stype, charaClass);
+      alert('ローカルストレージに保存されました。');
+    }catch (e) {
+      alert('保存できませんでした。記述に誤りがないか確認してください');
+    }
   }
 
   // 現在のキャラ情報をCharaクラスのオブジェクトにして返す

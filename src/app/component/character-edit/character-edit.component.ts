@@ -616,8 +616,13 @@ export class CharacterEditComponent implements OnInit {
 
   // ローカルストレージに保存
   saveLocal() {
-    let charaClass = this.getCharaClass();
-    this.characterManagement.setItem(this.stype, charaClass);
+    try {
+      let charaClass = this.getCharaClass();
+      this.characterManagement.setItem(this.stype, charaClass);
+      alert('ローカルストレージに保存できました。');
+    }catch (e) {
+      alert('保存できませんでした。記述に誤りがないか確認してください。');
+    }
   }
 
   // 現在の状態でキャラクラスを返す
