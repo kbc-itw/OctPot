@@ -526,6 +526,7 @@ section {
   .submits ul li {
     display: inline-block;
     border-right: 7px;
+    margin-right: 10px;
   }
       .submits ul li button {
         padding: 5px 25px;
@@ -538,7 +539,7 @@ section {
         box-sizing: border-box;
       }
         .submits ul li.cancel button {
-          margin-left: 10px;
+          margin-right: 0;
           background: #f44336;
           border: 2px solid #f44336;
         }
