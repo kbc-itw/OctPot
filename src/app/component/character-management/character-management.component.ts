@@ -77,6 +77,9 @@ export class CharacterManagementComponent implements OnInit {
   ngOnInit() {
 
     this.setData(); // ページ読み込み時にキャラクター取得
+    // 選択中のキャラを初期化
+    this.characterSelected.selectedType = '';
+    this.characterSelected.selectedIndex = 0;
 
   }
 
