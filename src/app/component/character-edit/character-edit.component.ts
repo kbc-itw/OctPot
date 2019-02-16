@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SkillList} from '../../model/skillList';
 import {JobList} from '../../model/jobList';
+import {CharacterManagementService} from '../../Service/character-management.service';
 import {
   BaseStatus,
   Behavior,
@@ -102,7 +103,7 @@ export class CharacterEditComponent implements OnInit {
   private remProfessionalPoint = 0;
   private remInterestPoint = 0;
 
-  constructor(private characre: CharacterCreateService) {
+  constructor(private characre: CharacterCreateService, private characterManagement: CharacterManagementService) {
     // 全職業のリストを取得する。
     this.jobList = new JobList().getAllJob();
     // 何のスキルがあるか配列から読み込むメソッド達を使う
@@ -604,8 +605,23 @@ export class CharacterEditComponent implements OnInit {
   ngOnInit() {
   }
 
-
+  // JSONファイルに保存
   download() {
+    let newchara = this.getCharaClass();
+    let characterJson = Convert.charaToJson(newchara);  // CharaクラスをJSONに変換する
+
+    let filename = this.cname + '.json'; // ファイル名を[キャラクターの名前].json
+    this.characre.save(characterJson, document.getElementById('download'), filename);  // JSON文字列を保存させる
+  }
+
+  // ローカルストレージに保存
+  saveLocal() {
+    let charaClass = this.getCharaClass();
+    this.characterManagement.setItem(this.stype, charaClass);
+  }
+
+  // 現在の状態でキャラクラスを返す
+  getCharaClass() {
     // Charaクラスを完成させる
     let newchara = new Chara(0);
 
@@ -727,10 +743,7 @@ export class CharacterEditComponent implements OnInit {
     newprofile.otherMemo = this.pOtherMemo;
     newchara.profile = newprofile;  // charaに入れる
 
-    let characterJson = Convert.charaToJson(newchara);  // CharaクラスをJSONに変換する
-
-    let filename = this.cname + '.json'; // ファイル名を[キャラクターの名前].json
-    this.characre.save(characterJson, document.getElementById('download'), filename);  // JSON文字列を保存させる
-
+    let charaJson = Convert.charaToJson(newchara);
+    return Convert.toChara(charaJson);
   }
 }
