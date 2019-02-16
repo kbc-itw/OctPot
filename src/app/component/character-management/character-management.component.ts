@@ -1,6 +1,7 @@
 import {Component, OnInit, Renderer2, ViewChild, ElementRef} from '@angular/core';
 import { CharacterManagementService } from '../../Service/character-management.service';
 import { Convert, Chara } from '../../model/character-info-model';
+import { CharacterSelectedService} from '../../Service/character-selected.service';
 
 @Component({
   selector: 'app-character-management',
@@ -68,13 +69,17 @@ export class CharacterManagementComponent implements OnInit {
 
 
   constructor(private renderer: Renderer2,
-              private service: CharacterManagementService
+              private service: CharacterManagementService,
+              private characterSelected: CharacterSelectedService
   ) {
   }
 
   ngOnInit() {
 
     this.setData(); // ページ読み込み時にキャラクター取得
+    // 選択中のキャラを初期化
+    this.characterSelected.selectedType = '';
+    this.characterSelected.selectedIndex = 0;
 
   }
 
@@ -96,7 +101,8 @@ export class CharacterManagementComponent implements OnInit {
       plist[i] = pls[i];
     }
     this.pushHTML(JSON.stringify(pls[index]), false);
-
+    this.characterSelected.selectedIndex = index;
+    this.characterSelected.selectedType = 'PC';
   }
 
   NPC_click(event) {
@@ -115,6 +121,8 @@ export class CharacterManagementComponent implements OnInit {
       nlist[i] = nls[i];
     }
     this.pushHTML(JSON.stringify(nls[index]), false);
+    this.characterSelected.selectedIndex = index;
+    this.characterSelected.selectedType = 'NPC';
 
   }
 
