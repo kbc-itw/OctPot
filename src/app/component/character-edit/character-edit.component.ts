@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SkillList} from '../../model/skillList';
 import {JobList} from '../../model/jobList';
 import {CharacterManagementService} from '../../Service/character-management.service';
+import {CharacterSelectedService} from '../../Service/character-selected.service';
 import {
   BaseStatus,
   Behavior,
@@ -103,7 +104,9 @@ export class CharacterEditComponent implements OnInit {
   private remProfessionalPoint = 0;
   private remInterestPoint = 0;
 
-  constructor(private characre: CharacterCreateService, private characterManagement: CharacterManagementService) {
+  constructor(private characre: CharacterCreateService,
+              private characterManagement: CharacterManagementService,
+              private characterSelected: CharacterSelectedService) {
     // 全職業のリストを取得する。
     this.jobList = new JobList().getAllJob();
     // 何のスキルがあるか配列から読み込むメソッド達を使う
@@ -115,6 +118,16 @@ export class CharacterEditComponent implements OnInit {
     this.knowledgeList = skillList.knowledgeList;
     this.generateWeponFrame();
     this.generateItemFrame();
+  }
+
+  ngOnInit() {
+    if (this.characterSelected.selectedType === 'PC' ||
+    this.characterSelected.selectedType === 'NPC') {
+      let charaArray = this.characterManagement.getItem(this.characterSelected.selectedType);
+      this.pushCharaData(JSON.stringify(charaArray[this.characterSelected.selectedIndex]));
+    }
+    console.log(this.characterSelected.selectedIndex);
+    console.log(this.characterSelected.selectedType);
   }
 
   selectJob(event) {
@@ -599,10 +612,6 @@ export class CharacterEditComponent implements OnInit {
     } else if (itemType === 'item') {
       this.itemslist.splice(index, 1 );
     }
-  }
-
-
-  ngOnInit() {
   }
 
   // JSONファイルに保存
