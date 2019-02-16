@@ -98,8 +98,21 @@ export class ChatRoomCreateService {
         }
       });
     };
-    this.member[this.member.length - 1].channel.onclose = () => {
+    this.member[this.member.length - 1].channel.onclose = (e) => {
       console.log('DataChannelClose');
+      console.log(this.member.length - 1);
+      console.log(e);
+      console.log(e.target.readyState);
+      let num = 0;
+      this.member.forEach((e) => {
+        console.log(e.channel.readyState);
+        num += 1;
+        if (e.channel.readyState === 'closed') {
+          console.log('fff');
+        }
+        // 削除した場所と入れ替える。
+        console.log('');
+      });
     };
     this.member[this.member.length - 1].channel.onerror = (err) => {
       console.log(err);
