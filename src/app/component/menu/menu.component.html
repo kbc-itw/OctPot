@@ -9,18 +9,8 @@
             <input type="submit" value="送信">
           </form>
           <ul class="charaList">
-            <li><button>キャラクター０１</button></li>
-            <li><button>キャラクター０２</button></li>
-            <li><button>キャラクター０３</button></li>
-            <li><button>キャラクター０１</button></li>
-            <li><button>キャラクター０２</button></li>
-            <li><button>キャラクター０３</button></li>
-            <li><button>キャラクター０１</button></li>
-            <li><button>キャラクター０２</button></li>
-            <li><button>キャラクター０３</button></li>
-            <li><button>キャラクター０１</button></li>
-            <li><button>キャラクター０２</button></li>
-            <li><button>キャラクター０３</button></li>
+            <li *ngFor="let p of PC ; let i = index" [attr.data-index]="i"
+                (click)="select($event)">{{p.Setting.character.name}}</li>
           </ul>
           <button class="cancel" (click)="file=false; val='null'">キャンセル</button>
         </div>

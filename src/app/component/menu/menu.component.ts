@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Renderer2} from '@angular/core';
 import {MenuService} from '../../Service/menu-service';
 import {ChatRoomCreateComponent} from '../chat-room-create/chat-room-create.component';
 import {ChatRoomComponent} from '../chat-room/chat-room.component';
 import {CharacterDataListService} from '../../Service/character-data-list.service';
+import { CharacterManagementService } from '../../Service/character-management.service';
+import { CharacterSelectedService} from '../../Service/character-selected.service';
 
 @Component({
   selector: 'app-menu',
@@ -19,9 +21,13 @@ export class MenuComponent implements OnInit {
   io;
   ip;
   userType;
+  PC;
+  current;
 
   constructor(private menu: MenuService, private chatroom: ChatRoomCreateComponent,
-              private chat: ChatRoomComponent, private cdl: CharacterDataListService) {
+              private chat: ChatRoomComponent, private cdl: CharacterDataListService,
+              private management: CharacterManagementService, private characterSelected: CharacterSelectedService,
+              private renderer: Renderer2) {
   }
 
   /*
@@ -46,6 +52,10 @@ export class MenuComponent implements OnInit {
     console.log(params[0]);
     this.pass = params[0].pass;
     this.name = params[0].name;
+
+    this.PC = this.management.getItem('PC');
+
+
   }
 
   click(word) {
@@ -121,4 +131,24 @@ export class MenuComponent implements OnInit {
   leave() {
     this.userType.leave();
   }
+
+  select(event) {
+
+    if (this.current !== undefined) {
+      this.renderer.removeClass(this.current, 'current');
+    }
+    this.renderer.addClass(event.target, 'current');
+    this.current = event.target;
+
+    let index = event.target.dataset.index;
+
+    let pls = JSON.parse(localStorage.getItem('PC'));
+    let plist = [];
+    for (let i = 0; i < pls.length; i++) {
+      plist[i] = pls[i];
+    }
+    this.characterSelected.selectedIndex = index;
+    this.characterSelected.selectedType = 'PC';
+  }
+
 }
