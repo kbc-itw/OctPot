@@ -120,19 +120,17 @@ export class ChatRoomCreateService {
       console.log('データチャネルメッセージ取得:', event.data);
       console.log(event);
       console.log(typeof event.data);
-      if (false) {
-        // jsonかどうか見分けて処理を分ける。
-        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajbjasbcbcjbcj');
-      }
       var val = event.data;
       this.data.next(val);
       this.member.forEach((e) => {
-        console.log(event);
-        console.log('e: ', e);
-        console.log('e.peer: ', e.m_peer);
-        console.log('e.channel: ', e.m_channel);
-        if (e.m_channel.readyState === 'open') {
-          e.m_channel.send(val);
+        if (event.currentTarget !== e.channel) {
+          console.log(event);
+          console.log('e: ', e);
+          console.log('e.peer: ', e.m_peer);
+          console.log('e.channel: ', e.m_channel);
+          if (e.m_channel.readyState === 'open') {
+            e.m_channel.send(val);
+          }
         }
       });
     };

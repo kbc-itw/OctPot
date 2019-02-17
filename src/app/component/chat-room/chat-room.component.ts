@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ChatRoomService} from '../../Service/chat-room-service';
 import {DiceService} from '../../Service/dice-service';
 import * as moment from 'moment';
+import * as async from 'async';
 
 @Component({
   selector: 'app-chat-room',
@@ -41,6 +42,9 @@ export class ChatRoomComponent implements OnInit {
       if (message !== null && message !== undefined && message !== '') {
         this.message_list.push({message: message, date: date});
       }
+      setTimeout(() => {
+        this.scrollHeight();
+      }, 0.0001);
     });
   }
 
@@ -72,9 +76,9 @@ export class ChatRoomComponent implements OnInit {
     if (this.comment !== null && this.comment !== undefined && this.comment !== '') {
       var result = this.dice.roll(this.comment);
 
-        if (result[1] !== undefined) {
-        if ( result[2] === undefined ) {
-          this.chat.message( result[1] );
+      if (result[1] !== undefined) {
+        if (result[2] === undefined) {
+          this.chat.message(result[1]);
         } else {
           this.chat.message(result[2]);
         }
@@ -83,6 +87,19 @@ export class ChatRoomComponent implements OnInit {
       }
     }
     this.comment = null;
+  }
+
+  scrollHeight() {
+    // チャット時にチャットスクロールの一番下に移動
+    console.log('scroll');
+    let scr: any = document.getElementsByClassName('log');
+    try {
+      console.log(scr[0].scrollHeight);
+      console.log(scr[0].scrollTop);
+      scr[0].scrollTop = scr[0].scrollHeight;
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   getUserType() {
