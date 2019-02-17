@@ -89,12 +89,14 @@ export class ChatRoomCreateService {
       var val = event.data;
       this.data.next(val);
       this.member.forEach((e) => {
-        console.log(event);
-        console.log('e: ', e);
-        console.log('e.peer: ', e.peer);
-        console.log('e.channel: ', e.channel);
-        if (e.channel.readyState === 'open') {
-          e.channel.send(val);
+        if (event.currentTarget !== e.channel) {
+          console.log(event);
+          console.log('e: ', e);
+          console.log('e.peer: ', e.peer);
+          console.log('e.channel: ', e.channel);
+          if (e.channel.readyState === 'open') {
+            e.channel.send(val);
+          }
         }
       });
     };

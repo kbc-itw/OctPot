@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import * as client from 'socket.io-client';
 import {BehaviorSubject} from 'rxjs';
+
 @Injectable()
 export class ChatRoomService {
   // hostのIPとパスワードを入力してルームに入室
@@ -12,7 +13,10 @@ export class ChatRoomService {
   private name;
   public data;
   private bool;
-  constructor() {}
+
+  constructor() {
+  }
+
   preparation() {
     console.groupCollapsed('constructor');
     console.log('constructor', 'from', 'service');
@@ -50,7 +54,7 @@ export class ChatRoomService {
   }
 
   dc() {
-    this.peer.ondatachannel =  (e) => {
+    this.peer.ondatachannel = (e) => {
       console.groupCollapsed('dcFunction');
       // e.channelにtestが格納されているのでそれを使う
       console.log('ondDataChannel');
@@ -61,6 +65,7 @@ export class ChatRoomService {
         console.log('DataChannelOpen');
         var value: string = this.name + 'が入室しました。';
         this.channel.send(value);
+        this.data.next(value);
       };
       this.channel.onmessage = (event) => {
         console.log('データチャネルメッセージ取得:', event.data);
@@ -91,7 +96,7 @@ export class ChatRoomService {
       console.groupCollapsed('onicecadidate');
       if (e.candidate) {
         this.io.emit('candidate', {candidate: e.candidate, sdp: this.peer.localDescription.sdp});
-      }else {
+      } else {
         console.log('candi  err');
         return;
       }
@@ -108,6 +113,7 @@ export class ChatRoomService {
     this.io.emit('enter', ip, pass);
     this.name = name;
   }
+
   // SDPofferが送られてきたときの処理
   sdp() {
     console.groupCollapsed('sdpFunction');
@@ -151,19 +157,21 @@ export class ChatRoomService {
     });
     console.groupEnd();
   }
+
   // peer通信を始める準備
   connect() {
     console.groupCollapsed('connectFunction');
     console.log('connect service');
     console.groupEnd();
   }
+
   // sdpを送る処理
   offer() {
     console.groupCollapsed('offerFunction');
     console.log('this from offer');
     if (this.channel === undefined) {
       this.channel = this.peer.createDataChannel('my channel');
-    }else {
+    } else {
       console.log(this.peer.localDescription.sdp);
     }
     this.channel.onopen = function () {
@@ -178,17 +186,18 @@ export class ChatRoomService {
     this.channel.onerror = function (err) {
       console.log(err);
     };
-    this.peer.createOffer( (offer) => {
+    this.peer.createOffer((offer) => {
       this.peer.setLocalDescription(new RTCSessionDescription(offer), () => {
         console.log('clientSide', 'offer');
         this.io.emit('SDP', {sdp: offer});
       });
-      }, function (error) {
+    }, function (error) {
       console.log(error);
     });
     console.groupEnd();
     return;
   }
+
   // sdpが送られてきたときに行う処理
   answer(host) {
     console.groupCollapsed('answerFunction');
@@ -202,20 +211,22 @@ export class ChatRoomService {
       console.profile('ondatachannel');
       this.dc();
       console.profileEnd();
-    }, function(error) {
+    }, function (error) {
       console.log(error);
     });
     console.groupEnd();
     return;
   }
+
   message(e) {
     var value = this.name + ': ' + e;
     console.log(value);
     if (this.channel !== undefined) {// もしhostとの接続が切れていなかったら
       this.channel.send(value);
     }
-    // this.data.next(value);
+    this.data.next(value);
   }
+
   leave() {
     var value = this.name + 'が退出しました。';
     this.channel.send(value);
