@@ -397,7 +397,7 @@ export class ChatRoomCreateService {
 
   message(e, bool = false) {
     if (!bool) {
-      var value: string = this.name + ': ' + e;
+      var value: string = this.name + '(ホスト)' + ': ' + e;
       try {
         this.member.forEach((e) => {
           console.log('--------------------------------------------------------------------', e);
