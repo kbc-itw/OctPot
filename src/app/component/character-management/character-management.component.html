@@ -5,13 +5,15 @@
     <div class="innerContainer">
       <mat-tab-group class="matTabs">
         <mat-tab label="PC">
-          <ul class="characterList" label="PC">
-            <li *ngFor="let p of PC ; let i = index" [attr.data-index]="i" (click)="PC_click($event)" >{{p.Setting.character.name}}</li>
+          <ul class="characterList" id="PC">
+            <li *ngFor="let p of PC ; let i = index" [attr.data-index]="i"
+                (click)="PC_click($event)">{{p.Setting.character.name}}</li>
           </ul>
         </mat-tab>
         <mat-tab label="NPC">
-          <ul class="characterList" label="NPC">
-            <li *ngFor="let n of NPC ; let i = index" [attr.data-index]="i" (click)="NPC_click($event)" >{{n.Setting.character.name}}</li>
+          <ul class="characterList" id="NPC">
+            <li *ngFor="let n of NPC ; let i = index" [attr.data-index]="i"
+                (click)="NPC_click($event)">{{n.Setting.character.name}}</li>
           </ul>
         </mat-tab>
       </mat-tab-group>
@@ -20,20 +22,23 @@
           <a class="linkBtn" routerLink="/character-create">作成</a>
         </li>
         <li>
-          <a class="linkBtn" routerLink="/character-edit">編集</a>
+          <a class="editLinkBtn" routerLink="/character-edit">編集</a>
         </li>
+      </ul>
+      <ul class="bottoms">
         <li>
-          <input id="upfile" name="upfile" type="file"  style="display: none;" #fl
-                 accept="application/json" (change)="getJson(fl.files)" />
+          <input id="upfile" name="upfile" type="file" style="display: none;" #fl
+                 accept="application/json" (change)="getJson(fl.files)"/>
           <label for="upfile" class="linkBtn">追加</label>
         </li>
         <li>
-          <label class="linkBtn" (click)="delete()">削除</label>
+          <label class="raised-warn" (click)="delete()">削除</label>
         </li>
       </ul>
     </div>
   </div>
-  <div class="Right" appFileDrop (dragover)="onDragOver($event)" (drop)="onDrop($event)" (onFileDrop)="onFileDrop($event)" >
+  <div class="Right" appFileDrop (dragover)="onDragOver($event)" (drop)="onDrop($event)"
+       (onFileDrop)="onFileDrop($event)">
     <h1>キャラクター詳細</h1>
     <div class="innerContainer clearfix">
       <div class="characterStatus">
@@ -142,7 +147,7 @@
             </div>
           </mat-tab>
           <mat-tab label="技能">
-            <dl class="skillList" >
+            <dl class="skillList">
               <dt><h3>戦闘技能</h3></dt>
               <dd>
                 <table>
@@ -162,7 +167,7 @@
                     <td>{{combat.hobbyPoint}}</td>
                     <td>{{combat.growthPoint}}</td>
                     <td>{{combat.otherPoint}}</td>
-                    <td>{{combat.initialValue+combat.jobPoint+combat.hobbyPoint+combat.growthPoint+combat.otherPoint}}</td>
+                    <td>{{combat.initialValue + combat.jobPoint + combat.hobbyPoint + combat.growthPoint + combat.otherPoint}}</td>
                   </tr>
 
                 </table>
@@ -186,7 +191,7 @@
                     <td>{{search.hobbyPoint}}</td>
                     <td>{{search.growthPoint}}</td>
                     <td>{{search.otherPoint}}</td>
-                    <td>{{search.initialValue+search.jobPoint+search.hobbyPoint+search.growthPoint+search.otherPoint}}</td>
+                    <td>{{search.initialValue + search.jobPoint + search.hobbyPoint + search.growthPoint + search.otherPoint}}</td>
                   </tr>
                 </table>
               </dd>
@@ -209,7 +214,7 @@
                     <td>{{behavior.hobbyPoint}}</td>
                     <td>{{behavior.growthPoint}}</td>
                     <td>{{behavior.otherPoint}}</td>
-                    <td>{{behavior.initialValue+behavior.jobPoint+behavior.hobbyPoint+behavior.growthPoint+behavior.otherPoint}}</td>
+                    <td>{{behavior.initialValue + behavior.jobPoint + behavior.hobbyPoint + behavior.growthPoint + behavior.otherPoint}}</td>
                   </tr>
 
                 </table>
@@ -233,7 +238,7 @@
                     <td>{{negotiation.hobbyPoint}}</td>
                     <td>{{negotiation.growthPoint}}</td>
                     <td>{{negotiation.otherPoint}}</td>
-                    <td>{{negotiation.initialValue+negotiation.jobPoint+negotiation.hobbyPoint+negotiation.growthPoint+negotiation.otherPoint}}</td>
+                    <td>{{negotiation.initialValue + negotiation.jobPoint + negotiation.hobbyPoint + negotiation.growthPoint + negotiation.otherPoint}}</td>
                   </tr>
 
                 </table>
@@ -257,7 +262,7 @@
                     <td>{{know.hobbyPoint}}</td>
                     <td>{{know.growthPoint}}</td>
                     <td>{{know.otherPoint}}</td>
-                    <td>{{know.initialValue+know.jobPoint+know.hobbyPoint+know.growthPoint+know.otherPoint}}</td>
+                    <td>{{know.initialValue + know.jobPoint + know.hobbyPoint + know.growthPoint + know.otherPoint}}</td>
                   </tr>
 
                 </table>

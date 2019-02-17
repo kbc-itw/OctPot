@@ -12,6 +12,12 @@ export class DiceService {
     if (word.match(/^[0-9]{1,}d[0-9]{1,}$/i) !== null) {
       // 比較なしのdice振り
       result[0] = this.calculation(word);
+      if (result[0].fm === 0) {
+        result[1] = '不正なダイスです。';
+        result[2] = undefined;
+        return result;
+      }
+
       result[4] = false;
       console.log(result[0]);
       result[1] = '(' + result[0].fm + ')' + '=' + result[0].sum;
@@ -106,6 +112,10 @@ export class DiceService {
     fm += dice;
     let rep = dice;
     let brep = false;
+
+    if ( num > 1000 || max > 1000) {
+      return {fm: 0, sum: 0};
+    }
 
     for (let i = 1; i < num; i++) {
       dice = Math.floor(Math.random() * max + 1);

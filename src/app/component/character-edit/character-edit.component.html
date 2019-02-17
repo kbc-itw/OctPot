@@ -62,12 +62,6 @@
               </dl>
             </div>
           </div>
-          <div>
-            <p>
-            <input id="upfile" name="upfile" type="file" #fl
-                   accept="*.json" (change)="readCharacterFile(fl.files)" />
-            </p>
-          </div>
         </div>
       </section>
 
@@ -307,9 +301,9 @@
               </div>
             </div>
             <div class="bottom">
-              <h2>取得技能</h2>
+              <h2>職業ポイントで取得できる技能</h2>
               <div class="contentWrap">
-                <textarea name="name" rows="8" cols="80" readonly></textarea>
+                <textarea name="name" rows="8" cols="80" [(ngModel)]="sjobSkills" readonly></textarea>
               </div>
             </div>
           </div>
@@ -410,7 +404,8 @@
 
       <div class="submits">
         <ul>
-          <li class="save"><button (click)="download()">保存</button></li>
+          <li class="save"><button (click)="saveLocal()">保存</button></li>
+          <li class="save"><button (click)="download()">JSONファイルで保存</button></li>
           <li class="cancel"><button routerLink="/management">キャンセル</button></li>
         </ul>
       </div>

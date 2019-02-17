@@ -1,6 +1,7 @@
 import {Component, OnInit, Renderer2, ViewChild, ElementRef} from '@angular/core';
 import { CharacterManagementService } from '../../Service/character-management.service';
 import { Convert, Chara } from '../../model/character-info-model';
+import { CharacterSelectedService} from '../../Service/character-selected.service';
 
 @Component({
   selector: 'app-character-management',
@@ -68,13 +69,18 @@ export class CharacterManagementComponent implements OnInit {
 
 
   constructor(private renderer: Renderer2,
-              private service: CharacterManagementService
+              private service: CharacterManagementService,
+              private characterSelected: CharacterSelectedService
   ) {
   }
 
   ngOnInit() {
+
     this.setData(); // ページ読み込み時にキャラクター取得
-  //  this.service.set('PC', '{ aa , ii}');
+    // 選択中のキャラを初期化
+    this.characterSelected.selectedType = '';
+    this.characterSelected.selectedIndex = 0;
+
   }
 
 
@@ -95,7 +101,8 @@ export class CharacterManagementComponent implements OnInit {
       plist[i] = pls[i];
     }
     this.pushHTML(JSON.stringify(pls[index]), false);
-
+    this.characterSelected.selectedIndex = index;
+    this.characterSelected.selectedType = 'PC';
   }
 
   NPC_click(event) {
@@ -114,13 +121,15 @@ export class CharacterManagementComponent implements OnInit {
       nlist[i] = nls[i];
     }
     this.pushHTML(JSON.stringify(nls[index]), false);
+    this.characterSelected.selectedIndex = index;
+    this.characterSelected.selectedType = 'NPC';
 
   }
 
   setData() {
 
-   this.PC = this.service.getItem( 'PC' );
-   this.NPC = this.service.getItem( 'NPC' );
+    this.PC = this.service.getItem('PC');
+    this.NPC = this.service.getItem( 'NPC' );
 
   }
 
@@ -137,9 +146,9 @@ export class CharacterManagementComponent implements OnInit {
   }
 
   delete() {
-    console.log(this.current.parentNode.closest('label'));
-    // let index = this.current.dataset.index;
-    // this.service.delete('PC', index);
+    let key = this.current.parentNode.id;
+    let index = this.current.dataset.index;
+    this.service.delete(key, index);
     this.setData();
   }
 
@@ -159,41 +168,11 @@ export class CharacterManagementComponent implements OnInit {
     let chara: Chara = Convert.toChara(str);
     // console.log(chara);
     if (bool) { // ファイルがアップロードされた場合
-      let plist = Array();
-      let nlist = Array();
-
-      let pls = JSON.parse(localStorage.getItem('PC'));
-      if (pls !== null) {
-        for (let i = 0; i < pls.length; i++) {
-          plist.push(pls[i]);
-        }
-      }
-
-      let nls = JSON.parse(localStorage.getItem('NPC'));
-      if (nls !== null) {
-        for (let i = 0; i < nls.length; i++) {
-          nlist.push(nls[i]);
-        }
-      }
-
       if (chara.Setting.type === 'PC') {
-        if (plist.length === 0) {
-          plist[0] = chara;
-        } else {
-          plist.push(chara);
-        }
+        this.service.setItem('PC' , chara);
       } else {
-        if (nlist.length === 0) {
-          nlist[0] = chara;
-        } else {
-          nlist.push(chara);
-        }
+        this.service.setItem('NPC' , chara);
       }
-
-     // this.service.setItem('PC' , plist);
-
-      localStorage.setItem('PC', JSON.stringify(plist));
-      localStorage.setItem('NPC', JSON.stringify(nlist));
 
       this.setData();
 

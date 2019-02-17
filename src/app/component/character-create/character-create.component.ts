@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CharacterCreateService } from '../../Service/character-create.service';
 import { SkillList } from '../../model/skillList';
 import { JobList} from '../../model/jobList';
+import { CharacterManagementService} from '../../Service/character-management.service';
 import { Convert, Chara, Setting, Character, Skill,
       Behavior, Status, BaseStatus, FluctuationStatus,
       Items, Item, Weapon, Profile } from '../../model/character-info-model';
+import {tryCatch} from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'app-character-create',
@@ -92,7 +94,7 @@ export class CharacterCreateComponent implements OnInit {
   private remProfessionalPoint = 0;
   private remInterestPoint = 0;
 
-  constructor(private characre: CharacterCreateService) {
+  constructor(private characre: CharacterCreateService, private characterManagement: CharacterManagementService) {
     // 全職業のリストを取得する
     this.jobList = new JobList().getAllJob();
     console.log(this.jobList);
@@ -737,7 +739,28 @@ export class CharacterCreateComponent implements OnInit {
   }
 
 
+  // JSONファイルで保存
   download() {
+    let newchara = this.getCharaClass();
+    let characterJson = Convert.charaToJson(newchara);  // CharaクラスをJSONに変換する
+
+    this.filename = this.cname + '.json'; // ファイル名を[キャラクターの名前].jsonに
+    this.characre.save(characterJson, document.getElementById('download'), this.filename);  // JSON文字列を保存させる
+  }
+
+  // ローカルストレージに保存
+  saveLocal() {
+    try {
+      let charaClass = this.getCharaClass();
+      this.characterManagement.setItem(this.stype, charaClass);
+      alert('ローカルストレージに保存されました。');
+    }catch (e) {
+      alert('保存できませんでした。記述に誤りがないか確認してください');
+    }
+  }
+
+  // 現在のキャラ情報をCharaクラスのオブジェクトにして返す
+  getCharaClass() {
     // Charaクラスを完成させる
     let newchara = new Chara(0);
 
@@ -872,9 +895,6 @@ export class CharacterCreateComponent implements OnInit {
     newchara.profile = newprofile;  // charaに入れる
 
     let characterJson = Convert.charaToJson(newchara);  // CharaクラスをJSONに変換する
-
-    this.filename = this.cname + '.json'; // ファイル名を[キャラクターの名前].jsonに
-    this.characre.save(characterJson, document.getElementById('download'), this.filename);  // JSON文字列を保存させる
-
+    return Convert.toChara(characterJson);
   }
 }

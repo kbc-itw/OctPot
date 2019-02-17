@@ -8,15 +8,30 @@ export class CharacterManagementService {
   }
 
   getItem( key ) {
-    return  JSON.parse(localStorage.getItem(key));
+    if (localStorage.getItem(key) === null) {
+      console.log('null');
+      localStorage.setItem( key, JSON.stringify( Array()) );
+      return '';
+    } else {
+      return JSON.parse( localStorage.getItem(key));
+    }
   }
 
   setItem(key , value) {
-    let ls = [];
+    let ls = Array();
     ls = JSON.parse(localStorage.getItem(key));
     ls.push( value );
     localStorage.setItem( key, JSON.stringify(ls));
 
+  }
+
+  // ローカルストレージの指定したオブジェクトの内容を書き換えます。
+  // key:PC or NPC, index: 配列の番号, value:その配列に新たに入れたい値
+  editItem(key, index, value) {
+    let ls = Array();
+    ls = JSON.parse(localStorage.getItem(key));
+    ls[index] = value;
+    localStorage.setItem( key, JSON.stringify(ls));
   }
 
   delete( key , index ) {

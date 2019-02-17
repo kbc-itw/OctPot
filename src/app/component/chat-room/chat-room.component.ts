@@ -18,21 +18,23 @@ export class ChatRoomComponent implements OnInit {
   ip;
   pass;
   name;
+  userType = false;
 
   constructor(private chat: ChatRoomService, private dice: DiceService) {
   }
 
   ngOnInit() {
     console.log('chat-room-component');
+    this.userType = true;
     this.message_list = [];
     this.room_in = false;
     this.chat.preparation();
-    this.chat.getio().on('hello', (e) => {
+    this.chat.get_io().on('hello', (e) => {
       console.log('hello ------------------------------------------------------------------------------------------', e);
       this.room_in = true;
       // this.message_list.push(e);
     });
-    this.chat.getio().on('key_default', () => {
+    this.chat.get_io().on('key_default', () => {
       console.log('パスワードが違います。');
     });
     this.chat.data.subscribe(message => {
@@ -65,15 +67,21 @@ export class ChatRoomComponent implements OnInit {
 
   offer() {
     console.profile('offerFunction');
-    this.chat.offer();
+    this.chat.message_offer();
+    this.chat.file_offer();
     console.profileEnd();
   }
 
   message() {
     if (this.comment !== null && this.comment !== undefined && this.comment !== '') {
       var result = this.dice.roll(this.comment);
+
       if (result[1] !== undefined) {
-        this.chat.message(result[2] + result[3] + result[1]);
+        if (result[2] === undefined) {
+          this.chat.message(result[1]);
+        } else {
+          this.chat.message(result[2]);
+        }
       } else {
         this.chat.message(this.comment);
       }
@@ -94,11 +102,37 @@ export class ChatRoomComponent implements OnInit {
     }
   }
 
+  getUserType() {
+    console.log('getUserType');
+    return this.userType;
+  }
+
+  get_params() {
+    console.log('get_params');
+    var params = [];
+    params.push({
+      io: this.chat.get_io(), member: null,
+      pass: null, name: this.chat.get_name()
+    });
+    console.log(params);
+    return params;
+  }
+
+  get_channel() {
+    return this.chat.get_channel();
+  }
+
+  get_file_channel() {
+    return this.chat.get_file_channel();
+  }
+
   leave() {
     this.chat.leave();
     this.comment = null;
     this.ip = null;
     this.pass = null;
     this.name = null;
+    this.message_list = [];
+    this.userType = false;
   }
 }
