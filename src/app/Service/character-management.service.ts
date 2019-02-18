@@ -17,6 +17,19 @@ export class CharacterManagementService {
     }
   }
 
+  // ローカルストレージから指定したアイテムを一個取り出す
+  // key: PC or NPC, index: ほしいアイテムが配列の何番目か
+  getOneItem(key, index) {
+    if (localStorage.getItem(key) === null) {
+      console.log('null');
+      localStorage.setItem( key, JSON.stringify( Array()) );
+      return '';
+    } else {
+      let storageArray = this.getItem(key);
+      return storageArray[index];
+    }
+  }
+
   setItem(key , value) {
     let ls = Array();
     ls = JSON.parse(localStorage.getItem(key));
