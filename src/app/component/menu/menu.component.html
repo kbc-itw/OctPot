@@ -18,7 +18,7 @@
             <mat-tab label="NPC">
               <ul class="charaList">
                 <li *ngFor="let n of NPC ; let i = index" [attr.data-index]="i"
-                    (click)="charaSelect('NPC',i,nnpm .Setting.character.name)"><button>{{n.Setting.character.name}}</button></li>
+                    (click)="charaSelect('NPC',i,p.Setting.character.name)"><button>{{n.Setting.character.name}}</button></li>
               </ul>
             </mat-tab>
           </mat-tab-group>
