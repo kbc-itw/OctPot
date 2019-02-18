@@ -8,10 +8,20 @@
             <input name="file" type="file" #fl accept="application/json">
             <input type="submit" value="送信">
           </form>
-          <ul class="charaList">
-            <li *ngFor="let p of PC ; let i = index" [attr.data-index]="i"
-                (click)="select($event)">{{p.Setting.character.name}}</li>
-          </ul>
+          <mat-tab-group>
+            <mat-tab label="PC">
+              <ul class="charaList">
+                <li *ngFor="let p of PC ; let i = index" [attr.data-index]="i"
+                    (click)="select($event)"><button>{{p.Setting.character.name}}</button></li>
+              </ul>
+            </mat-tab>
+            <mat-tab label="NPC">
+              <ul class="charaList">
+                <li *ngFor="let p of PC ; let i = index" [attr.data-index]="i"
+                    (click)="select($event)"><button>{{p.Setting.character.name}}</button></li>
+              </ul>
+            </mat-tab>
+          </mat-tab-group>
           <button class="cancel" (click)="file=false; val='null'">キャンセル</button>
         </div>
       </li>

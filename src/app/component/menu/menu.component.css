@@ -1,3 +1,24 @@
+/deep/#menu .mat-tab-group {
+  display: inline-block;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/deep/#menu .mat-tab-header {
+  display: inline-block;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  letter-spacing: -0.5em;
+  background: #fff;
+}
+/deep/#menu .mat-tab-label {
+  width: 50%;
+  letter-spacing: normal;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 30px;
+}
 section#menu {
   width: 100%;
   height: 30px;
@@ -42,7 +63,7 @@ section#menu {
         left: 0;
         padding: 5px 15px;
         width: 370px;
-        height: 390px;
+        height: 425px;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
         background: #81c784;
@@ -69,7 +90,6 @@ section#menu {
               box-sizing: border-box;
             }
         section#menu ul li.flieSelect .sendFlie ul.charaList {
-          margin-top: 10px;
           width: 100%;
           height: 300px;
           overflow-y: scroll;
