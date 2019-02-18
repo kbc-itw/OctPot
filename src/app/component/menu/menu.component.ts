@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Renderer2} from '@angular/core';
 import {MenuService} from '../../Service/menu-service';
 import {ChatRoomCreateComponent} from '../chat-room-create/chat-room-create.component';
 import {ChatRoomComponent} from '../chat-room/chat-room.component';
 import {CharacterDataListService} from '../../Service/character-data-list.service';
+import { CharacterManagementService } from '../../Service/character-management.service';
+import { CharacterSelectedService} from '../../Service/character-selected.service';
 
 @Component({
   selector: 'app-menu',
@@ -19,9 +21,14 @@ export class MenuComponent implements OnInit {
   io;
   ip;
   userType;
+  PC;
+  NPC;
+  current;
 
   constructor(private menu: MenuService, private chatroom: ChatRoomCreateComponent,
-              private chat: ChatRoomComponent, private cdl: CharacterDataListService) {
+              private chat: ChatRoomComponent, private cdl: CharacterDataListService,
+              private management: CharacterManagementService, private characterSelected: CharacterSelectedService,
+              private renderer: Renderer2) {
   }
 
   /*
@@ -46,6 +53,10 @@ export class MenuComponent implements OnInit {
     console.log(params[0]);
     this.pass = params[0].pass;
     this.name = params[0].name;
+
+    this.PC = this.management.getItem('PC');
+    this.NPC = this.management.getItem('NPC');
+    
   }
 
   click(word) {
@@ -118,7 +129,49 @@ export class MenuComponent implements OnInit {
     this.file = false;
   }
 
+  // キャラJSONを参加者に送信します
+  // json: キャラJSON ※string型で引数に入れること(元がJSONならばJSON.stringify()してね)
+  fileSharering(charaJson: string) {
+    console.log(charaJson);
+    if (this.chatroom.getUserType()) {
+      // もしhostだったらmember全員にfile送信
+      try {
+        this.cdl.onNotifyShareDataChanged(charaJson);
+        this.userType.get_member().forEach((e) => {
+          e.f_channel.send(charaJson);
+        });
+        // this.member[this.member.length - 1].channel.send(value);
+      } catch (e) {
+        console.log('message: ');
+        console.log(e);
+      }
+    } else if (this.chat.getUserType()) {
+      // clientの場合
+      var file_channel = this.userType.get_file_channel();
+      try {
+          file_channel.send(charaJson);
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      console.log('other');
+    }
+  }
+
   leave() {
     this.userType.leave();
+  }
+
+  // キャラクターを選択したら発火します。
+  // 選択したキャラクターを他プレイヤーに送信します。
+  // type: PC or NPC, index: ローカルストレージでの位置, charaName: キャラクターの名前
+  charaSelect(type, index, charaName) {
+    let res = confirm(charaName + ' を他プレイヤーに送信しますか？');
+    if ( res === true ) {
+      this.characterSelected.selectedIndex = index;
+      this.characterSelected.selectedType = type;
+      let selectedChara = this.management.getOneItem(this.characterSelected.selectedType, this.characterSelected.selectedIndex);
+      this.fileSharering(JSON.stringify(selectedChara));
+    }
   }
 }
