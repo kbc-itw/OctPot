@@ -118,16 +118,12 @@ export class ChatRoomCreateService {
     // channelの接続相手からmessageが来たとき実行
     this.member[this.member.length - 1].m_channel.onmessage = (event) => {
       console.log('データチャネルメッセージ取得:', event.data);
-      console.log(event);
-      console.log(typeof event.data);
       var val = event.data;
       this.data.next(val);
       this.member.forEach((e) => {
-        if (event.currentTarget !== e.channel) {
-          console.log(event);
-          console.log('e: ', e);
-          console.log('e.peer: ', e.m_peer);
-          console.log('e.channel: ', e.m_channel);
+        if (event.currentTarget !== e.m_channel) {
+          console.log(e.currentTarget);
+          console.log(e.m_channel);
           if (e.m_channel.readyState === 'open') {
             e.m_channel.send(val);
           }
