@@ -162,20 +162,16 @@ export class MenuComponent implements OnInit {
     this.userType.leave();
   }
 
-  PC_select(index) {
-    this.characterSelected.selectedIndex = index;
-    this.characterSelected.selectedType = 'PC';
-
-    let selectedChara = this.management.getOneItem(this.characterSelected.selectedType, this.characterSelected.selectedIndex);
-    this.fileSharering(JSON.stringify(selectedChara));
+  // キャラクターを選択したら発火します。
+  // 選択したキャラクターを他プレイヤーに送信します。
+  // type: PC or NPC, index: ローカルストレージでの位置, charaName: キャラクターの名前
+  charaSelect(type, index, charaName) {
+    let res = confirm(charaName + ' を他プレイヤーに送信しますか？');
+    if ( res === true ) {
+      this.characterSelected.selectedIndex = index;
+      this.characterSelected.selectedType = type;
+      let selectedChara = this.management.getOneItem(this.characterSelected.selectedType, this.characterSelected.selectedIndex);
+      this.fileSharering(JSON.stringify(selectedChara));
+    }
   }
-
-  NPC_select(index) {
-    this.characterSelected.selectedIndex = index;
-    this.characterSelected.selectedType = 'NPC';
-
-    let selectedChara = this.management.getOneItem(this.characterSelected.selectedType, this.characterSelected.selectedIndex);
-    this.fileSharering(JSON.stringify(selectedChara));
-  }
-
 }
