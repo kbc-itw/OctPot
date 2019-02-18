@@ -1,9 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterCreateService } from '../../Service/character-create.service';
 import { SkillList } from '../../model/skillList';
-import { Convert, Chara, Setting, Character, Skill,
-      Behavior, Status, BaseStatus, FluctuationStatus,
-      Items, Item, Weapon, Profile } from '../../model/character-info-model';
+import { JobList } from '../../model/jobList';
+import { CharacterManagementService } from '../../Service/character-management.service';
+import {
+  Convert,
+  Chara,
+  Setting,
+  Character,
+  Skill,
+  Behavior,
+  Status,
+  BaseStatus,
+  FluctuationStatus,
+  Items,
+  Item,
+  Weapon,
+  Profile
+} from '../../model/character-info-model';
+import { tryCatch } from 'rxjs/internal-compatibility';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-character-create',
@@ -14,14 +30,19 @@ export class CharacterCreateComponent implements OnInit {
 
   private filename = 'octpot.json';
 
+  private jobList = [];
   // Setting
   private stype;
   private srace;
   private sjob;
+  private sjobName;
+  private sjobDescription = '';
+  private sjobSkills = [];
   private simages;
   // Setting.character
   private cname;
   private cgender;
+  private cage;
   private cheight;
   private cweight;
   private cbirthplace;
@@ -86,7 +107,10 @@ export class CharacterCreateComponent implements OnInit {
   private remProfessionalPoint = 0;
   private remInterestPoint = 0;
 
-  constructor(private characre: CharacterCreateService) {
+  constructor(private characre: CharacterCreateService, private characterManagement: CharacterManagementService, private router: Router) {
+    // 全職業のリストを取得する
+    this.jobList = new JobList().getAllJob();
+    console.log(this.jobList);
     // 何のスキルがあるか配列から読み込むメソッド達を使う
     let skillList = new SkillList();
     this.combatList = skillList.combatList;
@@ -96,6 +120,15 @@ export class CharacterCreateComponent implements OnInit {
     this.knowledgeList = skillList.knowledgeList;
     this.generateWeponFrame();
     this.generateItemFrame();
+  }
+
+  selectJob(event) {
+    this.jobList.forEach((job) => {
+      if (job.jobName === this.sjobName) {
+        this.sjobDescription = job.description;
+        this.sjobSkills = job.skills.join(',');
+      }
+    });
   }
 
   // キーボードを使ったらもれなく値を0にするメソッド　(未使用)
@@ -538,6 +571,24 @@ export class CharacterCreateComponent implements OnInit {
       switch (dicename) {
         case 'str' :
           this.bstr = result;
+          if (this.bsiz) {
+            let strPlusSiz = this.bstr + this.bsiz;
+            if (strPlusSiz <= 12 ) {
+              this.fDamegeBonus = '-1D6';
+            }else if (strPlusSiz <= 16) {
+              this.fDamegeBonus = '-1D4';
+            }else if (strPlusSiz <= 24) {
+              this.fDamegeBonus = '±0';
+            }else if (strPlusSiz <= 32) {
+              this.fDamegeBonus = '+1D4';
+            }else if (strPlusSiz <= 40) {
+              this.fDamegeBonus = '+1D6';
+            }else if (strPlusSiz <= 56) {
+              this.fDamegeBonus = '+2D6';
+            }else if (strPlusSiz <= 72) {
+              this.fDamegeBonus = '+3D6';
+            }
+          }
           break;
 
         case 'con' :
@@ -567,6 +618,24 @@ export class CharacterCreateComponent implements OnInit {
           this.bsiz = result;
           if (this.bcon) {
             this.fhealth = Math.round((this.bcon + result) / 2);
+          }
+          if (this.bstr) {
+            let strPlusSiz = this.bstr + this.bsiz;
+            if (strPlusSiz <= 12 ) {
+              this.fDamegeBonus = '-1D6';
+            }else if (strPlusSiz <= 16) {
+              this.fDamegeBonus = '-1D4';
+            }else if (strPlusSiz <= 24) {
+              this.fDamegeBonus = '±0';
+            }else if (strPlusSiz <= 32) {
+              this.fDamegeBonus = '+1D4';
+            }else if (strPlusSiz <= 40) {
+              this.fDamegeBonus = '+1D6';
+            }else if (strPlusSiz <= 56) {
+              this.fDamegeBonus = '+2D6';
+            }else if (strPlusSiz <= 72) {
+              this.fDamegeBonus = '+3D6';
+            }
           }
           break;
 
@@ -683,13 +752,36 @@ export class CharacterCreateComponent implements OnInit {
   }
 
 
+  // JSONファイルで保存
   download() {
+    let newchara = this.getCharaClass();
+    let characterJson = Convert.charaToJson(newchara);  // CharaクラスをJSONに変換する
+
+    this.filename = this.cname + '.json'; // ファイル名を[キャラクターの名前].jsonに
+    this.characre.save(characterJson, document.getElementById('download'), this.filename);  // JSON文字列を保存させる
+  }
+
+  // ローカルストレージに保存
+  saveLocal() {
+    try {
+      let charaClass = this.getCharaClass();
+      this.characterManagement.setItem(this.stype, charaClass);
+      alert('保存されました。');
+      this.router.navigate(["/management"]);
+    }catch (e) {
+      alert('保存できませんでした。記述に誤りがないか確認してください');
+    }
+  }
+
+  // 現在のキャラ情報をCharaクラスのオブジェクトにして返す
+  getCharaClass() {
     // Charaクラスを完成させる
     let newchara = new Chara(0);
 
     let newcharacter = new Character(0);
     newcharacter.name = this.cname;
     newcharacter.gender = this.cgender;
+    newcharacter.age = this.cage;
     newcharacter.height = this.cheight;
     newcharacter.weight = this.cweight;
     newcharacter.birthplace = this.cbirthplace;
@@ -699,7 +791,7 @@ export class CharacterCreateComponent implements OnInit {
     let newsetting = new Setting(0);
     newsetting.type = this.stype;
     newsetting.race = this.srace;
-    newsetting.job = this.sjob;
+    newsetting.job = this.sjobName;
     newsetting.character = newcharacter;
 
     newchara.Setting = newsetting;  // charaに入れる
@@ -817,9 +909,6 @@ export class CharacterCreateComponent implements OnInit {
     newchara.profile = newprofile;  // charaに入れる
 
     let characterJson = Convert.charaToJson(newchara);  // CharaクラスをJSONに変換する
-
-    this.filename = this.cname + '.json'; // ファイル名を[キャラクターの名前].jsonに
-    this.characre.save(characterJson, document.getElementById('download'), this.filename);  // JSON文字列を保存させる
-
+    return Convert.toChara(characterJson);
   }
 }

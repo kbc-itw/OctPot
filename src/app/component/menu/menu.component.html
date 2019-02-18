@@ -1,11 +1,29 @@
 <section class="clearfix" id="menu">
   <div class="left">
     <ul>
-      <li (mouseenter)="val='file'" (mouseleave)="val=null">
-        <button>ファイル</button>
-      </li>
-      <li>
-        <button>表示</button>
+      <li class="flieSelect" (mouseenter)="val='file'" (mouseleave)="val=null">
+        <button (click)="file=true; val='null'">ファイル</button>
+        <div class="sendFlie" *ngIf="file">
+          <form class="clearfix" (submit)="sendFile(fl.files)" method="post" enctype="multipart/form-data">
+            <input name="file" type="file" #fl accept="application/json">
+            <input type="submit" value="送信">
+          </form>
+          <mat-tab-group>
+            <mat-tab label="PC">
+              <ul class="charaList">
+                <li *ngFor="let p of PC ; let i = index" [attr.data-index]="i"
+                    (click)="charaSelect('PC',i,p.Setting.character.name)"><button>{{p.Setting.character.name}}</button></li>
+              </ul>
+            </mat-tab>
+            <mat-tab label="NPC">
+              <ul class="charaList">
+                <li *ngFor="let n of NPC ; let i = index" [attr.data-index]="i"
+                    (click)="charaSelect('NPC',i,n.Setting.character.name)"><button>{{n.Setting.character.name}}</button></li>
+              </ul>
+            </mat-tab>
+          </mat-tab-group>
+          <button class="cancel" (click)="file=false; val='null'">キャンセル</button>
+        </div>
       </li>
       <li class="pass_c" (mouseenter)="val='config'" (mouseleave)="val=null">
         <button (click)="c_pass=true; val='null'">パスワード変更</button>
@@ -19,7 +37,9 @@
       </li>
       <li class="view" (mouseenter)="val='view'" (mouseleave)="val=null">
         <button (click)="view=true; val='null'">ホストＩＰ</button>
-        <div class="ip" *ngIf="view" (mouseleave)="view=false"><p>{{ip}}</p></div>
+        <div class="ip" *ngIf="view" (mouseleave)="view=false">
+          <p>{{ip}}</p>
+        </div>
       </li>
     </ul>
   </div>

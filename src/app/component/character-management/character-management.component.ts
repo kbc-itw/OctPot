@@ -1,6 +1,7 @@
 import {Component, OnInit, Renderer2, ViewChild, ElementRef} from '@angular/core';
 import { CharacterManagementService } from '../../Service/character-management.service';
 import { Convert, Chara } from '../../model/character-info-model';
+import { CharacterSelectedService} from '../../Service/character-selected.service';
 
 @Component({
   selector: 'app-character-management',
@@ -28,6 +29,7 @@ export class CharacterManagementComponent implements OnInit {
   private knowledge;
   private health;
   private mp;
+  private damegeBonus;
 
   private vocationalskill;
   private hobbyskill;
@@ -66,20 +68,31 @@ export class CharacterManagementComponent implements OnInit {
   @ViewChild('PC') el: ElementRef;
 
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2,
+              private service: CharacterManagementService,
+              private characterSelected: CharacterSelectedService
+  ) {
   }
 
   ngOnInit() {
+
     this.setData(); // ページ読み込み時にキャラクター取得
+    // 選択中のキャラを初期化
+    this.characterSelected.selectedType = '';
+    this.characterSelected.selectedIndex = 0;
+
   }
 
-  PC_click( event ) {
+
+
+  PC_click(event) {
 
     if (this.current !== undefined) {
       this.renderer.removeClass(this.current, 'current');
     }
-    this.renderer.addClass(event.target , 'current');
+    this.renderer.addClass(event.target, 'current');
     this.current = event.target;
+
     let index = event.target.dataset.index;
 
     let pls = JSON.parse(localStorage.getItem('PC'));
@@ -87,14 +100,19 @@ export class CharacterManagementComponent implements OnInit {
     for (let i = 0; i < pls.length; i++) {
       plist[i] = pls[i];
     }
-    this.pushHTML(JSON.stringify(pls[index]) , false);
-
+    this.pushHTML(JSON.stringify(pls[index]), false);
+    this.characterSelected.selectedIndex = index;
+    this.characterSelected.selectedType = 'PC';
   }
 
-  NPC_click( event ) {
+  NPC_click(event) {
 
-    this.renderer.removeClass(event , 'current');
-    // this.renderer.addClass(  , 'current');
+    if (this.current !== undefined) {
+      this.renderer.removeClass(this.current, 'current');
+    }
+    this.renderer.addClass(event.target, 'current');
+    this.current = event.target;
+
     let index = event.target.dataset.index;
 
     let nls = JSON.parse(localStorage.getItem('NPC'));
@@ -102,27 +120,17 @@ export class CharacterManagementComponent implements OnInit {
     for (let i = 0; i < nls.length; i++) {
       nlist[i] = nls[i];
     }
-    this.pushHTML(JSON.stringify(nls[index]) , false);
+    this.pushHTML(JSON.stringify(nls[index]), false);
+    this.characterSelected.selectedIndex = index;
+    this.characterSelected.selectedType = 'NPC';
 
   }
 
   setData() {
 
-    // PC取得
-    let pls = JSON.parse(localStorage.getItem('PC'));
-    let plist = [];
-    for (let i = 0; i < pls.length; i++) {
-      plist[i] = pls[i];
-    }
-    this.PC = plist;
+    this.PC = this.service.getItem('PC');
+    this.NPC = this.service.getItem( 'NPC' );
 
-    // NPC取得
-    let nls = JSON.parse(localStorage.getItem('NPC'));
-    let nlist = [];
-    for (let i = 0; i < nls.length; i++) {
-      nlist[i] = nls[i];
-    }
-    this.NPC = nlist;
   }
 
   onDrop(event) { // ドラッグアンドドロップでのキャラクター追加
@@ -131,64 +139,43 @@ export class CharacterManagementComponent implements OnInit {
     let file = event.dataTransfer.files;
     this.getJson(file);
   }
+
   onDragOver(event) {
     event.stopPropagation();
     event.preventDefault();
+  }
+
+  delete() {
+    let key = this.current.parentNode.id;
+    let index = this.current.dataset.index;
+    this.service.delete(key, index);
+    this.setData();
   }
 
   getJson(list: File[]) {
 
     let fileobj = list[0];  // 指定されるファイルは1つのみなので[0]
     let reader = new FileReader();
-    reader.onload = function () {  // readAsTextでファイルの読み込みが終わったら呼び出される
+    reader.onload = () => {  // readAsTextでファイルの読み込みが終わったら呼び出される
       // CharacterjsonToHtmlComponent.prototype.pushJson(reader.result);  // ファイルの内容を各値に入れていく
-      CharacterManagementComponent.prototype.pushHTML(reader.result);  // ファイルの内容を各値に入れていく
+      // CharacterManagementComponent.prototype.pushHTML(reader.result);  // ファイルの内容を各値に入れていく
+      this.pushHTML(reader.result);
     };
     reader.readAsText(fileobj);  // ファイルの内容をtextで読む (reader.onloadのreader.resultがstringになるへ)
   }
 
-  pushHTML(str , bool: boolean = true) {
+  pushHTML(str, bool: boolean = true) {
     let chara: Chara = Convert.toChara(str);
-  　// console.log(chara);
-    let plist = Array();
-    let nlist = Array();
-
-    let pls = JSON.parse(localStorage.getItem('PC'));
-    if (pls !== null) {
-      for (let i = 0; i < pls.length; i++) {
-        plist.push(pls[i]);
-      }
-    }
-
-     let nls = JSON.parse(localStorage.getItem('NPC'));
-     if (nls !== null) {
-       for (let i = 0; i < nls.length; i++) {
-         nlist.push(nls[i]);
-       }
-     }
-
-     if ( bool ) {
-      if ( chara.Setting.type === 'PC' ) {
-        if (plist.length === 0) {
-          plist[0] = chara;
-        } else {
-          plist.push(chara);
-        }
+    // console.log(chara);
+    if (bool) { // ファイルがアップロードされた場合
+      if (chara.Setting.type === 'PC') {
+        this.service.setItem('PC' , chara);
       } else {
-        if (nlist.length === 0) {
-          nlist[0] = chara;
-        } else {
-          nlist.push(chara);
-        }
+        this.service.setItem('NPC' , chara);
       }
-     }
 
-    localStorage.setItem('PC', JSON.stringify(plist));
-    localStorage.setItem('NPC', JSON.stringify(nlist));
-
-    if (bool) {
-      console.log('boooo');
       this.setData();
+
     }
     // 能力値
     // Status.baseStatus
@@ -208,6 +195,7 @@ export class CharacterManagementComponent implements OnInit {
     this.knowledge = chara.Status.fluctuationStatus.knowledge;
     this.health = chara.Status.fluctuationStatus.health;
     this.mp = chara.Status.fluctuationStatus.mp;
+    this.damegeBonus = chara.Status.fluctuationStatus.DamegeBonus;
 
     this.vocationalskill = chara.Status.fluctuationStatus.VocationalSkill;
     this.hobbyskill = chara.Status.fluctuationStatus.HobbySkill;
@@ -218,13 +206,14 @@ export class CharacterManagementComponent implements OnInit {
     this.name = chara.Setting.character.name;
     this.job = chara.Setting.job;
     this.gender = chara.Setting.character.gender;
+    this.age = chara.Setting.character.age;
     this.height = chara.Setting.character.height;
     this.weight = chara.Setting.character.weight;
     this.birthplace = chara.Setting.character.birthplace;
     this.haircolor = chara.Setting.character.hairColor;
     this.eyecolor = chara.Setting.character.eyeColor;
 
-    this.age = '不詳'; // jsonに要素がない！？
+    let split = ',';
 
     this.combats = chara.Skill.conbat;
     this.searchs = chara.Skill.search;

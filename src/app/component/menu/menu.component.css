@@ -1,3 +1,24 @@
+/deep/#menu .mat-tab-group {
+  display: inline-block;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/deep/#menu .mat-tab-header {
+  display: inline-block;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  letter-spacing: -0.5em;
+  background: #fff;
+}
+/deep/#menu .mat-tab-label {
+  width: 50%;
+  letter-spacing: normal;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 30px;
+}
 section#menu {
   width: 100%;
   height: 30px;
@@ -19,6 +40,7 @@ section#menu {
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
       font-size: 12px;
+      position: relative;
     }
       section#menu ul li button {
         display: block;
@@ -34,21 +56,85 @@ section#menu {
           background: #519657;
           transition-duration: 0.3s;
         }
-    section#menu ul li.pass_c {
-      position: relative;
-    }
+    section#menu ul li.flieSelect {}
+      section#menu ul li.flieSelect .sendFlie {
+        position: absolute;
+        top: 30px;
+        left: 0;
+        padding: 5px 15px;
+        width: 370px;
+        height: 425px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        background: #81c784;
+      }
+        section#menu ul li.flieSelect .sendFlie form {
+          width: 100%;
+          height: auto;
+          background: #fff;
+          margin-bottom: 10px;
+        }
+          section#menu ul li.flieSelect .sendFlie form input {}
+            section#menu ul li.flieSelect .sendFlie form input:first-child {
+              float: left;
+            }
+            section#menu ul li.flieSelect .sendFlie form input:last-child {
+              float: right;
+              height: 24px;
+              padding: 2px 5px;
+              border: none;
+              color: #fff;
+              background: #9e9e9e;
+              vertical-align: bottom;
+              -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+            }
+        section#menu ul li.flieSelect .sendFlie ul.charaList {
+          width: 100%;
+          height: 300px;
+          overflow-y: scroll;
+          letter-spacing: -0.5em;
+          background: #fff;
+        }
+          section#menu ul li.flieSelect .sendFlie ul.charaList li {
+            width: 100%;
+            letter-spacing: normal;
+            border-bottom: 1px solid #b5b5b5;
+          }
+            section#menu ul li.flieSelect .sendFlie ul.charaList li button {
+              width: 100%;
+              text-align: center;
+            }
+              section#menu ul li.flieSelect .sendFlie ul.charaList li button:hover {
+                background: #4fc3f7;
+                color: #fff;
+                transition-duration: 0.3s;
+              }
+      section#menu ul li.flieSelect .sendFlie .cancel {
+        margin: 10px 0 0 auto;
+        height: auto;
+        background-color: #f44336;
+        color: #fff;
+        border: 1px solid #f44336;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+        section#menu ul li.flieSelect .sendFlie .cancel:hover {
+          background: #fff;
+          color: #f44336;
+          transition-duration: 0.3s;
+        }
+    section#menu ul li.pass_c {}
       section#menu ul li.pass_c .passForm {
         position: absolute;
         top: 30px;
         left: 0;
+        padding: 5px 15px;
+        width: 370px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        background: #81c784;
       }
-    section#menu ul li .passForm {
-      padding: 5px 15px;
-      width: 370px;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-      background: #81c784;
-    }
       section#menu ul li form {
         float: left;
       }

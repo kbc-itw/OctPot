@@ -123,38 +123,39 @@ section {
           }
   .base .right {
     width: 440px;
+    border: 1px solid #999;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
   }
-    .base .right {
-      border: 1px solid #999;
+    .base .right select {
+      margin: 0 auto;
+      padding: 5px 0;
+      width: 100%;
+      display: block;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
     }
-        .base .right select {
-          margin: 0 auto;
-          padding: 5px 0;
+    .base .right dl {
+      margin-top: 10px;
+    }
+      .base .right dl dt {
+        width: 100%;
+      }
+      .base .right dl dd {
+        width: 100%;
+      }
+        .base .right dl dd textarea {
+          padding: 5px;
+          height: 76px;
+          min-height: 76px;
+          max-height: 76px;
           width: 100%;
-          display: block;
+          min-width: 100%;
+          max-width: 100%;
+          overflow-y: scroll;
           -webkit-box-sizing: border-box;
           box-sizing: border-box;
         }
-        .base .right dl {
-          margin-top: 10px;
-        }
-          .base .right dl dt {
-            display: inline-block;
-            float: left;
-          }
-          .base .right dl dd {
-            display: inline-block;
-            vertical-align: top;
-            float: right;
-          }
-            .base .right dl dd textarea {
-              padding: 5px;
-              width: 300px;
-              -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-            }
 
 /* 能力値
 ------------------------------*/
@@ -470,7 +471,7 @@ section {
     }
       .item .top table tr th:first-child ,
       .item .top table tr td:first-child {
-        width: 200px;
+        width: 180px;
       }
       .item .top table tr th:nth-last-child(2) ,
       .item .top table tr td:nth-last-child(2) {
@@ -489,7 +490,7 @@ section {
     }
       .item .bottom table tr th:first-child ,
       .item .bottom table tr td:first-child {
-        width: 300px;
+        width: 280px;
       }
       .item .bottom table tr th:last-child ,
       .item .bottom table tr td:last-child {
@@ -525,6 +526,7 @@ section {
   .submits ul li {
     display: inline-block;
     border-right: 7px;
+    margin-right: 10px;
   }
       .submits ul li button {
         padding: 5px 25px;
@@ -537,7 +539,7 @@ section {
         box-sizing: border-box;
       }
         .submits ul li.cancel button {
-          margin-left: 10px;
+          margin-right: 0;
           background: #f44336;
           border: 2px solid #f44336;
         }

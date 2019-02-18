@@ -1,5 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {SkillList} from '../../model/skillList';
+import { Component, OnInit } from '@angular/core';
+import { SkillList } from '../../model/skillList';
+import { JobList } from '../../model/jobList';
+import { CharacterManagementService } from '../../Service/character-management.service';
+import { CharacterSelectedService } from '../../Service/character-selected.service';
 import {
   BaseStatus,
   Behavior,
@@ -16,6 +19,8 @@ import {
   Weapon
 } from '../../model/character-info-model';
 import {CharacterCreateService} from '../../Service/character-create.service';
+import { tryCatch } from 'rxjs/internal-compatibility';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-character-edit',
@@ -23,16 +28,20 @@ import {CharacterCreateService} from '../../Service/character-create.service';
   styleUrls: ['./character-edit.component.css']
 })
 export class CharacterEditComponent implements OnInit {
-  private filename = 'octpot.json';
 
+  private jobList = [];
   // Setting
   private stype;
   private srace;
   private sjob;
+  private sjobName;
+  private sjobDescription = '';
+  private sjobSkills = '';
   private simages;
   // Setting.character
   private cname;
   private cgender;
+  private cage;
   private cheight;
   private cweight;
   private cbirthplace;
@@ -97,7 +106,12 @@ export class CharacterEditComponent implements OnInit {
   private remProfessionalPoint = 0;
   private remInterestPoint = 0;
 
-  constructor(private characre: CharacterCreateService) {
+  constructor(private characre: CharacterCreateService,
+              private characterManagement: CharacterManagementService,
+              private characterSelected: CharacterSelectedService,
+              private router: Router) {
+    // 全職業のリストを取得する。
+    this.jobList = new JobList().getAllJob();
     // 何のスキルがあるか配列から読み込むメソッド達を使う
     let skillList = new SkillList();
     this.combatList = skillList.combatList;
@@ -109,7 +123,88 @@ export class CharacterEditComponent implements OnInit {
     this.generateItemFrame();
   }
 
-  // キーボードを使ったらもれなく値を0にするメソッド　(未使用)
+  ngOnInit() {
+    if (this.characterSelected.selectedType === 'PC' ||
+    this.characterSelected.selectedType === 'NPC') {
+      let charaArray = this.characterManagement.getItem(this.characterSelected.selectedType);
+      this.pushCharaData(JSON.stringify(charaArray[this.characterSelected.selectedIndex]));
+    }
+  }
+
+  selectJob(event) {
+    this.jobList.forEach((job) => {
+      if (job.jobName === this.sjobName) {
+        this.sjobDescription = job.description;
+        this.sjobSkills = job.skills.join(',');
+      }
+    });
+  }
+
+  // 編集したいキャラJSONを読み込む
+  readCharacterFile(list: any) {
+    if (list <= 0) { return; } // 何も指定されていなければ何もしない
+
+    let fileobj = list[0];  // 指定されるファイルは1つのみなので[0]
+    let reader = new FileReader();
+
+    reader.onload = () => {  // readAsTextでファイルの読み込みが終わったら呼び出される
+      console.log(reader.result);
+      this.pushCharaData(reader.result);  // ファイルの内容を各値に入れていく
+
+    };
+    reader.readAsText(fileobj);  // ファイルの内容をtextで読む (reader.onloadのreader.resultがstringになるへ)
+  }
+
+  // strで受け取ったJSONをキャラクラスにして各所に入れていく
+  pushCharaData ( str ) {
+    let chara: Chara = Convert.toChara(str);
+    console.log(chara);
+
+    this.stype = chara.Setting.type;
+    this.srace = chara.Setting.race;
+    this.sjobName = chara.Setting.job;
+    this.cname = chara.Setting.character.name;
+    this.cgender = chara.Setting.character.gender;
+    this.cage = chara.Setting.character.age;
+    this.cheight = chara.Setting.character.height;
+    this.cweight = chara.Setting.character.weight;
+    this.cbirthplace = chara.Setting.character.birthplace;
+    this.chairColor = chara.Setting.character.hairColor;
+    this.ceyeColor = chara.Setting.character.eyeColor;
+    this.bstr = chara.Status.baseStatus.str;
+    this.bcon = chara.Status.baseStatus.con;
+    this.bpow = chara.Status.baseStatus.pow;
+    this.bdex = chara.Status.baseStatus.dex;
+    this.bsiz = chara.Status.baseStatus.siz;
+    this.bapp = chara.Status.baseStatus.app;
+    this.bint = chara.Status.baseStatus.int;
+    this.bedu = chara.Status.baseStatus.edu;
+    this.bincome_and_property = chara.Status.baseStatus.income_and_property;
+    this.fsan = chara.Status.fluctuationStatus.san;
+    this.fluck = chara.Status.fluctuationStatus.luck;
+    this.fidea = chara.Status.fluctuationStatus.idea;
+    this.fknowledge = chara.Status.fluctuationStatus.knowledge;
+    this.fhealth = chara.Status.fluctuationStatus.health;
+    this.fmp = chara.Status.fluctuationStatus.mp;
+    this.fVocationalSkill = chara.Status.fluctuationStatus.VocationalSkill;
+    this.professionalPoint = chara.Status.fluctuationStatus.VocationalSkill;
+    this.fHobbySkill = chara.Status.fluctuationStatus.HobbySkill;
+    this.interestPoint = chara.Status.fluctuationStatus.HobbySkill;
+    this.fDamegeBonus = chara.Status.fluctuationStatus.DamegeBonus;
+    this.pCareer = chara.profile.Career;
+    this.pEncounter = chara.profile.Encounter;
+    this.pOtherMemo = chara.profile.otherMemo;
+    this.combatList = chara.Skill.conbat;
+    this.searchList = chara.Skill.search;
+    this.behaviorList = chara.Skill.behavior;
+    this.negotiationList = chara.Skill.negotiation;
+    this.knowledgeList = chara.Skill.knowledge;
+    this.weponList = chara.items.weapon;
+    this.itemslist = chara.items.item;
+  }
+
+
+    // キーボードを使ったらもれなく値を0にするメソッド　(未使用)
   dontKyetype(point, skill, index, listName, pointName) {
     if (pointName === 'job') {
       switch (listName) {
@@ -487,16 +582,7 @@ export class CharacterEditComponent implements OnInit {
   // 所持品(wepon)枠の作成
   generateWeponFrame() {
     for (let i = 0; i < 5; i++) {
-      let wepon = {
-        name: '',
-        successRate: 0,
-        damage: '',
-        range: '',
-        attackCount: 0,
-        loadingCount: 0,
-        endurance: 0,
-        other: ''
-      };
+      let wepon = new Weapon(0);
       this.weponList[i] = wepon;
     }
   }
@@ -504,11 +590,7 @@ export class CharacterEditComponent implements OnInit {
   // 所持品(item)の枠作成
   generateItemFrame() {
     for (let i = 0; i < 5; i++) {
-      let item = {
-        name: '',
-        times: '',
-        description: ''
-      };
+      let item = new Item(0);
       this.itemslist[i] = item;
     }
   }
@@ -516,23 +598,10 @@ export class CharacterEditComponent implements OnInit {
   // アイテム追加ボタンを押されたら、アイテム枠を追加する。
   addItem(itemType) {
     if (itemType === 'wepon') {
-      let wepon = {
-        name: '',
-        successRate: 0,
-        damage: '',
-        range: '',
-        attackCount: 0,
-        loadingCount: 0,
-        endurance: 0,
-        other: ''
-      };
+      let wepon = new Weapon(0);
       this.weponList.push(wepon);
     } else if (itemType === 'item') {
-      let item = {
-        name: '',
-        times: '',
-        description: ''
-      };
+      let item = new Item(0);
       this.itemslist.push(item);
     }
   }
@@ -540,24 +609,48 @@ export class CharacterEditComponent implements OnInit {
   // アイテム削除ボタンが押されたらそのアイテムを削除する
   deleteItem(itemType, index) {
     if (itemType === 'wepon') {
-      this.weponList.slice(index, 1 );
-    }else if (itemType === 'item') {
-      this.itemslist.slice(index, 1 );
+      this.weponList.splice(index, 1 );
+    } else if (itemType === 'item') {
+      this.itemslist.splice(index, 1 );
     }
   }
 
+  // JSONファイルに保存
+  download() {
+    let newchara = this.getCharaClass();
+    let characterJson = Convert.charaToJson(newchara);  // CharaクラスをJSONに変換する
 
-  ngOnInit() {
+    let filename = this.cname + '.json'; // ファイル名を[キャラクターの名前].json
+    this.characre.save(characterJson, document.getElementById('download'), filename);  // JSON文字列を保存させる
   }
 
+  // ローカルストレージに保存
+  saveLocal() {
+    try {
+      let charaClass = this.getCharaClass();
+      if (this.characterSelected.selectedType === this.stype) {
+          this.characterManagement.editItem(this.characterSelected.selectedType,
+          this.characterSelected.selectedIndex,
+          charaClass);
+      } else {
+        this.characterManagement.setItem(this.stype, charaClass);
+      }
+      alert('保存されました。');
+      this.router.navigate(["/management"]);
+    }catch (e) {
+      alert('保存できませんでした。記述に誤りがないか確認してください。');
+    }
+  }
 
-  download() {
+  // 現在の状態でキャラクラスを返す
+  getCharaClass() {
     // Charaクラスを完成させる
     let newchara = new Chara(0);
 
     let newcharacter = new Character(0);
     newcharacter.name = this.cname;
     newcharacter.gender = this.cgender;
+    newcharacter.age = this.cage;
     newcharacter.height = this.cheight;
     newcharacter.weight = this.cweight;
     newcharacter.birthplace = this.cbirthplace;
@@ -567,7 +660,7 @@ export class CharacterEditComponent implements OnInit {
     let newsetting = new Setting(0);
     newsetting.type = this.stype;
     newsetting.race = this.srace;
-    newsetting.job = this.sjob;
+    newsetting.job = this.sjobName;
     newsetting.character = newcharacter;
 
     newchara.Setting = newsetting;  // charaに入れる
@@ -654,40 +747,25 @@ export class CharacterEditComponent implements OnInit {
     newchara.Status = newstatus;  // charaに入れる
 
     let newitems = new Items(0);
-    this.weponList.forEach(function (item) {
-      if (item.name) {
-        let newwepon = new Weapon(0);
-        newwepon.weaponName = item.name;
-        newwepon.successRate = item.successRate;
-        newwepon.damage = item.damage;
-        newwepon.range = item.range;
-        newwepon.attackCount = item.attackCount;
-        newwepon.loadingCount = item.loadingCount;
-        newwepon.endurance = item.endurance;
-        newwepon.other = item.other;
-        newitems.weapon.push(newwepon);
+    this.weponList.forEach(function (weapon: Weapon) {
+      if (weapon.weaponName !== '') {
+        newitems.weapon.push(weapon);
       }
     });
-    this.itemslist.forEach(function (item) {
-      if (item.name) {
-        let newitem = new Item(0);
-        newitem.itemName = item.name;
-        newitem.number = item.times;
-        newitem.other = item.description;
-        newitems.item.push(newitem);
+    this.itemslist.forEach(function (item: Item) {
+      if (item.itemName !== '') {
+        newitems.item.push(item);
       }
     });
     newchara.items = newitems;  // charaに入れる
+
     let newprofile = new Profile(0);
     newprofile.Career = this.pCareer;
     newprofile.Encounter = this.pEncounter;
     newprofile.otherMemo = this.pOtherMemo;
     newchara.profile = newprofile;  // charaに入れる
 
-    let characterJson = Convert.charaToJson(newchara);  // CharaクラスをJSONに変換する
-
-    this.filename = this.cname + '.json'; // ファイル名を[キャラクターの名前].json  
-    this.characre.save(characterJson, document.getElementById('download'), this.filename);  // JSON文字列を保存させる
-
+    let charaJson = Convert.charaToJson(newchara);
+    return Convert.toChara(charaJson);
   }
 }

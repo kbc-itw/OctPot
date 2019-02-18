@@ -63,6 +63,7 @@ export class Setting {
 export class Character {
     name:       string = '';  // 名前
     gender:     string = '';  // 性別
+    age: number = 0;  //  年齢
     height:     string = '';  // 身長
     weight:     string = '';  // 体重
     birthplace: string = '';  // 出身地
@@ -73,6 +74,7 @@ export class Character {
         if (infoObject !== 0) {
             this.name = infoObject['name'];
             this.gender = infoObject['gender'];
+            this.age = infoObject['age'];
             this.height = infoObject['height'];
             this.weight = infoObject['weight'];
             this.birthplace = infoObject['birthplace'];
@@ -181,7 +183,7 @@ export class FluctuationStatus {
             this.mp = infoObject['mp'];
             this.VocationalSkill = infoObject['VocationalSkill'];
             this.HobbySkill = infoObject['HobbySkill'];
-            // this.DamegeBonus = infoObject['DamegeBonus'];
+            this.DamegeBonus = infoObject['DamegeBonus'];
         }
     }
 }
