@@ -32,7 +32,16 @@
         <app-chara-sheet></app-chara-sheet>
       </div>
       <div class="rightArea clearfix">
-        <div class="statusArea"><app-status></app-status></div>
+        <div class="statusArea">
+          <mat-tab-group>
+            <mat-tab label="ステータス">
+              <app-status></app-status>
+            </mat-tab>
+            <mat-tab label="技能">
+              <app-chara-ability></app-chara-ability>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
         <div class="diceArea">
           <mat-tab-group>
             <mat-tab label="メモ">

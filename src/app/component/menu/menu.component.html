@@ -25,7 +25,7 @@
           <button class="cancel" (click)="file=false; val='null'">キャンセル</button>
         </div>
       </li>
-      <li class="pass_c" (mouseenter)="val='config'" (mouseleave)="val=null">
+      <!--<li class="pass_c" (mouseenter)="val='config'" (mouseleave)="val=null">
         <button (click)="c_pass=true; val='null'">パスワード変更</button>
         <div class="passForm clearfix" *ngIf="c_pass">
           <form (submit)="change_pass()" (submit)="$event.target.pass.value=null">
@@ -34,7 +34,7 @@
           </form>
           <button (click)="c_pass=false; val='null'">キャンセル</button>
         </div>
-      </li>
+      </li>-->
       <li class="view" (mouseenter)="val='view'" (mouseleave)="val=null">
         <button (click)="view=true; val='null'">ホストＩＰ</button>
         <div class="ip" *ngIf="view" (mouseleave)="view=false">
