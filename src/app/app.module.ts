@@ -34,6 +34,7 @@ import {FileSharingService} from './Service/file-sharing.service';
 import {CharaSheetComponent} from './component/chara-sheet/chara-sheet.component';
 import {StatusComponent} from './component/status/status.component';
 import {CharacterDataListService} from './Service/character-data-list.service';
+import { CharaAbilityComponent } from './component/chara-ability/chara-ability.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {CharacterDataListService} from './Service/character-data-list.service';
     CharacterEditComponent,
     FileSharingComponent,
     CharaSheetComponent,
-    StatusComponent
+    StatusComponent,
+    CharaAbilityComponent
   ],
   entryComponents: [
     MemoComponent,
