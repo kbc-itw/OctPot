@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {SkillList} from '../../model/skillList';
-import {JobList} from '../../model/jobList';
-import {CharacterManagementService} from '../../Service/character-management.service';
-import {CharacterSelectedService} from '../../Service/character-selected.service';
+import { Component, OnInit } from '@angular/core';
+import { SkillList } from '../../model/skillList';
+import { JobList } from '../../model/jobList';
+import { CharacterManagementService } from '../../Service/character-management.service';
+import { CharacterSelectedService } from '../../Service/character-selected.service';
 import {
   BaseStatus,
   Behavior,
@@ -19,6 +19,8 @@ import {
   Weapon
 } from '../../model/character-info-model';
 import {CharacterCreateService} from '../../Service/character-create.service';
+import { tryCatch } from 'rxjs/internal-compatibility';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-character-edit',
@@ -106,7 +108,8 @@ export class CharacterEditComponent implements OnInit {
 
   constructor(private characre: CharacterCreateService,
               private characterManagement: CharacterManagementService,
-              private characterSelected: CharacterSelectedService) {
+              private characterSelected: CharacterSelectedService,
+              private router: Router) {
     // 全職業のリストを取得する。
     this.jobList = new JobList().getAllJob();
     // 何のスキルがあるか配列から読み込むメソッド達を使う
@@ -632,7 +635,8 @@ export class CharacterEditComponent implements OnInit {
       } else {
         this.characterManagement.setItem(this.stype, charaClass);
       }
-      alert('ローカルストレージに保存できました。');
+      alert('保存されました。');
+      this.router.navigate(["/management"]);
     }catch (e) {
       alert('保存できませんでした。記述に誤りがないか確認してください。');
     }

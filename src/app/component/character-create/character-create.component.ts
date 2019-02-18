@@ -1,12 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterCreateService } from '../../Service/character-create.service';
 import { SkillList } from '../../model/skillList';
-import { JobList} from '../../model/jobList';
-import { CharacterManagementService} from '../../Service/character-management.service';
-import { Convert, Chara, Setting, Character, Skill,
-      Behavior, Status, BaseStatus, FluctuationStatus,
-      Items, Item, Weapon, Profile } from '../../model/character-info-model';
-import {tryCatch} from 'rxjs/internal-compatibility';
+import { JobList } from '../../model/jobList';
+import { CharacterManagementService } from '../../Service/character-management.service';
+import {
+  Convert,
+  Chara,
+  Setting,
+  Character,
+  Skill,
+  Behavior,
+  Status,
+  BaseStatus,
+  FluctuationStatus,
+  Items,
+  Item,
+  Weapon,
+  Profile
+} from '../../model/character-info-model';
+import { tryCatch } from 'rxjs/internal-compatibility';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-character-create',
@@ -94,7 +107,7 @@ export class CharacterCreateComponent implements OnInit {
   private remProfessionalPoint = 0;
   private remInterestPoint = 0;
 
-  constructor(private characre: CharacterCreateService, private characterManagement: CharacterManagementService) {
+  constructor(private characre: CharacterCreateService, private characterManagement: CharacterManagementService, private router: Router) {
     // 全職業のリストを取得する
     this.jobList = new JobList().getAllJob();
     console.log(this.jobList);
@@ -753,7 +766,8 @@ export class CharacterCreateComponent implements OnInit {
     try {
       let charaClass = this.getCharaClass();
       this.characterManagement.setItem(this.stype, charaClass);
-      alert('ローカルストレージに保存されました。');
+      alert('保存されました。');
+      this.router.navigate(["/management"]);
     }catch (e) {
       alert('保存できませんでした。記述に誤りがないか確認してください');
     }
