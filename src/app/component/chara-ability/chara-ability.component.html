@@ -1,14 +1,12 @@
 <div class="charaAbility">
   <ul class="abilityList">
-    <li class="character">
+    <li *ngFor="let chara of charaList; let i = index;" class="character">
       <dl class="about">
-        <dt>キャラクター名</dt>
-        <dd>職業：職業名</dd>
+        <dt>{{chara.Setting.character.name}}</dt>
+        <dd>職業：{{chara.Setting.job}}</dd>
       </dl>
       <ul class="getAbility">
-        <li>技能名：値</li>
-        <li>技能名：値</li>
-        <li>技能名：値</li>
+        <li *ngFor="let skill of charaSkillList[i]">{{skill.name}} : {{skill.point}}</li>
       </ul>
     </li>
   </ul>
