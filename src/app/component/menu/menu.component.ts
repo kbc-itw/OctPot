@@ -22,6 +22,7 @@ export class MenuComponent implements OnInit {
   ip;
   userType;
   PC;
+  NPC;
   current;
 
   constructor(private menu: MenuService, private chatroom: ChatRoomCreateComponent,
@@ -54,8 +55,8 @@ export class MenuComponent implements OnInit {
     this.name = params[0].name;
 
     this.PC = this.management.getItem('PC');
-
-
+    this.NPC = this.management.getItem('NPC');
+    
   }
 
   click(word) {
@@ -132,7 +133,7 @@ export class MenuComponent implements OnInit {
     this.userType.leave();
   }
 
-  select(event) {
+  PC_select(event) {
 
     if (this.current !== undefined) {
       this.renderer.removeClass(this.current, 'current');
@@ -149,6 +150,25 @@ export class MenuComponent implements OnInit {
     }
     this.characterSelected.selectedIndex = index;
     this.characterSelected.selectedType = 'PC';
+  }
+
+  NPC_select(event) {
+
+    if (this.current !== undefined) {
+      this.renderer.removeClass(this.current, 'current');
+    }
+    this.renderer.addClass(event.target, 'current');
+    this.current = event.target;
+
+    let index = event.target.dataset.index;
+
+    let pls = JSON.parse(localStorage.getItem('NPC'));
+    let plist = [];
+    for (let i = 0; i < pls.length; i++) {
+      plist[i] = pls[i];
+    }
+    this.characterSelected.selectedIndex = index;
+    this.characterSelected.selectedType = 'NPC';
   }
 
 }
