@@ -79,6 +79,7 @@ export class ChatRoomService {
         console.log('DataChannelOpen');
         var value: string = this.name + 'が入室しました。';
         this.message_channel.send(value);
+        this.data.next(value);
       };
       this.message_channel.onmessage = (event) => {
         console.log('データチャネルメッセージ取得:', event.data);
@@ -395,7 +396,7 @@ export class ChatRoomService {
     if (this.message_channel !== undefined) {// もしhostとの接続が切れていなかったら
       this.message_channel.send(value);
     }
-    // this.data.next(value);
+    this.data.next(value);
   }
 
   leave() {
