@@ -12,13 +12,13 @@
             <mat-tab label="PC">
               <ul class="charaList">
                 <li *ngFor="let p of PC ; let i = index" [attr.data-index]="i"
-                    (click)="PC_select($event)"><button>{{p.Setting.character.name}}</button></li>
+                    (click)="PC_select(i)"><button>{{p.Setting.character.name}}</button></li>
               </ul>
             </mat-tab>
             <mat-tab label="NPC">
               <ul class="charaList">
                 <li *ngFor="let n of NPC ; let i = index" [attr.data-index]="i"
-                    (click)="NPC_select($event)"><button>{{n.Setting.character.name}}</button></li>
+                    (click)="NPC_select(i)"><button>{{n.Setting.character.name}}</button></li>
               </ul>
             </mat-tab>
           </mat-tab-group>

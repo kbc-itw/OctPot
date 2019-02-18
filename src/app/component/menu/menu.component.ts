@@ -129,46 +129,53 @@ export class MenuComponent implements OnInit {
     this.file = false;
   }
 
+  // キャラJSONを参加者に送信します
+  // json: キャラJSON ※string型で引数に入れること(元がJSONならばJSON.stringify()してね)
+  fileSharering(charaJson: string) {
+    console.log(charaJson);
+    if (this.chatroom.getUserType()) {
+      // もしhostだったらmember全員にfile送信
+      try {
+        this.cdl.onNotifyShareDataChanged(charaJson);
+        this.userType.get_member().forEach((e) => {
+          e.f_channel.send(charaJson);
+        });
+        // this.member[this.member.length - 1].channel.send(value);
+      } catch (e) {
+        console.log('message: ');
+        console.log(e);
+      }
+    } else if (this.chat.getUserType()) {
+      // clientの場合
+      var file_channel = this.userType.get_file_channel();
+      try {
+          file_channel.send(charaJson);
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      console.log('other');
+    }
+  }
+
   leave() {
     this.userType.leave();
   }
 
-  PC_select(event) {
-
-    if (this.current !== undefined) {
-      this.renderer.removeClass(this.current, 'current');
-    }
-    this.renderer.addClass(event.target, 'current');
-    this.current = event.target;
-
-    let index = event.target.dataset.index;
-
-    let pls = JSON.parse(localStorage.getItem('PC'));
-    let plist = [];
-    for (let i = 0; i < pls.length; i++) {
-      plist[i] = pls[i];
-    }
+  PC_select(index) {
     this.characterSelected.selectedIndex = index;
     this.characterSelected.selectedType = 'PC';
+
+    let selectedChara = this.management.getOneItem(this.characterSelected.selectedType, this.characterSelected.selectedIndex);
+    this.fileSharering(JSON.stringify(selectedChara));
   }
 
-  NPC_select(event) {
-
-    if (this.current !== undefined) {
-      this.renderer.removeClass(this.current, 'current');
-    }
-    this.renderer.addClass(event.target, 'current');
-    this.current = event.target;
-
-    let index = event.target.dataset.index;
-
-    let pls = JSON.parse(localStorage.getItem('NPC'));
-    let plist = [];
-    for (let i = 0; i < pls.length; i++) {
-      plist[i] = pls[i];
-    }
+  NPC_select(index) {
     this.characterSelected.selectedIndex = index;
     this.characterSelected.selectedType = 'NPC';
+
+    let selectedChara = this.management.getOneItem(this.characterSelected.selectedType, this.characterSelected.selectedIndex);
+    this.fileSharering(JSON.stringify(selectedChara));
   }
 
 }
